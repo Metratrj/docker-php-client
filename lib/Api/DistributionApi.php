@@ -31,9 +31,13 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Utils;
+use InvalidArgumentException;
+use JsonException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -41,6 +45,7 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
+use RuntimeException;
 
 /**
  * DistributionApi Class Doc Comment
@@ -133,9 +138,9 @@ class DistributionApi
      * @param  string $name Image name or id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['distributionInspect'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\DistributionInspect|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function distributionInspect($name, string $contentType = self::contentTypes['distributionInspect'][0])
     {
@@ -151,9 +156,9 @@ class DistributionApi
      * @param  string $name Image name or id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['distributionInspect'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\DistributionInspect|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function distributionInspectWithHttpInfo($name, string $contentType = self::contentTypes['distributionInspect'][0])
     {
@@ -264,8 +269,8 @@ class DistributionApi
      * @param  string $name Image name or id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['distributionInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function distributionInspectAsync($name, string $contentType = self::contentTypes['distributionInspect'][0])
     {
@@ -285,8 +290,8 @@ class DistributionApi
      * @param  string $name Image name or id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['distributionInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function distributionInspectAsyncWithHttpInfo($name, string $contentType = self::contentTypes['distributionInspect'][0])
     {
@@ -335,15 +340,15 @@ class DistributionApi
      * @param  string $name Image name or id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['distributionInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function distributionInspectRequest($name, string $contentType = self::contentTypes['distributionInspect'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling distributionInspect'
             );
         }
@@ -392,7 +397,7 @@ class DistributionApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -424,7 +429,7 @@ class DistributionApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
+     * @throws RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -433,7 +438,7 @@ class DistributionApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -452,7 +457,7 @@ class DistributionApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
+                } catch (JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

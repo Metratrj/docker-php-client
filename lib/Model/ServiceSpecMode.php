@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ServiceSpecMode Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ServiceSpecMode implements ModelInterface, ArrayAccess, \JsonSerializable
+class ServiceSpecMode implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -314,7 +317,7 @@ class ServiceSpecMode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets replicated
      *
-     * @return \OpenAPI\Client\Model\ServiceSpecModeReplicated|null
+     * @return ServiceSpecModeReplicated|null
      */
     public function getReplicated()
     {
@@ -324,14 +327,14 @@ class ServiceSpecMode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets replicated
      *
-     * @param \OpenAPI\Client\Model\ServiceSpecModeReplicated|null $replicated replicated
+     * @param ServiceSpecModeReplicated|null $replicated replicated
      *
      * @return self
      */
     public function setReplicated($replicated)
     {
         if (is_null($replicated)) {
-            throw new \InvalidArgumentException('non-nullable replicated cannot be null');
+            throw new InvalidArgumentException('non-nullable replicated cannot be null');
         }
         $this->container['replicated'] = $replicated;
 
@@ -358,7 +361,7 @@ class ServiceSpecMode implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGlobal($global)
     {
         if (is_null($global)) {
-            throw new \InvalidArgumentException('non-nullable global cannot be null');
+            throw new InvalidArgumentException('non-nullable global cannot be null');
         }
         $this->container['global'] = $global;
 
@@ -368,7 +371,7 @@ class ServiceSpecMode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets replicated_job
      *
-     * @return \OpenAPI\Client\Model\ServiceSpecModeReplicatedJob|null
+     * @return ServiceSpecModeReplicatedJob|null
      */
     public function getReplicatedJob()
     {
@@ -378,14 +381,14 @@ class ServiceSpecMode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets replicated_job
      *
-     * @param \OpenAPI\Client\Model\ServiceSpecModeReplicatedJob|null $replicated_job replicated_job
+     * @param ServiceSpecModeReplicatedJob|null $replicated_job replicated_job
      *
      * @return self
      */
     public function setReplicatedJob($replicated_job)
     {
         if (is_null($replicated_job)) {
-            throw new \InvalidArgumentException('non-nullable replicated_job cannot be null');
+            throw new InvalidArgumentException('non-nullable replicated_job cannot be null');
         }
         $this->container['replicated_job'] = $replicated_job;
 
@@ -412,7 +415,7 @@ class ServiceSpecMode implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGlobalJob($global_job)
     {
         if (is_null($global_job)) {
-            throw new \InvalidArgumentException('non-nullable global_job cannot be null');
+            throw new InvalidArgumentException('non-nullable global_job cannot be null');
         }
         $this->container['global_job'] = $global_job;
 
@@ -437,7 +440,7 @@ class ServiceSpecMode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -479,7 +482,7 @@ class ServiceSpecMode implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

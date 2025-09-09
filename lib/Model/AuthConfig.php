@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * AuthConfig Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class AuthConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class AuthConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -330,7 +333,7 @@ class AuthConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUsername($username)
     {
         if (is_null($username)) {
-            throw new \InvalidArgumentException('non-nullable username cannot be null');
+            throw new InvalidArgumentException('non-nullable username cannot be null');
         }
         $this->container['username'] = $username;
 
@@ -357,7 +360,7 @@ class AuthConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPassword($password)
     {
         if (is_null($password)) {
-            throw new \InvalidArgumentException('non-nullable password cannot be null');
+            throw new InvalidArgumentException('non-nullable password cannot be null');
         }
         $this->container['password'] = $password;
 
@@ -384,7 +387,7 @@ class AuthConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEmail($email)
     {
         if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
+            throw new InvalidArgumentException('non-nullable email cannot be null');
         }
         $this->container['email'] = $email;
 
@@ -411,7 +414,7 @@ class AuthConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setServeraddress($serveraddress)
     {
         if (is_null($serveraddress)) {
-            throw new \InvalidArgumentException('non-nullable serveraddress cannot be null');
+            throw new InvalidArgumentException('non-nullable serveraddress cannot be null');
         }
         $this->container['serveraddress'] = $serveraddress;
 
@@ -436,7 +439,7 @@ class AuthConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -478,7 +481,7 @@ class AuthConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

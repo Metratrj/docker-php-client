@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * SwarmSpecCAConfig Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class SwarmSpecCAConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class SwarmSpecCAConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -338,7 +341,7 @@ class SwarmSpecCAConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setNodeCertExpiry($node_cert_expiry)
     {
         if (is_null($node_cert_expiry)) {
-            throw new \InvalidArgumentException('non-nullable node_cert_expiry cannot be null');
+            throw new InvalidArgumentException('non-nullable node_cert_expiry cannot be null');
         }
         $this->container['node_cert_expiry'] = $node_cert_expiry;
 
@@ -348,7 +351,7 @@ class SwarmSpecCAConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets external_cas
      *
-     * @return \OpenAPI\Client\Model\SwarmSpecCAConfigExternalCAsInner[]|null
+     * @return SwarmSpecCAConfigExternalCAsInner[]|null
      */
     public function getExternalCas()
     {
@@ -358,14 +361,14 @@ class SwarmSpecCAConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets external_cas
      *
-     * @param \OpenAPI\Client\Model\SwarmSpecCAConfigExternalCAsInner[]|null $external_cas Configuration for forwarding signing requests to an external certificate authority.
+     * @param SwarmSpecCAConfigExternalCAsInner[]|null $external_cas Configuration for forwarding signing requests to an external certificate authority.
      *
      * @return self
      */
     public function setExternalCas($external_cas)
     {
         if (is_null($external_cas)) {
-            throw new \InvalidArgumentException('non-nullable external_cas cannot be null');
+            throw new InvalidArgumentException('non-nullable external_cas cannot be null');
         }
         $this->container['external_cas'] = $external_cas;
 
@@ -392,7 +395,7 @@ class SwarmSpecCAConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setSigningCaCert($signing_ca_cert)
     {
         if (is_null($signing_ca_cert)) {
-            throw new \InvalidArgumentException('non-nullable signing_ca_cert cannot be null');
+            throw new InvalidArgumentException('non-nullable signing_ca_cert cannot be null');
         }
         $this->container['signing_ca_cert'] = $signing_ca_cert;
 
@@ -419,7 +422,7 @@ class SwarmSpecCAConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setSigningCaKey($signing_ca_key)
     {
         if (is_null($signing_ca_key)) {
-            throw new \InvalidArgumentException('non-nullable signing_ca_key cannot be null');
+            throw new InvalidArgumentException('non-nullable signing_ca_key cannot be null');
         }
         $this->container['signing_ca_key'] = $signing_ca_key;
 
@@ -446,7 +449,7 @@ class SwarmSpecCAConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setForceRotate($force_rotate)
     {
         if (is_null($force_rotate)) {
-            throw new \InvalidArgumentException('non-nullable force_rotate cannot be null');
+            throw new InvalidArgumentException('non-nullable force_rotate cannot be null');
         }
         $this->container['force_rotate'] = $force_rotate;
 
@@ -471,7 +474,7 @@ class SwarmSpecCAConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -513,7 +516,7 @@ class SwarmSpecCAConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

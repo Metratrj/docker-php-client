@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ImageSummary Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImageSummary implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -413,7 +416,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+            throw new InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -440,7 +443,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setParentId($parent_id)
     {
         if (is_null($parent_id)) {
-            throw new \InvalidArgumentException('non-nullable parent_id cannot be null');
+            throw new InvalidArgumentException('non-nullable parent_id cannot be null');
         }
         $this->container['parent_id'] = $parent_id;
 
@@ -467,7 +470,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRepoTags($repo_tags)
     {
         if (is_null($repo_tags)) {
-            throw new \InvalidArgumentException('non-nullable repo_tags cannot be null');
+            throw new InvalidArgumentException('non-nullable repo_tags cannot be null');
         }
         $this->container['repo_tags'] = $repo_tags;
 
@@ -494,7 +497,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRepoDigests($repo_digests)
     {
         if (is_null($repo_digests)) {
-            throw new \InvalidArgumentException('non-nullable repo_digests cannot be null');
+            throw new InvalidArgumentException('non-nullable repo_digests cannot be null');
         }
         $this->container['repo_digests'] = $repo_digests;
 
@@ -521,7 +524,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCreated($created)
     {
         if (is_null($created)) {
-            throw new \InvalidArgumentException('non-nullable created cannot be null');
+            throw new InvalidArgumentException('non-nullable created cannot be null');
         }
         $this->container['created'] = $created;
 
@@ -548,7 +551,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
+            throw new InvalidArgumentException('non-nullable size cannot be null');
         }
         $this->container['size'] = $size;
 
@@ -575,7 +578,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSharedSize($shared_size)
     {
         if (is_null($shared_size)) {
-            throw new \InvalidArgumentException('non-nullable shared_size cannot be null');
+            throw new InvalidArgumentException('non-nullable shared_size cannot be null');
         }
         $this->container['shared_size'] = $shared_size;
 
@@ -602,7 +605,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setVirtualSize($virtual_size)
     {
         if (is_null($virtual_size)) {
-            throw new \InvalidArgumentException('non-nullable virtual_size cannot be null');
+            throw new InvalidArgumentException('non-nullable virtual_size cannot be null');
         }
         $this->container['virtual_size'] = $virtual_size;
 
@@ -629,7 +632,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new \InvalidArgumentException('non-nullable labels cannot be null');
+            throw new InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -656,7 +659,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setContainers($containers)
     {
         if (is_null($containers)) {
-            throw new \InvalidArgumentException('non-nullable containers cannot be null');
+            throw new InvalidArgumentException('non-nullable containers cannot be null');
         }
         $this->container['containers'] = $containers;
 
@@ -666,7 +669,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets manifests
      *
-     * @return \OpenAPI\Client\Model\ImageManifestSummary[]|null
+     * @return ImageManifestSummary[]|null
      */
     public function getManifests()
     {
@@ -676,14 +679,14 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets manifests
      *
-     * @param \OpenAPI\Client\Model\ImageManifestSummary[]|null $manifests Manifests is a list of manifests available in this image. It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations.  WARNING: This is experimental and may change at any time without any backward compatibility.
+     * @param ImageManifestSummary[]|null $manifests Manifests is a list of manifests available in this image. It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations.  WARNING: This is experimental and may change at any time without any backward compatibility.
      *
      * @return self
      */
     public function setManifests($manifests)
     {
         if (is_null($manifests)) {
-            throw new \InvalidArgumentException('non-nullable manifests cannot be null');
+            throw new InvalidArgumentException('non-nullable manifests cannot be null');
         }
         $this->container['manifests'] = $manifests;
 
@@ -693,7 +696,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets descriptor
      *
-     * @return \OpenAPI\Client\Model\OCIDescriptor|null
+     * @return OCIDescriptor|null
      */
     public function getDescriptor()
     {
@@ -703,14 +706,14 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets descriptor
      *
-     * @param \OpenAPI\Client\Model\OCIDescriptor|null $descriptor descriptor
+     * @param OCIDescriptor|null $descriptor descriptor
      *
      * @return self
      */
     public function setDescriptor($descriptor)
     {
         if (is_null($descriptor)) {
-            throw new \InvalidArgumentException('non-nullable descriptor cannot be null');
+            throw new InvalidArgumentException('non-nullable descriptor cannot be null');
         }
         $this->container['descriptor'] = $descriptor;
 
@@ -735,7 +738,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -777,7 +780,7 @@ class ImageSummary implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

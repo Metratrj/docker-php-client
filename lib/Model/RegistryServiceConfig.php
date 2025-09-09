@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * RegistryServiceConfig Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class RegistryServiceConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class RegistryServiceConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -324,7 +327,7 @@ class RegistryServiceConfig implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setInsecureRegistryCidrs($insecure_registry_cidrs)
     {
         if (is_null($insecure_registry_cidrs)) {
-            throw new \InvalidArgumentException('non-nullable insecure_registry_cidrs cannot be null');
+            throw new InvalidArgumentException('non-nullable insecure_registry_cidrs cannot be null');
         }
         $this->container['insecure_registry_cidrs'] = $insecure_registry_cidrs;
 
@@ -334,7 +337,7 @@ class RegistryServiceConfig implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets index_configs
      *
-     * @return array<string,\OpenAPI\Client\Model\IndexInfo>|null
+     * @return array<string,IndexInfo>|null
      */
     public function getIndexConfigs()
     {
@@ -344,14 +347,14 @@ class RegistryServiceConfig implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets index_configs
      *
-     * @param array<string,\OpenAPI\Client\Model\IndexInfo>|null $index_configs index_configs
+     * @param array<string,IndexInfo>|null $index_configs index_configs
      *
      * @return self
      */
     public function setIndexConfigs($index_configs)
     {
         if (is_null($index_configs)) {
-            throw new \InvalidArgumentException('non-nullable index_configs cannot be null');
+            throw new InvalidArgumentException('non-nullable index_configs cannot be null');
         }
         $this->container['index_configs'] = $index_configs;
 
@@ -378,7 +381,7 @@ class RegistryServiceConfig implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setMirrors($mirrors)
     {
         if (is_null($mirrors)) {
-            throw new \InvalidArgumentException('non-nullable mirrors cannot be null');
+            throw new InvalidArgumentException('non-nullable mirrors cannot be null');
         }
         $this->container['mirrors'] = $mirrors;
 
@@ -403,7 +406,7 @@ class RegistryServiceConfig implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -445,7 +448,7 @@ class RegistryServiceConfig implements ModelInterface, ArrayAccess, \JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

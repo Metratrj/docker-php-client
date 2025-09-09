@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ServiceJobStatus Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ServiceJobStatus implements ModelInterface, ArrayAccess, \JsonSerializable
+class ServiceJobStatus implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -300,7 +303,7 @@ class ServiceJobStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets job_iteration
      *
-     * @return \OpenAPI\Client\Model\ObjectVersion|null
+     * @return ObjectVersion|null
      */
     public function getJobIteration()
     {
@@ -310,14 +313,14 @@ class ServiceJobStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets job_iteration
      *
-     * @param \OpenAPI\Client\Model\ObjectVersion|null $job_iteration job_iteration
+     * @param ObjectVersion|null $job_iteration job_iteration
      *
      * @return self
      */
     public function setJobIteration($job_iteration)
     {
         if (is_null($job_iteration)) {
-            throw new \InvalidArgumentException('non-nullable job_iteration cannot be null');
+            throw new InvalidArgumentException('non-nullable job_iteration cannot be null');
         }
         $this->container['job_iteration'] = $job_iteration;
 
@@ -344,7 +347,7 @@ class ServiceJobStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLastExecution($last_execution)
     {
         if (is_null($last_execution)) {
-            throw new \InvalidArgumentException('non-nullable last_execution cannot be null');
+            throw new InvalidArgumentException('non-nullable last_execution cannot be null');
         }
         $this->container['last_execution'] = $last_execution;
 
@@ -369,7 +372,7 @@ class ServiceJobStatus implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -411,7 +414,7 @@ class ServiceJobStatus implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

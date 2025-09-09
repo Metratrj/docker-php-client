@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ContainerConfig Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -478,7 +481,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setHostname($hostname)
     {
         if (is_null($hostname)) {
-            throw new \InvalidArgumentException('non-nullable hostname cannot be null');
+            throw new InvalidArgumentException('non-nullable hostname cannot be null');
         }
         $this->container['hostname'] = $hostname;
 
@@ -505,7 +508,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDomainname($domainname)
     {
         if (is_null($domainname)) {
-            throw new \InvalidArgumentException('non-nullable domainname cannot be null');
+            throw new InvalidArgumentException('non-nullable domainname cannot be null');
         }
         $this->container['domainname'] = $domainname;
 
@@ -532,7 +535,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUser($user)
     {
         if (is_null($user)) {
-            throw new \InvalidArgumentException('non-nullable user cannot be null');
+            throw new InvalidArgumentException('non-nullable user cannot be null');
         }
         $this->container['user'] = $user;
 
@@ -559,7 +562,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttachStdin($attach_stdin)
     {
         if (is_null($attach_stdin)) {
-            throw new \InvalidArgumentException('non-nullable attach_stdin cannot be null');
+            throw new InvalidArgumentException('non-nullable attach_stdin cannot be null');
         }
         $this->container['attach_stdin'] = $attach_stdin;
 
@@ -586,7 +589,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttachStdout($attach_stdout)
     {
         if (is_null($attach_stdout)) {
-            throw new \InvalidArgumentException('non-nullable attach_stdout cannot be null');
+            throw new InvalidArgumentException('non-nullable attach_stdout cannot be null');
         }
         $this->container['attach_stdout'] = $attach_stdout;
 
@@ -613,7 +616,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAttachStderr($attach_stderr)
     {
         if (is_null($attach_stderr)) {
-            throw new \InvalidArgumentException('non-nullable attach_stderr cannot be null');
+            throw new InvalidArgumentException('non-nullable attach_stderr cannot be null');
         }
         $this->container['attach_stderr'] = $attach_stderr;
 
@@ -674,7 +677,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTty($tty)
     {
         if (is_null($tty)) {
-            throw new \InvalidArgumentException('non-nullable tty cannot be null');
+            throw new InvalidArgumentException('non-nullable tty cannot be null');
         }
         $this->container['tty'] = $tty;
 
@@ -701,7 +704,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOpenStdin($open_stdin)
     {
         if (is_null($open_stdin)) {
-            throw new \InvalidArgumentException('non-nullable open_stdin cannot be null');
+            throw new InvalidArgumentException('non-nullable open_stdin cannot be null');
         }
         $this->container['open_stdin'] = $open_stdin;
 
@@ -728,7 +731,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setStdinOnce($stdin_once)
     {
         if (is_null($stdin_once)) {
-            throw new \InvalidArgumentException('non-nullable stdin_once cannot be null');
+            throw new InvalidArgumentException('non-nullable stdin_once cannot be null');
         }
         $this->container['stdin_once'] = $stdin_once;
 
@@ -755,7 +758,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEnv($env)
     {
         if (is_null($env)) {
-            throw new \InvalidArgumentException('non-nullable env cannot be null');
+            throw new InvalidArgumentException('non-nullable env cannot be null');
         }
         $this->container['env'] = $env;
 
@@ -782,7 +785,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCmd($cmd)
     {
         if (is_null($cmd)) {
-            throw new \InvalidArgumentException('non-nullable cmd cannot be null');
+            throw new InvalidArgumentException('non-nullable cmd cannot be null');
         }
         $this->container['cmd'] = $cmd;
 
@@ -792,7 +795,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets healthcheck
      *
-     * @return \OpenAPI\Client\Model\HealthConfig|null
+     * @return HealthConfig|null
      */
     public function getHealthcheck()
     {
@@ -802,14 +805,14 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets healthcheck
      *
-     * @param \OpenAPI\Client\Model\HealthConfig|null $healthcheck healthcheck
+     * @param HealthConfig|null $healthcheck healthcheck
      *
      * @return self
      */
     public function setHealthcheck($healthcheck)
     {
         if (is_null($healthcheck)) {
-            throw new \InvalidArgumentException('non-nullable healthcheck cannot be null');
+            throw new InvalidArgumentException('non-nullable healthcheck cannot be null');
         }
         $this->container['healthcheck'] = $healthcheck;
 
@@ -870,7 +873,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new \InvalidArgumentException('non-nullable image cannot be null');
+            throw new InvalidArgumentException('non-nullable image cannot be null');
         }
         $this->container['image'] = $image;
 
@@ -897,7 +900,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setVolumes($volumes)
     {
         if (is_null($volumes)) {
-            throw new \InvalidArgumentException('non-nullable volumes cannot be null');
+            throw new InvalidArgumentException('non-nullable volumes cannot be null');
         }
         $this->container['volumes'] = $volumes;
 
@@ -924,7 +927,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setWorkingDir($working_dir)
     {
         if (is_null($working_dir)) {
-            throw new \InvalidArgumentException('non-nullable working_dir cannot be null');
+            throw new InvalidArgumentException('non-nullable working_dir cannot be null');
         }
         $this->container['working_dir'] = $working_dir;
 
@@ -951,7 +954,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEntrypoint($entrypoint)
     {
         if (is_null($entrypoint)) {
-            throw new \InvalidArgumentException('non-nullable entrypoint cannot be null');
+            throw new InvalidArgumentException('non-nullable entrypoint cannot be null');
         }
         $this->container['entrypoint'] = $entrypoint;
 
@@ -1080,7 +1083,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new \InvalidArgumentException('non-nullable labels cannot be null');
+            throw new InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -1207,7 +1210,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -1249,7 +1252,7 @@ class ContainerConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

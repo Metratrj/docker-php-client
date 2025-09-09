@@ -28,8 +28,12 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use DateTime;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ContainerStatsResponse Class Doc Comment
@@ -39,9 +43,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -438,7 +442,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets read
      *
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getRead()
     {
@@ -448,14 +452,14 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets read
      *
-     * @param \DateTime|null $read Date and time at which this sample was collected. The value is formatted as [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) with nano-seconds.
+     * @param DateTime|null $read Date and time at which this sample was collected. The value is formatted as [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) with nano-seconds.
      *
      * @return self
      */
     public function setRead($read)
     {
         if (is_null($read)) {
-            throw new \InvalidArgumentException('non-nullable read cannot be null');
+            throw new InvalidArgumentException('non-nullable read cannot be null');
         }
         $this->container['read'] = $read;
 
@@ -465,7 +469,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets preread
      *
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getPreread()
     {
@@ -475,14 +479,14 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets preread
      *
-     * @param \DateTime|null $preread Date and time at which this first sample was collected. This field is not propagated if the \"one-shot\" option is set. If the \"one-shot\" option is set, this field may be omitted, empty, or set to a default date (`0001-01-01T00:00:00Z`).  The value is formatted as [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) with nano-seconds.
+     * @param DateTime|null $preread Date and time at which this first sample was collected. This field is not propagated if the \"one-shot\" option is set. If the \"one-shot\" option is set, this field may be omitted, empty, or set to a default date (`0001-01-01T00:00:00Z`).  The value is formatted as [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) with nano-seconds.
      *
      * @return self
      */
     public function setPreread($preread)
     {
         if (is_null($preread)) {
-            throw new \InvalidArgumentException('non-nullable preread cannot be null');
+            throw new InvalidArgumentException('non-nullable preread cannot be null');
         }
         $this->container['preread'] = $preread;
 
@@ -492,7 +496,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets pids_stats
      *
-     * @return \OpenAPI\Client\Model\ContainerPidsStats|null
+     * @return ContainerPidsStats|null
      */
     public function getPidsStats()
     {
@@ -502,7 +506,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets pids_stats
      *
-     * @param \OpenAPI\Client\Model\ContainerPidsStats|null $pids_stats pids_stats
+     * @param ContainerPidsStats|null $pids_stats pids_stats
      *
      * @return self
      */
@@ -526,7 +530,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets blkio_stats
      *
-     * @return \OpenAPI\Client\Model\ContainerBlkioStats|null
+     * @return ContainerBlkioStats|null
      */
     public function getBlkioStats()
     {
@@ -536,7 +540,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets blkio_stats
      *
-     * @param \OpenAPI\Client\Model\ContainerBlkioStats|null $blkio_stats blkio_stats
+     * @param ContainerBlkioStats|null $blkio_stats blkio_stats
      *
      * @return self
      */
@@ -577,7 +581,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     public function setNumProcs($num_procs)
     {
         if (is_null($num_procs)) {
-            throw new \InvalidArgumentException('non-nullable num_procs cannot be null');
+            throw new InvalidArgumentException('non-nullable num_procs cannot be null');
         }
         $this->container['num_procs'] = $num_procs;
 
@@ -587,7 +591,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets storage_stats
      *
-     * @return \OpenAPI\Client\Model\ContainerStorageStats|null
+     * @return ContainerStorageStats|null
      */
     public function getStorageStats()
     {
@@ -597,7 +601,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets storage_stats
      *
-     * @param \OpenAPI\Client\Model\ContainerStorageStats|null $storage_stats storage_stats
+     * @param ContainerStorageStats|null $storage_stats storage_stats
      *
      * @return self
      */
@@ -621,7 +625,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets cpu_stats
      *
-     * @return \OpenAPI\Client\Model\ContainerCPUStats|null
+     * @return ContainerCPUStats|null
      */
     public function getCpuStats()
     {
@@ -631,7 +635,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets cpu_stats
      *
-     * @param \OpenAPI\Client\Model\ContainerCPUStats|null $cpu_stats cpu_stats
+     * @param ContainerCPUStats|null $cpu_stats cpu_stats
      *
      * @return self
      */
@@ -655,7 +659,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets precpu_stats
      *
-     * @return \OpenAPI\Client\Model\ContainerCPUStats|null
+     * @return ContainerCPUStats|null
      */
     public function getPrecpuStats()
     {
@@ -665,7 +669,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets precpu_stats
      *
-     * @param \OpenAPI\Client\Model\ContainerCPUStats|null $precpu_stats precpu_stats
+     * @param ContainerCPUStats|null $precpu_stats precpu_stats
      *
      * @return self
      */
@@ -689,7 +693,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets memory_stats
      *
-     * @return \OpenAPI\Client\Model\ContainerMemoryStats|null
+     * @return ContainerMemoryStats|null
      */
     public function getMemoryStats()
     {
@@ -699,14 +703,14 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets memory_stats
      *
-     * @param \OpenAPI\Client\Model\ContainerMemoryStats|null $memory_stats memory_stats
+     * @param ContainerMemoryStats|null $memory_stats memory_stats
      *
      * @return self
      */
     public function setMemoryStats($memory_stats)
     {
         if (is_null($memory_stats)) {
-            throw new \InvalidArgumentException('non-nullable memory_stats cannot be null');
+            throw new InvalidArgumentException('non-nullable memory_stats cannot be null');
         }
         $this->container['memory_stats'] = $memory_stats;
 
@@ -765,7 +769,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -807,7 +811,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

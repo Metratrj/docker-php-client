@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ClusterVolume Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
+class ClusterVolume implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -352,7 +355,7 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+            throw new InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -362,7 +365,7 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets version
      *
-     * @return \OpenAPI\Client\Model\ObjectVersion|null
+     * @return ObjectVersion|null
      */
     public function getVersion()
     {
@@ -372,14 +375,14 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets version
      *
-     * @param \OpenAPI\Client\Model\ObjectVersion|null $version version
+     * @param ObjectVersion|null $version version
      *
      * @return self
      */
     public function setVersion($version)
     {
         if (is_null($version)) {
-            throw new \InvalidArgumentException('non-nullable version cannot be null');
+            throw new InvalidArgumentException('non-nullable version cannot be null');
         }
         $this->container['version'] = $version;
 
@@ -406,7 +409,7 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+            throw new InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
 
@@ -433,7 +436,7 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
-            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+            throw new InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
 
@@ -443,7 +446,7 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets spec
      *
-     * @return \OpenAPI\Client\Model\ClusterVolumeSpec|null
+     * @return ClusterVolumeSpec|null
      */
     public function getSpec()
     {
@@ -453,14 +456,14 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets spec
      *
-     * @param \OpenAPI\Client\Model\ClusterVolumeSpec|null $spec spec
+     * @param ClusterVolumeSpec|null $spec spec
      *
      * @return self
      */
     public function setSpec($spec)
     {
         if (is_null($spec)) {
-            throw new \InvalidArgumentException('non-nullable spec cannot be null');
+            throw new InvalidArgumentException('non-nullable spec cannot be null');
         }
         $this->container['spec'] = $spec;
 
@@ -470,7 +473,7 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets info
      *
-     * @return \OpenAPI\Client\Model\ClusterVolumeInfo|null
+     * @return ClusterVolumeInfo|null
      */
     public function getInfo()
     {
@@ -480,14 +483,14 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets info
      *
-     * @param \OpenAPI\Client\Model\ClusterVolumeInfo|null $info info
+     * @param ClusterVolumeInfo|null $info info
      *
      * @return self
      */
     public function setInfo($info)
     {
         if (is_null($info)) {
-            throw new \InvalidArgumentException('non-nullable info cannot be null');
+            throw new InvalidArgumentException('non-nullable info cannot be null');
         }
         $this->container['info'] = $info;
 
@@ -497,7 +500,7 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets publish_status
      *
-     * @return \OpenAPI\Client\Model\ClusterVolumePublishStatusInner[]|null
+     * @return ClusterVolumePublishStatusInner[]|null
      */
     public function getPublishStatus()
     {
@@ -507,14 +510,14 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets publish_status
      *
-     * @param \OpenAPI\Client\Model\ClusterVolumePublishStatusInner[]|null $publish_status The status of the volume as it pertains to its publishing and use on specific nodes
+     * @param ClusterVolumePublishStatusInner[]|null $publish_status The status of the volume as it pertains to its publishing and use on specific nodes
      *
      * @return self
      */
     public function setPublishStatus($publish_status)
     {
         if (is_null($publish_status)) {
-            throw new \InvalidArgumentException('non-nullable publish_status cannot be null');
+            throw new InvalidArgumentException('non-nullable publish_status cannot be null');
         }
         $this->container['publish_status'] = $publish_status;
 
@@ -539,7 +542,7 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -581,7 +584,7 @@ class ClusterVolume implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

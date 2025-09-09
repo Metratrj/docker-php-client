@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ImageInspectRootFS Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ImageInspectRootFS implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImageInspectRootFS implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -320,7 +323,7 @@ class ImageInspectRootFS implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setType($type)
     {
         if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+            throw new InvalidArgumentException('non-nullable type cannot be null');
         }
         $this->container['type'] = $type;
 
@@ -347,7 +350,7 @@ class ImageInspectRootFS implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setLayers($layers)
     {
         if (is_null($layers)) {
-            throw new \InvalidArgumentException('non-nullable layers cannot be null');
+            throw new InvalidArgumentException('non-nullable layers cannot be null');
         }
         $this->container['layers'] = $layers;
 
@@ -372,7 +375,7 @@ class ImageInspectRootFS implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -414,7 +417,7 @@ class ImageInspectRootFS implements ModelInterface, ArrayAccess, \JsonSerializab
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

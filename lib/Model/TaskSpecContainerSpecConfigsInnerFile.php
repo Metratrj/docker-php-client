@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * TaskSpecContainerSpecConfigsInnerFile Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class TaskSpecContainerSpecConfigsInnerFile implements ModelInterface, ArrayAccess, \JsonSerializable
+class TaskSpecContainerSpecConfigsInnerFile implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -331,7 +334,7 @@ class TaskSpecContainerSpecConfigsInnerFile implements ModelInterface, ArrayAcce
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+            throw new InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -358,7 +361,7 @@ class TaskSpecContainerSpecConfigsInnerFile implements ModelInterface, ArrayAcce
     public function setUid($uid)
     {
         if (is_null($uid)) {
-            throw new \InvalidArgumentException('non-nullable uid cannot be null');
+            throw new InvalidArgumentException('non-nullable uid cannot be null');
         }
         $this->container['uid'] = $uid;
 
@@ -385,7 +388,7 @@ class TaskSpecContainerSpecConfigsInnerFile implements ModelInterface, ArrayAcce
     public function setGid($gid)
     {
         if (is_null($gid)) {
-            throw new \InvalidArgumentException('non-nullable gid cannot be null');
+            throw new InvalidArgumentException('non-nullable gid cannot be null');
         }
         $this->container['gid'] = $gid;
 
@@ -412,7 +415,7 @@ class TaskSpecContainerSpecConfigsInnerFile implements ModelInterface, ArrayAcce
     public function setMode($mode)
     {
         if (is_null($mode)) {
-            throw new \InvalidArgumentException('non-nullable mode cannot be null');
+            throw new InvalidArgumentException('non-nullable mode cannot be null');
         }
         $this->container['mode'] = $mode;
 
@@ -437,7 +440,7 @@ class TaskSpecContainerSpecConfigsInnerFile implements ModelInterface, ArrayAcce
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -479,7 +482,7 @@ class TaskSpecContainerSpecConfigsInnerFile implements ModelInterface, ArrayAcce
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * SwarmSpecCAConfigExternalCAsInner Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class SwarmSpecCAConfigExternalCAsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class SwarmSpecCAConfigExternalCAsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -352,11 +355,11 @@ class SwarmSpecCAConfigExternalCAsInner implements ModelInterface, ArrayAccess, 
     public function setProtocol($protocol)
     {
         if (is_null($protocol)) {
-            throw new \InvalidArgumentException('non-nullable protocol cannot be null');
+            throw new InvalidArgumentException('non-nullable protocol cannot be null');
         }
         $allowedValues = $this->getProtocolAllowableValues();
         if (!in_array($protocol, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'protocol', must be one of '%s'",
                     $protocol,
@@ -389,7 +392,7 @@ class SwarmSpecCAConfigExternalCAsInner implements ModelInterface, ArrayAccess, 
     public function setUrl($url)
     {
         if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
+            throw new InvalidArgumentException('non-nullable url cannot be null');
         }
         $this->container['url'] = $url;
 
@@ -416,7 +419,7 @@ class SwarmSpecCAConfigExternalCAsInner implements ModelInterface, ArrayAccess, 
     public function setOptions($options)
     {
         if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+            throw new InvalidArgumentException('non-nullable options cannot be null');
         }
         $this->container['options'] = $options;
 
@@ -443,7 +446,7 @@ class SwarmSpecCAConfigExternalCAsInner implements ModelInterface, ArrayAccess, 
     public function setCaCert($ca_cert)
     {
         if (is_null($ca_cert)) {
-            throw new \InvalidArgumentException('non-nullable ca_cert cannot be null');
+            throw new InvalidArgumentException('non-nullable ca_cert cannot be null');
         }
         $this->container['ca_cert'] = $ca_cert;
 
@@ -468,7 +471,7 @@ class SwarmSpecCAConfigExternalCAsInner implements ModelInterface, ArrayAccess, 
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -510,7 +513,7 @@ class SwarmSpecCAConfigExternalCAsInner implements ModelInterface, ArrayAccess, 
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ImageManifestSummaryImageData Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ImageManifestSummaryImageData implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImageManifestSummaryImageData implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -316,7 +319,7 @@ class ImageManifestSummaryImageData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets platform
      *
-     * @return \OpenAPI\Client\Model\OCIPlatform
+     * @return OCIPlatform
      */
     public function getPlatform()
     {
@@ -326,7 +329,7 @@ class ImageManifestSummaryImageData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets platform
      *
-     * @param \OpenAPI\Client\Model\OCIPlatform $platform platform
+     * @param OCIPlatform $platform platform
      *
      * @return self
      */
@@ -367,7 +370,7 @@ class ImageManifestSummaryImageData implements ModelInterface, ArrayAccess, \Jso
     public function setContainers($containers)
     {
         if (is_null($containers)) {
-            throw new \InvalidArgumentException('non-nullable containers cannot be null');
+            throw new InvalidArgumentException('non-nullable containers cannot be null');
         }
         $this->container['containers'] = $containers;
 
@@ -377,7 +380,7 @@ class ImageManifestSummaryImageData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets size
      *
-     * @return \OpenAPI\Client\Model\ImageManifestSummaryImageDataSize
+     * @return ImageManifestSummaryImageDataSize
      */
     public function getSize()
     {
@@ -387,14 +390,14 @@ class ImageManifestSummaryImageData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets size
      *
-     * @param \OpenAPI\Client\Model\ImageManifestSummaryImageDataSize $size size
+     * @param ImageManifestSummaryImageDataSize $size size
      *
      * @return self
      */
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
+            throw new InvalidArgumentException('non-nullable size cannot be null');
         }
         $this->container['size'] = $size;
 
@@ -419,7 +422,7 @@ class ImageManifestSummaryImageData implements ModelInterface, ArrayAccess, \Jso
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -461,7 +464,7 @@ class ImageManifestSummaryImageData implements ModelInterface, ArrayAccess, \Jso
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

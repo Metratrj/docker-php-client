@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ContainerBlkioStatEntry Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ContainerBlkioStatEntry implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerBlkioStatEntry implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -331,7 +334,7 @@ class ContainerBlkioStatEntry implements ModelInterface, ArrayAccess, \JsonSeria
     public function setMajor($major)
     {
         if (is_null($major)) {
-            throw new \InvalidArgumentException('non-nullable major cannot be null');
+            throw new InvalidArgumentException('non-nullable major cannot be null');
         }
         $this->container['major'] = $major;
 
@@ -358,7 +361,7 @@ class ContainerBlkioStatEntry implements ModelInterface, ArrayAccess, \JsonSeria
     public function setMinor($minor)
     {
         if (is_null($minor)) {
-            throw new \InvalidArgumentException('non-nullable minor cannot be null');
+            throw new InvalidArgumentException('non-nullable minor cannot be null');
         }
         $this->container['minor'] = $minor;
 
@@ -385,7 +388,7 @@ class ContainerBlkioStatEntry implements ModelInterface, ArrayAccess, \JsonSeria
     public function setOp($op)
     {
         if (is_null($op)) {
-            throw new \InvalidArgumentException('non-nullable op cannot be null');
+            throw new InvalidArgumentException('non-nullable op cannot be null');
         }
         $this->container['op'] = $op;
 
@@ -412,7 +415,7 @@ class ContainerBlkioStatEntry implements ModelInterface, ArrayAccess, \JsonSeria
     public function setValue($value)
     {
         if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+            throw new InvalidArgumentException('non-nullable value cannot be null');
         }
         $this->container['value'] = $value;
 
@@ -437,7 +440,7 @@ class ContainerBlkioStatEntry implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -479,7 +482,7 @@ class ContainerBlkioStatEntry implements ModelInterface, ArrayAccess, \JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

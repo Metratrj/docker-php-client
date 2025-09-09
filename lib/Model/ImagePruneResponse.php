@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ImagePruneResponse Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ImagePruneResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImagePruneResponse implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -299,7 +302,7 @@ class ImagePruneResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets images_deleted
      *
-     * @return \OpenAPI\Client\Model\ImageDeleteResponseItem[]|null
+     * @return ImageDeleteResponseItem[]|null
      */
     public function getImagesDeleted()
     {
@@ -309,14 +312,14 @@ class ImagePruneResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets images_deleted
      *
-     * @param \OpenAPI\Client\Model\ImageDeleteResponseItem[]|null $images_deleted Images that were deleted
+     * @param ImageDeleteResponseItem[]|null $images_deleted Images that were deleted
      *
      * @return self
      */
     public function setImagesDeleted($images_deleted)
     {
         if (is_null($images_deleted)) {
-            throw new \InvalidArgumentException('non-nullable images_deleted cannot be null');
+            throw new InvalidArgumentException('non-nullable images_deleted cannot be null');
         }
         $this->container['images_deleted'] = $images_deleted;
 
@@ -343,7 +346,7 @@ class ImagePruneResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setSpaceReclaimed($space_reclaimed)
     {
         if (is_null($space_reclaimed)) {
-            throw new \InvalidArgumentException('non-nullable space_reclaimed cannot be null');
+            throw new InvalidArgumentException('non-nullable space_reclaimed cannot be null');
         }
         $this->container['space_reclaimed'] = $space_reclaimed;
 
@@ -368,7 +371,7 @@ class ImagePruneResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -410,7 +413,7 @@ class ImagePruneResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

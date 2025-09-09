@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * TaskSpecContainerSpecPrivileges Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \JsonSerializable
+class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -321,7 +324,7 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
     /**
      * Gets credential_spec
      *
-     * @return \OpenAPI\Client\Model\TaskSpecContainerSpecPrivilegesCredentialSpec|null
+     * @return TaskSpecContainerSpecPrivilegesCredentialSpec|null
      */
     public function getCredentialSpec()
     {
@@ -331,14 +334,14 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
     /**
      * Sets credential_spec
      *
-     * @param \OpenAPI\Client\Model\TaskSpecContainerSpecPrivilegesCredentialSpec|null $credential_spec credential_spec
+     * @param TaskSpecContainerSpecPrivilegesCredentialSpec|null $credential_spec credential_spec
      *
      * @return self
      */
     public function setCredentialSpec($credential_spec)
     {
         if (is_null($credential_spec)) {
-            throw new \InvalidArgumentException('non-nullable credential_spec cannot be null');
+            throw new InvalidArgumentException('non-nullable credential_spec cannot be null');
         }
         $this->container['credential_spec'] = $credential_spec;
 
@@ -348,7 +351,7 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
     /**
      * Gets se_linux_context
      *
-     * @return \OpenAPI\Client\Model\TaskSpecContainerSpecPrivilegesSELinuxContext|null
+     * @return TaskSpecContainerSpecPrivilegesSELinuxContext|null
      */
     public function getSeLinuxContext()
     {
@@ -358,14 +361,14 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
     /**
      * Sets se_linux_context
      *
-     * @param \OpenAPI\Client\Model\TaskSpecContainerSpecPrivilegesSELinuxContext|null $se_linux_context se_linux_context
+     * @param TaskSpecContainerSpecPrivilegesSELinuxContext|null $se_linux_context se_linux_context
      *
      * @return self
      */
     public function setSeLinuxContext($se_linux_context)
     {
         if (is_null($se_linux_context)) {
-            throw new \InvalidArgumentException('non-nullable se_linux_context cannot be null');
+            throw new InvalidArgumentException('non-nullable se_linux_context cannot be null');
         }
         $this->container['se_linux_context'] = $se_linux_context;
 
@@ -375,7 +378,7 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
     /**
      * Gets seccomp
      *
-     * @return \OpenAPI\Client\Model\TaskSpecContainerSpecPrivilegesSeccomp|null
+     * @return TaskSpecContainerSpecPrivilegesSeccomp|null
      */
     public function getSeccomp()
     {
@@ -385,14 +388,14 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
     /**
      * Sets seccomp
      *
-     * @param \OpenAPI\Client\Model\TaskSpecContainerSpecPrivilegesSeccomp|null $seccomp seccomp
+     * @param TaskSpecContainerSpecPrivilegesSeccomp|null $seccomp seccomp
      *
      * @return self
      */
     public function setSeccomp($seccomp)
     {
         if (is_null($seccomp)) {
-            throw new \InvalidArgumentException('non-nullable seccomp cannot be null');
+            throw new InvalidArgumentException('non-nullable seccomp cannot be null');
         }
         $this->container['seccomp'] = $seccomp;
 
@@ -402,7 +405,7 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
     /**
      * Gets app_armor
      *
-     * @return \OpenAPI\Client\Model\TaskSpecContainerSpecPrivilegesAppArmor|null
+     * @return TaskSpecContainerSpecPrivilegesAppArmor|null
      */
     public function getAppArmor()
     {
@@ -412,14 +415,14 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
     /**
      * Sets app_armor
      *
-     * @param \OpenAPI\Client\Model\TaskSpecContainerSpecPrivilegesAppArmor|null $app_armor app_armor
+     * @param TaskSpecContainerSpecPrivilegesAppArmor|null $app_armor app_armor
      *
      * @return self
      */
     public function setAppArmor($app_armor)
     {
         if (is_null($app_armor)) {
-            throw new \InvalidArgumentException('non-nullable app_armor cannot be null');
+            throw new InvalidArgumentException('non-nullable app_armor cannot be null');
         }
         $this->container['app_armor'] = $app_armor;
 
@@ -446,7 +449,7 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
     public function setNoNewPrivileges($no_new_privileges)
     {
         if (is_null($no_new_privileges)) {
-            throw new \InvalidArgumentException('non-nullable no_new_privileges cannot be null');
+            throw new InvalidArgumentException('non-nullable no_new_privileges cannot be null');
         }
         $this->container['no_new_privileges'] = $no_new_privileges;
 
@@ -471,7 +474,7 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -513,7 +516,7 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

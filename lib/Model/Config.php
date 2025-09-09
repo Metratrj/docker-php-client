@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * Config Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class Config implements ModelInterface, ArrayAccess, \JsonSerializable
+class Config implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -337,7 +340,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+            throw new InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -347,7 +350,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets version
      *
-     * @return \OpenAPI\Client\Model\ObjectVersion|null
+     * @return ObjectVersion|null
      */
     public function getVersion()
     {
@@ -357,14 +360,14 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets version
      *
-     * @param \OpenAPI\Client\Model\ObjectVersion|null $version version
+     * @param ObjectVersion|null $version version
      *
      * @return self
      */
     public function setVersion($version)
     {
         if (is_null($version)) {
-            throw new \InvalidArgumentException('non-nullable version cannot be null');
+            throw new InvalidArgumentException('non-nullable version cannot be null');
         }
         $this->container['version'] = $version;
 
@@ -391,7 +394,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+            throw new InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
 
@@ -418,7 +421,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
-            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+            throw new InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
 
@@ -428,7 +431,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets spec
      *
-     * @return \OpenAPI\Client\Model\ConfigSpec|null
+     * @return ConfigSpec|null
      */
     public function getSpec()
     {
@@ -438,14 +441,14 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets spec
      *
-     * @param \OpenAPI\Client\Model\ConfigSpec|null $spec spec
+     * @param ConfigSpec|null $spec spec
      *
      * @return self
      */
     public function setSpec($spec)
     {
         if (is_null($spec)) {
-            throw new \InvalidArgumentException('non-nullable spec cannot be null');
+            throw new InvalidArgumentException('non-nullable spec cannot be null');
         }
         $this->container['spec'] = $spec;
 
@@ -470,7 +473,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -512,7 +515,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

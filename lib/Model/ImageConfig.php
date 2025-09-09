@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ImageConfig Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImageConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -394,7 +397,7 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUser($user)
     {
         if (is_null($user)) {
-            throw new \InvalidArgumentException('non-nullable user cannot be null');
+            throw new InvalidArgumentException('non-nullable user cannot be null');
         }
         $this->container['user'] = $user;
 
@@ -455,7 +458,7 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEnv($env)
     {
         if (is_null($env)) {
-            throw new \InvalidArgumentException('non-nullable env cannot be null');
+            throw new InvalidArgumentException('non-nullable env cannot be null');
         }
         $this->container['env'] = $env;
 
@@ -482,7 +485,7 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCmd($cmd)
     {
         if (is_null($cmd)) {
-            throw new \InvalidArgumentException('non-nullable cmd cannot be null');
+            throw new InvalidArgumentException('non-nullable cmd cannot be null');
         }
         $this->container['cmd'] = $cmd;
 
@@ -492,7 +495,7 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets healthcheck
      *
-     * @return \OpenAPI\Client\Model\HealthConfig|null
+     * @return HealthConfig|null
      */
     public function getHealthcheck()
     {
@@ -502,14 +505,14 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets healthcheck
      *
-     * @param \OpenAPI\Client\Model\HealthConfig|null $healthcheck healthcheck
+     * @param HealthConfig|null $healthcheck healthcheck
      *
      * @return self
      */
     public function setHealthcheck($healthcheck)
     {
         if (is_null($healthcheck)) {
-            throw new \InvalidArgumentException('non-nullable healthcheck cannot be null');
+            throw new InvalidArgumentException('non-nullable healthcheck cannot be null');
         }
         $this->container['healthcheck'] = $healthcheck;
 
@@ -570,7 +573,7 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setVolumes($volumes)
     {
         if (is_null($volumes)) {
-            throw new \InvalidArgumentException('non-nullable volumes cannot be null');
+            throw new InvalidArgumentException('non-nullable volumes cannot be null');
         }
         $this->container['volumes'] = $volumes;
 
@@ -597,7 +600,7 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setWorkingDir($working_dir)
     {
         if (is_null($working_dir)) {
-            throw new \InvalidArgumentException('non-nullable working_dir cannot be null');
+            throw new InvalidArgumentException('non-nullable working_dir cannot be null');
         }
         $this->container['working_dir'] = $working_dir;
 
@@ -624,7 +627,7 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEntrypoint($entrypoint)
     {
         if (is_null($entrypoint)) {
-            throw new \InvalidArgumentException('non-nullable entrypoint cannot be null');
+            throw new InvalidArgumentException('non-nullable entrypoint cannot be null');
         }
         $this->container['entrypoint'] = $entrypoint;
 
@@ -685,7 +688,7 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new \InvalidArgumentException('non-nullable labels cannot be null');
+            throw new InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -778,7 +781,7 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -820,7 +823,7 @@ class ImageConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -31,9 +31,18 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Utils;
+use InvalidArgumentException;
+use JsonException;
+use OpenAPI\Client\Model\ErrorResponse;
+use OpenAPI\Client\Model\VolumeCreateOptions;
+use OpenAPI\Client\Model\VolumeListResponse;
+use OpenAPI\Client\Model\VolumePruneResponse;
+use OpenAPI\Client\Model\VolumeUpdateRequest;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -41,6 +50,7 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
+use RuntimeException;
 
 /**
  * VolumeApi Class Doc Comment
@@ -145,12 +155,12 @@ class VolumeApi
      *
      * Create a volume
      *
-     * @param  \OpenAPI\Client\Model\VolumeCreateOptions $volume_config Volume configuration (required)
+     * @param  VolumeCreateOptions $volume_config Volume configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeCreate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Volume|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\Volume|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function volumeCreate($volume_config, string $contentType = self::contentTypes['volumeCreate'][0])
     {
@@ -163,12 +173,12 @@ class VolumeApi
      *
      * Create a volume
      *
-     * @param  \OpenAPI\Client\Model\VolumeCreateOptions $volume_config Volume configuration (required)
+     * @param  VolumeCreateOptions $volume_config Volume configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeCreate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Volume|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function volumeCreateWithHttpInfo($volume_config, string $contentType = self::contentTypes['volumeCreate'][0])
     {
@@ -262,11 +272,11 @@ class VolumeApi
      *
      * Create a volume
      *
-     * @param  \OpenAPI\Client\Model\VolumeCreateOptions $volume_config Volume configuration (required)
+     * @param  VolumeCreateOptions $volume_config Volume configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeCreate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumeCreateAsync($volume_config, string $contentType = self::contentTypes['volumeCreate'][0])
     {
@@ -283,11 +293,11 @@ class VolumeApi
      *
      * Create a volume
      *
-     * @param  \OpenAPI\Client\Model\VolumeCreateOptions $volume_config Volume configuration (required)
+     * @param  VolumeCreateOptions $volume_config Volume configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeCreate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumeCreateAsyncWithHttpInfo($volume_config, string $contentType = self::contentTypes['volumeCreate'][0])
     {
@@ -333,18 +343,18 @@ class VolumeApi
     /**
      * Create request for operation 'volumeCreate'
      *
-     * @param  \OpenAPI\Client\Model\VolumeCreateOptions $volume_config Volume configuration (required)
+     * @param  VolumeCreateOptions $volume_config Volume configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeCreate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function volumeCreateRequest($volume_config, string $contentType = self::contentTypes['volumeCreate'][0])
     {
 
         // verify the required parameter 'volume_config' is set
         if ($volume_config === null || (is_array($volume_config) && count($volume_config) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $volume_config when calling volumeCreate'
             );
         }
@@ -371,7 +381,7 @@ class VolumeApi
         if (isset($volume_config)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($volume_config));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($volume_config));
             } else {
                 $httpBody = $volume_config;
             }
@@ -392,7 +402,7 @@ class VolumeApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -430,9 +440,9 @@ class VolumeApi
      * @param  bool|null $force Force the removal of the volume (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeDelete'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function volumeDelete($name, $force = false, string $contentType = self::contentTypes['volumeDelete'][0])
     {
@@ -448,9 +458,9 @@ class VolumeApi
      * @param  bool|null $force Force the removal of the volume (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeDelete'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function volumeDeleteWithHttpInfo($name, $force = false, string $contentType = self::contentTypes['volumeDelete'][0])
     {
@@ -522,8 +532,8 @@ class VolumeApi
      * @param  bool|null $force Force the removal of the volume (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeDelete'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumeDeleteAsync($name, $force = false, string $contentType = self::contentTypes['volumeDelete'][0])
     {
@@ -544,8 +554,8 @@ class VolumeApi
      * @param  bool|null $force Force the removal of the volume (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeDelete'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumeDeleteAsyncWithHttpInfo($name, $force = false, string $contentType = self::contentTypes['volumeDelete'][0])
     {
@@ -582,15 +592,15 @@ class VolumeApi
      * @param  bool|null $force Force the removal of the volume (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeDelete'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function volumeDeleteRequest($name, $force = false, string $contentType = self::contentTypes['volumeDelete'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling volumeDelete'
             );
         }
@@ -649,7 +659,7 @@ class VolumeApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -686,9 +696,9 @@ class VolumeApi
      * @param  string $name Volume name or ID (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeInspect'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Volume|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\Volume|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function volumeInspect($name, string $contentType = self::contentTypes['volumeInspect'][0])
     {
@@ -704,9 +714,9 @@ class VolumeApi
      * @param  string $name Volume name or ID (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeInspect'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Volume|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function volumeInspectWithHttpInfo($name, string $contentType = self::contentTypes['volumeInspect'][0])
     {
@@ -817,8 +827,8 @@ class VolumeApi
      * @param  string $name Volume name or ID (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumeInspectAsync($name, string $contentType = self::contentTypes['volumeInspect'][0])
     {
@@ -838,8 +848,8 @@ class VolumeApi
      * @param  string $name Volume name or ID (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumeInspectAsyncWithHttpInfo($name, string $contentType = self::contentTypes['volumeInspect'][0])
     {
@@ -888,15 +898,15 @@ class VolumeApi
      * @param  string $name Volume name or ID (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function volumeInspectRequest($name, string $contentType = self::contentTypes['volumeInspect'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling volumeInspect'
             );
         }
@@ -945,7 +955,7 @@ class VolumeApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -982,9 +992,9 @@ class VolumeApi
      * @param  string|null $filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the volumes list. Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), returns all    volumes that are not in use by a container. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), only volumes that are in use by one or more    containers are returned. - &#x60;driver&#x3D;&lt;volume-driver-name&gt;&#x60; Matches volumes based on their driver. - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches volumes based on    the presence of a &#x60;label&#x60; alone or a &#x60;label&#x60; and a value. - &#x60;name&#x3D;&lt;volume-name&gt;&#x60; Matches all or part of a volume name. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeList'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VolumeListResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return VolumeListResponse|ErrorResponse
      */
     public function volumeList($filters = null, string $contentType = self::contentTypes['volumeList'][0])
     {
@@ -1000,8 +1010,8 @@ class VolumeApi
      * @param  string|null $filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the volumes list. Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), returns all    volumes that are not in use by a container. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), only volumes that are in use by one or more    containers are returned. - &#x60;driver&#x3D;&lt;volume-driver-name&gt;&#x60; Matches volumes based on their driver. - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches volumes based on    the presence of a &#x60;label&#x60; alone or a &#x60;label&#x60; and a value. - &#x60;name&#x3D;&lt;volume-name&gt;&#x60; Matches all or part of a volume name. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeList'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\VolumeListResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function volumeListWithHttpInfo($filters = null, string $contentType = self::contentTypes['volumeList'][0])
@@ -1099,8 +1109,8 @@ class VolumeApi
      * @param  string|null $filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the volumes list. Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), returns all    volumes that are not in use by a container. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), only volumes that are in use by one or more    containers are returned. - &#x60;driver&#x3D;&lt;volume-driver-name&gt;&#x60; Matches volumes based on their driver. - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches volumes based on    the presence of a &#x60;label&#x60; alone or a &#x60;label&#x60; and a value. - &#x60;name&#x3D;&lt;volume-name&gt;&#x60; Matches all or part of a volume name. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeList'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumeListAsync($filters = null, string $contentType = self::contentTypes['volumeList'][0])
     {
@@ -1120,8 +1130,8 @@ class VolumeApi
      * @param  string|null $filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the volumes list. Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), returns all    volumes that are not in use by a container. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), only volumes that are in use by one or more    containers are returned. - &#x60;driver&#x3D;&lt;volume-driver-name&gt;&#x60; Matches volumes based on their driver. - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches volumes based on    the presence of a &#x60;label&#x60; alone or a &#x60;label&#x60; and a value. - &#x60;name&#x3D;&lt;volume-name&gt;&#x60; Matches all or part of a volume name. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeList'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumeListAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['volumeList'][0])
     {
@@ -1170,8 +1180,8 @@ class VolumeApi
      * @param  string|null $filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the volumes list. Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), returns all    volumes that are not in use by a container. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), only volumes that are in use by one or more    containers are returned. - &#x60;driver&#x3D;&lt;volume-driver-name&gt;&#x60; Matches volumes based on their driver. - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches volumes based on    the presence of a &#x60;label&#x60; alone or a &#x60;label&#x60; and a value. - &#x60;name&#x3D;&lt;volume-name&gt;&#x60; Matches all or part of a volume name. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeList'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function volumeListRequest($filters = null, string $contentType = self::contentTypes['volumeList'][0])
     {
@@ -1222,7 +1232,7 @@ class VolumeApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1259,9 +1269,9 @@ class VolumeApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. - &#x60;all&#x60; (&#x60;all&#x3D;true&#x60;) - Consider all (local) volumes for pruning and not just anonymous volumes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumePrune'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\VolumePruneResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return VolumePruneResponse|ErrorResponse
      */
     public function volumePrune($filters = null, string $contentType = self::contentTypes['volumePrune'][0])
     {
@@ -1277,8 +1287,8 @@ class VolumeApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. - &#x60;all&#x60; (&#x60;all&#x3D;true&#x60;) - Consider all (local) volumes for pruning and not just anonymous volumes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumePrune'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\VolumePruneResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function volumePruneWithHttpInfo($filters = null, string $contentType = self::contentTypes['volumePrune'][0])
@@ -1376,8 +1386,8 @@ class VolumeApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. - &#x60;all&#x60; (&#x60;all&#x3D;true&#x60;) - Consider all (local) volumes for pruning and not just anonymous volumes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumePrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumePruneAsync($filters = null, string $contentType = self::contentTypes['volumePrune'][0])
     {
@@ -1397,8 +1407,8 @@ class VolumeApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. - &#x60;all&#x60; (&#x60;all&#x3D;true&#x60;) - Consider all (local) volumes for pruning and not just anonymous volumes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumePrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumePruneAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['volumePrune'][0])
     {
@@ -1447,8 +1457,8 @@ class VolumeApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. - &#x60;all&#x60; (&#x60;all&#x3D;true&#x60;) - Consider all (local) volumes for pruning and not just anonymous volumes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumePrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function volumePruneRequest($filters = null, string $contentType = self::contentTypes['volumePrune'][0])
     {
@@ -1499,7 +1509,7 @@ class VolumeApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1535,12 +1545,12 @@ class VolumeApi
      *
      * @param  string $name The name or ID of the volume (required)
      * @param  int $version The version number of the volume being updated. This is required to avoid conflicting writes. Found in the volume&#39;s &#x60;ClusterVolume&#x60; field. (required)
-     * @param  \OpenAPI\Client\Model\VolumeUpdateRequest|null $body The spec of the volume to update. Currently, only Availability may change. All other fields must remain unchanged. (optional)
+     * @param  VolumeUpdateRequest|null $body The spec of the volume to update. Currently, only Availability may change. All other fields must remain unchanged. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeUpdate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function volumeUpdate($name, $version, $body = null, string $contentType = self::contentTypes['volumeUpdate'][0])
     {
@@ -1554,12 +1564,12 @@ class VolumeApi
      *
      * @param  string $name The name or ID of the volume (required)
      * @param  int $version The version number of the volume being updated. This is required to avoid conflicting writes. Found in the volume&#39;s &#x60;ClusterVolume&#x60; field. (required)
-     * @param  \OpenAPI\Client\Model\VolumeUpdateRequest|null $body The spec of the volume to update. Currently, only Availability may change. All other fields must remain unchanged. (optional)
+     * @param  VolumeUpdateRequest|null $body The spec of the volume to update. Currently, only Availability may change. All other fields must remain unchanged. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeUpdate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function volumeUpdateWithHttpInfo($name, $version, $body = null, string $contentType = self::contentTypes['volumeUpdate'][0])
     {
@@ -1637,11 +1647,11 @@ class VolumeApi
      *
      * @param  string $name The name or ID of the volume (required)
      * @param  int $version The version number of the volume being updated. This is required to avoid conflicting writes. Found in the volume&#39;s &#x60;ClusterVolume&#x60; field. (required)
-     * @param  \OpenAPI\Client\Model\VolumeUpdateRequest|null $body The spec of the volume to update. Currently, only Availability may change. All other fields must remain unchanged. (optional)
+     * @param  VolumeUpdateRequest|null $body The spec of the volume to update. Currently, only Availability may change. All other fields must remain unchanged. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeUpdate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumeUpdateAsync($name, $version, $body = null, string $contentType = self::contentTypes['volumeUpdate'][0])
     {
@@ -1660,11 +1670,11 @@ class VolumeApi
      *
      * @param  string $name The name or ID of the volume (required)
      * @param  int $version The version number of the volume being updated. This is required to avoid conflicting writes. Found in the volume&#39;s &#x60;ClusterVolume&#x60; field. (required)
-     * @param  \OpenAPI\Client\Model\VolumeUpdateRequest|null $body The spec of the volume to update. Currently, only Availability may change. All other fields must remain unchanged. (optional)
+     * @param  VolumeUpdateRequest|null $body The spec of the volume to update. Currently, only Availability may change. All other fields must remain unchanged. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeUpdate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function volumeUpdateAsyncWithHttpInfo($name, $version, $body = null, string $contentType = self::contentTypes['volumeUpdate'][0])
     {
@@ -1699,25 +1709,25 @@ class VolumeApi
      *
      * @param  string $name The name or ID of the volume (required)
      * @param  int $version The version number of the volume being updated. This is required to avoid conflicting writes. Found in the volume&#39;s &#x60;ClusterVolume&#x60; field. (required)
-     * @param  \OpenAPI\Client\Model\VolumeUpdateRequest|null $body The spec of the volume to update. Currently, only Availability may change. All other fields must remain unchanged. (optional)
+     * @param  VolumeUpdateRequest|null $body The spec of the volume to update. Currently, only Availability may change. All other fields must remain unchanged. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['volumeUpdate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function volumeUpdateRequest($name, $version, $body = null, string $contentType = self::contentTypes['volumeUpdate'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling volumeUpdate'
             );
         }
 
         // verify the required parameter 'version' is set
         if ($version === null || (is_array($version) && count($version) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $version when calling volumeUpdate'
             );
         }
@@ -1762,7 +1772,7 @@ class VolumeApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -1783,7 +1793,7 @@ class VolumeApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1815,7 +1825,7 @@ class VolumeApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
+     * @throws RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -1824,7 +1834,7 @@ class VolumeApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -1843,7 +1853,7 @@ class VolumeApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
+                } catch (JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

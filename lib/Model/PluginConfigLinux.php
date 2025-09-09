@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * PluginConfigLinux Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class PluginConfigLinux implements ModelInterface, ArrayAccess, \JsonSerializable
+class PluginConfigLinux implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -332,7 +335,7 @@ class PluginConfigLinux implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setCapabilities($capabilities)
     {
         if (is_null($capabilities)) {
-            throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
+            throw new InvalidArgumentException('non-nullable capabilities cannot be null');
         }
         $this->container['capabilities'] = $capabilities;
 
@@ -359,7 +362,7 @@ class PluginConfigLinux implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setAllowAllDevices($allow_all_devices)
     {
         if (is_null($allow_all_devices)) {
-            throw new \InvalidArgumentException('non-nullable allow_all_devices cannot be null');
+            throw new InvalidArgumentException('non-nullable allow_all_devices cannot be null');
         }
         $this->container['allow_all_devices'] = $allow_all_devices;
 
@@ -369,7 +372,7 @@ class PluginConfigLinux implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets devices
      *
-     * @return \OpenAPI\Client\Model\PluginDevice[]
+     * @return PluginDevice[]
      */
     public function getDevices()
     {
@@ -379,14 +382,14 @@ class PluginConfigLinux implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets devices
      *
-     * @param \OpenAPI\Client\Model\PluginDevice[] $devices devices
+     * @param PluginDevice[] $devices devices
      *
      * @return self
      */
     public function setDevices($devices)
     {
         if (is_null($devices)) {
-            throw new \InvalidArgumentException('non-nullable devices cannot be null');
+            throw new InvalidArgumentException('non-nullable devices cannot be null');
         }
         $this->container['devices'] = $devices;
 
@@ -411,7 +414,7 @@ class PluginConfigLinux implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -453,7 +456,7 @@ class PluginConfigLinux implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

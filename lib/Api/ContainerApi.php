@@ -31,9 +31,17 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Utils;
+use InvalidArgumentException;
+use JsonException;
+use OpenAPI\Client\Model\ContainerCreateRequest;
+use OpenAPI\Client\Model\ContainerPruneResponse;
+use OpenAPI\Client\Model\ContainerUpdateRequest;
+use OpenAPI\Client\Model\ErrorResponse;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -41,6 +49,8 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
+use RuntimeException;
+use SplFileObject;
 
 /**
  * ContainerApi Class Doc Comment
@@ -208,9 +218,9 @@ class ContainerApi
      * @param  string $path Resource in the container’s filesystem to archive. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerArchive'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerArchive($id, $path, string $contentType = self::contentTypes['containerArchive'][0])
     {
@@ -226,9 +236,9 @@ class ContainerApi
      * @param  string $path Resource in the container’s filesystem to archive. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerArchive'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerArchiveWithHttpInfo($id, $path, string $contentType = self::contentTypes['containerArchive'][0])
     {
@@ -300,8 +310,8 @@ class ContainerApi
      * @param  string $path Resource in the container’s filesystem to archive. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerArchive'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerArchiveAsync($id, $path, string $contentType = self::contentTypes['containerArchive'][0])
     {
@@ -322,8 +332,8 @@ class ContainerApi
      * @param  string $path Resource in the container’s filesystem to archive. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerArchive'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerArchiveAsyncWithHttpInfo($id, $path, string $contentType = self::contentTypes['containerArchive'][0])
     {
@@ -360,22 +370,22 @@ class ContainerApi
      * @param  string $path Resource in the container’s filesystem to archive. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerArchive'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function containerArchiveRequest($id, $path, string $contentType = self::contentTypes['containerArchive'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerArchive'
             );
         }
 
         // verify the required parameter 'path' is set
         if ($path === null || (is_array($path) && count($path) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $path when calling containerArchive'
             );
         }
@@ -433,7 +443,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -471,9 +481,9 @@ class ContainerApi
      * @param  string $path Resource in the container’s filesystem to archive. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerArchiveInfo'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerArchiveInfo($id, $path, string $contentType = self::contentTypes['containerArchiveInfo'][0])
     {
@@ -489,9 +499,9 @@ class ContainerApi
      * @param  string $path Resource in the container’s filesystem to archive. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerArchiveInfo'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerArchiveInfoWithHttpInfo($id, $path, string $contentType = self::contentTypes['containerArchiveInfo'][0])
     {
@@ -563,8 +573,8 @@ class ContainerApi
      * @param  string $path Resource in the container’s filesystem to archive. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerArchiveInfo'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerArchiveInfoAsync($id, $path, string $contentType = self::contentTypes['containerArchiveInfo'][0])
     {
@@ -585,8 +595,8 @@ class ContainerApi
      * @param  string $path Resource in the container’s filesystem to archive. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerArchiveInfo'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerArchiveInfoAsyncWithHttpInfo($id, $path, string $contentType = self::contentTypes['containerArchiveInfo'][0])
     {
@@ -623,22 +633,22 @@ class ContainerApi
      * @param  string $path Resource in the container’s filesystem to archive. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerArchiveInfo'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function containerArchiveInfoRequest($id, $path, string $contentType = self::contentTypes['containerArchiveInfo'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerArchiveInfo'
             );
         }
 
         // verify the required parameter 'path' is set
         if ($path === null || (is_array($path) && count($path) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $path when calling containerArchiveInfo'
             );
         }
@@ -696,7 +706,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -739,9 +749,9 @@ class ContainerApi
      * @param  bool|null $stderr Attach to &#x60;stderr&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerAttach'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function containerAttach($id, $detach_keys = null, $logs = false, $stream = false, $stdin = false, $stdout = false, $stderr = false, string $contentType = self::contentTypes['containerAttach'][0])
     {
@@ -762,9 +772,9 @@ class ContainerApi
      * @param  bool|null $stderr Attach to &#x60;stderr&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerAttach'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function containerAttachWithHttpInfo($id, $detach_keys = null, $logs = false, $stream = false, $stdin = false, $stdout = false, $stderr = false, string $contentType = self::contentTypes['containerAttach'][0])
     {
@@ -841,8 +851,8 @@ class ContainerApi
      * @param  bool|null $stderr Attach to &#x60;stderr&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerAttach'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerAttachAsync($id, $detach_keys = null, $logs = false, $stream = false, $stdin = false, $stdout = false, $stderr = false, string $contentType = self::contentTypes['containerAttach'][0])
     {
@@ -868,8 +878,8 @@ class ContainerApi
      * @param  bool|null $stderr Attach to &#x60;stderr&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerAttach'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerAttachAsyncWithHttpInfo($id, $detach_keys = null, $logs = false, $stream = false, $stdin = false, $stdout = false, $stderr = false, string $contentType = self::contentTypes['containerAttach'][0])
     {
@@ -911,15 +921,15 @@ class ContainerApi
      * @param  bool|null $stderr Attach to &#x60;stderr&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerAttach'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function containerAttachRequest($id, $detach_keys = null, $logs = false, $stream = false, $stdin = false, $stdout = false, $stderr = false, string $contentType = self::contentTypes['containerAttach'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerAttach'
             );
         }
@@ -1028,7 +1038,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1071,9 +1081,9 @@ class ContainerApi
      * @param  bool|null $stderr Attach to &#x60;stderr&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerAttachWebsocket'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function containerAttachWebsocket($id, $detach_keys = null, $logs = false, $stream = false, $stdin = false, $stdout = false, $stderr = false, string $contentType = self::contentTypes['containerAttachWebsocket'][0])
     {
@@ -1094,9 +1104,9 @@ class ContainerApi
      * @param  bool|null $stderr Attach to &#x60;stderr&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerAttachWebsocket'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function containerAttachWebsocketWithHttpInfo($id, $detach_keys = null, $logs = false, $stream = false, $stdin = false, $stdout = false, $stderr = false, string $contentType = self::contentTypes['containerAttachWebsocket'][0])
     {
@@ -1173,8 +1183,8 @@ class ContainerApi
      * @param  bool|null $stderr Attach to &#x60;stderr&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerAttachWebsocket'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerAttachWebsocketAsync($id, $detach_keys = null, $logs = false, $stream = false, $stdin = false, $stdout = false, $stderr = false, string $contentType = self::contentTypes['containerAttachWebsocket'][0])
     {
@@ -1200,8 +1210,8 @@ class ContainerApi
      * @param  bool|null $stderr Attach to &#x60;stderr&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerAttachWebsocket'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerAttachWebsocketAsyncWithHttpInfo($id, $detach_keys = null, $logs = false, $stream = false, $stdin = false, $stdout = false, $stderr = false, string $contentType = self::contentTypes['containerAttachWebsocket'][0])
     {
@@ -1243,15 +1253,15 @@ class ContainerApi
      * @param  bool|null $stderr Attach to &#x60;stderr&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerAttachWebsocket'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function containerAttachWebsocketRequest($id, $detach_keys = null, $logs = false, $stream = false, $stdin = false, $stdout = false, $stderr = false, string $contentType = self::contentTypes['containerAttachWebsocket'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerAttachWebsocket'
             );
         }
@@ -1360,7 +1370,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1397,9 +1407,9 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerChanges'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\FilesystemChange[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\FilesystemChange[]|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerChanges($id, string $contentType = self::contentTypes['containerChanges'][0])
     {
@@ -1415,9 +1425,9 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerChanges'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\FilesystemChange[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerChangesWithHttpInfo($id, string $contentType = self::contentTypes['containerChanges'][0])
     {
@@ -1528,8 +1538,8 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerChanges'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerChangesAsync($id, string $contentType = self::contentTypes['containerChanges'][0])
     {
@@ -1549,8 +1559,8 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerChanges'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerChangesAsyncWithHttpInfo($id, string $contentType = self::contentTypes['containerChanges'][0])
     {
@@ -1599,15 +1609,15 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerChanges'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function containerChangesRequest($id, string $contentType = self::contentTypes['containerChanges'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerChanges'
             );
         }
@@ -1656,7 +1666,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1690,14 +1700,14 @@ class ContainerApi
      *
      * Create a container
      *
-     * @param  \OpenAPI\Client\Model\ContainerCreateRequest $body Container to create (required)
+     * @param  ContainerCreateRequest $body Container to create (required)
      * @param  string|null $name Assign the specified name to the container. Must match &#x60;/?[a-zA-Z0-9][a-zA-Z0-9_.-]+&#x60;. (optional)
      * @param  string|null $platform Platform in the format &#x60;os[/arch[/variant]]&#x60; used for image lookup.  When specified, the daemon checks if the requested image is present in the local image cache with the given OS and Architecture, and otherwise returns a &#x60;404&#x60; status.  If the option is not set, the host&#39;s native OS and Architecture are used to look up the image in the image cache. However, if no platform is passed and the given image does exist in the local image cache, but its OS or architecture does not match, the container is created with the available image, and a warning is added to the &#x60;Warnings&#x60; field in the response, for example;      WARNING: The requested image&#39;s platform (linux/arm64/v8) does not              match the detected host platform (linux/amd64) and no              specific platform was requested (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerCreate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ContainerCreateResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ContainerCreateResponse|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerCreate($body, $name = null, $platform = null, string $contentType = self::contentTypes['containerCreate'][0])
     {
@@ -1710,14 +1720,14 @@ class ContainerApi
      *
      * Create a container
      *
-     * @param  \OpenAPI\Client\Model\ContainerCreateRequest $body Container to create (required)
+     * @param  ContainerCreateRequest $body Container to create (required)
      * @param  string|null $name Assign the specified name to the container. Must match &#x60;/?[a-zA-Z0-9][a-zA-Z0-9_.-]+&#x60;. (optional)
      * @param  string|null $platform Platform in the format &#x60;os[/arch[/variant]]&#x60; used for image lookup.  When specified, the daemon checks if the requested image is present in the local image cache with the given OS and Architecture, and otherwise returns a &#x60;404&#x60; status.  If the option is not set, the host&#39;s native OS and Architecture are used to look up the image in the image cache. However, if no platform is passed and the given image does exist in the local image cache, but its OS or architecture does not match, the container is created with the available image, and a warning is added to the &#x60;Warnings&#x60; field in the response, for example;      WARNING: The requested image&#39;s platform (linux/arm64/v8) does not              match the detected host platform (linux/amd64) and no              specific platform was requested (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerCreate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ContainerCreateResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerCreateWithHttpInfo($body, $name = null, $platform = null, string $contentType = self::contentTypes['containerCreate'][0])
     {
@@ -1853,13 +1863,13 @@ class ContainerApi
      *
      * Create a container
      *
-     * @param  \OpenAPI\Client\Model\ContainerCreateRequest $body Container to create (required)
+     * @param  ContainerCreateRequest $body Container to create (required)
      * @param  string|null $name Assign the specified name to the container. Must match &#x60;/?[a-zA-Z0-9][a-zA-Z0-9_.-]+&#x60;. (optional)
      * @param  string|null $platform Platform in the format &#x60;os[/arch[/variant]]&#x60; used for image lookup.  When specified, the daemon checks if the requested image is present in the local image cache with the given OS and Architecture, and otherwise returns a &#x60;404&#x60; status.  If the option is not set, the host&#39;s native OS and Architecture are used to look up the image in the image cache. However, if no platform is passed and the given image does exist in the local image cache, but its OS or architecture does not match, the container is created with the available image, and a warning is added to the &#x60;Warnings&#x60; field in the response, for example;      WARNING: The requested image&#39;s platform (linux/arm64/v8) does not              match the detected host platform (linux/amd64) and no              specific platform was requested (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerCreate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerCreateAsync($body, $name = null, $platform = null, string $contentType = self::contentTypes['containerCreate'][0])
     {
@@ -1876,13 +1886,13 @@ class ContainerApi
      *
      * Create a container
      *
-     * @param  \OpenAPI\Client\Model\ContainerCreateRequest $body Container to create (required)
+     * @param  ContainerCreateRequest $body Container to create (required)
      * @param  string|null $name Assign the specified name to the container. Must match &#x60;/?[a-zA-Z0-9][a-zA-Z0-9_.-]+&#x60;. (optional)
      * @param  string|null $platform Platform in the format &#x60;os[/arch[/variant]]&#x60; used for image lookup.  When specified, the daemon checks if the requested image is present in the local image cache with the given OS and Architecture, and otherwise returns a &#x60;404&#x60; status.  If the option is not set, the host&#39;s native OS and Architecture are used to look up the image in the image cache. However, if no platform is passed and the given image does exist in the local image cache, but its OS or architecture does not match, the container is created with the available image, and a warning is added to the &#x60;Warnings&#x60; field in the response, for example;      WARNING: The requested image&#39;s platform (linux/arm64/v8) does not              match the detected host platform (linux/amd64) and no              specific platform was requested (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerCreate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerCreateAsyncWithHttpInfo($body, $name = null, $platform = null, string $contentType = self::contentTypes['containerCreate'][0])
     {
@@ -1928,26 +1938,26 @@ class ContainerApi
     /**
      * Create request for operation 'containerCreate'
      *
-     * @param  \OpenAPI\Client\Model\ContainerCreateRequest $body Container to create (required)
+     * @param  ContainerCreateRequest $body Container to create (required)
      * @param  string|null $name Assign the specified name to the container. Must match &#x60;/?[a-zA-Z0-9][a-zA-Z0-9_.-]+&#x60;. (optional)
      * @param  string|null $platform Platform in the format &#x60;os[/arch[/variant]]&#x60; used for image lookup.  When specified, the daemon checks if the requested image is present in the local image cache with the given OS and Architecture, and otherwise returns a &#x60;404&#x60; status.  If the option is not set, the host&#39;s native OS and Architecture are used to look up the image in the image cache. However, if no platform is passed and the given image does exist in the local image cache, but its OS or architecture does not match, the container is created with the available image, and a warning is added to the &#x60;Warnings&#x60; field in the response, for example;      WARNING: The requested image&#39;s platform (linux/arm64/v8) does not              match the detected host platform (linux/amd64) and no              specific platform was requested (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerCreate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function containerCreateRequest($body, $name = null, $platform = null, string $contentType = self::contentTypes['containerCreate'][0])
     {
 
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $body when calling containerCreate'
             );
         }
 
         if ($name !== null && !preg_match("/^\/?[a-zA-Z0-9][a-zA-Z0-9_.-]+$/", $name)) {
-            throw new \InvalidArgumentException("invalid value for \"name\" when calling ContainerApi.containerCreate, must conform to the pattern /^\/?[a-zA-Z0-9][a-zA-Z0-9_.-]+$/.");
+            throw new InvalidArgumentException("invalid value for \"name\" when calling ContainerApi.containerCreate, must conform to the pattern /^\/?[a-zA-Z0-9][a-zA-Z0-9_.-]+$/.");
         }
         
 
@@ -1991,7 +2001,7 @@ class ContainerApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -2012,7 +2022,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2052,9 +2062,9 @@ class ContainerApi
      * @param  bool|null $link Remove the specified link associated with the container. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerDelete'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerDelete($id, $v = false, $force = false, $link = false, string $contentType = self::contentTypes['containerDelete'][0])
     {
@@ -2072,9 +2082,9 @@ class ContainerApi
      * @param  bool|null $link Remove the specified link associated with the container. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerDelete'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerDeleteWithHttpInfo($id, $v = false, $force = false, $link = false, string $contentType = self::contentTypes['containerDelete'][0])
     {
@@ -2156,8 +2166,8 @@ class ContainerApi
      * @param  bool|null $link Remove the specified link associated with the container. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerDelete'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerDeleteAsync($id, $v = false, $force = false, $link = false, string $contentType = self::contentTypes['containerDelete'][0])
     {
@@ -2180,8 +2190,8 @@ class ContainerApi
      * @param  bool|null $link Remove the specified link associated with the container. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerDelete'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerDeleteAsyncWithHttpInfo($id, $v = false, $force = false, $link = false, string $contentType = self::contentTypes['containerDelete'][0])
     {
@@ -2220,15 +2230,15 @@ class ContainerApi
      * @param  bool|null $link Remove the specified link associated with the container. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerDelete'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function containerDeleteRequest($id, $v = false, $force = false, $link = false, string $contentType = self::contentTypes['containerDelete'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerDelete'
             );
         }
@@ -2307,7 +2317,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2344,9 +2354,9 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerExport'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerExport($id, string $contentType = self::contentTypes['containerExport'][0])
     {
@@ -2361,9 +2371,9 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerExport'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerExportWithHttpInfo($id, string $contentType = self::contentTypes['containerExport'][0])
     {
@@ -2426,8 +2436,8 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerExport'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerExportAsync($id, string $contentType = self::contentTypes['containerExport'][0])
     {
@@ -2447,8 +2457,8 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerExport'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerExportAsyncWithHttpInfo($id, string $contentType = self::contentTypes['containerExport'][0])
     {
@@ -2484,15 +2494,15 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerExport'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function containerExportRequest($id, string $contentType = self::contentTypes['containerExport'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerExport'
             );
         }
@@ -2541,7 +2551,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2579,9 +2589,9 @@ class ContainerApi
      * @param  bool|null $size Return the size of container as fields &#x60;SizeRw&#x60; and &#x60;SizeRootFs&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerInspect'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ContainerInspectResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ContainerInspectResponse|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerInspect($id, $size = false, string $contentType = self::contentTypes['containerInspect'][0])
     {
@@ -2598,9 +2608,9 @@ class ContainerApi
      * @param  bool|null $size Return the size of container as fields &#x60;SizeRw&#x60; and &#x60;SizeRootFs&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerInspect'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ContainerInspectResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerInspectWithHttpInfo($id, $size = false, string $contentType = self::contentTypes['containerInspect'][0])
     {
@@ -2712,8 +2722,8 @@ class ContainerApi
      * @param  bool|null $size Return the size of container as fields &#x60;SizeRw&#x60; and &#x60;SizeRootFs&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerInspectAsync($id, $size = false, string $contentType = self::contentTypes['containerInspect'][0])
     {
@@ -2734,8 +2744,8 @@ class ContainerApi
      * @param  bool|null $size Return the size of container as fields &#x60;SizeRw&#x60; and &#x60;SizeRootFs&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerInspectAsyncWithHttpInfo($id, $size = false, string $contentType = self::contentTypes['containerInspect'][0])
     {
@@ -2785,15 +2795,15 @@ class ContainerApi
      * @param  bool|null $size Return the size of container as fields &#x60;SizeRw&#x60; and &#x60;SizeRootFs&#x60; (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function containerInspectRequest($id, $size = false, string $contentType = self::contentTypes['containerInspect'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerInspect'
             );
         }
@@ -2852,7 +2862,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2890,9 +2900,9 @@ class ContainerApi
      * @param  string|null $signal Signal to send to the container as an integer or string (e.g. &#x60;SIGINT&#x60;). (optional, default to 'SIGKILL')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerKill'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerKill($id, $signal = 'SIGKILL', string $contentType = self::contentTypes['containerKill'][0])
     {
@@ -2908,9 +2918,9 @@ class ContainerApi
      * @param  string|null $signal Signal to send to the container as an integer or string (e.g. &#x60;SIGINT&#x60;). (optional, default to 'SIGKILL')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerKill'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerKillWithHttpInfo($id, $signal = 'SIGKILL', string $contentType = self::contentTypes['containerKill'][0])
     {
@@ -2982,8 +2992,8 @@ class ContainerApi
      * @param  string|null $signal Signal to send to the container as an integer or string (e.g. &#x60;SIGINT&#x60;). (optional, default to 'SIGKILL')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerKill'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerKillAsync($id, $signal = 'SIGKILL', string $contentType = self::contentTypes['containerKill'][0])
     {
@@ -3004,8 +3014,8 @@ class ContainerApi
      * @param  string|null $signal Signal to send to the container as an integer or string (e.g. &#x60;SIGINT&#x60;). (optional, default to 'SIGKILL')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerKill'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerKillAsyncWithHttpInfo($id, $signal = 'SIGKILL', string $contentType = self::contentTypes['containerKill'][0])
     {
@@ -3042,15 +3052,15 @@ class ContainerApi
      * @param  string|null $signal Signal to send to the container as an integer or string (e.g. &#x60;SIGINT&#x60;). (optional, default to 'SIGKILL')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerKill'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerKillRequest($id, $signal = 'SIGKILL', string $contentType = self::contentTypes['containerKill'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerKill'
             );
         }
@@ -3109,7 +3119,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3149,9 +3159,9 @@ class ContainerApi
      * @param  string|null $filters Filters to process on the container list, encoded as JSON (a &#x60;map[string][]string&#x60;). For example, &#x60;{\&quot;status\&quot;: [\&quot;paused\&quot;]}&#x60; will only return paused containers.  Available filters:  - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60;|&#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;|&#x60;healthy&#x60;|&#x60;unhealthy&#x60;|&#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;isolation&#x3D;&#x60;(&#x60;default&#x60;|&#x60;process&#x60;|&#x60;hyperv&#x60;) (Windows daemon only) - &#x60;is-task&#x3D;&#x60;(&#x60;true&#x60;|&#x60;false&#x60;) - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60;|&#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x3D;&#x60;(&#x60;created&#x60;|&#x60;restarting&#x60;|&#x60;running&#x60;|&#x60;removing&#x60;|&#x60;paused&#x60;|&#x60;exited&#x60;|&#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerList'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ContainerSummary[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ContainerSummary[]|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerList($all = false, $limit = null, $size = false, $filters = null, string $contentType = self::contentTypes['containerList'][0])
     {
@@ -3170,9 +3180,9 @@ class ContainerApi
      * @param  string|null $filters Filters to process on the container list, encoded as JSON (a &#x60;map[string][]string&#x60;). For example, &#x60;{\&quot;status\&quot;: [\&quot;paused\&quot;]}&#x60; will only return paused containers.  Available filters:  - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60;|&#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;|&#x60;healthy&#x60;|&#x60;unhealthy&#x60;|&#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;isolation&#x3D;&#x60;(&#x60;default&#x60;|&#x60;process&#x60;|&#x60;hyperv&#x60;) (Windows daemon only) - &#x60;is-task&#x3D;&#x60;(&#x60;true&#x60;|&#x60;false&#x60;) - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60;|&#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x3D;&#x60;(&#x60;created&#x60;|&#x60;restarting&#x60;|&#x60;running&#x60;|&#x60;removing&#x60;|&#x60;paused&#x60;|&#x60;exited&#x60;|&#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerList'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ContainerSummary[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerListWithHttpInfo($all = false, $limit = null, $size = false, $filters = null, string $contentType = self::contentTypes['containerList'][0])
     {
@@ -3286,8 +3296,8 @@ class ContainerApi
      * @param  string|null $filters Filters to process on the container list, encoded as JSON (a &#x60;map[string][]string&#x60;). For example, &#x60;{\&quot;status\&quot;: [\&quot;paused\&quot;]}&#x60; will only return paused containers.  Available filters:  - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60;|&#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;|&#x60;healthy&#x60;|&#x60;unhealthy&#x60;|&#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;isolation&#x3D;&#x60;(&#x60;default&#x60;|&#x60;process&#x60;|&#x60;hyperv&#x60;) (Windows daemon only) - &#x60;is-task&#x3D;&#x60;(&#x60;true&#x60;|&#x60;false&#x60;) - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60;|&#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x3D;&#x60;(&#x60;created&#x60;|&#x60;restarting&#x60;|&#x60;running&#x60;|&#x60;removing&#x60;|&#x60;paused&#x60;|&#x60;exited&#x60;|&#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerList'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerListAsync($all = false, $limit = null, $size = false, $filters = null, string $contentType = self::contentTypes['containerList'][0])
     {
@@ -3310,8 +3320,8 @@ class ContainerApi
      * @param  string|null $filters Filters to process on the container list, encoded as JSON (a &#x60;map[string][]string&#x60;). For example, &#x60;{\&quot;status\&quot;: [\&quot;paused\&quot;]}&#x60; will only return paused containers.  Available filters:  - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60;|&#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;|&#x60;healthy&#x60;|&#x60;unhealthy&#x60;|&#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;isolation&#x3D;&#x60;(&#x60;default&#x60;|&#x60;process&#x60;|&#x60;hyperv&#x60;) (Windows daemon only) - &#x60;is-task&#x3D;&#x60;(&#x60;true&#x60;|&#x60;false&#x60;) - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60;|&#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x3D;&#x60;(&#x60;created&#x60;|&#x60;restarting&#x60;|&#x60;running&#x60;|&#x60;removing&#x60;|&#x60;paused&#x60;|&#x60;exited&#x60;|&#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerList'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerListAsyncWithHttpInfo($all = false, $limit = null, $size = false, $filters = null, string $contentType = self::contentTypes['containerList'][0])
     {
@@ -3363,8 +3373,8 @@ class ContainerApi
      * @param  string|null $filters Filters to process on the container list, encoded as JSON (a &#x60;map[string][]string&#x60;). For example, &#x60;{\&quot;status\&quot;: [\&quot;paused\&quot;]}&#x60; will only return paused containers.  Available filters:  - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60;|&#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;|&#x60;healthy&#x60;|&#x60;unhealthy&#x60;|&#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;isolation&#x3D;&#x60;(&#x60;default&#x60;|&#x60;process&#x60;|&#x60;hyperv&#x60;) (Windows daemon only) - &#x60;is-task&#x3D;&#x60;(&#x60;true&#x60;|&#x60;false&#x60;) - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60;|&#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x3D;&#x60;(&#x60;created&#x60;|&#x60;restarting&#x60;|&#x60;running&#x60;|&#x60;removing&#x60;|&#x60;paused&#x60;|&#x60;exited&#x60;|&#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerList'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerListRequest($all = false, $limit = null, $size = false, $filters = null, string $contentType = self::contentTypes['containerList'][0])
     {
@@ -3445,7 +3455,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3489,9 +3499,9 @@ class ContainerApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerLogs'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SplFileObject|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return SplFileObject|ErrorResponse|ErrorResponse
+     *@throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function containerLogs($id, $follow = false, $stdout = false, $stderr = false, $since = 0, $until = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['containerLogs'][0])
     {
@@ -3514,9 +3524,9 @@ class ContainerApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerLogs'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function containerLogsWithHttpInfo($id, $follow = false, $stdout = false, $stderr = false, $since = 0, $until = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['containerLogs'][0])
     {
@@ -3634,8 +3644,8 @@ class ContainerApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerLogs'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerLogsAsync($id, $follow = false, $stdout = false, $stderr = false, $since = 0, $until = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['containerLogs'][0])
     {
@@ -3662,8 +3672,8 @@ class ContainerApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerLogs'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerLogsAsyncWithHttpInfo($id, $follow = false, $stdout = false, $stderr = false, $since = 0, $until = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['containerLogs'][0])
     {
@@ -3719,15 +3729,15 @@ class ContainerApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerLogs'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerLogsRequest($id, $follow = false, $stdout = false, $stderr = false, $since = 0, $until = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['containerLogs'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerLogs'
             );
         }
@@ -3846,7 +3856,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3883,9 +3893,9 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerPause'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerPause($id, string $contentType = self::contentTypes['containerPause'][0])
     {
@@ -3900,9 +3910,9 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerPause'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerPauseWithHttpInfo($id, string $contentType = self::contentTypes['containerPause'][0])
     {
@@ -3965,8 +3975,8 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerPause'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerPauseAsync($id, string $contentType = self::contentTypes['containerPause'][0])
     {
@@ -3986,8 +3996,8 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerPause'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerPauseAsyncWithHttpInfo($id, string $contentType = self::contentTypes['containerPause'][0])
     {
@@ -4023,15 +4033,15 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerPause'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerPauseRequest($id, string $contentType = self::contentTypes['containerPause'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerPause'
             );
         }
@@ -4080,7 +4090,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4117,9 +4127,9 @@ class ContainerApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerPrune'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ContainerPruneResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return ContainerPruneResponse|ErrorResponse
      */
     public function containerPrune($filters = null, string $contentType = self::contentTypes['containerPrune'][0])
     {
@@ -4135,8 +4145,8 @@ class ContainerApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerPrune'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ContainerPruneResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function containerPruneWithHttpInfo($filters = null, string $contentType = self::contentTypes['containerPrune'][0])
@@ -4234,8 +4244,8 @@ class ContainerApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerPrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerPruneAsync($filters = null, string $contentType = self::contentTypes['containerPrune'][0])
     {
@@ -4255,8 +4265,8 @@ class ContainerApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerPrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerPruneAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['containerPrune'][0])
     {
@@ -4305,8 +4315,8 @@ class ContainerApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerPrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerPruneRequest($filters = null, string $contentType = self::contentTypes['containerPrune'][0])
     {
@@ -4357,7 +4367,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4395,9 +4405,9 @@ class ContainerApi
      * @param  string $name New name for the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerRename'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerRename($id, $name, string $contentType = self::contentTypes['containerRename'][0])
     {
@@ -4413,9 +4423,9 @@ class ContainerApi
      * @param  string $name New name for the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerRename'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerRenameWithHttpInfo($id, $name, string $contentType = self::contentTypes['containerRename'][0])
     {
@@ -4487,8 +4497,8 @@ class ContainerApi
      * @param  string $name New name for the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerRename'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerRenameAsync($id, $name, string $contentType = self::contentTypes['containerRename'][0])
     {
@@ -4509,8 +4519,8 @@ class ContainerApi
      * @param  string $name New name for the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerRename'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerRenameAsyncWithHttpInfo($id, $name, string $contentType = self::contentTypes['containerRename'][0])
     {
@@ -4547,22 +4557,22 @@ class ContainerApi
      * @param  string $name New name for the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerRename'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerRenameRequest($id, $name, string $contentType = self::contentTypes['containerRename'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerRename'
             );
         }
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling containerRename'
             );
         }
@@ -4620,7 +4630,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4659,9 +4669,9 @@ class ContainerApi
      * @param  int $w Width of the TTY session in characters (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerResize'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerResize($id, $h, $w, string $contentType = self::contentTypes['containerResize'][0])
     {
@@ -4678,9 +4688,9 @@ class ContainerApi
      * @param  int $w Width of the TTY session in characters (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerResize'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerResizeWithHttpInfo($id, $h, $w, string $contentType = self::contentTypes['containerResize'][0])
     {
@@ -4745,8 +4755,8 @@ class ContainerApi
      * @param  int $w Width of the TTY session in characters (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerResize'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerResizeAsync($id, $h, $w, string $contentType = self::contentTypes['containerResize'][0])
     {
@@ -4768,8 +4778,8 @@ class ContainerApi
      * @param  int $w Width of the TTY session in characters (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerResize'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerResizeAsyncWithHttpInfo($id, $h, $w, string $contentType = self::contentTypes['containerResize'][0])
     {
@@ -4807,29 +4817,29 @@ class ContainerApi
      * @param  int $w Width of the TTY session in characters (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerResize'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerResizeRequest($id, $h, $w, string $contentType = self::contentTypes['containerResize'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerResize'
             );
         }
 
         // verify the required parameter 'h' is set
         if ($h === null || (is_array($h) && count($h) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $h when calling containerResize'
             );
         }
 
         // verify the required parameter 'w' is set
         if ($w === null || (is_array($w) && count($w) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $w when calling containerResize'
             );
         }
@@ -4896,7 +4906,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4935,9 +4945,9 @@ class ContainerApi
      * @param  int|null $t Number of seconds to wait before killing the container (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerRestart'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerRestart($id, $signal = null, $t = null, string $contentType = self::contentTypes['containerRestart'][0])
     {
@@ -4954,9 +4964,9 @@ class ContainerApi
      * @param  int|null $t Number of seconds to wait before killing the container (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerRestart'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerRestartWithHttpInfo($id, $signal = null, $t = null, string $contentType = self::contentTypes['containerRestart'][0])
     {
@@ -5021,8 +5031,8 @@ class ContainerApi
      * @param  int|null $t Number of seconds to wait before killing the container (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerRestart'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerRestartAsync($id, $signal = null, $t = null, string $contentType = self::contentTypes['containerRestart'][0])
     {
@@ -5044,8 +5054,8 @@ class ContainerApi
      * @param  int|null $t Number of seconds to wait before killing the container (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerRestart'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerRestartAsyncWithHttpInfo($id, $signal = null, $t = null, string $contentType = self::contentTypes['containerRestart'][0])
     {
@@ -5083,15 +5093,15 @@ class ContainerApi
      * @param  int|null $t Number of seconds to wait before killing the container (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerRestart'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerRestartRequest($id, $signal = null, $t = null, string $contentType = self::contentTypes['containerRestart'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerRestart'
             );
         }
@@ -5160,7 +5170,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -5198,9 +5208,9 @@ class ContainerApi
      * @param  string|null $detach_keys Override the key sequence for detaching a container. Format is a single character &#x60;[a-Z]&#x60; or &#x60;ctrl-&lt;value&gt;&#x60; where &#x60;&lt;value&gt;&#x60; is one of: &#x60;a-z&#x60;, &#x60;@&#x60;, &#x60;^&#x60;, &#x60;[&#x60;, &#x60;,&#x60; or &#x60;_&#x60;. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStart'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerStart($id, $detach_keys = null, string $contentType = self::contentTypes['containerStart'][0])
     {
@@ -5216,9 +5226,9 @@ class ContainerApi
      * @param  string|null $detach_keys Override the key sequence for detaching a container. Format is a single character &#x60;[a-Z]&#x60; or &#x60;ctrl-&lt;value&gt;&#x60; where &#x60;&lt;value&gt;&#x60; is one of: &#x60;a-z&#x60;, &#x60;@&#x60;, &#x60;^&#x60;, &#x60;[&#x60;, &#x60;,&#x60; or &#x60;_&#x60;. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStart'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerStartWithHttpInfo($id, $detach_keys = null, string $contentType = self::contentTypes['containerStart'][0])
     {
@@ -5282,8 +5292,8 @@ class ContainerApi
      * @param  string|null $detach_keys Override the key sequence for detaching a container. Format is a single character &#x60;[a-Z]&#x60; or &#x60;ctrl-&lt;value&gt;&#x60; where &#x60;&lt;value&gt;&#x60; is one of: &#x60;a-z&#x60;, &#x60;@&#x60;, &#x60;^&#x60;, &#x60;[&#x60;, &#x60;,&#x60; or &#x60;_&#x60;. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStart'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerStartAsync($id, $detach_keys = null, string $contentType = self::contentTypes['containerStart'][0])
     {
@@ -5304,8 +5314,8 @@ class ContainerApi
      * @param  string|null $detach_keys Override the key sequence for detaching a container. Format is a single character &#x60;[a-Z]&#x60; or &#x60;ctrl-&lt;value&gt;&#x60; where &#x60;&lt;value&gt;&#x60; is one of: &#x60;a-z&#x60;, &#x60;@&#x60;, &#x60;^&#x60;, &#x60;[&#x60;, &#x60;,&#x60; or &#x60;_&#x60;. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStart'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerStartAsyncWithHttpInfo($id, $detach_keys = null, string $contentType = self::contentTypes['containerStart'][0])
     {
@@ -5342,15 +5352,15 @@ class ContainerApi
      * @param  string|null $detach_keys Override the key sequence for detaching a container. Format is a single character &#x60;[a-Z]&#x60; or &#x60;ctrl-&lt;value&gt;&#x60; where &#x60;&lt;value&gt;&#x60; is one of: &#x60;a-z&#x60;, &#x60;@&#x60;, &#x60;^&#x60;, &#x60;[&#x60;, &#x60;,&#x60; or &#x60;_&#x60;. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStart'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerStartRequest($id, $detach_keys = null, string $contentType = self::contentTypes['containerStart'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerStart'
             );
         }
@@ -5409,7 +5419,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -5448,9 +5458,9 @@ class ContainerApi
      * @param  bool|null $one_shot Only get a single stat instead of waiting for 2 cycles. Must be used with &#x60;stream&#x3D;false&#x60;. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStats'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ContainerStatsResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ContainerStatsResponse|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerStats($id, $stream = true, $one_shot = false, string $contentType = self::contentTypes['containerStats'][0])
     {
@@ -5468,9 +5478,9 @@ class ContainerApi
      * @param  bool|null $one_shot Only get a single stat instead of waiting for 2 cycles. Must be used with &#x60;stream&#x3D;false&#x60;. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStats'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ContainerStatsResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerStatsWithHttpInfo($id, $stream = true, $one_shot = false, string $contentType = self::contentTypes['containerStats'][0])
     {
@@ -5583,8 +5593,8 @@ class ContainerApi
      * @param  bool|null $one_shot Only get a single stat instead of waiting for 2 cycles. Must be used with &#x60;stream&#x3D;false&#x60;. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStats'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerStatsAsync($id, $stream = true, $one_shot = false, string $contentType = self::contentTypes['containerStats'][0])
     {
@@ -5606,8 +5616,8 @@ class ContainerApi
      * @param  bool|null $one_shot Only get a single stat instead of waiting for 2 cycles. Must be used with &#x60;stream&#x3D;false&#x60;. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStats'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerStatsAsyncWithHttpInfo($id, $stream = true, $one_shot = false, string $contentType = self::contentTypes['containerStats'][0])
     {
@@ -5658,15 +5668,15 @@ class ContainerApi
      * @param  bool|null $one_shot Only get a single stat instead of waiting for 2 cycles. Must be used with &#x60;stream&#x3D;false&#x60;. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStats'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerStatsRequest($id, $stream = true, $one_shot = false, string $contentType = self::contentTypes['containerStats'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerStats'
             );
         }
@@ -5735,7 +5745,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -5774,9 +5784,9 @@ class ContainerApi
      * @param  int|null $t Number of seconds to wait before killing the container (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStop'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerStop($id, $signal = null, $t = null, string $contentType = self::contentTypes['containerStop'][0])
     {
@@ -5793,9 +5803,9 @@ class ContainerApi
      * @param  int|null $t Number of seconds to wait before killing the container (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStop'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerStopWithHttpInfo($id, $signal = null, $t = null, string $contentType = self::contentTypes['containerStop'][0])
     {
@@ -5860,8 +5870,8 @@ class ContainerApi
      * @param  int|null $t Number of seconds to wait before killing the container (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStop'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerStopAsync($id, $signal = null, $t = null, string $contentType = self::contentTypes['containerStop'][0])
     {
@@ -5883,8 +5893,8 @@ class ContainerApi
      * @param  int|null $t Number of seconds to wait before killing the container (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStop'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerStopAsyncWithHttpInfo($id, $signal = null, $t = null, string $contentType = self::contentTypes['containerStop'][0])
     {
@@ -5922,15 +5932,15 @@ class ContainerApi
      * @param  int|null $t Number of seconds to wait before killing the container (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerStop'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerStopRequest($id, $signal = null, $t = null, string $contentType = self::contentTypes['containerStop'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerStop'
             );
         }
@@ -5999,7 +6009,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -6037,9 +6047,9 @@ class ContainerApi
      * @param  string|null $ps_args The arguments to pass to &#x60;ps&#x60;. For example, &#x60;aux&#x60; (optional, default to '-ef')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerTop'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ContainerTopResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ContainerTopResponse|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerTop($id, $ps_args = '-ef', string $contentType = self::contentTypes['containerTop'][0])
     {
@@ -6056,9 +6066,9 @@ class ContainerApi
      * @param  string|null $ps_args The arguments to pass to &#x60;ps&#x60;. For example, &#x60;aux&#x60; (optional, default to '-ef')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerTop'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ContainerTopResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerTopWithHttpInfo($id, $ps_args = '-ef', string $contentType = self::contentTypes['containerTop'][0])
     {
@@ -6170,8 +6180,8 @@ class ContainerApi
      * @param  string|null $ps_args The arguments to pass to &#x60;ps&#x60;. For example, &#x60;aux&#x60; (optional, default to '-ef')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerTop'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerTopAsync($id, $ps_args = '-ef', string $contentType = self::contentTypes['containerTop'][0])
     {
@@ -6192,8 +6202,8 @@ class ContainerApi
      * @param  string|null $ps_args The arguments to pass to &#x60;ps&#x60;. For example, &#x60;aux&#x60; (optional, default to '-ef')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerTop'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerTopAsyncWithHttpInfo($id, $ps_args = '-ef', string $contentType = self::contentTypes['containerTop'][0])
     {
@@ -6243,15 +6253,15 @@ class ContainerApi
      * @param  string|null $ps_args The arguments to pass to &#x60;ps&#x60;. For example, &#x60;aux&#x60; (optional, default to '-ef')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerTop'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerTopRequest($id, $ps_args = '-ef', string $contentType = self::contentTypes['containerTop'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerTop'
             );
         }
@@ -6310,7 +6320,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -6347,9 +6357,9 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerUnpause'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerUnpause($id, string $contentType = self::contentTypes['containerUnpause'][0])
     {
@@ -6364,9 +6374,9 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerUnpause'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerUnpauseWithHttpInfo($id, string $contentType = self::contentTypes['containerUnpause'][0])
     {
@@ -6429,8 +6439,8 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerUnpause'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerUnpauseAsync($id, string $contentType = self::contentTypes['containerUnpause'][0])
     {
@@ -6450,8 +6460,8 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerUnpause'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerUnpauseAsyncWithHttpInfo($id, string $contentType = self::contentTypes['containerUnpause'][0])
     {
@@ -6487,15 +6497,15 @@ class ContainerApi
      * @param  string $id ID or name of the container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerUnpause'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerUnpauseRequest($id, string $contentType = self::contentTypes['containerUnpause'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerUnpause'
             );
         }
@@ -6544,7 +6554,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -6579,12 +6589,12 @@ class ContainerApi
      * Update a container
      *
      * @param  string $id ID or name of the container (required)
-     * @param  \OpenAPI\Client\Model\ContainerUpdateRequest $update update (required)
+     * @param  ContainerUpdateRequest $update update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerUpdate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ContainerUpdateResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ContainerUpdateResponse|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerUpdate($id, $update, string $contentType = self::contentTypes['containerUpdate'][0])
     {
@@ -6598,12 +6608,12 @@ class ContainerApi
      * Update a container
      *
      * @param  string $id ID or name of the container (required)
-     * @param  \OpenAPI\Client\Model\ContainerUpdateRequest $update (required)
+     * @param  ContainerUpdateRequest $update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerUpdate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ContainerUpdateResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerUpdateWithHttpInfo($id, $update, string $contentType = self::contentTypes['containerUpdate'][0])
     {
@@ -6712,11 +6722,11 @@ class ContainerApi
      * Update a container
      *
      * @param  string $id ID or name of the container (required)
-     * @param  \OpenAPI\Client\Model\ContainerUpdateRequest $update (required)
+     * @param  ContainerUpdateRequest $update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerUpdate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerUpdateAsync($id, $update, string $contentType = self::contentTypes['containerUpdate'][0])
     {
@@ -6734,11 +6744,11 @@ class ContainerApi
      * Update a container
      *
      * @param  string $id ID or name of the container (required)
-     * @param  \OpenAPI\Client\Model\ContainerUpdateRequest $update (required)
+     * @param  ContainerUpdateRequest $update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerUpdate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerUpdateAsyncWithHttpInfo($id, $update, string $contentType = self::contentTypes['containerUpdate'][0])
     {
@@ -6785,25 +6795,25 @@ class ContainerApi
      * Create request for operation 'containerUpdate'
      *
      * @param  string $id ID or name of the container (required)
-     * @param  \OpenAPI\Client\Model\ContainerUpdateRequest $update (required)
+     * @param  ContainerUpdateRequest $update (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerUpdate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerUpdateRequest($id, $update, string $contentType = self::contentTypes['containerUpdate'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerUpdate'
             );
         }
 
         // verify the required parameter 'update' is set
         if ($update === null || (is_array($update) && count($update) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $update when calling containerUpdate'
             );
         }
@@ -6838,7 +6848,7 @@ class ContainerApi
         if (isset($update)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update));
             } else {
                 $httpBody = $update;
             }
@@ -6859,7 +6869,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -6897,9 +6907,9 @@ class ContainerApi
      * @param  string|null $condition Wait until a container state reaches the given condition.  Defaults to &#x60;not-running&#x60; if omitted or empty. (optional, default to 'not-running')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerWait'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ContainerWaitResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ContainerWaitResponse|ErrorResponse|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerWait($id, $condition = 'not-running', string $contentType = self::contentTypes['containerWait'][0])
     {
@@ -6916,9 +6926,9 @@ class ContainerApi
      * @param  string|null $condition Wait until a container state reaches the given condition.  Defaults to &#x60;not-running&#x60; if omitted or empty. (optional, default to 'not-running')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerWait'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ContainerWaitResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerWaitWithHttpInfo($id, $condition = 'not-running', string $contentType = self::contentTypes['containerWait'][0])
     {
@@ -7044,8 +7054,8 @@ class ContainerApi
      * @param  string|null $condition Wait until a container state reaches the given condition.  Defaults to &#x60;not-running&#x60; if omitted or empty. (optional, default to 'not-running')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerWait'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerWaitAsync($id, $condition = 'not-running', string $contentType = self::contentTypes['containerWait'][0])
     {
@@ -7066,8 +7076,8 @@ class ContainerApi
      * @param  string|null $condition Wait until a container state reaches the given condition.  Defaults to &#x60;not-running&#x60; if omitted or empty. (optional, default to 'not-running')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerWait'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function containerWaitAsyncWithHttpInfo($id, $condition = 'not-running', string $contentType = self::contentTypes['containerWait'][0])
     {
@@ -7117,15 +7127,15 @@ class ContainerApi
      * @param  string|null $condition Wait until a container state reaches the given condition.  Defaults to &#x60;not-running&#x60; if omitted or empty. (optional, default to 'not-running')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerWait'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function containerWaitRequest($id, $condition = 'not-running', string $contentType = self::contentTypes['containerWait'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling containerWait'
             );
         }
@@ -7184,7 +7194,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -7220,14 +7230,14 @@ class ContainerApi
      *
      * @param  string $id ID or name of the container (required)
      * @param  string $path Path to a directory in the container to extract the archive’s contents into. (required)
-     * @param  \SplFileObject $input_stream The input stream must be a tar archive compressed with one of the following algorithms: &#x60;identity&#x60; (no compression), &#x60;gzip&#x60;, &#x60;bzip2&#x60;, or &#x60;xz&#x60;. (required)
+     * @param  SplFileObject $input_stream The input stream must be a tar archive compressed with one of the following algorithms: &#x60;identity&#x60; (no compression), &#x60;gzip&#x60;, &#x60;bzip2&#x60;, or &#x60;xz&#x60;. (required)
      * @param  string|null $no_overwrite_dir_non_dir If &#x60;1&#x60;, &#x60;true&#x60;, or &#x60;True&#x60; then it will be an error if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa. (optional)
      * @param  string|null $copy_uidgid If &#x60;1&#x60;, &#x60;true&#x60;, then it will copy UID/GID maps to the dest file or dir (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putContainerArchive'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function putContainerArchive($id, $path, $input_stream, $no_overwrite_dir_non_dir = null, $copy_uidgid = null, string $contentType = self::contentTypes['putContainerArchive'][0])
     {
@@ -7241,14 +7251,14 @@ class ContainerApi
      *
      * @param  string $id ID or name of the container (required)
      * @param  string $path Path to a directory in the container to extract the archive’s contents into. (required)
-     * @param  \SplFileObject $input_stream The input stream must be a tar archive compressed with one of the following algorithms: &#x60;identity&#x60; (no compression), &#x60;gzip&#x60;, &#x60;bzip2&#x60;, or &#x60;xz&#x60;. (required)
+     * @param  SplFileObject $input_stream The input stream must be a tar archive compressed with one of the following algorithms: &#x60;identity&#x60; (no compression), &#x60;gzip&#x60;, &#x60;bzip2&#x60;, or &#x60;xz&#x60;. (required)
      * @param  string|null $no_overwrite_dir_non_dir If &#x60;1&#x60;, &#x60;true&#x60;, or &#x60;True&#x60; then it will be an error if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa. (optional)
      * @param  string|null $copy_uidgid If &#x60;1&#x60;, &#x60;true&#x60;, then it will copy UID/GID maps to the dest file or dir (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putContainerArchive'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function putContainerArchiveWithHttpInfo($id, $path, $input_stream, $no_overwrite_dir_non_dir = null, $copy_uidgid = null, string $contentType = self::contentTypes['putContainerArchive'][0])
     {
@@ -7326,13 +7336,13 @@ class ContainerApi
      *
      * @param  string $id ID or name of the container (required)
      * @param  string $path Path to a directory in the container to extract the archive’s contents into. (required)
-     * @param  \SplFileObject $input_stream The input stream must be a tar archive compressed with one of the following algorithms: &#x60;identity&#x60; (no compression), &#x60;gzip&#x60;, &#x60;bzip2&#x60;, or &#x60;xz&#x60;. (required)
+     * @param  SplFileObject $input_stream The input stream must be a tar archive compressed with one of the following algorithms: &#x60;identity&#x60; (no compression), &#x60;gzip&#x60;, &#x60;bzip2&#x60;, or &#x60;xz&#x60;. (required)
      * @param  string|null $no_overwrite_dir_non_dir If &#x60;1&#x60;, &#x60;true&#x60;, or &#x60;True&#x60; then it will be an error if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa. (optional)
      * @param  string|null $copy_uidgid If &#x60;1&#x60;, &#x60;true&#x60;, then it will copy UID/GID maps to the dest file or dir (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putContainerArchive'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function putContainerArchiveAsync($id, $path, $input_stream, $no_overwrite_dir_non_dir = null, $copy_uidgid = null, string $contentType = self::contentTypes['putContainerArchive'][0])
     {
@@ -7351,13 +7361,13 @@ class ContainerApi
      *
      * @param  string $id ID or name of the container (required)
      * @param  string $path Path to a directory in the container to extract the archive’s contents into. (required)
-     * @param  \SplFileObject $input_stream The input stream must be a tar archive compressed with one of the following algorithms: &#x60;identity&#x60; (no compression), &#x60;gzip&#x60;, &#x60;bzip2&#x60;, or &#x60;xz&#x60;. (required)
+     * @param  SplFileObject $input_stream The input stream must be a tar archive compressed with one of the following algorithms: &#x60;identity&#x60; (no compression), &#x60;gzip&#x60;, &#x60;bzip2&#x60;, or &#x60;xz&#x60;. (required)
      * @param  string|null $no_overwrite_dir_non_dir If &#x60;1&#x60;, &#x60;true&#x60;, or &#x60;True&#x60; then it will be an error if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa. (optional)
      * @param  string|null $copy_uidgid If &#x60;1&#x60;, &#x60;true&#x60;, then it will copy UID/GID maps to the dest file or dir (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putContainerArchive'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function putContainerArchiveAsyncWithHttpInfo($id, $path, $input_stream, $no_overwrite_dir_non_dir = null, $copy_uidgid = null, string $contentType = self::contentTypes['putContainerArchive'][0])
     {
@@ -7392,34 +7402,34 @@ class ContainerApi
      *
      * @param  string $id ID or name of the container (required)
      * @param  string $path Path to a directory in the container to extract the archive’s contents into. (required)
-     * @param  \SplFileObject $input_stream The input stream must be a tar archive compressed with one of the following algorithms: &#x60;identity&#x60; (no compression), &#x60;gzip&#x60;, &#x60;bzip2&#x60;, or &#x60;xz&#x60;. (required)
+     * @param  SplFileObject $input_stream The input stream must be a tar archive compressed with one of the following algorithms: &#x60;identity&#x60; (no compression), &#x60;gzip&#x60;, &#x60;bzip2&#x60;, or &#x60;xz&#x60;. (required)
      * @param  string|null $no_overwrite_dir_non_dir If &#x60;1&#x60;, &#x60;true&#x60;, or &#x60;True&#x60; then it will be an error if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa. (optional)
      * @param  string|null $copy_uidgid If &#x60;1&#x60;, &#x60;true&#x60;, then it will copy UID/GID maps to the dest file or dir (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putContainerArchive'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function putContainerArchiveRequest($id, $path, $input_stream, $no_overwrite_dir_non_dir = null, $copy_uidgid = null, string $contentType = self::contentTypes['putContainerArchive'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $id when calling putContainerArchive'
             );
         }
 
         // verify the required parameter 'path' is set
         if ($path === null || (is_array($path) && count($path) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $path when calling putContainerArchive'
             );
         }
 
         // verify the required parameter 'input_stream' is set
         if ($input_stream === null || (is_array($input_stream) && count($input_stream) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $input_stream when calling putContainerArchive'
             );
         }
@@ -7483,7 +7493,7 @@ class ContainerApi
         if (isset($input_stream)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($input_stream));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($input_stream));
             } else {
                 $httpBody = $input_stream;
             }
@@ -7504,7 +7514,7 @@ class ContainerApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -7536,7 +7546,7 @@ class ContainerApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
+     * @throws RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -7545,7 +7555,7 @@ class ContainerApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -7564,7 +7574,7 @@ class ContainerApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
+                } catch (JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

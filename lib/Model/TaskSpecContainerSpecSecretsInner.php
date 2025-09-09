@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * TaskSpecContainerSpecSecretsInner Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class TaskSpecContainerSpecSecretsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class TaskSpecContainerSpecSecretsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -306,7 +309,7 @@ class TaskSpecContainerSpecSecretsInner implements ModelInterface, ArrayAccess, 
     /**
      * Gets file
      *
-     * @return \OpenAPI\Client\Model\TaskSpecContainerSpecSecretsInnerFile|null
+     * @return TaskSpecContainerSpecSecretsInnerFile|null
      */
     public function getFile()
     {
@@ -316,14 +319,14 @@ class TaskSpecContainerSpecSecretsInner implements ModelInterface, ArrayAccess, 
     /**
      * Sets file
      *
-     * @param \OpenAPI\Client\Model\TaskSpecContainerSpecSecretsInnerFile|null $file file
+     * @param TaskSpecContainerSpecSecretsInnerFile|null $file file
      *
      * @return self
      */
     public function setFile($file)
     {
         if (is_null($file)) {
-            throw new \InvalidArgumentException('non-nullable file cannot be null');
+            throw new InvalidArgumentException('non-nullable file cannot be null');
         }
         $this->container['file'] = $file;
 
@@ -350,7 +353,7 @@ class TaskSpecContainerSpecSecretsInner implements ModelInterface, ArrayAccess, 
     public function setSecretId($secret_id)
     {
         if (is_null($secret_id)) {
-            throw new \InvalidArgumentException('non-nullable secret_id cannot be null');
+            throw new InvalidArgumentException('non-nullable secret_id cannot be null');
         }
         $this->container['secret_id'] = $secret_id;
 
@@ -377,7 +380,7 @@ class TaskSpecContainerSpecSecretsInner implements ModelInterface, ArrayAccess, 
     public function setSecretName($secret_name)
     {
         if (is_null($secret_name)) {
-            throw new \InvalidArgumentException('non-nullable secret_name cannot be null');
+            throw new InvalidArgumentException('non-nullable secret_name cannot be null');
         }
         $this->container['secret_name'] = $secret_name;
 
@@ -402,7 +405,7 @@ class TaskSpecContainerSpecSecretsInner implements ModelInterface, ArrayAccess, 
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -444,7 +447,7 @@ class TaskSpecContainerSpecSecretsInner implements ModelInterface, ArrayAccess, 
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

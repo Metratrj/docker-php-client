@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * TaskSpecRestartPolicy Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class TaskSpecRestartPolicy implements ModelInterface, ArrayAccess, \JsonSerializable
+class TaskSpecRestartPolicy implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -357,11 +360,11 @@ class TaskSpecRestartPolicy implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setCondition($condition)
     {
         if (is_null($condition)) {
-            throw new \InvalidArgumentException('non-nullable condition cannot be null');
+            throw new InvalidArgumentException('non-nullable condition cannot be null');
         }
         $allowedValues = $this->getConditionAllowableValues();
         if (!in_array($condition, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'condition', must be one of '%s'",
                     $condition,
@@ -394,7 +397,7 @@ class TaskSpecRestartPolicy implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setDelay($delay)
     {
         if (is_null($delay)) {
-            throw new \InvalidArgumentException('non-nullable delay cannot be null');
+            throw new InvalidArgumentException('non-nullable delay cannot be null');
         }
         $this->container['delay'] = $delay;
 
@@ -421,7 +424,7 @@ class TaskSpecRestartPolicy implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setMaxAttempts($max_attempts)
     {
         if (is_null($max_attempts)) {
-            throw new \InvalidArgumentException('non-nullable max_attempts cannot be null');
+            throw new InvalidArgumentException('non-nullable max_attempts cannot be null');
         }
         $this->container['max_attempts'] = $max_attempts;
 
@@ -448,7 +451,7 @@ class TaskSpecRestartPolicy implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setWindow($window)
     {
         if (is_null($window)) {
-            throw new \InvalidArgumentException('non-nullable window cannot be null');
+            throw new InvalidArgumentException('non-nullable window cannot be null');
         }
         $this->container['window'] = $window;
 
@@ -473,7 +476,7 @@ class TaskSpecRestartPolicy implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -515,7 +518,7 @@ class TaskSpecRestartPolicy implements ModelInterface, ArrayAccess, \JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

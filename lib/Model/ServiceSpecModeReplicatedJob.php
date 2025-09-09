@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ServiceSpecModeReplicatedJob Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ServiceSpecModeReplicatedJob implements ModelInterface, ArrayAccess, \JsonSerializable
+class ServiceSpecModeReplicatedJob implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -317,7 +320,7 @@ class ServiceSpecModeReplicatedJob implements ModelInterface, ArrayAccess, \Json
     public function setMaxConcurrent($max_concurrent)
     {
         if (is_null($max_concurrent)) {
-            throw new \InvalidArgumentException('non-nullable max_concurrent cannot be null');
+            throw new InvalidArgumentException('non-nullable max_concurrent cannot be null');
         }
         $this->container['max_concurrent'] = $max_concurrent;
 
@@ -344,7 +347,7 @@ class ServiceSpecModeReplicatedJob implements ModelInterface, ArrayAccess, \Json
     public function setTotalCompletions($total_completions)
     {
         if (is_null($total_completions)) {
-            throw new \InvalidArgumentException('non-nullable total_completions cannot be null');
+            throw new InvalidArgumentException('non-nullable total_completions cannot be null');
         }
         $this->container['total_completions'] = $total_completions;
 
@@ -369,7 +372,7 @@ class ServiceSpecModeReplicatedJob implements ModelInterface, ArrayAccess, \Json
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -411,7 +414,7 @@ class ServiceSpecModeReplicatedJob implements ModelInterface, ArrayAccess, \Json
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * NetworkCreateResponse Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class NetworkCreateResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class NetworkCreateResponse implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -323,7 +326,7 @@ class NetworkCreateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+            throw new InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -350,7 +353,7 @@ class NetworkCreateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setWarning($warning)
     {
         if (is_null($warning)) {
-            throw new \InvalidArgumentException('non-nullable warning cannot be null');
+            throw new InvalidArgumentException('non-nullable warning cannot be null');
         }
         $this->container['warning'] = $warning;
 
@@ -375,7 +378,7 @@ class NetworkCreateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -417,7 +420,7 @@ class NetworkCreateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

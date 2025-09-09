@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ExecStartConfig Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ExecStartConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class ExecStartConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -331,7 +334,7 @@ class ExecStartConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDetach($detach)
     {
         if (is_null($detach)) {
-            throw new \InvalidArgumentException('non-nullable detach cannot be null');
+            throw new InvalidArgumentException('non-nullable detach cannot be null');
         }
         $this->container['detach'] = $detach;
 
@@ -358,7 +361,7 @@ class ExecStartConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTty($tty)
     {
         if (is_null($tty)) {
-            throw new \InvalidArgumentException('non-nullable tty cannot be null');
+            throw new InvalidArgumentException('non-nullable tty cannot be null');
         }
         $this->container['tty'] = $tty;
 
@@ -396,10 +399,10 @@ class ExecStartConfig implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if (!is_null($console_size) && (count($console_size) > 2)) {
-            throw new \InvalidArgumentException('invalid value for $console_size when calling ExecStartConfig., number of items must be less than or equal to 2.');
+            throw new InvalidArgumentException('invalid value for $console_size when calling ExecStartConfig., number of items must be less than or equal to 2.');
         }
         if (!is_null($console_size) && (count($console_size) < 2)) {
-            throw new \InvalidArgumentException('invalid length for $console_size when calling ExecStartConfig., number of items must be greater than or equal to 2.');
+            throw new InvalidArgumentException('invalid length for $console_size when calling ExecStartConfig., number of items must be greater than or equal to 2.');
         }
         $this->container['console_size'] = $console_size;
 
@@ -424,7 +427,7 @@ class ExecStartConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -466,7 +469,7 @@ class ExecStartConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * MountVolumeOptionsDriverConfig Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class MountVolumeOptionsDriverConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class MountVolumeOptionsDriverConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -317,7 +320,7 @@ class MountVolumeOptionsDriverConfig implements ModelInterface, ArrayAccess, \Js
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+            throw new InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -344,7 +347,7 @@ class MountVolumeOptionsDriverConfig implements ModelInterface, ArrayAccess, \Js
     public function setOptions($options)
     {
         if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+            throw new InvalidArgumentException('non-nullable options cannot be null');
         }
         $this->container['options'] = $options;
 
@@ -369,7 +372,7 @@ class MountVolumeOptionsDriverConfig implements ModelInterface, ArrayAccess, \Js
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -411,7 +414,7 @@ class MountVolumeOptionsDriverConfig implements ModelInterface, ArrayAccess, \Js
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

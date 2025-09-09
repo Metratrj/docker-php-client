@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * SwarmSpecRaft Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class SwarmSpecRaft implements ModelInterface, ArrayAccess, \JsonSerializable
+class SwarmSpecRaft implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -338,7 +341,7 @@ class SwarmSpecRaft implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSnapshotInterval($snapshot_interval)
     {
         if (is_null($snapshot_interval)) {
-            throw new \InvalidArgumentException('non-nullable snapshot_interval cannot be null');
+            throw new InvalidArgumentException('non-nullable snapshot_interval cannot be null');
         }
         $this->container['snapshot_interval'] = $snapshot_interval;
 
@@ -365,7 +368,7 @@ class SwarmSpecRaft implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setKeepOldSnapshots($keep_old_snapshots)
     {
         if (is_null($keep_old_snapshots)) {
-            throw new \InvalidArgumentException('non-nullable keep_old_snapshots cannot be null');
+            throw new InvalidArgumentException('non-nullable keep_old_snapshots cannot be null');
         }
         $this->container['keep_old_snapshots'] = $keep_old_snapshots;
 
@@ -392,7 +395,7 @@ class SwarmSpecRaft implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLogEntriesForSlowFollowers($log_entries_for_slow_followers)
     {
         if (is_null($log_entries_for_slow_followers)) {
-            throw new \InvalidArgumentException('non-nullable log_entries_for_slow_followers cannot be null');
+            throw new InvalidArgumentException('non-nullable log_entries_for_slow_followers cannot be null');
         }
         $this->container['log_entries_for_slow_followers'] = $log_entries_for_slow_followers;
 
@@ -419,7 +422,7 @@ class SwarmSpecRaft implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setElectionTick($election_tick)
     {
         if (is_null($election_tick)) {
-            throw new \InvalidArgumentException('non-nullable election_tick cannot be null');
+            throw new InvalidArgumentException('non-nullable election_tick cannot be null');
         }
         $this->container['election_tick'] = $election_tick;
 
@@ -446,7 +449,7 @@ class SwarmSpecRaft implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setHeartbeatTick($heartbeat_tick)
     {
         if (is_null($heartbeat_tick)) {
-            throw new \InvalidArgumentException('non-nullable heartbeat_tick cannot be null');
+            throw new InvalidArgumentException('non-nullable heartbeat_tick cannot be null');
         }
         $this->container['heartbeat_tick'] = $heartbeat_tick;
 
@@ -471,7 +474,7 @@ class SwarmSpecRaft implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -513,7 +516,7 @@ class SwarmSpecRaft implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

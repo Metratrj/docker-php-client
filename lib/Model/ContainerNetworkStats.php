@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ContainerNetworkStats Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerNetworkStats implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -373,7 +376,7 @@ class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setRxBytes($rx_bytes)
     {
         if (is_null($rx_bytes)) {
-            throw new \InvalidArgumentException('non-nullable rx_bytes cannot be null');
+            throw new InvalidArgumentException('non-nullable rx_bytes cannot be null');
         }
         $this->container['rx_bytes'] = $rx_bytes;
 
@@ -400,7 +403,7 @@ class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setRxPackets($rx_packets)
     {
         if (is_null($rx_packets)) {
-            throw new \InvalidArgumentException('non-nullable rx_packets cannot be null');
+            throw new InvalidArgumentException('non-nullable rx_packets cannot be null');
         }
         $this->container['rx_packets'] = $rx_packets;
 
@@ -427,7 +430,7 @@ class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setRxErrors($rx_errors)
     {
         if (is_null($rx_errors)) {
-            throw new \InvalidArgumentException('non-nullable rx_errors cannot be null');
+            throw new InvalidArgumentException('non-nullable rx_errors cannot be null');
         }
         $this->container['rx_errors'] = $rx_errors;
 
@@ -454,7 +457,7 @@ class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setRxDropped($rx_dropped)
     {
         if (is_null($rx_dropped)) {
-            throw new \InvalidArgumentException('non-nullable rx_dropped cannot be null');
+            throw new InvalidArgumentException('non-nullable rx_dropped cannot be null');
         }
         $this->container['rx_dropped'] = $rx_dropped;
 
@@ -481,7 +484,7 @@ class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setTxBytes($tx_bytes)
     {
         if (is_null($tx_bytes)) {
-            throw new \InvalidArgumentException('non-nullable tx_bytes cannot be null');
+            throw new InvalidArgumentException('non-nullable tx_bytes cannot be null');
         }
         $this->container['tx_bytes'] = $tx_bytes;
 
@@ -508,7 +511,7 @@ class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setTxPackets($tx_packets)
     {
         if (is_null($tx_packets)) {
-            throw new \InvalidArgumentException('non-nullable tx_packets cannot be null');
+            throw new InvalidArgumentException('non-nullable tx_packets cannot be null');
         }
         $this->container['tx_packets'] = $tx_packets;
 
@@ -535,7 +538,7 @@ class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setTxErrors($tx_errors)
     {
         if (is_null($tx_errors)) {
-            throw new \InvalidArgumentException('non-nullable tx_errors cannot be null');
+            throw new InvalidArgumentException('non-nullable tx_errors cannot be null');
         }
         $this->container['tx_errors'] = $tx_errors;
 
@@ -562,7 +565,7 @@ class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setTxDropped($tx_dropped)
     {
         if (is_null($tx_dropped)) {
-            throw new \InvalidArgumentException('non-nullable tx_dropped cannot be null');
+            throw new InvalidArgumentException('non-nullable tx_dropped cannot be null');
         }
         $this->container['tx_dropped'] = $tx_dropped;
 
@@ -655,7 +658,7 @@ class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -697,7 +700,7 @@ class ContainerNetworkStats implements ModelInterface, ArrayAccess, \JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

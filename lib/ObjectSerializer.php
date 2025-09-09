@@ -28,8 +28,13 @@
 
 namespace OpenAPI\Client;
 
+use DateTime;
+use Exception;
 use GuzzleHttp\Psr7\Utils;
+use InvalidArgumentException;
 use OpenAPI\Client\Model\ModelInterface;
+use Psr\Http\Message\StreamInterface;
+use SplFileObject;
 
 /**
  * ObjectSerializer Class Doc Comment
@@ -42,7 +47,7 @@ use OpenAPI\Client\Model\ModelInterface;
 class ObjectSerializer
 {
     /** @var string */
-    private static $dateTimeFormat = \DateTime::ATOM;
+    private static $dateTimeFormat = DateTime::ATOM;
 
     /**
      * Change the date format
@@ -69,7 +74,7 @@ class ObjectSerializer
             return $data;
         }
 
-        if ($data instanceof \DateTime) {
+        if ($data instanceof DateTime) {
             return ($format === 'date') ? $data->format('Y-m-d') : $data->format(self::$dateTimeFormat);
         }
 
@@ -94,7 +99,7 @@ class ObjectSerializer
                             $allowedEnumTypes = $callable();
                             if (!in_array($value, $allowedEnumTypes, true)) {
                                 $imploded = implode("', '", $allowedEnumTypes);
-                                throw new \InvalidArgumentException("Invalid value for enum '$openAPIType', must be one of: '$imploded'");
+                                throw new InvalidArgumentException("Invalid value for enum '$openAPIType', must be one of: '$imploded'");
                             }
                         }
                     }
@@ -239,7 +244,7 @@ class ObjectSerializer
         }
 
         # Handle DateTime objects in query
-        if($openApiType === "\\DateTime" && $value instanceof \DateTime) {
+        if($openApiType === "\\DateTime" && $value instanceof DateTime) {
             return ["{$paramName}" => $value->format(self::$dateTimeFormat)];
         }
 
@@ -329,13 +334,13 @@ class ObjectSerializer
      * If it's a datetime object, format it in ISO8601
      * If it's a boolean, convert it to "true" or "false".
      *
-     * @param float|int|bool|\DateTime $value the value of the parameter
+     * @param float|int|bool|DateTime $value the value of the parameter
      *
      * @return string the header string
      */
     public static function toString($value)
     {
-        if ($value instanceof \DateTime) { // datetime in ISO8601 format
+        if ($value instanceof DateTime) { // datetime in ISO8601 format
             return $value->format(self::$dateTimeFormat);
         } elseif (is_bool($value)) {
             return $value ? 'true' : 'false';
@@ -400,7 +405,7 @@ class ObjectSerializer
             $data = is_string($data) ? json_decode($data) : $data;
 
             if (!is_array($data)) {
-                throw new \InvalidArgumentException("Invalid array '$class'");
+                throw new InvalidArgumentException("Invalid array '$class'");
             }
 
             $subClass = substr($class, 0, -2);
@@ -443,12 +448,12 @@ class ObjectSerializer
             // this graceful.
             if (!empty($data)) {
                 try {
-                    return new \DateTime($data);
-                } catch (\Exception $exception) {
+                    return new DateTime($data);
+                } catch (Exception $exception) {
                     // Some APIs return a date-time with too high nanosecond
                     // precision for php's DateTime to handle.
                     // With provided regexp 6 digits of microseconds saved
-                    return new \DateTime(self::sanitizeTimestamp($data));
+                    return new DateTime(self::sanitizeTimestamp($data));
                 }
             } else {
                 return null;
@@ -458,7 +463,7 @@ class ObjectSerializer
         if ($class === '\SplFileObject') {
             $data = Utils::streamFor($data);
 
-            /** @var \Psr\Http\Message\StreamInterface $data */
+            /** @var StreamInterface $data */
 
             // determine file name
             if (
@@ -477,7 +482,7 @@ class ObjectSerializer
             }
             fclose($file);
 
-            return new \SplFileObject($filename, 'r');
+            return new SplFileObject($filename, 'r');
         }
 
         /** @psalm-suppress ParadoxicalCondition */
@@ -490,7 +495,7 @@ class ObjectSerializer
         if (method_exists($class, 'getAllowableEnumValues')) {
             if (!in_array($data, $class::getAllowableEnumValues(), true)) {
                 $imploded = implode("', '", $class::getAllowableEnumValues());
-                throw new \InvalidArgumentException("Invalid value for enum '$class', must be one of: '$imploded'");
+                throw new InvalidArgumentException("Invalid value for enum '$class', must be one of: '$imploded'");
             }
             return $data;
         } else {
@@ -565,7 +570,7 @@ class ObjectSerializer
         } elseif ($encoding === PHP_QUERY_RFC1738) {
             $encoder = 'urlencode';
         } else {
-            throw new \InvalidArgumentException('Invalid type');
+            throw new InvalidArgumentException('Invalid type');
         }
 
         $castBool = Configuration::BOOLEAN_FORMAT_INT == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()

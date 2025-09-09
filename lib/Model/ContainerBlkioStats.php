@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ContainerBlkioStats Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerBlkioStats implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -342,7 +345,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets io_service_bytes_recursive
      *
-     * @return \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null
+     * @return ContainerBlkioStatEntry[]|null
      */
     public function getIoServiceBytesRecursive()
     {
@@ -352,14 +355,14 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets io_service_bytes_recursive
      *
-     * @param \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null $io_service_bytes_recursive io_service_bytes_recursive
+     * @param ContainerBlkioStatEntry[]|null $io_service_bytes_recursive io_service_bytes_recursive
      *
      * @return self
      */
     public function setIoServiceBytesRecursive($io_service_bytes_recursive)
     {
         if (is_null($io_service_bytes_recursive)) {
-            throw new \InvalidArgumentException('non-nullable io_service_bytes_recursive cannot be null');
+            throw new InvalidArgumentException('non-nullable io_service_bytes_recursive cannot be null');
         }
         $this->container['io_service_bytes_recursive'] = $io_service_bytes_recursive;
 
@@ -369,7 +372,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets io_serviced_recursive
      *
-     * @return \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null
+     * @return ContainerBlkioStatEntry[]|null
      */
     public function getIoServicedRecursive()
     {
@@ -379,7 +382,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets io_serviced_recursive
      *
-     * @param \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null $io_serviced_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
+     * @param ContainerBlkioStatEntry[]|null $io_serviced_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
      *
      * @return self
      */
@@ -403,7 +406,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets io_queue_recursive
      *
-     * @return \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null
+     * @return ContainerBlkioStatEntry[]|null
      */
     public function getIoQueueRecursive()
     {
@@ -413,7 +416,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets io_queue_recursive
      *
-     * @param \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null $io_queue_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
+     * @param ContainerBlkioStatEntry[]|null $io_queue_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
      *
      * @return self
      */
@@ -437,7 +440,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets io_service_time_recursive
      *
-     * @return \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null
+     * @return ContainerBlkioStatEntry[]|null
      */
     public function getIoServiceTimeRecursive()
     {
@@ -447,7 +450,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets io_service_time_recursive
      *
-     * @param \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null $io_service_time_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
+     * @param ContainerBlkioStatEntry[]|null $io_service_time_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
      *
      * @return self
      */
@@ -471,7 +474,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets io_wait_time_recursive
      *
-     * @return \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null
+     * @return ContainerBlkioStatEntry[]|null
      */
     public function getIoWaitTimeRecursive()
     {
@@ -481,7 +484,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets io_wait_time_recursive
      *
-     * @param \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null $io_wait_time_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
+     * @param ContainerBlkioStatEntry[]|null $io_wait_time_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
      *
      * @return self
      */
@@ -505,7 +508,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets io_merged_recursive
      *
-     * @return \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null
+     * @return ContainerBlkioStatEntry[]|null
      */
     public function getIoMergedRecursive()
     {
@@ -515,7 +518,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets io_merged_recursive
      *
-     * @param \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null $io_merged_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
+     * @param ContainerBlkioStatEntry[]|null $io_merged_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
      *
      * @return self
      */
@@ -539,7 +542,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets io_time_recursive
      *
-     * @return \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null
+     * @return ContainerBlkioStatEntry[]|null
      */
     public function getIoTimeRecursive()
     {
@@ -549,7 +552,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets io_time_recursive
      *
-     * @param \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null $io_time_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
+     * @param ContainerBlkioStatEntry[]|null $io_time_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
      *
      * @return self
      */
@@ -573,7 +576,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets sectors_recursive
      *
-     * @return \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null
+     * @return ContainerBlkioStatEntry[]|null
      */
     public function getSectorsRecursive()
     {
@@ -583,7 +586,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets sectors_recursive
      *
-     * @param \OpenAPI\Client\Model\ContainerBlkioStatEntry[]|null $sectors_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
+     * @param ContainerBlkioStatEntry[]|null $sectors_recursive This field is only available when using Linux containers with cgroups v1. It is omitted or `null` when using cgroups v2.
      *
      * @return self
      */
@@ -622,7 +625,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -664,7 +667,7 @@ class ContainerBlkioStats implements ModelInterface, ArrayAccess, \JsonSerializa
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

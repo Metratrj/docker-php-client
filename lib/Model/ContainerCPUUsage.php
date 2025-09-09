@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ContainerCPUUsage Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ContainerCPUUsage implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerCPUUsage implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -331,7 +334,7 @@ class ContainerCPUUsage implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setTotalUsage($total_usage)
     {
         if (is_null($total_usage)) {
-            throw new \InvalidArgumentException('non-nullable total_usage cannot be null');
+            throw new InvalidArgumentException('non-nullable total_usage cannot be null');
         }
         $this->container['total_usage'] = $total_usage;
 
@@ -392,7 +395,7 @@ class ContainerCPUUsage implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setUsageInKernelmode($usage_in_kernelmode)
     {
         if (is_null($usage_in_kernelmode)) {
-            throw new \InvalidArgumentException('non-nullable usage_in_kernelmode cannot be null');
+            throw new InvalidArgumentException('non-nullable usage_in_kernelmode cannot be null');
         }
         $this->container['usage_in_kernelmode'] = $usage_in_kernelmode;
 
@@ -419,7 +422,7 @@ class ContainerCPUUsage implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setUsageInUsermode($usage_in_usermode)
     {
         if (is_null($usage_in_usermode)) {
-            throw new \InvalidArgumentException('non-nullable usage_in_usermode cannot be null');
+            throw new InvalidArgumentException('non-nullable usage_in_usermode cannot be null');
         }
         $this->container['usage_in_usermode'] = $usage_in_usermode;
 
@@ -444,7 +447,7 @@ class ContainerCPUUsage implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -486,7 +489,7 @@ class ContainerCPUUsage implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

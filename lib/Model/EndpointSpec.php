@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * EndpointSpec Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class EndpointSpec implements ModelInterface, ArrayAccess, \JsonSerializable
+class EndpointSpec implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -341,11 +344,11 @@ class EndpointSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMode($mode)
     {
         if (is_null($mode)) {
-            throw new \InvalidArgumentException('non-nullable mode cannot be null');
+            throw new InvalidArgumentException('non-nullable mode cannot be null');
         }
         $allowedValues = $this->getModeAllowableValues();
         if (!in_array($mode, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'mode', must be one of '%s'",
                     $mode,
@@ -361,7 +364,7 @@ class EndpointSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets ports
      *
-     * @return \OpenAPI\Client\Model\EndpointPortConfig[]|null
+     * @return EndpointPortConfig[]|null
      */
     public function getPorts()
     {
@@ -371,14 +374,14 @@ class EndpointSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ports
      *
-     * @param \OpenAPI\Client\Model\EndpointPortConfig[]|null $ports List of exposed ports that this service is accessible on from the outside. Ports can only be provided if `vip` resolution mode is used.
+     * @param EndpointPortConfig[]|null $ports List of exposed ports that this service is accessible on from the outside. Ports can only be provided if `vip` resolution mode is used.
      *
      * @return self
      */
     public function setPorts($ports)
     {
         if (is_null($ports)) {
-            throw new \InvalidArgumentException('non-nullable ports cannot be null');
+            throw new InvalidArgumentException('non-nullable ports cannot be null');
         }
         $this->container['ports'] = $ports;
 
@@ -403,7 +406,7 @@ class EndpointSpec implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -445,7 +448,7 @@ class EndpointSpec implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

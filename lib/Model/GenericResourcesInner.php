@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * GenericResourcesInner Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class GenericResourcesInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -299,7 +302,7 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets named_resource_spec
      *
-     * @return \OpenAPI\Client\Model\GenericResourcesInnerNamedResourceSpec|null
+     * @return GenericResourcesInnerNamedResourceSpec|null
      */
     public function getNamedResourceSpec()
     {
@@ -309,14 +312,14 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets named_resource_spec
      *
-     * @param \OpenAPI\Client\Model\GenericResourcesInnerNamedResourceSpec|null $named_resource_spec named_resource_spec
+     * @param GenericResourcesInnerNamedResourceSpec|null $named_resource_spec named_resource_spec
      *
      * @return self
      */
     public function setNamedResourceSpec($named_resource_spec)
     {
         if (is_null($named_resource_spec)) {
-            throw new \InvalidArgumentException('non-nullable named_resource_spec cannot be null');
+            throw new InvalidArgumentException('non-nullable named_resource_spec cannot be null');
         }
         $this->container['named_resource_spec'] = $named_resource_spec;
 
@@ -326,7 +329,7 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets discrete_resource_spec
      *
-     * @return \OpenAPI\Client\Model\GenericResourcesInnerDiscreteResourceSpec|null
+     * @return GenericResourcesInnerDiscreteResourceSpec|null
      */
     public function getDiscreteResourceSpec()
     {
@@ -336,14 +339,14 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets discrete_resource_spec
      *
-     * @param \OpenAPI\Client\Model\GenericResourcesInnerDiscreteResourceSpec|null $discrete_resource_spec discrete_resource_spec
+     * @param GenericResourcesInnerDiscreteResourceSpec|null $discrete_resource_spec discrete_resource_spec
      *
      * @return self
      */
     public function setDiscreteResourceSpec($discrete_resource_spec)
     {
         if (is_null($discrete_resource_spec)) {
-            throw new \InvalidArgumentException('non-nullable discrete_resource_spec cannot be null');
+            throw new InvalidArgumentException('non-nullable discrete_resource_spec cannot be null');
         }
         $this->container['discrete_resource_spec'] = $discrete_resource_spec;
 
@@ -368,7 +371,7 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -410,7 +413,7 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, \JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

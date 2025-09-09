@@ -31,9 +31,17 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Utils;
+use InvalidArgumentException;
+use JsonException;
+use OpenAPI\Client\Model\SwarmInitRequest;
+use OpenAPI\Client\Model\SwarmJoinRequest;
+use OpenAPI\Client\Model\SwarmSpec;
+use OpenAPI\Client\Model\SwarmUnlockRequest;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -41,6 +49,7 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
+use RuntimeException;
 
 /**
  * SwarmApi Class Doc Comment
@@ -151,12 +160,12 @@ class SwarmApi
      *
      * Initialize a new swarm
      *
-     * @param  \OpenAPI\Client\Model\SwarmInitRequest $body body (required)
+     * @param  SwarmInitRequest $body body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmInit'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return string|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmInit($body, string $contentType = self::contentTypes['swarmInit'][0])
     {
@@ -169,12 +178,12 @@ class SwarmApi
      *
      * Initialize a new swarm
      *
-     * @param  \OpenAPI\Client\Model\SwarmInitRequest $body (required)
+     * @param  SwarmInitRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmInit'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of string|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmInitWithHttpInfo($body, string $contentType = self::contentTypes['swarmInit'][0])
     {
@@ -296,11 +305,11 @@ class SwarmApi
      *
      * Initialize a new swarm
      *
-     * @param  \OpenAPI\Client\Model\SwarmInitRequest $body (required)
+     * @param  SwarmInitRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmInit'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmInitAsync($body, string $contentType = self::contentTypes['swarmInit'][0])
     {
@@ -317,11 +326,11 @@ class SwarmApi
      *
      * Initialize a new swarm
      *
-     * @param  \OpenAPI\Client\Model\SwarmInitRequest $body (required)
+     * @param  SwarmInitRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmInit'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmInitAsyncWithHttpInfo($body, string $contentType = self::contentTypes['swarmInit'][0])
     {
@@ -367,18 +376,18 @@ class SwarmApi
     /**
      * Create request for operation 'swarmInit'
      *
-     * @param  \OpenAPI\Client\Model\SwarmInitRequest $body (required)
+     * @param  SwarmInitRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmInit'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function swarmInitRequest($body, string $contentType = self::contentTypes['swarmInit'][0])
     {
 
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $body when calling swarmInit'
             );
         }
@@ -405,7 +414,7 @@ class SwarmApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -426,7 +435,7 @@ class SwarmApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -462,9 +471,9 @@ class SwarmApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmInspect'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Swarm|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmInspect(string $contentType = self::contentTypes['swarmInspect'][0])
     {
@@ -479,9 +488,9 @@ class SwarmApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmInspect'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Swarm|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmInspectWithHttpInfo(string $contentType = self::contentTypes['swarmInspect'][0])
     {
@@ -605,8 +614,8 @@ class SwarmApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmInspectAsync(string $contentType = self::contentTypes['swarmInspect'][0])
     {
@@ -625,8 +634,8 @@ class SwarmApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmInspectAsyncWithHttpInfo(string $contentType = self::contentTypes['swarmInspect'][0])
     {
@@ -674,8 +683,8 @@ class SwarmApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function swarmInspectRequest(string $contentType = self::contentTypes['swarmInspect'][0])
     {
@@ -716,7 +725,7 @@ class SwarmApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -750,12 +759,12 @@ class SwarmApi
      *
      * Join an existing swarm
      *
-     * @param  \OpenAPI\Client\Model\SwarmJoinRequest $body body (required)
+     * @param  SwarmJoinRequest $body body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmJoin'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmJoin($body, string $contentType = self::contentTypes['swarmJoin'][0])
     {
@@ -767,12 +776,12 @@ class SwarmApi
      *
      * Join an existing swarm
      *
-     * @param  \OpenAPI\Client\Model\SwarmJoinRequest $body (required)
+     * @param  SwarmJoinRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmJoin'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmJoinWithHttpInfo($body, string $contentType = self::contentTypes['swarmJoin'][0])
     {
@@ -840,11 +849,11 @@ class SwarmApi
      *
      * Join an existing swarm
      *
-     * @param  \OpenAPI\Client\Model\SwarmJoinRequest $body (required)
+     * @param  SwarmJoinRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmJoin'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmJoinAsync($body, string $contentType = self::contentTypes['swarmJoin'][0])
     {
@@ -861,11 +870,11 @@ class SwarmApi
      *
      * Join an existing swarm
      *
-     * @param  \OpenAPI\Client\Model\SwarmJoinRequest $body (required)
+     * @param  SwarmJoinRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmJoin'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmJoinAsyncWithHttpInfo($body, string $contentType = self::contentTypes['swarmJoin'][0])
     {
@@ -898,18 +907,18 @@ class SwarmApi
     /**
      * Create request for operation 'swarmJoin'
      *
-     * @param  \OpenAPI\Client\Model\SwarmJoinRequest $body (required)
+     * @param  SwarmJoinRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmJoin'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function swarmJoinRequest($body, string $contentType = self::contentTypes['swarmJoin'][0])
     {
 
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $body when calling swarmJoin'
             );
         }
@@ -936,7 +945,7 @@ class SwarmApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -957,7 +966,7 @@ class SwarmApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -994,9 +1003,9 @@ class SwarmApi
      * @param  bool|null $force Force leave swarm, even if this is the last manager or that it will break the cluster. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmLeave'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmLeave($force = false, string $contentType = self::contentTypes['swarmLeave'][0])
     {
@@ -1011,9 +1020,9 @@ class SwarmApi
      * @param  bool|null $force Force leave swarm, even if this is the last manager or that it will break the cluster. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmLeave'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmLeaveWithHttpInfo($force = false, string $contentType = self::contentTypes['swarmLeave'][0])
     {
@@ -1076,8 +1085,8 @@ class SwarmApi
      * @param  bool|null $force Force leave swarm, even if this is the last manager or that it will break the cluster. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmLeave'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmLeaveAsync($force = false, string $contentType = self::contentTypes['swarmLeave'][0])
     {
@@ -1097,8 +1106,8 @@ class SwarmApi
      * @param  bool|null $force Force leave swarm, even if this is the last manager or that it will break the cluster. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmLeave'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmLeaveAsyncWithHttpInfo($force = false, string $contentType = self::contentTypes['swarmLeave'][0])
     {
@@ -1134,8 +1143,8 @@ class SwarmApi
      * @param  bool|null $force Force leave swarm, even if this is the last manager or that it will break the cluster. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmLeave'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function swarmLeaveRequest($force = false, string $contentType = self::contentTypes['swarmLeave'][0])
     {
@@ -1186,7 +1195,7 @@ class SwarmApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1220,12 +1229,12 @@ class SwarmApi
      *
      * Unlock a locked manager
      *
-     * @param  \OpenAPI\Client\Model\SwarmUnlockRequest $body body (required)
+     * @param  SwarmUnlockRequest $body body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUnlock'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmUnlock($body, string $contentType = self::contentTypes['swarmUnlock'][0])
     {
@@ -1237,12 +1246,12 @@ class SwarmApi
      *
      * Unlock a locked manager
      *
-     * @param  \OpenAPI\Client\Model\SwarmUnlockRequest $body (required)
+     * @param  SwarmUnlockRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUnlock'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmUnlockWithHttpInfo($body, string $contentType = self::contentTypes['swarmUnlock'][0])
     {
@@ -1302,11 +1311,11 @@ class SwarmApi
      *
      * Unlock a locked manager
      *
-     * @param  \OpenAPI\Client\Model\SwarmUnlockRequest $body (required)
+     * @param  SwarmUnlockRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUnlock'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmUnlockAsync($body, string $contentType = self::contentTypes['swarmUnlock'][0])
     {
@@ -1323,11 +1332,11 @@ class SwarmApi
      *
      * Unlock a locked manager
      *
-     * @param  \OpenAPI\Client\Model\SwarmUnlockRequest $body (required)
+     * @param  SwarmUnlockRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUnlock'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmUnlockAsyncWithHttpInfo($body, string $contentType = self::contentTypes['swarmUnlock'][0])
     {
@@ -1360,18 +1369,18 @@ class SwarmApi
     /**
      * Create request for operation 'swarmUnlock'
      *
-     * @param  \OpenAPI\Client\Model\SwarmUnlockRequest $body (required)
+     * @param  SwarmUnlockRequest $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUnlock'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function swarmUnlockRequest($body, string $contentType = self::contentTypes['swarmUnlock'][0])
     {
 
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $body when calling swarmUnlock'
             );
         }
@@ -1398,7 +1407,7 @@ class SwarmApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -1419,7 +1428,7 @@ class SwarmApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1455,9 +1464,9 @@ class SwarmApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUnlockkey'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\UnlockKeyResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmUnlockkey(string $contentType = self::contentTypes['swarmUnlockkey'][0])
     {
@@ -1472,9 +1481,9 @@ class SwarmApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUnlockkey'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\UnlockKeyResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmUnlockkeyWithHttpInfo(string $contentType = self::contentTypes['swarmUnlockkey'][0])
     {
@@ -1584,8 +1593,8 @@ class SwarmApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUnlockkey'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmUnlockkeyAsync(string $contentType = self::contentTypes['swarmUnlockkey'][0])
     {
@@ -1604,8 +1613,8 @@ class SwarmApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUnlockkey'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmUnlockkeyAsyncWithHttpInfo(string $contentType = self::contentTypes['swarmUnlockkey'][0])
     {
@@ -1653,8 +1662,8 @@ class SwarmApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUnlockkey'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function swarmUnlockkeyRequest(string $contentType = self::contentTypes['swarmUnlockkey'][0])
     {
@@ -1695,7 +1704,7 @@ class SwarmApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1730,15 +1739,15 @@ class SwarmApi
      * Update a swarm
      *
      * @param  int $version The version number of the swarm object being updated. This is required to avoid conflicting writes. (required)
-     * @param  \OpenAPI\Client\Model\SwarmSpec $body body (required)
+     * @param  SwarmSpec $body body (required)
      * @param  bool|null $rotate_worker_token Rotate the worker join token. (optional, default to false)
      * @param  bool|null $rotate_manager_token Rotate the manager join token. (optional, default to false)
      * @param  bool|null $rotate_manager_unlock_key Rotate the manager unlock key. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUpdate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmUpdate($version, $body, $rotate_worker_token = false, $rotate_manager_token = false, $rotate_manager_unlock_key = false, string $contentType = self::contentTypes['swarmUpdate'][0])
     {
@@ -1751,15 +1760,15 @@ class SwarmApi
      * Update a swarm
      *
      * @param  int $version The version number of the swarm object being updated. This is required to avoid conflicting writes. (required)
-     * @param  \OpenAPI\Client\Model\SwarmSpec $body (required)
+     * @param  SwarmSpec $body (required)
      * @param  bool|null $rotate_worker_token Rotate the worker join token. (optional, default to false)
      * @param  bool|null $rotate_manager_token Rotate the manager join token. (optional, default to false)
      * @param  bool|null $rotate_manager_unlock_key Rotate the manager unlock key. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUpdate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function swarmUpdateWithHttpInfo($version, $body, $rotate_worker_token = false, $rotate_manager_token = false, $rotate_manager_unlock_key = false, string $contentType = self::contentTypes['swarmUpdate'][0])
     {
@@ -1828,14 +1837,14 @@ class SwarmApi
      * Update a swarm
      *
      * @param  int $version The version number of the swarm object being updated. This is required to avoid conflicting writes. (required)
-     * @param  \OpenAPI\Client\Model\SwarmSpec $body (required)
+     * @param  SwarmSpec $body (required)
      * @param  bool|null $rotate_worker_token Rotate the worker join token. (optional, default to false)
      * @param  bool|null $rotate_manager_token Rotate the manager join token. (optional, default to false)
      * @param  bool|null $rotate_manager_unlock_key Rotate the manager unlock key. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUpdate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmUpdateAsync($version, $body, $rotate_worker_token = false, $rotate_manager_token = false, $rotate_manager_unlock_key = false, string $contentType = self::contentTypes['swarmUpdate'][0])
     {
@@ -1853,14 +1862,14 @@ class SwarmApi
      * Update a swarm
      *
      * @param  int $version The version number of the swarm object being updated. This is required to avoid conflicting writes. (required)
-     * @param  \OpenAPI\Client\Model\SwarmSpec $body (required)
+     * @param  SwarmSpec $body (required)
      * @param  bool|null $rotate_worker_token Rotate the worker join token. (optional, default to false)
      * @param  bool|null $rotate_manager_token Rotate the manager join token. (optional, default to false)
      * @param  bool|null $rotate_manager_unlock_key Rotate the manager unlock key. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUpdate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function swarmUpdateAsyncWithHttpInfo($version, $body, $rotate_worker_token = false, $rotate_manager_token = false, $rotate_manager_unlock_key = false, string $contentType = self::contentTypes['swarmUpdate'][0])
     {
@@ -1894,28 +1903,28 @@ class SwarmApi
      * Create request for operation 'swarmUpdate'
      *
      * @param  int $version The version number of the swarm object being updated. This is required to avoid conflicting writes. (required)
-     * @param  \OpenAPI\Client\Model\SwarmSpec $body (required)
+     * @param  SwarmSpec $body (required)
      * @param  bool|null $rotate_worker_token Rotate the worker join token. (optional, default to false)
      * @param  bool|null $rotate_manager_token Rotate the manager join token. (optional, default to false)
      * @param  bool|null $rotate_manager_unlock_key Rotate the manager unlock key. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmUpdate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function swarmUpdateRequest($version, $body, $rotate_worker_token = false, $rotate_manager_token = false, $rotate_manager_unlock_key = false, string $contentType = self::contentTypes['swarmUpdate'][0])
     {
 
         // verify the required parameter 'version' is set
         if ($version === null || (is_array($version) && count($version) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $version when calling swarmUpdate'
             );
         }
 
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $body when calling swarmUpdate'
             );
         }
@@ -1981,7 +1990,7 @@ class SwarmApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -2002,7 +2011,7 @@ class SwarmApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2034,7 +2043,7 @@ class SwarmApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
+     * @throws RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -2043,7 +2052,7 @@ class SwarmApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -2062,7 +2071,7 @@ class SwarmApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
+                } catch (JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

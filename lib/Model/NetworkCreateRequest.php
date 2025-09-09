@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * NetworkCreateRequest Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class NetworkCreateRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -396,7 +399,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+            throw new InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -423,7 +426,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setDriver($driver)
     {
         if (is_null($driver)) {
-            throw new \InvalidArgumentException('non-nullable driver cannot be null');
+            throw new InvalidArgumentException('non-nullable driver cannot be null');
         }
         $this->container['driver'] = $driver;
 
@@ -450,7 +453,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setScope($scope)
     {
         if (is_null($scope)) {
-            throw new \InvalidArgumentException('non-nullable scope cannot be null');
+            throw new InvalidArgumentException('non-nullable scope cannot be null');
         }
         $this->container['scope'] = $scope;
 
@@ -477,7 +480,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setInternal($internal)
     {
         if (is_null($internal)) {
-            throw new \InvalidArgumentException('non-nullable internal cannot be null');
+            throw new InvalidArgumentException('non-nullable internal cannot be null');
         }
         $this->container['internal'] = $internal;
 
@@ -504,7 +507,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setAttachable($attachable)
     {
         if (is_null($attachable)) {
-            throw new \InvalidArgumentException('non-nullable attachable cannot be null');
+            throw new InvalidArgumentException('non-nullable attachable cannot be null');
         }
         $this->container['attachable'] = $attachable;
 
@@ -531,7 +534,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setIngress($ingress)
     {
         if (is_null($ingress)) {
-            throw new \InvalidArgumentException('non-nullable ingress cannot be null');
+            throw new InvalidArgumentException('non-nullable ingress cannot be null');
         }
         $this->container['ingress'] = $ingress;
 
@@ -558,7 +561,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setConfigOnly($config_only)
     {
         if (is_null($config_only)) {
-            throw new \InvalidArgumentException('non-nullable config_only cannot be null');
+            throw new InvalidArgumentException('non-nullable config_only cannot be null');
         }
         $this->container['config_only'] = $config_only;
 
@@ -568,7 +571,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets config_from
      *
-     * @return \OpenAPI\Client\Model\ConfigReference|null
+     * @return ConfigReference|null
      */
     public function getConfigFrom()
     {
@@ -578,14 +581,14 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets config_from
      *
-     * @param \OpenAPI\Client\Model\ConfigReference|null $config_from config_from
+     * @param ConfigReference|null $config_from config_from
      *
      * @return self
      */
     public function setConfigFrom($config_from)
     {
         if (is_null($config_from)) {
-            throw new \InvalidArgumentException('non-nullable config_from cannot be null');
+            throw new InvalidArgumentException('non-nullable config_from cannot be null');
         }
         $this->container['config_from'] = $config_from;
 
@@ -595,7 +598,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets ipam
      *
-     * @return \OpenAPI\Client\Model\IPAM|null
+     * @return IPAM|null
      */
     public function getIpam()
     {
@@ -605,14 +608,14 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets ipam
      *
-     * @param \OpenAPI\Client\Model\IPAM|null $ipam ipam
+     * @param IPAM|null $ipam ipam
      *
      * @return self
      */
     public function setIpam($ipam)
     {
         if (is_null($ipam)) {
-            throw new \InvalidArgumentException('non-nullable ipam cannot be null');
+            throw new InvalidArgumentException('non-nullable ipam cannot be null');
         }
         $this->container['ipam'] = $ipam;
 
@@ -639,7 +642,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setEnableIpv4($enable_ipv4)
     {
         if (is_null($enable_ipv4)) {
-            throw new \InvalidArgumentException('non-nullable enable_ipv4 cannot be null');
+            throw new InvalidArgumentException('non-nullable enable_ipv4 cannot be null');
         }
         $this->container['enable_ipv4'] = $enable_ipv4;
 
@@ -666,7 +669,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setEnableIpv6($enable_ipv6)
     {
         if (is_null($enable_ipv6)) {
-            throw new \InvalidArgumentException('non-nullable enable_ipv6 cannot be null');
+            throw new InvalidArgumentException('non-nullable enable_ipv6 cannot be null');
         }
         $this->container['enable_ipv6'] = $enable_ipv6;
 
@@ -693,7 +696,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setOptions($options)
     {
         if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+            throw new InvalidArgumentException('non-nullable options cannot be null');
         }
         $this->container['options'] = $options;
 
@@ -720,7 +723,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new \InvalidArgumentException('non-nullable labels cannot be null');
+            throw new InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -745,7 +748,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -787,7 +790,7 @@ class NetworkCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

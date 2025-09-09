@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * Health Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class Health implements ModelInterface, ArrayAccess, \JsonSerializable
+class Health implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -352,11 +355,11 @@ class Health implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setStatus($status)
     {
         if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+            throw new InvalidArgumentException('non-nullable status cannot be null');
         }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'status', must be one of '%s'",
                     $status,
@@ -389,7 +392,7 @@ class Health implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setFailingStreak($failing_streak)
     {
         if (is_null($failing_streak)) {
-            throw new \InvalidArgumentException('non-nullable failing_streak cannot be null');
+            throw new InvalidArgumentException('non-nullable failing_streak cannot be null');
         }
         $this->container['failing_streak'] = $failing_streak;
 
@@ -399,7 +402,7 @@ class Health implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets log
      *
-     * @return \OpenAPI\Client\Model\HealthcheckResult[]|null
+     * @return HealthcheckResult[]|null
      */
     public function getLog()
     {
@@ -409,14 +412,14 @@ class Health implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets log
      *
-     * @param \OpenAPI\Client\Model\HealthcheckResult[]|null $log Log contains the last few results (oldest first)
+     * @param HealthcheckResult[]|null $log Log contains the last few results (oldest first)
      *
      * @return self
      */
     public function setLog($log)
     {
         if (is_null($log)) {
-            throw new \InvalidArgumentException('non-nullable log cannot be null');
+            throw new InvalidArgumentException('non-nullable log cannot be null');
         }
         $this->container['log'] = $log;
 
@@ -441,7 +444,7 @@ class Health implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -483,7 +486,7 @@ class Health implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * NetworkPruneResponse Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class NetworkPruneResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class NetworkPruneResponse implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -309,7 +312,7 @@ class NetworkPruneResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setNetworksDeleted($networks_deleted)
     {
         if (is_null($networks_deleted)) {
-            throw new \InvalidArgumentException('non-nullable networks_deleted cannot be null');
+            throw new InvalidArgumentException('non-nullable networks_deleted cannot be null');
         }
         $this->container['networks_deleted'] = $networks_deleted;
 
@@ -334,7 +337,7 @@ class NetworkPruneResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -376,7 +379,7 @@ class NetworkPruneResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,10 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ContainerCPUStats Class Doc Comment
@@ -39,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ContainerCPUStats implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerCPUStats implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -314,7 +316,7 @@ class ContainerCPUStats implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets cpu_usage
      *
-     * @return \OpenAPI\Client\Model\ContainerCPUUsage|null
+     * @return ContainerCPUUsage|null
      */
     public function getCpuUsage()
     {
@@ -324,7 +326,7 @@ class ContainerCPUStats implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets cpu_usage
      *
-     * @param \OpenAPI\Client\Model\ContainerCPUUsage|null $cpu_usage cpu_usage
+     * @param ContainerCPUUsage|null $cpu_usage cpu_usage
      *
      * @return self
      */
@@ -416,7 +418,7 @@ class ContainerCPUStats implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets throttling_data
      *
-     * @return \OpenAPI\Client\Model\ContainerThrottlingData|null
+     * @return ContainerThrottlingData|null
      */
     public function getThrottlingData()
     {
@@ -426,7 +428,7 @@ class ContainerCPUStats implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets throttling_data
      *
-     * @param \OpenAPI\Client\Model\ContainerThrottlingData|null $throttling_data throttling_data
+     * @param ContainerThrottlingData|null $throttling_data throttling_data
      *
      * @return self
      */
@@ -465,7 +467,7 @@ class ContainerCPUStats implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -507,7 +509,7 @@ class ContainerCPUStats implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

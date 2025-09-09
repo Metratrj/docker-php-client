@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ServiceServiceStatus Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ServiceServiceStatus implements ModelInterface, ArrayAccess, \JsonSerializable
+class ServiceServiceStatus implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -324,7 +327,7 @@ class ServiceServiceStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setRunningTasks($running_tasks)
     {
         if (is_null($running_tasks)) {
-            throw new \InvalidArgumentException('non-nullable running_tasks cannot be null');
+            throw new InvalidArgumentException('non-nullable running_tasks cannot be null');
         }
         $this->container['running_tasks'] = $running_tasks;
 
@@ -351,7 +354,7 @@ class ServiceServiceStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setDesiredTasks($desired_tasks)
     {
         if (is_null($desired_tasks)) {
-            throw new \InvalidArgumentException('non-nullable desired_tasks cannot be null');
+            throw new InvalidArgumentException('non-nullable desired_tasks cannot be null');
         }
         $this->container['desired_tasks'] = $desired_tasks;
 
@@ -378,7 +381,7 @@ class ServiceServiceStatus implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setCompletedTasks($completed_tasks)
     {
         if (is_null($completed_tasks)) {
-            throw new \InvalidArgumentException('non-nullable completed_tasks cannot be null');
+            throw new InvalidArgumentException('non-nullable completed_tasks cannot be null');
         }
         $this->container['completed_tasks'] = $completed_tasks;
 
@@ -403,7 +406,7 @@ class ServiceServiceStatus implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -445,7 +448,7 @@ class ServiceServiceStatus implements ModelInterface, ArrayAccess, \JsonSerializ
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

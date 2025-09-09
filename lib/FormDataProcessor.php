@@ -29,6 +29,7 @@ namespace OpenAPI\Client;
 
 use ArrayAccess;
 use DateTime;
+use DateTimeInterface;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
 use SplFileObject;
@@ -151,7 +152,7 @@ class FormDataProcessor
             return $this->processModel($value);
         }
 
-        if (is_array($value) || (is_object($value) && !$value instanceof \DateTimeInterface)) {
+        if (is_array($value) || (is_object($value) && !$value instanceof DateTimeInterface)) {
             $data = [];
 
             foreach ($value as $k => $v) {

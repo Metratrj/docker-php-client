@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ConfigCreateRequest Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ConfigCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ConfigCreateRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -330,7 +333,7 @@ class ConfigCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+            throw new InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -357,7 +360,7 @@ class ConfigCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new \InvalidArgumentException('non-nullable labels cannot be null');
+            throw new InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -384,7 +387,7 @@ class ConfigCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setData($data)
     {
         if (is_null($data)) {
-            throw new \InvalidArgumentException('non-nullable data cannot be null');
+            throw new InvalidArgumentException('non-nullable data cannot be null');
         }
         $this->container['data'] = $data;
 
@@ -394,7 +397,7 @@ class ConfigCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets templating
      *
-     * @return \OpenAPI\Client\Model\Driver|null
+     * @return Driver|null
      */
     public function getTemplating()
     {
@@ -404,14 +407,14 @@ class ConfigCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets templating
      *
-     * @param \OpenAPI\Client\Model\Driver|null $templating templating
+     * @param Driver|null $templating templating
      *
      * @return self
      */
     public function setTemplating($templating)
     {
         if (is_null($templating)) {
-            throw new \InvalidArgumentException('non-nullable templating cannot be null');
+            throw new InvalidArgumentException('non-nullable templating cannot be null');
         }
         $this->container['templating'] = $templating;
 
@@ -436,7 +439,7 @@ class ConfigCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -478,7 +481,7 @@ class ConfigCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

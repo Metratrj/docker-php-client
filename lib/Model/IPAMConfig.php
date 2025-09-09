@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * IPAMConfig Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class IPAMConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class IPAMConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -330,7 +333,7 @@ class IPAMConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSubnet($subnet)
     {
         if (is_null($subnet)) {
-            throw new \InvalidArgumentException('non-nullable subnet cannot be null');
+            throw new InvalidArgumentException('non-nullable subnet cannot be null');
         }
         $this->container['subnet'] = $subnet;
 
@@ -357,7 +360,7 @@ class IPAMConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIpRange($ip_range)
     {
         if (is_null($ip_range)) {
-            throw new \InvalidArgumentException('non-nullable ip_range cannot be null');
+            throw new InvalidArgumentException('non-nullable ip_range cannot be null');
         }
         $this->container['ip_range'] = $ip_range;
 
@@ -384,7 +387,7 @@ class IPAMConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGateway($gateway)
     {
         if (is_null($gateway)) {
-            throw new \InvalidArgumentException('non-nullable gateway cannot be null');
+            throw new InvalidArgumentException('non-nullable gateway cannot be null');
         }
         $this->container['gateway'] = $gateway;
 
@@ -411,7 +414,7 @@ class IPAMConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAuxiliaryAddresses($auxiliary_addresses)
     {
         if (is_null($auxiliary_addresses)) {
-            throw new \InvalidArgumentException('non-nullable auxiliary_addresses cannot be null');
+            throw new InvalidArgumentException('non-nullable auxiliary_addresses cannot be null');
         }
         $this->container['auxiliary_addresses'] = $auxiliary_addresses;
 
@@ -436,7 +439,7 @@ class IPAMConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -478,7 +481,7 @@ class IPAMConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

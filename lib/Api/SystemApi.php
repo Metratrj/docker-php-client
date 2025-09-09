@@ -31,9 +31,14 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Utils;
+use InvalidArgumentException;
+use JsonException;
+use OpenAPI\Client\Model\AuthConfig;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -41,6 +46,7 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
+use RuntimeException;
 
 /**
  * SystemApi Class Doc Comment
@@ -148,12 +154,12 @@ class SystemApi
      *
      * Check auth configuration
      *
-     * @param  \OpenAPI\Client\Model\AuthConfig|null $auth_config Authentication to check (optional)
+     * @param  AuthConfig|null $auth_config Authentication to check (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemAuth'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SystemAuthResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemAuth($auth_config = null, string $contentType = self::contentTypes['systemAuth'][0])
     {
@@ -166,12 +172,12 @@ class SystemApi
      *
      * Check auth configuration
      *
-     * @param  \OpenAPI\Client\Model\AuthConfig|null $auth_config Authentication to check (optional)
+     * @param  AuthConfig|null $auth_config Authentication to check (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemAuth'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SystemAuthResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemAuthWithHttpInfo($auth_config = null, string $contentType = self::contentTypes['systemAuth'][0])
     {
@@ -279,11 +285,11 @@ class SystemApi
      *
      * Check auth configuration
      *
-     * @param  \OpenAPI\Client\Model\AuthConfig|null $auth_config Authentication to check (optional)
+     * @param  AuthConfig|null $auth_config Authentication to check (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemAuth'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemAuthAsync($auth_config = null, string $contentType = self::contentTypes['systemAuth'][0])
     {
@@ -300,11 +306,11 @@ class SystemApi
      *
      * Check auth configuration
      *
-     * @param  \OpenAPI\Client\Model\AuthConfig|null $auth_config Authentication to check (optional)
+     * @param  AuthConfig|null $auth_config Authentication to check (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemAuth'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemAuthAsyncWithHttpInfo($auth_config = null, string $contentType = self::contentTypes['systemAuth'][0])
     {
@@ -350,11 +356,11 @@ class SystemApi
     /**
      * Create request for operation 'systemAuth'
      *
-     * @param  \OpenAPI\Client\Model\AuthConfig|null $auth_config Authentication to check (optional)
+     * @param  AuthConfig|null $auth_config Authentication to check (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemAuth'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function systemAuthRequest($auth_config = null, string $contentType = self::contentTypes['systemAuth'][0])
     {
@@ -382,7 +388,7 @@ class SystemApi
         if (isset($auth_config)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($auth_config));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($auth_config));
             } else {
                 $httpBody = $auth_config;
             }
@@ -403,7 +409,7 @@ class SystemApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -440,9 +446,9 @@ class SystemApi
      * @param  string[]|null $type Object types, for which to compute and return data. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemDataUsage'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SystemDataUsageResponse|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemDataUsage($type = null, string $contentType = self::contentTypes['systemDataUsage'][0])
     {
@@ -458,9 +464,9 @@ class SystemApi
      * @param  string[]|null $type Object types, for which to compute and return data. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemDataUsage'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SystemDataUsageResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemDataUsageWithHttpInfo($type = null, string $contentType = self::contentTypes['systemDataUsage'][0])
     {
@@ -557,8 +563,8 @@ class SystemApi
      * @param  string[]|null $type Object types, for which to compute and return data. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemDataUsage'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemDataUsageAsync($type = null, string $contentType = self::contentTypes['systemDataUsage'][0])
     {
@@ -578,8 +584,8 @@ class SystemApi
      * @param  string[]|null $type Object types, for which to compute and return data. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemDataUsage'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemDataUsageAsyncWithHttpInfo($type = null, string $contentType = self::contentTypes['systemDataUsage'][0])
     {
@@ -628,8 +634,8 @@ class SystemApi
      * @param  string[]|null $type Object types, for which to compute and return data. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemDataUsage'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function systemDataUsageRequest($type = null, string $contentType = self::contentTypes['systemDataUsage'][0])
     {
@@ -680,7 +686,7 @@ class SystemApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -719,9 +725,9 @@ class SystemApi
      * @param  string|null $filters A JSON encoded value of filters (a &#x60;map[string][]string&#x60;) to process on the event list. Available filters:  - &#x60;config&#x3D;&lt;string&gt;&#x60; config name or ID - &#x60;container&#x3D;&lt;string&gt;&#x60; container name or ID - &#x60;daemon&#x3D;&lt;string&gt;&#x60; daemon name or ID - &#x60;event&#x3D;&lt;string&gt;&#x60; event type - &#x60;image&#x3D;&lt;string&gt;&#x60; image name or ID - &#x60;label&#x3D;&lt;string&gt;&#x60; image or container label - &#x60;network&#x3D;&lt;string&gt;&#x60; network name or ID - &#x60;node&#x3D;&lt;string&gt;&#x60; node ID - &#x60;plugin&#x60;&#x3D;&lt;string&gt; plugin name or ID - &#x60;scope&#x60;&#x3D;&lt;string&gt; local or swarm - &#x60;secret&#x3D;&lt;string&gt;&#x60; secret name or ID - &#x60;service&#x3D;&lt;string&gt;&#x60; service name or ID - &#x60;type&#x3D;&lt;string&gt;&#x60; object to filter by, one of &#x60;container&#x60;, &#x60;image&#x60;, &#x60;volume&#x60;, &#x60;network&#x60;, &#x60;daemon&#x60;, &#x60;plugin&#x60;, &#x60;node&#x60;, &#x60;service&#x60;, &#x60;secret&#x60; or &#x60;config&#x60; - &#x60;volume&#x3D;&lt;string&gt;&#x60; volume name (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemEvents'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EventMessage|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemEvents($since = null, $until = null, $filters = null, string $contentType = self::contentTypes['systemEvents'][0])
     {
@@ -739,9 +745,9 @@ class SystemApi
      * @param  string|null $filters A JSON encoded value of filters (a &#x60;map[string][]string&#x60;) to process on the event list. Available filters:  - &#x60;config&#x3D;&lt;string&gt;&#x60; config name or ID - &#x60;container&#x3D;&lt;string&gt;&#x60; container name or ID - &#x60;daemon&#x3D;&lt;string&gt;&#x60; daemon name or ID - &#x60;event&#x3D;&lt;string&gt;&#x60; event type - &#x60;image&#x3D;&lt;string&gt;&#x60; image name or ID - &#x60;label&#x3D;&lt;string&gt;&#x60; image or container label - &#x60;network&#x3D;&lt;string&gt;&#x60; network name or ID - &#x60;node&#x3D;&lt;string&gt;&#x60; node ID - &#x60;plugin&#x60;&#x3D;&lt;string&gt; plugin name or ID - &#x60;scope&#x60;&#x3D;&lt;string&gt; local or swarm - &#x60;secret&#x3D;&lt;string&gt;&#x60; secret name or ID - &#x60;service&#x3D;&lt;string&gt;&#x60; service name or ID - &#x60;type&#x3D;&lt;string&gt;&#x60; object to filter by, one of &#x60;container&#x60;, &#x60;image&#x60;, &#x60;volume&#x60;, &#x60;network&#x60;, &#x60;daemon&#x60;, &#x60;plugin&#x60;, &#x60;node&#x60;, &#x60;service&#x60;, &#x60;secret&#x60; or &#x60;config&#x60; - &#x60;volume&#x3D;&lt;string&gt;&#x60; volume name (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemEvents'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EventMessage|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemEventsWithHttpInfo($since = null, $until = null, $filters = null, string $contentType = self::contentTypes['systemEvents'][0])
     {
@@ -854,8 +860,8 @@ class SystemApi
      * @param  string|null $filters A JSON encoded value of filters (a &#x60;map[string][]string&#x60;) to process on the event list. Available filters:  - &#x60;config&#x3D;&lt;string&gt;&#x60; config name or ID - &#x60;container&#x3D;&lt;string&gt;&#x60; container name or ID - &#x60;daemon&#x3D;&lt;string&gt;&#x60; daemon name or ID - &#x60;event&#x3D;&lt;string&gt;&#x60; event type - &#x60;image&#x3D;&lt;string&gt;&#x60; image name or ID - &#x60;label&#x3D;&lt;string&gt;&#x60; image or container label - &#x60;network&#x3D;&lt;string&gt;&#x60; network name or ID - &#x60;node&#x3D;&lt;string&gt;&#x60; node ID - &#x60;plugin&#x60;&#x3D;&lt;string&gt; plugin name or ID - &#x60;scope&#x60;&#x3D;&lt;string&gt; local or swarm - &#x60;secret&#x3D;&lt;string&gt;&#x60; secret name or ID - &#x60;service&#x3D;&lt;string&gt;&#x60; service name or ID - &#x60;type&#x3D;&lt;string&gt;&#x60; object to filter by, one of &#x60;container&#x60;, &#x60;image&#x60;, &#x60;volume&#x60;, &#x60;network&#x60;, &#x60;daemon&#x60;, &#x60;plugin&#x60;, &#x60;node&#x60;, &#x60;service&#x60;, &#x60;secret&#x60; or &#x60;config&#x60; - &#x60;volume&#x3D;&lt;string&gt;&#x60; volume name (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemEvents'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemEventsAsync($since = null, $until = null, $filters = null, string $contentType = self::contentTypes['systemEvents'][0])
     {
@@ -877,8 +883,8 @@ class SystemApi
      * @param  string|null $filters A JSON encoded value of filters (a &#x60;map[string][]string&#x60;) to process on the event list. Available filters:  - &#x60;config&#x3D;&lt;string&gt;&#x60; config name or ID - &#x60;container&#x3D;&lt;string&gt;&#x60; container name or ID - &#x60;daemon&#x3D;&lt;string&gt;&#x60; daemon name or ID - &#x60;event&#x3D;&lt;string&gt;&#x60; event type - &#x60;image&#x3D;&lt;string&gt;&#x60; image name or ID - &#x60;label&#x3D;&lt;string&gt;&#x60; image or container label - &#x60;network&#x3D;&lt;string&gt;&#x60; network name or ID - &#x60;node&#x3D;&lt;string&gt;&#x60; node ID - &#x60;plugin&#x60;&#x3D;&lt;string&gt; plugin name or ID - &#x60;scope&#x60;&#x3D;&lt;string&gt; local or swarm - &#x60;secret&#x3D;&lt;string&gt;&#x60; secret name or ID - &#x60;service&#x3D;&lt;string&gt;&#x60; service name or ID - &#x60;type&#x3D;&lt;string&gt;&#x60; object to filter by, one of &#x60;container&#x60;, &#x60;image&#x60;, &#x60;volume&#x60;, &#x60;network&#x60;, &#x60;daemon&#x60;, &#x60;plugin&#x60;, &#x60;node&#x60;, &#x60;service&#x60;, &#x60;secret&#x60; or &#x60;config&#x60; - &#x60;volume&#x3D;&lt;string&gt;&#x60; volume name (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemEvents'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemEventsAsyncWithHttpInfo($since = null, $until = null, $filters = null, string $contentType = self::contentTypes['systemEvents'][0])
     {
@@ -929,8 +935,8 @@ class SystemApi
      * @param  string|null $filters A JSON encoded value of filters (a &#x60;map[string][]string&#x60;) to process on the event list. Available filters:  - &#x60;config&#x3D;&lt;string&gt;&#x60; config name or ID - &#x60;container&#x3D;&lt;string&gt;&#x60; container name or ID - &#x60;daemon&#x3D;&lt;string&gt;&#x60; daemon name or ID - &#x60;event&#x3D;&lt;string&gt;&#x60; event type - &#x60;image&#x3D;&lt;string&gt;&#x60; image name or ID - &#x60;label&#x3D;&lt;string&gt;&#x60; image or container label - &#x60;network&#x3D;&lt;string&gt;&#x60; network name or ID - &#x60;node&#x3D;&lt;string&gt;&#x60; node ID - &#x60;plugin&#x60;&#x3D;&lt;string&gt; plugin name or ID - &#x60;scope&#x60;&#x3D;&lt;string&gt; local or swarm - &#x60;secret&#x3D;&lt;string&gt;&#x60; secret name or ID - &#x60;service&#x3D;&lt;string&gt;&#x60; service name or ID - &#x60;type&#x3D;&lt;string&gt;&#x60; object to filter by, one of &#x60;container&#x60;, &#x60;image&#x60;, &#x60;volume&#x60;, &#x60;network&#x60;, &#x60;daemon&#x60;, &#x60;plugin&#x60;, &#x60;node&#x60;, &#x60;service&#x60;, &#x60;secret&#x60; or &#x60;config&#x60; - &#x60;volume&#x3D;&lt;string&gt;&#x60; volume name (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemEvents'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function systemEventsRequest($since = null, $until = null, $filters = null, string $contentType = self::contentTypes['systemEvents'][0])
     {
@@ -1001,7 +1007,7 @@ class SystemApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1037,9 +1043,9 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemInfo'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SystemInfo|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemInfo(string $contentType = self::contentTypes['systemInfo'][0])
     {
@@ -1054,9 +1060,9 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemInfo'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SystemInfo|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemInfoWithHttpInfo(string $contentType = self::contentTypes['systemInfo'][0])
     {
@@ -1152,8 +1158,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemInfo'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemInfoAsync(string $contentType = self::contentTypes['systemInfo'][0])
     {
@@ -1172,8 +1178,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemInfo'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemInfoAsyncWithHttpInfo(string $contentType = self::contentTypes['systemInfo'][0])
     {
@@ -1221,8 +1227,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemInfo'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function systemInfoRequest(string $contentType = self::contentTypes['systemInfo'][0])
     {
@@ -1263,7 +1269,7 @@ class SystemApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1299,9 +1305,9 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemPing'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return string|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemPing(string $contentType = self::contentTypes['systemPing'][0])
     {
@@ -1316,9 +1322,9 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemPing'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of string|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemPingWithHttpInfo(string $contentType = self::contentTypes['systemPing'][0])
     {
@@ -1414,8 +1420,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemPing'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemPingAsync(string $contentType = self::contentTypes['systemPing'][0])
     {
@@ -1434,8 +1440,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemPing'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemPingAsyncWithHttpInfo(string $contentType = self::contentTypes['systemPing'][0])
     {
@@ -1483,8 +1489,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemPing'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function systemPingRequest(string $contentType = self::contentTypes['systemPing'][0])
     {
@@ -1525,7 +1531,7 @@ class SystemApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1561,9 +1567,9 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemPingHead'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return string|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemPingHead(string $contentType = self::contentTypes['systemPingHead'][0])
     {
@@ -1578,9 +1584,9 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemPingHead'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of string|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemPingHeadWithHttpInfo(string $contentType = self::contentTypes['systemPingHead'][0])
     {
@@ -1676,8 +1682,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemPingHead'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemPingHeadAsync(string $contentType = self::contentTypes['systemPingHead'][0])
     {
@@ -1696,8 +1702,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemPingHead'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemPingHeadAsyncWithHttpInfo(string $contentType = self::contentTypes['systemPingHead'][0])
     {
@@ -1745,8 +1751,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemPingHead'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function systemPingHeadRequest(string $contentType = self::contentTypes['systemPingHead'][0])
     {
@@ -1787,7 +1793,7 @@ class SystemApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1823,9 +1829,9 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemVersion'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SystemVersion|\OpenAPI\Client\Model\ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemVersion(string $contentType = self::contentTypes['systemVersion'][0])
     {
@@ -1840,9 +1846,9 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemVersion'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SystemVersion|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function systemVersionWithHttpInfo(string $contentType = self::contentTypes['systemVersion'][0])
     {
@@ -1938,8 +1944,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemVersion'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemVersionAsync(string $contentType = self::contentTypes['systemVersion'][0])
     {
@@ -1958,8 +1964,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemVersion'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function systemVersionAsyncWithHttpInfo(string $contentType = self::contentTypes['systemVersion'][0])
     {
@@ -2007,8 +2013,8 @@ class SystemApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['systemVersion'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function systemVersionRequest(string $contentType = self::contentTypes['systemVersion'][0])
     {
@@ -2049,7 +2055,7 @@ class SystemApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2081,7 +2087,7 @@ class SystemApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
+     * @throws RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -2090,7 +2096,7 @@ class SystemApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -2109,7 +2115,7 @@ class SystemApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
+                } catch (JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

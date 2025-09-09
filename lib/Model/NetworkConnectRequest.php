@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * NetworkConnectRequest Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class NetworkConnectRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class NetworkConnectRequest implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -316,7 +319,7 @@ class NetworkConnectRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setContainer($container)
     {
         if (is_null($container)) {
-            throw new \InvalidArgumentException('non-nullable container cannot be null');
+            throw new InvalidArgumentException('non-nullable container cannot be null');
         }
         $this->container['container'] = $container;
 
@@ -326,7 +329,7 @@ class NetworkConnectRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets endpoint_config
      *
-     * @return \OpenAPI\Client\Model\EndpointSettings|null
+     * @return EndpointSettings|null
      */
     public function getEndpointConfig()
     {
@@ -336,14 +339,14 @@ class NetworkConnectRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets endpoint_config
      *
-     * @param \OpenAPI\Client\Model\EndpointSettings|null $endpoint_config endpoint_config
+     * @param EndpointSettings|null $endpoint_config endpoint_config
      *
      * @return self
      */
     public function setEndpointConfig($endpoint_config)
     {
         if (is_null($endpoint_config)) {
-            throw new \InvalidArgumentException('non-nullable endpoint_config cannot be null');
+            throw new InvalidArgumentException('non-nullable endpoint_config cannot be null');
         }
         $this->container['endpoint_config'] = $endpoint_config;
 
@@ -368,7 +371,7 @@ class NetworkConnectRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -410,7 +413,7 @@ class NetworkConnectRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ContainerState Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerState implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -421,11 +424,11 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setStatus($status)
     {
         if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+            throw new InvalidArgumentException('non-nullable status cannot be null');
         }
         $allowedValues = $this->getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'status', must be one of '%s'",
                     $status,
@@ -458,7 +461,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRunning($running)
     {
         if (is_null($running)) {
-            throw new \InvalidArgumentException('non-nullable running cannot be null');
+            throw new InvalidArgumentException('non-nullable running cannot be null');
         }
         $this->container['running'] = $running;
 
@@ -485,7 +488,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPaused($paused)
     {
         if (is_null($paused)) {
-            throw new \InvalidArgumentException('non-nullable paused cannot be null');
+            throw new InvalidArgumentException('non-nullable paused cannot be null');
         }
         $this->container['paused'] = $paused;
 
@@ -512,7 +515,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRestarting($restarting)
     {
         if (is_null($restarting)) {
-            throw new \InvalidArgumentException('non-nullable restarting cannot be null');
+            throw new InvalidArgumentException('non-nullable restarting cannot be null');
         }
         $this->container['restarting'] = $restarting;
 
@@ -539,7 +542,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOomKilled($oom_killed)
     {
         if (is_null($oom_killed)) {
-            throw new \InvalidArgumentException('non-nullable oom_killed cannot be null');
+            throw new InvalidArgumentException('non-nullable oom_killed cannot be null');
         }
         $this->container['oom_killed'] = $oom_killed;
 
@@ -566,7 +569,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDead($dead)
     {
         if (is_null($dead)) {
-            throw new \InvalidArgumentException('non-nullable dead cannot be null');
+            throw new InvalidArgumentException('non-nullable dead cannot be null');
         }
         $this->container['dead'] = $dead;
 
@@ -593,7 +596,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPid($pid)
     {
         if (is_null($pid)) {
-            throw new \InvalidArgumentException('non-nullable pid cannot be null');
+            throw new InvalidArgumentException('non-nullable pid cannot be null');
         }
         $this->container['pid'] = $pid;
 
@@ -620,7 +623,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setExitCode($exit_code)
     {
         if (is_null($exit_code)) {
-            throw new \InvalidArgumentException('non-nullable exit_code cannot be null');
+            throw new InvalidArgumentException('non-nullable exit_code cannot be null');
         }
         $this->container['exit_code'] = $exit_code;
 
@@ -647,7 +650,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setError($error)
     {
         if (is_null($error)) {
-            throw new \InvalidArgumentException('non-nullable error cannot be null');
+            throw new InvalidArgumentException('non-nullable error cannot be null');
         }
         $this->container['error'] = $error;
 
@@ -674,7 +677,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setStartedAt($started_at)
     {
         if (is_null($started_at)) {
-            throw new \InvalidArgumentException('non-nullable started_at cannot be null');
+            throw new InvalidArgumentException('non-nullable started_at cannot be null');
         }
         $this->container['started_at'] = $started_at;
 
@@ -701,7 +704,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setFinishedAt($finished_at)
     {
         if (is_null($finished_at)) {
-            throw new \InvalidArgumentException('non-nullable finished_at cannot be null');
+            throw new InvalidArgumentException('non-nullable finished_at cannot be null');
         }
         $this->container['finished_at'] = $finished_at;
 
@@ -711,7 +714,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets health
      *
-     * @return \OpenAPI\Client\Model\Health|null
+     * @return Health|null
      */
     public function getHealth()
     {
@@ -721,7 +724,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets health
      *
-     * @param \OpenAPI\Client\Model\Health|null $health health
+     * @param Health|null $health health
      *
      * @return self
      */
@@ -760,7 +763,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -802,7 +805,7 @@ class ContainerState implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

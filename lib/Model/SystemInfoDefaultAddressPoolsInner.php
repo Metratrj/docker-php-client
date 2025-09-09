@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * SystemInfoDefaultAddressPoolsInner Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class SystemInfoDefaultAddressPoolsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class SystemInfoDefaultAddressPoolsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -316,7 +319,7 @@ class SystemInfoDefaultAddressPoolsInner implements ModelInterface, ArrayAccess,
     public function setBase($base)
     {
         if (is_null($base)) {
-            throw new \InvalidArgumentException('non-nullable base cannot be null');
+            throw new InvalidArgumentException('non-nullable base cannot be null');
         }
         $this->container['base'] = $base;
 
@@ -343,7 +346,7 @@ class SystemInfoDefaultAddressPoolsInner implements ModelInterface, ArrayAccess,
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
+            throw new InvalidArgumentException('non-nullable size cannot be null');
         }
         $this->container['size'] = $size;
 
@@ -368,7 +371,7 @@ class SystemInfoDefaultAddressPoolsInner implements ModelInterface, ArrayAccess,
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -410,7 +413,7 @@ class SystemInfoDefaultAddressPoolsInner implements ModelInterface, ArrayAccess,
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

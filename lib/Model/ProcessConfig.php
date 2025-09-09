@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ProcessConfig Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ProcessConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProcessConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -337,7 +340,7 @@ class ProcessConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPrivileged($privileged)
     {
         if (is_null($privileged)) {
-            throw new \InvalidArgumentException('non-nullable privileged cannot be null');
+            throw new InvalidArgumentException('non-nullable privileged cannot be null');
         }
         $this->container['privileged'] = $privileged;
 
@@ -364,7 +367,7 @@ class ProcessConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUser($user)
     {
         if (is_null($user)) {
-            throw new \InvalidArgumentException('non-nullable user cannot be null');
+            throw new InvalidArgumentException('non-nullable user cannot be null');
         }
         $this->container['user'] = $user;
 
@@ -391,7 +394,7 @@ class ProcessConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTty($tty)
     {
         if (is_null($tty)) {
-            throw new \InvalidArgumentException('non-nullable tty cannot be null');
+            throw new InvalidArgumentException('non-nullable tty cannot be null');
         }
         $this->container['tty'] = $tty;
 
@@ -418,7 +421,7 @@ class ProcessConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEntrypoint($entrypoint)
     {
         if (is_null($entrypoint)) {
-            throw new \InvalidArgumentException('non-nullable entrypoint cannot be null');
+            throw new InvalidArgumentException('non-nullable entrypoint cannot be null');
         }
         $this->container['entrypoint'] = $entrypoint;
 
@@ -445,7 +448,7 @@ class ProcessConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setArguments($arguments)
     {
         if (is_null($arguments)) {
-            throw new \InvalidArgumentException('non-nullable arguments cannot be null');
+            throw new InvalidArgumentException('non-nullable arguments cannot be null');
         }
         $this->container['arguments'] = $arguments;
 
@@ -470,7 +473,7 @@ class ProcessConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -512,7 +515,7 @@ class ProcessConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

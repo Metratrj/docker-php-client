@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ProgressDetail Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ProgressDetail implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProgressDetail implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -316,7 +319,7 @@ class ProgressDetail implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCurrent($current)
     {
         if (is_null($current)) {
-            throw new \InvalidArgumentException('non-nullable current cannot be null');
+            throw new InvalidArgumentException('non-nullable current cannot be null');
         }
         $this->container['current'] = $current;
 
@@ -343,7 +346,7 @@ class ProgressDetail implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTotal($total)
     {
         if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
+            throw new InvalidArgumentException('non-nullable total cannot be null');
         }
         $this->container['total'] = $total;
 
@@ -368,7 +371,7 @@ class ProgressDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -410,7 +413,7 @@ class ProgressDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

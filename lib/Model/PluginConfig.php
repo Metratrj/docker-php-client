@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * PluginConfig Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class PluginConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -454,7 +457,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDockerVersion($docker_version)
     {
         if (is_null($docker_version)) {
-            throw new \InvalidArgumentException('non-nullable docker_version cannot be null');
+            throw new InvalidArgumentException('non-nullable docker_version cannot be null');
         }
         $this->container['docker_version'] = $docker_version;
 
@@ -481,7 +484,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDescription($description)
     {
         if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+            throw new InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
 
@@ -508,7 +511,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDocumentation($documentation)
     {
         if (is_null($documentation)) {
-            throw new \InvalidArgumentException('non-nullable documentation cannot be null');
+            throw new InvalidArgumentException('non-nullable documentation cannot be null');
         }
         $this->container['documentation'] = $documentation;
 
@@ -518,7 +521,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets interface
      *
-     * @return \OpenAPI\Client\Model\PluginConfigInterface
+     * @return PluginConfigInterface
      */
     public function getInterface()
     {
@@ -528,14 +531,14 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets interface
      *
-     * @param \OpenAPI\Client\Model\PluginConfigInterface $interface interface
+     * @param PluginConfigInterface $interface interface
      *
      * @return self
      */
     public function setInterface($interface)
     {
         if (is_null($interface)) {
-            throw new \InvalidArgumentException('non-nullable interface cannot be null');
+            throw new InvalidArgumentException('non-nullable interface cannot be null');
         }
         $this->container['interface'] = $interface;
 
@@ -562,7 +565,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEntrypoint($entrypoint)
     {
         if (is_null($entrypoint)) {
-            throw new \InvalidArgumentException('non-nullable entrypoint cannot be null');
+            throw new InvalidArgumentException('non-nullable entrypoint cannot be null');
         }
         $this->container['entrypoint'] = $entrypoint;
 
@@ -589,7 +592,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setWorkDir($work_dir)
     {
         if (is_null($work_dir)) {
-            throw new \InvalidArgumentException('non-nullable work_dir cannot be null');
+            throw new InvalidArgumentException('non-nullable work_dir cannot be null');
         }
         $this->container['work_dir'] = $work_dir;
 
@@ -599,7 +602,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets user
      *
-     * @return \OpenAPI\Client\Model\PluginConfigUser|null
+     * @return PluginConfigUser|null
      */
     public function getUser()
     {
@@ -609,14 +612,14 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets user
      *
-     * @param \OpenAPI\Client\Model\PluginConfigUser|null $user user
+     * @param PluginConfigUser|null $user user
      *
      * @return self
      */
     public function setUser($user)
     {
         if (is_null($user)) {
-            throw new \InvalidArgumentException('non-nullable user cannot be null');
+            throw new InvalidArgumentException('non-nullable user cannot be null');
         }
         $this->container['user'] = $user;
 
@@ -626,7 +629,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets network
      *
-     * @return \OpenAPI\Client\Model\PluginConfigNetwork
+     * @return PluginConfigNetwork
      */
     public function getNetwork()
     {
@@ -636,14 +639,14 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets network
      *
-     * @param \OpenAPI\Client\Model\PluginConfigNetwork $network network
+     * @param PluginConfigNetwork $network network
      *
      * @return self
      */
     public function setNetwork($network)
     {
         if (is_null($network)) {
-            throw new \InvalidArgumentException('non-nullable network cannot be null');
+            throw new InvalidArgumentException('non-nullable network cannot be null');
         }
         $this->container['network'] = $network;
 
@@ -653,7 +656,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets linux
      *
-     * @return \OpenAPI\Client\Model\PluginConfigLinux
+     * @return PluginConfigLinux
      */
     public function getLinux()
     {
@@ -663,14 +666,14 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets linux
      *
-     * @param \OpenAPI\Client\Model\PluginConfigLinux $linux linux
+     * @param PluginConfigLinux $linux linux
      *
      * @return self
      */
     public function setLinux($linux)
     {
         if (is_null($linux)) {
-            throw new \InvalidArgumentException('non-nullable linux cannot be null');
+            throw new InvalidArgumentException('non-nullable linux cannot be null');
         }
         $this->container['linux'] = $linux;
 
@@ -697,7 +700,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPropagatedMount($propagated_mount)
     {
         if (is_null($propagated_mount)) {
-            throw new \InvalidArgumentException('non-nullable propagated_mount cannot be null');
+            throw new InvalidArgumentException('non-nullable propagated_mount cannot be null');
         }
         $this->container['propagated_mount'] = $propagated_mount;
 
@@ -724,7 +727,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIpcHost($ipc_host)
     {
         if (is_null($ipc_host)) {
-            throw new \InvalidArgumentException('non-nullable ipc_host cannot be null');
+            throw new InvalidArgumentException('non-nullable ipc_host cannot be null');
         }
         $this->container['ipc_host'] = $ipc_host;
 
@@ -751,7 +754,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPidHost($pid_host)
     {
         if (is_null($pid_host)) {
-            throw new \InvalidArgumentException('non-nullable pid_host cannot be null');
+            throw new InvalidArgumentException('non-nullable pid_host cannot be null');
         }
         $this->container['pid_host'] = $pid_host;
 
@@ -761,7 +764,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets mounts
      *
-     * @return \OpenAPI\Client\Model\PluginMount[]
+     * @return PluginMount[]
      */
     public function getMounts()
     {
@@ -771,14 +774,14 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets mounts
      *
-     * @param \OpenAPI\Client\Model\PluginMount[] $mounts mounts
+     * @param PluginMount[] $mounts mounts
      *
      * @return self
      */
     public function setMounts($mounts)
     {
         if (is_null($mounts)) {
-            throw new \InvalidArgumentException('non-nullable mounts cannot be null');
+            throw new InvalidArgumentException('non-nullable mounts cannot be null');
         }
         $this->container['mounts'] = $mounts;
 
@@ -788,7 +791,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets env
      *
-     * @return \OpenAPI\Client\Model\PluginEnv[]
+     * @return PluginEnv[]
      */
     public function getEnv()
     {
@@ -798,14 +801,14 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets env
      *
-     * @param \OpenAPI\Client\Model\PluginEnv[] $env env
+     * @param PluginEnv[] $env env
      *
      * @return self
      */
     public function setEnv($env)
     {
         if (is_null($env)) {
-            throw new \InvalidArgumentException('non-nullable env cannot be null');
+            throw new InvalidArgumentException('non-nullable env cannot be null');
         }
         $this->container['env'] = $env;
 
@@ -815,7 +818,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets args
      *
-     * @return \OpenAPI\Client\Model\PluginConfigArgs
+     * @return PluginConfigArgs
      */
     public function getArgs()
     {
@@ -825,14 +828,14 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets args
      *
-     * @param \OpenAPI\Client\Model\PluginConfigArgs $args args
+     * @param PluginConfigArgs $args args
      *
      * @return self
      */
     public function setArgs($args)
     {
         if (is_null($args)) {
-            throw new \InvalidArgumentException('non-nullable args cannot be null');
+            throw new InvalidArgumentException('non-nullable args cannot be null');
         }
         $this->container['args'] = $args;
 
@@ -842,7 +845,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets rootfs
      *
-     * @return \OpenAPI\Client\Model\PluginConfigRootfs|null
+     * @return PluginConfigRootfs|null
      */
     public function getRootfs()
     {
@@ -852,14 +855,14 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets rootfs
      *
-     * @param \OpenAPI\Client\Model\PluginConfigRootfs|null $rootfs rootfs
+     * @param PluginConfigRootfs|null $rootfs rootfs
      *
      * @return self
      */
     public function setRootfs($rootfs)
     {
         if (is_null($rootfs)) {
-            throw new \InvalidArgumentException('non-nullable rootfs cannot be null');
+            throw new InvalidArgumentException('non-nullable rootfs cannot be null');
         }
         $this->container['rootfs'] = $rootfs;
 
@@ -884,7 +887,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -926,7 +929,7 @@ class PluginConfig implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

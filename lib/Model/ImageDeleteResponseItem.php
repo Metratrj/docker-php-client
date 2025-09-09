@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ImageDeleteResponseItem Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ImageDeleteResponseItem implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImageDeleteResponseItem implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -316,7 +319,7 @@ class ImageDeleteResponseItem implements ModelInterface, ArrayAccess, \JsonSeria
     public function setUntagged($untagged)
     {
         if (is_null($untagged)) {
-            throw new \InvalidArgumentException('non-nullable untagged cannot be null');
+            throw new InvalidArgumentException('non-nullable untagged cannot be null');
         }
         $this->container['untagged'] = $untagged;
 
@@ -343,7 +346,7 @@ class ImageDeleteResponseItem implements ModelInterface, ArrayAccess, \JsonSeria
     public function setDeleted($deleted)
     {
         if (is_null($deleted)) {
-            throw new \InvalidArgumentException('non-nullable deleted cannot be null');
+            throw new InvalidArgumentException('non-nullable deleted cannot be null');
         }
         $this->container['deleted'] = $deleted;
 
@@ -368,7 +371,7 @@ class ImageDeleteResponseItem implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -410,7 +413,7 @@ class ImageDeleteResponseItem implements ModelInterface, ArrayAccess, \JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * TaskSpec Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
+class TaskSpec implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -356,7 +359,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets plugin_spec
      *
-     * @return \OpenAPI\Client\Model\TaskSpecPluginSpec|null
+     * @return TaskSpecPluginSpec|null
      */
     public function getPluginSpec()
     {
@@ -366,14 +369,14 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets plugin_spec
      *
-     * @param \OpenAPI\Client\Model\TaskSpecPluginSpec|null $plugin_spec plugin_spec
+     * @param TaskSpecPluginSpec|null $plugin_spec plugin_spec
      *
      * @return self
      */
     public function setPluginSpec($plugin_spec)
     {
         if (is_null($plugin_spec)) {
-            throw new \InvalidArgumentException('non-nullable plugin_spec cannot be null');
+            throw new InvalidArgumentException('non-nullable plugin_spec cannot be null');
         }
         $this->container['plugin_spec'] = $plugin_spec;
 
@@ -383,7 +386,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets container_spec
      *
-     * @return \OpenAPI\Client\Model\TaskSpecContainerSpec|null
+     * @return TaskSpecContainerSpec|null
      */
     public function getContainerSpec()
     {
@@ -393,14 +396,14 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets container_spec
      *
-     * @param \OpenAPI\Client\Model\TaskSpecContainerSpec|null $container_spec container_spec
+     * @param TaskSpecContainerSpec|null $container_spec container_spec
      *
      * @return self
      */
     public function setContainerSpec($container_spec)
     {
         if (is_null($container_spec)) {
-            throw new \InvalidArgumentException('non-nullable container_spec cannot be null');
+            throw new InvalidArgumentException('non-nullable container_spec cannot be null');
         }
         $this->container['container_spec'] = $container_spec;
 
@@ -410,7 +413,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets network_attachment_spec
      *
-     * @return \OpenAPI\Client\Model\TaskSpecNetworkAttachmentSpec|null
+     * @return TaskSpecNetworkAttachmentSpec|null
      */
     public function getNetworkAttachmentSpec()
     {
@@ -420,14 +423,14 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets network_attachment_spec
      *
-     * @param \OpenAPI\Client\Model\TaskSpecNetworkAttachmentSpec|null $network_attachment_spec network_attachment_spec
+     * @param TaskSpecNetworkAttachmentSpec|null $network_attachment_spec network_attachment_spec
      *
      * @return self
      */
     public function setNetworkAttachmentSpec($network_attachment_spec)
     {
         if (is_null($network_attachment_spec)) {
-            throw new \InvalidArgumentException('non-nullable network_attachment_spec cannot be null');
+            throw new InvalidArgumentException('non-nullable network_attachment_spec cannot be null');
         }
         $this->container['network_attachment_spec'] = $network_attachment_spec;
 
@@ -437,7 +440,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets resources
      *
-     * @return \OpenAPI\Client\Model\TaskSpecResources|null
+     * @return TaskSpecResources|null
      */
     public function getResources()
     {
@@ -447,14 +450,14 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets resources
      *
-     * @param \OpenAPI\Client\Model\TaskSpecResources|null $resources resources
+     * @param TaskSpecResources|null $resources resources
      *
      * @return self
      */
     public function setResources($resources)
     {
         if (is_null($resources)) {
-            throw new \InvalidArgumentException('non-nullable resources cannot be null');
+            throw new InvalidArgumentException('non-nullable resources cannot be null');
         }
         $this->container['resources'] = $resources;
 
@@ -464,7 +467,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets restart_policy
      *
-     * @return \OpenAPI\Client\Model\TaskSpecRestartPolicy|null
+     * @return TaskSpecRestartPolicy|null
      */
     public function getRestartPolicy()
     {
@@ -474,14 +477,14 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets restart_policy
      *
-     * @param \OpenAPI\Client\Model\TaskSpecRestartPolicy|null $restart_policy restart_policy
+     * @param TaskSpecRestartPolicy|null $restart_policy restart_policy
      *
      * @return self
      */
     public function setRestartPolicy($restart_policy)
     {
         if (is_null($restart_policy)) {
-            throw new \InvalidArgumentException('non-nullable restart_policy cannot be null');
+            throw new InvalidArgumentException('non-nullable restart_policy cannot be null');
         }
         $this->container['restart_policy'] = $restart_policy;
 
@@ -491,7 +494,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets placement
      *
-     * @return \OpenAPI\Client\Model\TaskSpecPlacement|null
+     * @return TaskSpecPlacement|null
      */
     public function getPlacement()
     {
@@ -501,14 +504,14 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets placement
      *
-     * @param \OpenAPI\Client\Model\TaskSpecPlacement|null $placement placement
+     * @param TaskSpecPlacement|null $placement placement
      *
      * @return self
      */
     public function setPlacement($placement)
     {
         if (is_null($placement)) {
-            throw new \InvalidArgumentException('non-nullable placement cannot be null');
+            throw new InvalidArgumentException('non-nullable placement cannot be null');
         }
         $this->container['placement'] = $placement;
 
@@ -535,7 +538,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setForceUpdate($force_update)
     {
         if (is_null($force_update)) {
-            throw new \InvalidArgumentException('non-nullable force_update cannot be null');
+            throw new InvalidArgumentException('non-nullable force_update cannot be null');
         }
         $this->container['force_update'] = $force_update;
 
@@ -562,7 +565,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRuntime($runtime)
     {
         if (is_null($runtime)) {
-            throw new \InvalidArgumentException('non-nullable runtime cannot be null');
+            throw new InvalidArgumentException('non-nullable runtime cannot be null');
         }
         $this->container['runtime'] = $runtime;
 
@@ -572,7 +575,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets networks
      *
-     * @return \OpenAPI\Client\Model\NetworkAttachmentConfig[]|null
+     * @return NetworkAttachmentConfig[]|null
      */
     public function getNetworks()
     {
@@ -582,14 +585,14 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets networks
      *
-     * @param \OpenAPI\Client\Model\NetworkAttachmentConfig[]|null $networks Specifies which networks the service should attach to.
+     * @param NetworkAttachmentConfig[]|null $networks Specifies which networks the service should attach to.
      *
      * @return self
      */
     public function setNetworks($networks)
     {
         if (is_null($networks)) {
-            throw new \InvalidArgumentException('non-nullable networks cannot be null');
+            throw new InvalidArgumentException('non-nullable networks cannot be null');
         }
         $this->container['networks'] = $networks;
 
@@ -599,7 +602,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets log_driver
      *
-     * @return \OpenAPI\Client\Model\TaskSpecLogDriver|null
+     * @return TaskSpecLogDriver|null
      */
     public function getLogDriver()
     {
@@ -609,14 +612,14 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets log_driver
      *
-     * @param \OpenAPI\Client\Model\TaskSpecLogDriver|null $log_driver log_driver
+     * @param TaskSpecLogDriver|null $log_driver log_driver
      *
      * @return self
      */
     public function setLogDriver($log_driver)
     {
         if (is_null($log_driver)) {
-            throw new \InvalidArgumentException('non-nullable log_driver cannot be null');
+            throw new InvalidArgumentException('non-nullable log_driver cannot be null');
         }
         $this->container['log_driver'] = $log_driver;
 
@@ -641,7 +644,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -683,7 +686,7 @@ class TaskSpec implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

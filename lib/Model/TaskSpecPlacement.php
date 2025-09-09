@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * TaskSpecPlacement Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class TaskSpecPlacement implements ModelInterface, ArrayAccess, \JsonSerializable
+class TaskSpecPlacement implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -330,7 +333,7 @@ class TaskSpecPlacement implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setConstraints($constraints)
     {
         if (is_null($constraints)) {
-            throw new \InvalidArgumentException('non-nullable constraints cannot be null');
+            throw new InvalidArgumentException('non-nullable constraints cannot be null');
         }
         $this->container['constraints'] = $constraints;
 
@@ -340,7 +343,7 @@ class TaskSpecPlacement implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets preferences
      *
-     * @return \OpenAPI\Client\Model\TaskSpecPlacementPreferencesInner[]|null
+     * @return TaskSpecPlacementPreferencesInner[]|null
      */
     public function getPreferences()
     {
@@ -350,14 +353,14 @@ class TaskSpecPlacement implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets preferences
      *
-     * @param \OpenAPI\Client\Model\TaskSpecPlacementPreferencesInner[]|null $preferences Preferences provide a way to make the scheduler aware of factors such as topology. They are provided in order from highest to lowest precedence.
+     * @param TaskSpecPlacementPreferencesInner[]|null $preferences Preferences provide a way to make the scheduler aware of factors such as topology. They are provided in order from highest to lowest precedence.
      *
      * @return self
      */
     public function setPreferences($preferences)
     {
         if (is_null($preferences)) {
-            throw new \InvalidArgumentException('non-nullable preferences cannot be null');
+            throw new InvalidArgumentException('non-nullable preferences cannot be null');
         }
         $this->container['preferences'] = $preferences;
 
@@ -384,7 +387,7 @@ class TaskSpecPlacement implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setMaxReplicas($max_replicas)
     {
         if (is_null($max_replicas)) {
-            throw new \InvalidArgumentException('non-nullable max_replicas cannot be null');
+            throw new InvalidArgumentException('non-nullable max_replicas cannot be null');
         }
         $this->container['max_replicas'] = $max_replicas;
 
@@ -394,7 +397,7 @@ class TaskSpecPlacement implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets platforms
      *
-     * @return \OpenAPI\Client\Model\Platform[]|null
+     * @return Platform[]|null
      */
     public function getPlatforms()
     {
@@ -404,14 +407,14 @@ class TaskSpecPlacement implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets platforms
      *
-     * @param \OpenAPI\Client\Model\Platform[]|null $platforms Platforms stores all the platforms that the service's image can run on. This field is used in the platform filter for scheduling. If empty, then the platform filter is off, meaning there are no scheduling restrictions.
+     * @param Platform[]|null $platforms Platforms stores all the platforms that the service's image can run on. This field is used in the platform filter for scheduling. If empty, then the platform filter is off, meaning there are no scheduling restrictions.
      *
      * @return self
      */
     public function setPlatforms($platforms)
     {
         if (is_null($platforms)) {
-            throw new \InvalidArgumentException('non-nullable platforms cannot be null');
+            throw new InvalidArgumentException('non-nullable platforms cannot be null');
         }
         $this->container['platforms'] = $platforms;
 
@@ -436,7 +439,7 @@ class TaskSpecPlacement implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -478,7 +481,7 @@ class TaskSpecPlacement implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

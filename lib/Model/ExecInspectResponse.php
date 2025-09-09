@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ExecInspectResponse Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class ExecInspectResponse implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -379,7 +382,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setCanRemove($can_remove)
     {
         if (is_null($can_remove)) {
-            throw new \InvalidArgumentException('non-nullable can_remove cannot be null');
+            throw new InvalidArgumentException('non-nullable can_remove cannot be null');
         }
         $this->container['can_remove'] = $can_remove;
 
@@ -406,7 +409,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setDetachKeys($detach_keys)
     {
         if (is_null($detach_keys)) {
-            throw new \InvalidArgumentException('non-nullable detach_keys cannot be null');
+            throw new InvalidArgumentException('non-nullable detach_keys cannot be null');
         }
         $this->container['detach_keys'] = $detach_keys;
 
@@ -433,7 +436,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+            throw new InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -460,7 +463,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setRunning($running)
     {
         if (is_null($running)) {
-            throw new \InvalidArgumentException('non-nullable running cannot be null');
+            throw new InvalidArgumentException('non-nullable running cannot be null');
         }
         $this->container['running'] = $running;
 
@@ -487,7 +490,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setExitCode($exit_code)
     {
         if (is_null($exit_code)) {
-            throw new \InvalidArgumentException('non-nullable exit_code cannot be null');
+            throw new InvalidArgumentException('non-nullable exit_code cannot be null');
         }
         $this->container['exit_code'] = $exit_code;
 
@@ -497,7 +500,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets process_config
      *
-     * @return \OpenAPI\Client\Model\ProcessConfig|null
+     * @return ProcessConfig|null
      */
     public function getProcessConfig()
     {
@@ -507,14 +510,14 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets process_config
      *
-     * @param \OpenAPI\Client\Model\ProcessConfig|null $process_config process_config
+     * @param ProcessConfig|null $process_config process_config
      *
      * @return self
      */
     public function setProcessConfig($process_config)
     {
         if (is_null($process_config)) {
-            throw new \InvalidArgumentException('non-nullable process_config cannot be null');
+            throw new InvalidArgumentException('non-nullable process_config cannot be null');
         }
         $this->container['process_config'] = $process_config;
 
@@ -541,7 +544,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setOpenStdin($open_stdin)
     {
         if (is_null($open_stdin)) {
-            throw new \InvalidArgumentException('non-nullable open_stdin cannot be null');
+            throw new InvalidArgumentException('non-nullable open_stdin cannot be null');
         }
         $this->container['open_stdin'] = $open_stdin;
 
@@ -568,7 +571,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setOpenStderr($open_stderr)
     {
         if (is_null($open_stderr)) {
-            throw new \InvalidArgumentException('non-nullable open_stderr cannot be null');
+            throw new InvalidArgumentException('non-nullable open_stderr cannot be null');
         }
         $this->container['open_stderr'] = $open_stderr;
 
@@ -595,7 +598,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setOpenStdout($open_stdout)
     {
         if (is_null($open_stdout)) {
-            throw new \InvalidArgumentException('non-nullable open_stdout cannot be null');
+            throw new InvalidArgumentException('non-nullable open_stdout cannot be null');
         }
         $this->container['open_stdout'] = $open_stdout;
 
@@ -622,7 +625,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setContainerId($container_id)
     {
         if (is_null($container_id)) {
-            throw new \InvalidArgumentException('non-nullable container_id cannot be null');
+            throw new InvalidArgumentException('non-nullable container_id cannot be null');
         }
         $this->container['container_id'] = $container_id;
 
@@ -649,7 +652,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setPid($pid)
     {
         if (is_null($pid)) {
-            throw new \InvalidArgumentException('non-nullable pid cannot be null');
+            throw new InvalidArgumentException('non-nullable pid cannot be null');
         }
         $this->container['pid'] = $pid;
 
@@ -674,7 +677,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -716,7 +719,7 @@ class ExecInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

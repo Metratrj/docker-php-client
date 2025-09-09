@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * PluginConfigUser Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class PluginConfigUser implements ModelInterface, ArrayAccess, \JsonSerializable
+class PluginConfigUser implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -316,7 +319,7 @@ class PluginConfigUser implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUid($uid)
     {
         if (is_null($uid)) {
-            throw new \InvalidArgumentException('non-nullable uid cannot be null');
+            throw new InvalidArgumentException('non-nullable uid cannot be null');
         }
         $this->container['uid'] = $uid;
 
@@ -343,7 +346,7 @@ class PluginConfigUser implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGid($gid)
     {
         if (is_null($gid)) {
-            throw new \InvalidArgumentException('non-nullable gid cannot be null');
+            throw new InvalidArgumentException('non-nullable gid cannot be null');
         }
         $this->container['gid'] = $gid;
 
@@ -368,7 +371,7 @@ class PluginConfigUser implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -410,7 +413,7 @@ class PluginConfigUser implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

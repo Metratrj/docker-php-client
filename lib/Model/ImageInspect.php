@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ImageInspect Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
+class ImageInspect implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -443,7 +446,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+            throw new InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -453,7 +456,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets descriptor
      *
-     * @return \OpenAPI\Client\Model\OCIDescriptor|null
+     * @return OCIDescriptor|null
      */
     public function getDescriptor()
     {
@@ -463,14 +466,14 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets descriptor
      *
-     * @param \OpenAPI\Client\Model\OCIDescriptor|null $descriptor descriptor
+     * @param OCIDescriptor|null $descriptor descriptor
      *
      * @return self
      */
     public function setDescriptor($descriptor)
     {
         if (is_null($descriptor)) {
-            throw new \InvalidArgumentException('non-nullable descriptor cannot be null');
+            throw new InvalidArgumentException('non-nullable descriptor cannot be null');
         }
         $this->container['descriptor'] = $descriptor;
 
@@ -480,7 +483,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets manifests
      *
-     * @return \OpenAPI\Client\Model\ImageManifestSummary[]|null
+     * @return ImageManifestSummary[]|null
      */
     public function getManifests()
     {
@@ -490,7 +493,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets manifests
      *
-     * @param \OpenAPI\Client\Model\ImageManifestSummary[]|null $manifests Manifests is a list of image manifests available in this image. It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations.  Only available if the daemon provides a multi-platform image store and the `manifests` option is set in the inspect request.  WARNING: This is experimental and may change at any time without any backward compatibility.
+     * @param ImageManifestSummary[]|null $manifests Manifests is a list of image manifests available in this image. It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations.  Only available if the daemon provides a multi-platform image store and the `manifests` option is set in the inspect request.  WARNING: This is experimental and may change at any time without any backward compatibility.
      *
      * @return self
      */
@@ -531,7 +534,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRepoTags($repo_tags)
     {
         if (is_null($repo_tags)) {
-            throw new \InvalidArgumentException('non-nullable repo_tags cannot be null');
+            throw new InvalidArgumentException('non-nullable repo_tags cannot be null');
         }
         $this->container['repo_tags'] = $repo_tags;
 
@@ -558,7 +561,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRepoDigests($repo_digests)
     {
         if (is_null($repo_digests)) {
-            throw new \InvalidArgumentException('non-nullable repo_digests cannot be null');
+            throw new InvalidArgumentException('non-nullable repo_digests cannot be null');
         }
         $this->container['repo_digests'] = $repo_digests;
 
@@ -585,7 +588,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setParent($parent)
     {
         if (is_null($parent)) {
-            throw new \InvalidArgumentException('non-nullable parent cannot be null');
+            throw new InvalidArgumentException('non-nullable parent cannot be null');
         }
         $this->container['parent'] = $parent;
 
@@ -612,7 +615,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setComment($comment)
     {
         if (is_null($comment)) {
-            throw new \InvalidArgumentException('non-nullable comment cannot be null');
+            throw new InvalidArgumentException('non-nullable comment cannot be null');
         }
         $this->container['comment'] = $comment;
 
@@ -673,7 +676,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDockerVersion($docker_version)
     {
         if (is_null($docker_version)) {
-            throw new \InvalidArgumentException('non-nullable docker_version cannot be null');
+            throw new InvalidArgumentException('non-nullable docker_version cannot be null');
         }
         $this->container['docker_version'] = $docker_version;
 
@@ -700,7 +703,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAuthor($author)
     {
         if (is_null($author)) {
-            throw new \InvalidArgumentException('non-nullable author cannot be null');
+            throw new InvalidArgumentException('non-nullable author cannot be null');
         }
         $this->container['author'] = $author;
 
@@ -710,7 +713,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets config
      *
-     * @return \OpenAPI\Client\Model\ImageConfig|null
+     * @return ImageConfig|null
      */
     public function getConfig()
     {
@@ -720,14 +723,14 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets config
      *
-     * @param \OpenAPI\Client\Model\ImageConfig|null $config config
+     * @param ImageConfig|null $config config
      *
      * @return self
      */
     public function setConfig($config)
     {
         if (is_null($config)) {
-            throw new \InvalidArgumentException('non-nullable config cannot be null');
+            throw new InvalidArgumentException('non-nullable config cannot be null');
         }
         $this->container['config'] = $config;
 
@@ -754,7 +757,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setArchitecture($architecture)
     {
         if (is_null($architecture)) {
-            throw new \InvalidArgumentException('non-nullable architecture cannot be null');
+            throw new InvalidArgumentException('non-nullable architecture cannot be null');
         }
         $this->container['architecture'] = $architecture;
 
@@ -815,7 +818,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOs($os)
     {
         if (is_null($os)) {
-            throw new \InvalidArgumentException('non-nullable os cannot be null');
+            throw new InvalidArgumentException('non-nullable os cannot be null');
         }
         $this->container['os'] = $os;
 
@@ -876,7 +879,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
+            throw new InvalidArgumentException('non-nullable size cannot be null');
         }
         $this->container['size'] = $size;
 
@@ -903,7 +906,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setVirtualSize($virtual_size)
     {
         if (is_null($virtual_size)) {
-            throw new \InvalidArgumentException('non-nullable virtual_size cannot be null');
+            throw new InvalidArgumentException('non-nullable virtual_size cannot be null');
         }
         $this->container['virtual_size'] = $virtual_size;
 
@@ -913,7 +916,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets graph_driver
      *
-     * @return \OpenAPI\Client\Model\DriverData|null
+     * @return DriverData|null
      */
     public function getGraphDriver()
     {
@@ -923,14 +926,14 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets graph_driver
      *
-     * @param \OpenAPI\Client\Model\DriverData|null $graph_driver graph_driver
+     * @param DriverData|null $graph_driver graph_driver
      *
      * @return self
      */
     public function setGraphDriver($graph_driver)
     {
         if (is_null($graph_driver)) {
-            throw new \InvalidArgumentException('non-nullable graph_driver cannot be null');
+            throw new InvalidArgumentException('non-nullable graph_driver cannot be null');
         }
         $this->container['graph_driver'] = $graph_driver;
 
@@ -940,7 +943,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets root_fs
      *
-     * @return \OpenAPI\Client\Model\ImageInspectRootFS|null
+     * @return ImageInspectRootFS|null
      */
     public function getRootFs()
     {
@@ -950,14 +953,14 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets root_fs
      *
-     * @param \OpenAPI\Client\Model\ImageInspectRootFS|null $root_fs root_fs
+     * @param ImageInspectRootFS|null $root_fs root_fs
      *
      * @return self
      */
     public function setRootFs($root_fs)
     {
         if (is_null($root_fs)) {
-            throw new \InvalidArgumentException('non-nullable root_fs cannot be null');
+            throw new InvalidArgumentException('non-nullable root_fs cannot be null');
         }
         $this->container['root_fs'] = $root_fs;
 
@@ -967,7 +970,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets metadata
      *
-     * @return \OpenAPI\Client\Model\ImageInspectMetadata|null
+     * @return ImageInspectMetadata|null
      */
     public function getMetadata()
     {
@@ -977,14 +980,14 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metadata
      *
-     * @param \OpenAPI\Client\Model\ImageInspectMetadata|null $metadata metadata
+     * @param ImageInspectMetadata|null $metadata metadata
      *
      * @return self
      */
     public function setMetadata($metadata)
     {
         if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
+            throw new InvalidArgumentException('non-nullable metadata cannot be null');
         }
         $this->container['metadata'] = $metadata;
 
@@ -1009,7 +1012,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -1051,7 +1054,7 @@ class ImageInspect implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * OCIPlatform Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class OCIPlatform implements ModelInterface, ArrayAccess, \JsonSerializable
+class OCIPlatform implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -338,7 +341,7 @@ class OCIPlatform implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setArchitecture($architecture)
     {
         if (is_null($architecture)) {
-            throw new \InvalidArgumentException('non-nullable architecture cannot be null');
+            throw new InvalidArgumentException('non-nullable architecture cannot be null');
         }
         $this->container['architecture'] = $architecture;
 
@@ -365,7 +368,7 @@ class OCIPlatform implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOs($os)
     {
         if (is_null($os)) {
-            throw new \InvalidArgumentException('non-nullable os cannot be null');
+            throw new InvalidArgumentException('non-nullable os cannot be null');
         }
         $this->container['os'] = $os;
 
@@ -392,7 +395,7 @@ class OCIPlatform implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOsVersion($os_version)
     {
         if (is_null($os_version)) {
-            throw new \InvalidArgumentException('non-nullable os_version cannot be null');
+            throw new InvalidArgumentException('non-nullable os_version cannot be null');
         }
         $this->container['os_version'] = $os_version;
 
@@ -419,7 +422,7 @@ class OCIPlatform implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOsFeatures($os_features)
     {
         if (is_null($os_features)) {
-            throw new \InvalidArgumentException('non-nullable os_features cannot be null');
+            throw new InvalidArgumentException('non-nullable os_features cannot be null');
         }
         $this->container['os_features'] = $os_features;
 
@@ -446,7 +449,7 @@ class OCIPlatform implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setVariant($variant)
     {
         if (is_null($variant)) {
-            throw new \InvalidArgumentException('non-nullable variant cannot be null');
+            throw new InvalidArgumentException('non-nullable variant cannot be null');
         }
         $this->container['variant'] = $variant;
 
@@ -471,7 +474,7 @@ class OCIPlatform implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -513,7 +516,7 @@ class OCIPlatform implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

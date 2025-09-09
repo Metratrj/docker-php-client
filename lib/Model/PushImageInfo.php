@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * PushImageInfo Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class PushImageInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class PushImageInfo implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -354,7 +357,7 @@ class PushImageInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets error_detail
      *
-     * @return \OpenAPI\Client\Model\ErrorDetail|null
+     * @return ErrorDetail|null
      */
     public function getErrorDetail()
     {
@@ -364,14 +367,14 @@ class PushImageInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets error_detail
      *
-     * @param \OpenAPI\Client\Model\ErrorDetail|null $error_detail error_detail
+     * @param ErrorDetail|null $error_detail error_detail
      *
      * @return self
      */
     public function setErrorDetail($error_detail)
     {
         if (is_null($error_detail)) {
-            throw new \InvalidArgumentException('non-nullable error_detail cannot be null');
+            throw new InvalidArgumentException('non-nullable error_detail cannot be null');
         }
         $this->container['error_detail'] = $error_detail;
 
@@ -398,7 +401,7 @@ class PushImageInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setStatus($status)
     {
         if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+            throw new InvalidArgumentException('non-nullable status cannot be null');
         }
         $this->container['status'] = $status;
 
@@ -442,7 +445,7 @@ class PushImageInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets progress_detail
      *
-     * @return \OpenAPI\Client\Model\ProgressDetail|null
+     * @return ProgressDetail|null
      */
     public function getProgressDetail()
     {
@@ -452,14 +455,14 @@ class PushImageInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets progress_detail
      *
-     * @param \OpenAPI\Client\Model\ProgressDetail|null $progress_detail progress_detail
+     * @param ProgressDetail|null $progress_detail progress_detail
      *
      * @return self
      */
     public function setProgressDetail($progress_detail)
     {
         if (is_null($progress_detail)) {
-            throw new \InvalidArgumentException('non-nullable progress_detail cannot be null');
+            throw new InvalidArgumentException('non-nullable progress_detail cannot be null');
         }
         $this->container['progress_detail'] = $progress_detail;
 
@@ -484,7 +487,7 @@ class PushImageInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -526,7 +529,7 @@ class PushImageInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

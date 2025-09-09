@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ContainerdInfo Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ContainerdInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerdInfo implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -317,7 +320,7 @@ class ContainerdInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAddress($address)
     {
         if (is_null($address)) {
-            throw new \InvalidArgumentException('non-nullable address cannot be null');
+            throw new InvalidArgumentException('non-nullable address cannot be null');
         }
         $this->container['address'] = $address;
 
@@ -327,7 +330,7 @@ class ContainerdInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets namespaces
      *
-     * @return \OpenAPI\Client\Model\ContainerdInfoNamespaces|null
+     * @return ContainerdInfoNamespaces|null
      */
     public function getNamespaces()
     {
@@ -337,14 +340,14 @@ class ContainerdInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets namespaces
      *
-     * @param \OpenAPI\Client\Model\ContainerdInfoNamespaces|null $namespaces namespaces
+     * @param ContainerdInfoNamespaces|null $namespaces namespaces
      *
      * @return self
      */
     public function setNamespaces($namespaces)
     {
         if (is_null($namespaces)) {
-            throw new \InvalidArgumentException('non-nullable namespaces cannot be null');
+            throw new InvalidArgumentException('non-nullable namespaces cannot be null');
         }
         $this->container['namespaces'] = $namespaces;
 
@@ -369,7 +372,7 @@ class ContainerdInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -411,7 +414,7 @@ class ContainerdInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

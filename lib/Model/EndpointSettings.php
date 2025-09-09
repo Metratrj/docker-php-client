@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * EndpointSettings Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class EndpointSettings implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -391,7 +394,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets ipam_config
      *
-     * @return \OpenAPI\Client\Model\EndpointIPAMConfig|null
+     * @return EndpointIPAMConfig|null
      */
     public function getIpamConfig()
     {
@@ -401,7 +404,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ipam_config
      *
-     * @param \OpenAPI\Client\Model\EndpointIPAMConfig|null $ipam_config ipam_config
+     * @param EndpointIPAMConfig|null $ipam_config ipam_config
      *
      * @return self
      */
@@ -442,7 +445,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLinks($links)
     {
         if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
+            throw new InvalidArgumentException('non-nullable links cannot be null');
         }
         $this->container['links'] = $links;
 
@@ -469,7 +472,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMacAddress($mac_address)
     {
         if (is_null($mac_address)) {
-            throw new \InvalidArgumentException('non-nullable mac_address cannot be null');
+            throw new InvalidArgumentException('non-nullable mac_address cannot be null');
         }
         $this->container['mac_address'] = $mac_address;
 
@@ -496,7 +499,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAliases($aliases)
     {
         if (is_null($aliases)) {
-            throw new \InvalidArgumentException('non-nullable aliases cannot be null');
+            throw new InvalidArgumentException('non-nullable aliases cannot be null');
         }
         $this->container['aliases'] = $aliases;
 
@@ -557,7 +560,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGwPriority($gw_priority)
     {
         if (is_null($gw_priority)) {
-            throw new \InvalidArgumentException('non-nullable gw_priority cannot be null');
+            throw new InvalidArgumentException('non-nullable gw_priority cannot be null');
         }
         $this->container['gw_priority'] = $gw_priority;
 
@@ -584,7 +587,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setNetworkId($network_id)
     {
         if (is_null($network_id)) {
-            throw new \InvalidArgumentException('non-nullable network_id cannot be null');
+            throw new InvalidArgumentException('non-nullable network_id cannot be null');
         }
         $this->container['network_id'] = $network_id;
 
@@ -611,7 +614,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setEndpointId($endpoint_id)
     {
         if (is_null($endpoint_id)) {
-            throw new \InvalidArgumentException('non-nullable endpoint_id cannot be null');
+            throw new InvalidArgumentException('non-nullable endpoint_id cannot be null');
         }
         $this->container['endpoint_id'] = $endpoint_id;
 
@@ -638,7 +641,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGateway($gateway)
     {
         if (is_null($gateway)) {
-            throw new \InvalidArgumentException('non-nullable gateway cannot be null');
+            throw new InvalidArgumentException('non-nullable gateway cannot be null');
         }
         $this->container['gateway'] = $gateway;
 
@@ -665,7 +668,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIpAddress($ip_address)
     {
         if (is_null($ip_address)) {
-            throw new \InvalidArgumentException('non-nullable ip_address cannot be null');
+            throw new InvalidArgumentException('non-nullable ip_address cannot be null');
         }
         $this->container['ip_address'] = $ip_address;
 
@@ -692,7 +695,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIpPrefixLen($ip_prefix_len)
     {
         if (is_null($ip_prefix_len)) {
-            throw new \InvalidArgumentException('non-nullable ip_prefix_len cannot be null');
+            throw new InvalidArgumentException('non-nullable ip_prefix_len cannot be null');
         }
         $this->container['ip_prefix_len'] = $ip_prefix_len;
 
@@ -719,7 +722,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIpv6Gateway($ipv6_gateway)
     {
         if (is_null($ipv6_gateway)) {
-            throw new \InvalidArgumentException('non-nullable ipv6_gateway cannot be null');
+            throw new InvalidArgumentException('non-nullable ipv6_gateway cannot be null');
         }
         $this->container['ipv6_gateway'] = $ipv6_gateway;
 
@@ -746,7 +749,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGlobalIpv6Address($global_ipv6_address)
     {
         if (is_null($global_ipv6_address)) {
-            throw new \InvalidArgumentException('non-nullable global_ipv6_address cannot be null');
+            throw new InvalidArgumentException('non-nullable global_ipv6_address cannot be null');
         }
         $this->container['global_ipv6_address'] = $global_ipv6_address;
 
@@ -773,7 +776,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGlobalIpv6PrefixLen($global_ipv6_prefix_len)
     {
         if (is_null($global_ipv6_prefix_len)) {
-            throw new \InvalidArgumentException('non-nullable global_ipv6_prefix_len cannot be null');
+            throw new InvalidArgumentException('non-nullable global_ipv6_prefix_len cannot be null');
         }
         $this->container['global_ipv6_prefix_len'] = $global_ipv6_prefix_len;
 
@@ -800,7 +803,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDnsNames($dns_names)
     {
         if (is_null($dns_names)) {
-            throw new \InvalidArgumentException('non-nullable dns_names cannot be null');
+            throw new InvalidArgumentException('non-nullable dns_names cannot be null');
         }
         $this->container['dns_names'] = $dns_names;
 
@@ -825,7 +828,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -867,7 +870,7 @@ class EndpointSettings implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

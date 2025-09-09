@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * NetworkAttachmentConfig Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class NetworkAttachmentConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class NetworkAttachmentConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -324,7 +327,7 @@ class NetworkAttachmentConfig implements ModelInterface, ArrayAccess, \JsonSeria
     public function setTarget($target)
     {
         if (is_null($target)) {
-            throw new \InvalidArgumentException('non-nullable target cannot be null');
+            throw new InvalidArgumentException('non-nullable target cannot be null');
         }
         $this->container['target'] = $target;
 
@@ -351,7 +354,7 @@ class NetworkAttachmentConfig implements ModelInterface, ArrayAccess, \JsonSeria
     public function setAliases($aliases)
     {
         if (is_null($aliases)) {
-            throw new \InvalidArgumentException('non-nullable aliases cannot be null');
+            throw new InvalidArgumentException('non-nullable aliases cannot be null');
         }
         $this->container['aliases'] = $aliases;
 
@@ -378,7 +381,7 @@ class NetworkAttachmentConfig implements ModelInterface, ArrayAccess, \JsonSeria
     public function setDriverOpts($driver_opts)
     {
         if (is_null($driver_opts)) {
-            throw new \InvalidArgumentException('non-nullable driver_opts cannot be null');
+            throw new InvalidArgumentException('non-nullable driver_opts cannot be null');
         }
         $this->container['driver_opts'] = $driver_opts;
 
@@ -403,7 +406,7 @@ class NetworkAttachmentConfig implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -445,7 +448,7 @@ class NetworkAttachmentConfig implements ModelInterface, ArrayAccess, \JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * TaskSpecPluginSpec Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class TaskSpecPluginSpec implements ModelInterface, ArrayAccess, \JsonSerializable
+class TaskSpecPluginSpec implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -331,7 +334,7 @@ class TaskSpecPluginSpec implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+            throw new InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -358,7 +361,7 @@ class TaskSpecPluginSpec implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setRemote($remote)
     {
         if (is_null($remote)) {
-            throw new \InvalidArgumentException('non-nullable remote cannot be null');
+            throw new InvalidArgumentException('non-nullable remote cannot be null');
         }
         $this->container['remote'] = $remote;
 
@@ -385,7 +388,7 @@ class TaskSpecPluginSpec implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setDisabled($disabled)
     {
         if (is_null($disabled)) {
-            throw new \InvalidArgumentException('non-nullable disabled cannot be null');
+            throw new InvalidArgumentException('non-nullable disabled cannot be null');
         }
         $this->container['disabled'] = $disabled;
 
@@ -395,7 +398,7 @@ class TaskSpecPluginSpec implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets plugin_privilege
      *
-     * @return \OpenAPI\Client\Model\PluginPrivilege[]|null
+     * @return PluginPrivilege[]|null
      */
     public function getPluginPrivilege()
     {
@@ -405,14 +408,14 @@ class TaskSpecPluginSpec implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets plugin_privilege
      *
-     * @param \OpenAPI\Client\Model\PluginPrivilege[]|null $plugin_privilege plugin_privilege
+     * @param PluginPrivilege[]|null $plugin_privilege plugin_privilege
      *
      * @return self
      */
     public function setPluginPrivilege($plugin_privilege)
     {
         if (is_null($plugin_privilege)) {
-            throw new \InvalidArgumentException('non-nullable plugin_privilege cannot be null');
+            throw new InvalidArgumentException('non-nullable plugin_privilege cannot be null');
         }
         $this->container['plugin_privilege'] = $plugin_privilege;
 
@@ -437,7 +440,7 @@ class TaskSpecPluginSpec implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -479,7 +482,7 @@ class TaskSpecPluginSpec implements ModelInterface, ArrayAccess, \JsonSerializab
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

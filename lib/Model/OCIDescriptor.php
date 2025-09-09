@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * OCIDescriptor Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class OCIDescriptor implements ModelInterface, ArrayAccess, \JsonSerializable
+class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -359,7 +362,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMediaType($media_type)
     {
         if (is_null($media_type)) {
-            throw new \InvalidArgumentException('non-nullable media_type cannot be null');
+            throw new InvalidArgumentException('non-nullable media_type cannot be null');
         }
         $this->container['media_type'] = $media_type;
 
@@ -386,7 +389,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDigest($digest)
     {
         if (is_null($digest)) {
-            throw new \InvalidArgumentException('non-nullable digest cannot be null');
+            throw new InvalidArgumentException('non-nullable digest cannot be null');
         }
         $this->container['digest'] = $digest;
 
@@ -413,7 +416,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
+            throw new InvalidArgumentException('non-nullable size cannot be null');
         }
         $this->container['size'] = $size;
 
@@ -525,7 +528,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets platform
      *
-     * @return \OpenAPI\Client\Model\OCIPlatform|null
+     * @return OCIPlatform|null
      */
     public function getPlatform()
     {
@@ -535,7 +538,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets platform
      *
-     * @param \OpenAPI\Client\Model\OCIPlatform|null $platform platform
+     * @param OCIPlatform|null $platform platform
      *
      * @return self
      */
@@ -608,7 +611,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -650,7 +653,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ResourcesUlimitsInner Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ResourcesUlimitsInner implements ModelInterface, ArrayAccess, \JsonSerializable
+class ResourcesUlimitsInner implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -323,7 +326,7 @@ class ResourcesUlimitsInner implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+            throw new InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -350,7 +353,7 @@ class ResourcesUlimitsInner implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setSoft($soft)
     {
         if (is_null($soft)) {
-            throw new \InvalidArgumentException('non-nullable soft cannot be null');
+            throw new InvalidArgumentException('non-nullable soft cannot be null');
         }
         $this->container['soft'] = $soft;
 
@@ -377,7 +380,7 @@ class ResourcesUlimitsInner implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setHard($hard)
     {
         if (is_null($hard)) {
-            throw new \InvalidArgumentException('non-nullable hard cannot be null');
+            throw new InvalidArgumentException('non-nullable hard cannot be null');
         }
         $this->container['hard'] = $hard;
 
@@ -402,7 +405,7 @@ class ResourcesUlimitsInner implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -444,7 +447,7 @@ class ResourcesUlimitsInner implements ModelInterface, ArrayAccess, \JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

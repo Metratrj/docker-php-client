@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * PluginConfigInterface Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class PluginConfigInterface implements ModelInterface, ArrayAccess, \JsonSerializable
+class PluginConfigInterface implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -337,7 +340,7 @@ class PluginConfigInterface implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets types
      *
-     * @return \OpenAPI\Client\Model\PluginInterfaceType[]
+     * @return PluginInterfaceType[]
      */
     public function getTypes()
     {
@@ -347,14 +350,14 @@ class PluginConfigInterface implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets types
      *
-     * @param \OpenAPI\Client\Model\PluginInterfaceType[] $types types
+     * @param PluginInterfaceType[] $types types
      *
      * @return self
      */
     public function setTypes($types)
     {
         if (is_null($types)) {
-            throw new \InvalidArgumentException('non-nullable types cannot be null');
+            throw new InvalidArgumentException('non-nullable types cannot be null');
         }
         $this->container['types'] = $types;
 
@@ -381,7 +384,7 @@ class PluginConfigInterface implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setSocket($socket)
     {
         if (is_null($socket)) {
-            throw new \InvalidArgumentException('non-nullable socket cannot be null');
+            throw new InvalidArgumentException('non-nullable socket cannot be null');
         }
         $this->container['socket'] = $socket;
 
@@ -408,11 +411,11 @@ class PluginConfigInterface implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setProtocolScheme($protocol_scheme)
     {
         if (is_null($protocol_scheme)) {
-            throw new \InvalidArgumentException('non-nullable protocol_scheme cannot be null');
+            throw new InvalidArgumentException('non-nullable protocol_scheme cannot be null');
         }
         $allowedValues = $this->getProtocolSchemeAllowableValues();
         if (!in_array($protocol_scheme, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'protocol_scheme', must be one of '%s'",
                     $protocol_scheme,
@@ -443,7 +446,7 @@ class PluginConfigInterface implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -485,7 +488,7 @@ class PluginConfigInterface implements ModelInterface, ArrayAccess, \JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

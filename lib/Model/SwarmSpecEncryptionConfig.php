@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * SwarmSpecEncryptionConfig Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class SwarmSpecEncryptionConfig implements ModelInterface, ArrayAccess, \JsonSerializable
+class SwarmSpecEncryptionConfig implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -310,7 +313,7 @@ class SwarmSpecEncryptionConfig implements ModelInterface, ArrayAccess, \JsonSer
     public function setAutoLockManagers($auto_lock_managers)
     {
         if (is_null($auto_lock_managers)) {
-            throw new \InvalidArgumentException('non-nullable auto_lock_managers cannot be null');
+            throw new InvalidArgumentException('non-nullable auto_lock_managers cannot be null');
         }
         $this->container['auto_lock_managers'] = $auto_lock_managers;
 
@@ -335,7 +338,7 @@ class SwarmSpecEncryptionConfig implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -377,7 +380,7 @@ class SwarmSpecEncryptionConfig implements ModelInterface, ArrayAccess, \JsonSer
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

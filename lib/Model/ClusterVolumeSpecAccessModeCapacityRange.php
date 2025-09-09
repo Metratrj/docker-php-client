@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ClusterVolumeSpecAccessModeCapacityRange Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ClusterVolumeSpecAccessModeCapacityRange implements ModelInterface, ArrayAccess, \JsonSerializable
+class ClusterVolumeSpecAccessModeCapacityRange implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -317,7 +320,7 @@ class ClusterVolumeSpecAccessModeCapacityRange implements ModelInterface, ArrayA
     public function setRequiredBytes($required_bytes)
     {
         if (is_null($required_bytes)) {
-            throw new \InvalidArgumentException('non-nullable required_bytes cannot be null');
+            throw new InvalidArgumentException('non-nullable required_bytes cannot be null');
         }
         $this->container['required_bytes'] = $required_bytes;
 
@@ -344,7 +347,7 @@ class ClusterVolumeSpecAccessModeCapacityRange implements ModelInterface, ArrayA
     public function setLimitBytes($limit_bytes)
     {
         if (is_null($limit_bytes)) {
-            throw new \InvalidArgumentException('non-nullable limit_bytes cannot be null');
+            throw new InvalidArgumentException('non-nullable limit_bytes cannot be null');
         }
         $this->container['limit_bytes'] = $limit_bytes;
 
@@ -369,7 +372,7 @@ class ClusterVolumeSpecAccessModeCapacityRange implements ModelInterface, ArrayA
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -411,7 +414,7 @@ class ClusterVolumeSpecAccessModeCapacityRange implements ModelInterface, ArrayA
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ClusterVolumeInfo Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ClusterVolumeInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class ClusterVolumeInfo implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -331,7 +334,7 @@ class ClusterVolumeInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setCapacityBytes($capacity_bytes)
     {
         if (is_null($capacity_bytes)) {
-            throw new \InvalidArgumentException('non-nullable capacity_bytes cannot be null');
+            throw new InvalidArgumentException('non-nullable capacity_bytes cannot be null');
         }
         $this->container['capacity_bytes'] = $capacity_bytes;
 
@@ -358,7 +361,7 @@ class ClusterVolumeInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setVolumeContext($volume_context)
     {
         if (is_null($volume_context)) {
-            throw new \InvalidArgumentException('non-nullable volume_context cannot be null');
+            throw new InvalidArgumentException('non-nullable volume_context cannot be null');
         }
         $this->container['volume_context'] = $volume_context;
 
@@ -385,7 +388,7 @@ class ClusterVolumeInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setVolumeId($volume_id)
     {
         if (is_null($volume_id)) {
-            throw new \InvalidArgumentException('non-nullable volume_id cannot be null');
+            throw new InvalidArgumentException('non-nullable volume_id cannot be null');
         }
         $this->container['volume_id'] = $volume_id;
 
@@ -412,7 +415,7 @@ class ClusterVolumeInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setAccessibleTopology($accessible_topology)
     {
         if (is_null($accessible_topology)) {
-            throw new \InvalidArgumentException('non-nullable accessible_topology cannot be null');
+            throw new InvalidArgumentException('non-nullable accessible_topology cannot be null');
         }
         $this->container['accessible_topology'] = $accessible_topology;
 
@@ -437,7 +440,7 @@ class ClusterVolumeInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -479,7 +482,7 @@ class ClusterVolumeInfo implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * SystemVersion Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
+class SystemVersion implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -370,7 +373,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets platform
      *
-     * @return \OpenAPI\Client\Model\SystemVersionPlatform|null
+     * @return SystemVersionPlatform|null
      */
     public function getPlatform()
     {
@@ -380,14 +383,14 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets platform
      *
-     * @param \OpenAPI\Client\Model\SystemVersionPlatform|null $platform platform
+     * @param SystemVersionPlatform|null $platform platform
      *
      * @return self
      */
     public function setPlatform($platform)
     {
         if (is_null($platform)) {
-            throw new \InvalidArgumentException('non-nullable platform cannot be null');
+            throw new InvalidArgumentException('non-nullable platform cannot be null');
         }
         $this->container['platform'] = $platform;
 
@@ -397,7 +400,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets components
      *
-     * @return \OpenAPI\Client\Model\SystemVersionComponentsInner[]|null
+     * @return SystemVersionComponentsInner[]|null
      */
     public function getComponents()
     {
@@ -407,14 +410,14 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets components
      *
-     * @param \OpenAPI\Client\Model\SystemVersionComponentsInner[]|null $components Information about system components
+     * @param SystemVersionComponentsInner[]|null $components Information about system components
      *
      * @return self
      */
     public function setComponents($components)
     {
         if (is_null($components)) {
-            throw new \InvalidArgumentException('non-nullable components cannot be null');
+            throw new InvalidArgumentException('non-nullable components cannot be null');
         }
         $this->container['components'] = $components;
 
@@ -441,7 +444,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setVersion($version)
     {
         if (is_null($version)) {
-            throw new \InvalidArgumentException('non-nullable version cannot be null');
+            throw new InvalidArgumentException('non-nullable version cannot be null');
         }
         $this->container['version'] = $version;
 
@@ -468,7 +471,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setApiVersion($api_version)
     {
         if (is_null($api_version)) {
-            throw new \InvalidArgumentException('non-nullable api_version cannot be null');
+            throw new InvalidArgumentException('non-nullable api_version cannot be null');
         }
         $this->container['api_version'] = $api_version;
 
@@ -495,7 +498,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMinApiVersion($min_api_version)
     {
         if (is_null($min_api_version)) {
-            throw new \InvalidArgumentException('non-nullable min_api_version cannot be null');
+            throw new InvalidArgumentException('non-nullable min_api_version cannot be null');
         }
         $this->container['min_api_version'] = $min_api_version;
 
@@ -522,7 +525,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGitCommit($git_commit)
     {
         if (is_null($git_commit)) {
-            throw new \InvalidArgumentException('non-nullable git_commit cannot be null');
+            throw new InvalidArgumentException('non-nullable git_commit cannot be null');
         }
         $this->container['git_commit'] = $git_commit;
 
@@ -549,7 +552,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setGoVersion($go_version)
     {
         if (is_null($go_version)) {
-            throw new \InvalidArgumentException('non-nullable go_version cannot be null');
+            throw new InvalidArgumentException('non-nullable go_version cannot be null');
         }
         $this->container['go_version'] = $go_version;
 
@@ -576,7 +579,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOs($os)
     {
         if (is_null($os)) {
-            throw new \InvalidArgumentException('non-nullable os cannot be null');
+            throw new InvalidArgumentException('non-nullable os cannot be null');
         }
         $this->container['os'] = $os;
 
@@ -603,7 +606,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setArch($arch)
     {
         if (is_null($arch)) {
-            throw new \InvalidArgumentException('non-nullable arch cannot be null');
+            throw new InvalidArgumentException('non-nullable arch cannot be null');
         }
         $this->container['arch'] = $arch;
 
@@ -630,7 +633,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setKernelVersion($kernel_version)
     {
         if (is_null($kernel_version)) {
-            throw new \InvalidArgumentException('non-nullable kernel_version cannot be null');
+            throw new InvalidArgumentException('non-nullable kernel_version cannot be null');
         }
         $this->container['kernel_version'] = $kernel_version;
 
@@ -657,7 +660,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setExperimental($experimental)
     {
         if (is_null($experimental)) {
-            throw new \InvalidArgumentException('non-nullable experimental cannot be null');
+            throw new InvalidArgumentException('non-nullable experimental cannot be null');
         }
         $this->container['experimental'] = $experimental;
 
@@ -684,7 +687,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBuildTime($build_time)
     {
         if (is_null($build_time)) {
-            throw new \InvalidArgumentException('non-nullable build_time cannot be null');
+            throw new InvalidArgumentException('non-nullable build_time cannot be null');
         }
         $this->container['build_time'] = $build_time;
 
@@ -709,7 +712,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -751,7 +754,7 @@ class SystemVersion implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * Task Class Doc Comment
@@ -38,9 +41,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class Task implements ModelInterface, ArrayAccess, \JsonSerializable
+class Task implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -400,7 +403,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+            throw new InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -410,7 +413,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets version
      *
-     * @return \OpenAPI\Client\Model\ObjectVersion|null
+     * @return ObjectVersion|null
      */
     public function getVersion()
     {
@@ -420,14 +423,14 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets version
      *
-     * @param \OpenAPI\Client\Model\ObjectVersion|null $version version
+     * @param ObjectVersion|null $version version
      *
      * @return self
      */
     public function setVersion($version)
     {
         if (is_null($version)) {
-            throw new \InvalidArgumentException('non-nullable version cannot be null');
+            throw new InvalidArgumentException('non-nullable version cannot be null');
         }
         $this->container['version'] = $version;
 
@@ -454,7 +457,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+            throw new InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
 
@@ -481,7 +484,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
-            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+            throw new InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
 
@@ -508,7 +511,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+            throw new InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -535,7 +538,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new \InvalidArgumentException('non-nullable labels cannot be null');
+            throw new InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -545,7 +548,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets spec
      *
-     * @return \OpenAPI\Client\Model\TaskSpec|null
+     * @return TaskSpec|null
      */
     public function getSpec()
     {
@@ -555,14 +558,14 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets spec
      *
-     * @param \OpenAPI\Client\Model\TaskSpec|null $spec spec
+     * @param TaskSpec|null $spec spec
      *
      * @return self
      */
     public function setSpec($spec)
     {
         if (is_null($spec)) {
-            throw new \InvalidArgumentException('non-nullable spec cannot be null');
+            throw new InvalidArgumentException('non-nullable spec cannot be null');
         }
         $this->container['spec'] = $spec;
 
@@ -589,7 +592,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setServiceId($service_id)
     {
         if (is_null($service_id)) {
-            throw new \InvalidArgumentException('non-nullable service_id cannot be null');
+            throw new InvalidArgumentException('non-nullable service_id cannot be null');
         }
         $this->container['service_id'] = $service_id;
 
@@ -616,7 +619,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSlot($slot)
     {
         if (is_null($slot)) {
-            throw new \InvalidArgumentException('non-nullable slot cannot be null');
+            throw new InvalidArgumentException('non-nullable slot cannot be null');
         }
         $this->container['slot'] = $slot;
 
@@ -643,7 +646,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setNodeId($node_id)
     {
         if (is_null($node_id)) {
-            throw new \InvalidArgumentException('non-nullable node_id cannot be null');
+            throw new InvalidArgumentException('non-nullable node_id cannot be null');
         }
         $this->container['node_id'] = $node_id;
 
@@ -653,7 +656,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets assigned_generic_resources
      *
-     * @return \OpenAPI\Client\Model\GenericResourcesInner[]|null
+     * @return GenericResourcesInner[]|null
      */
     public function getAssignedGenericResources()
     {
@@ -663,14 +666,14 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets assigned_generic_resources
      *
-     * @param \OpenAPI\Client\Model\GenericResourcesInner[]|null $assigned_generic_resources User-defined resources can be either Integer resources (e.g, `SSD=3`) or String resources (e.g, `GPU=UUID1`).
+     * @param GenericResourcesInner[]|null $assigned_generic_resources User-defined resources can be either Integer resources (e.g, `SSD=3`) or String resources (e.g, `GPU=UUID1`).
      *
      * @return self
      */
     public function setAssignedGenericResources($assigned_generic_resources)
     {
         if (is_null($assigned_generic_resources)) {
-            throw new \InvalidArgumentException('non-nullable assigned_generic_resources cannot be null');
+            throw new InvalidArgumentException('non-nullable assigned_generic_resources cannot be null');
         }
         $this->container['assigned_generic_resources'] = $assigned_generic_resources;
 
@@ -680,7 +683,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \OpenAPI\Client\Model\TaskStatus|null
+     * @return TaskStatus|null
      */
     public function getStatus()
     {
@@ -690,14 +693,14 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \OpenAPI\Client\Model\TaskStatus|null $status status
+     * @param TaskStatus|null $status status
      *
      * @return self
      */
     public function setStatus($status)
     {
         if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
+            throw new InvalidArgumentException('non-nullable status cannot be null');
         }
         $this->container['status'] = $status;
 
@@ -707,7 +710,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets desired_state
      *
-     * @return \OpenAPI\Client\Model\TaskState|null
+     * @return TaskState|null
      */
     public function getDesiredState()
     {
@@ -717,14 +720,14 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets desired_state
      *
-     * @param \OpenAPI\Client\Model\TaskState|null $desired_state desired_state
+     * @param TaskState|null $desired_state desired_state
      *
      * @return self
      */
     public function setDesiredState($desired_state)
     {
         if (is_null($desired_state)) {
-            throw new \InvalidArgumentException('non-nullable desired_state cannot be null');
+            throw new InvalidArgumentException('non-nullable desired_state cannot be null');
         }
         $this->container['desired_state'] = $desired_state;
 
@@ -734,7 +737,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets job_iteration
      *
-     * @return \OpenAPI\Client\Model\ObjectVersion|null
+     * @return ObjectVersion|null
      */
     public function getJobIteration()
     {
@@ -744,14 +747,14 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets job_iteration
      *
-     * @param \OpenAPI\Client\Model\ObjectVersion|null $job_iteration job_iteration
+     * @param ObjectVersion|null $job_iteration job_iteration
      *
      * @return self
      */
     public function setJobIteration($job_iteration)
     {
         if (is_null($job_iteration)) {
-            throw new \InvalidArgumentException('non-nullable job_iteration cannot be null');
+            throw new InvalidArgumentException('non-nullable job_iteration cannot be null');
         }
         $this->container['job_iteration'] = $job_iteration;
 
@@ -776,7 +779,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -818,7 +821,7 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

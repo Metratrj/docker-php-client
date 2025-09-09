@@ -31,9 +31,16 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Utils;
+use InvalidArgumentException;
+use JsonException;
+use OpenAPI\Client\Model\ContainerConfig;
+use OpenAPI\Client\Model\ErrorResponse;
+use OpenAPI\Client\Model\ImagePruneResponse;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -41,6 +48,8 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
+use RuntimeException;
+use SplFileObject;
 
 /**
  * ImageApi Class Doc Comment
@@ -181,9 +190,9 @@ class ImageApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the list of build cache objects.  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; remove cache older than &#x60;&lt;timestamp&gt;&#x60;. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon&#39;s local time. - &#x60;id&#x3D;&lt;id&gt;&#x60; - &#x60;parent&#x3D;&lt;id&gt;&#x60; - &#x60;type&#x3D;&lt;string&gt;&#x60; - &#x60;description&#x3D;&lt;string&gt;&#x60; - &#x60;inuse&#x60; - &#x60;shared&#x60; - &#x60;private&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildPrune'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\BuildPruneResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\BuildPruneResponse|ErrorResponse
+     *@throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function buildPrune($keep_storage = null, $reserved_space = null, $max_used_space = null, $min_free_space = null, $all = null, $filters = null, string $contentType = self::contentTypes['buildPrune'][0])
     {
@@ -204,9 +213,9 @@ class ImageApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the list of build cache objects.  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; remove cache older than &#x60;&lt;timestamp&gt;&#x60;. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon&#39;s local time. - &#x60;id&#x3D;&lt;id&gt;&#x60; - &#x60;parent&#x3D;&lt;id&gt;&#x60; - &#x60;type&#x3D;&lt;string&gt;&#x60; - &#x60;description&#x3D;&lt;string&gt;&#x60; - &#x60;inuse&#x60; - &#x60;shared&#x60; - &#x60;private&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildPrune'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\BuildPruneResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function buildPruneWithHttpInfo($keep_storage = null, $reserved_space = null, $max_used_space = null, $min_free_space = null, $all = null, $filters = null, string $contentType = self::contentTypes['buildPrune'][0])
     {
@@ -308,8 +317,8 @@ class ImageApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the list of build cache objects.  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; remove cache older than &#x60;&lt;timestamp&gt;&#x60;. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon&#39;s local time. - &#x60;id&#x3D;&lt;id&gt;&#x60; - &#x60;parent&#x3D;&lt;id&gt;&#x60; - &#x60;type&#x3D;&lt;string&gt;&#x60; - &#x60;description&#x3D;&lt;string&gt;&#x60; - &#x60;inuse&#x60; - &#x60;shared&#x60; - &#x60;private&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildPrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function buildPruneAsync($keep_storage = null, $reserved_space = null, $max_used_space = null, $min_free_space = null, $all = null, $filters = null, string $contentType = self::contentTypes['buildPrune'][0])
     {
@@ -334,8 +343,8 @@ class ImageApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the list of build cache objects.  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; remove cache older than &#x60;&lt;timestamp&gt;&#x60;. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon&#39;s local time. - &#x60;id&#x3D;&lt;id&gt;&#x60; - &#x60;parent&#x3D;&lt;id&gt;&#x60; - &#x60;type&#x3D;&lt;string&gt;&#x60; - &#x60;description&#x3D;&lt;string&gt;&#x60; - &#x60;inuse&#x60; - &#x60;shared&#x60; - &#x60;private&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildPrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function buildPruneAsyncWithHttpInfo($keep_storage = null, $reserved_space = null, $max_used_space = null, $min_free_space = null, $all = null, $filters = null, string $contentType = self::contentTypes['buildPrune'][0])
     {
@@ -389,8 +398,8 @@ class ImageApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the list of build cache objects.  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; remove cache older than &#x60;&lt;timestamp&gt;&#x60;. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon&#39;s local time. - &#x60;id&#x3D;&lt;id&gt;&#x60; - &#x60;parent&#x3D;&lt;id&gt;&#x60; - &#x60;type&#x3D;&lt;string&gt;&#x60; - &#x60;description&#x3D;&lt;string&gt;&#x60; - &#x60;inuse&#x60; - &#x60;shared&#x60; - &#x60;private&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildPrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function buildPruneRequest($keep_storage = null, $reserved_space = null, $max_used_space = null, $min_free_space = null, $all = null, $filters = null, string $contentType = self::contentTypes['buildPrune'][0])
     {
@@ -491,7 +500,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -552,11 +561,11 @@ class ImageApi
      * @param  string|null $target Target build stage (optional)
      * @param  string|null $outputs BuildKit output configuration (optional)
      * @param  string|null $version Version of the builder backend to use.  - &#x60;1&#x60; is the first generation classic (deprecated) builder in the Docker daemon (default) - &#x60;2&#x60; is [BuildKit](https://github.com/moby/buildkit) (optional, default to '1')
-     * @param  \SplFileObject|null $input_stream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. (optional)
+     * @param  SplFileObject|null $input_stream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageBuild'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      * @return void
      */
     public function imageBuild($dockerfile = 'Dockerfile', $t = null, $extrahosts = null, $remote = null, $q = false, $nocache = false, $cachefrom = null, $pull = null, $rm = true, $forcerm = false, $memory = null, $memswap = null, $cpushares = null, $cpusetcpus = null, $cpuperiod = null, $cpuquota = null, $buildargs = null, $shmsize = null, $squash = null, $labels = null, $networkmode = null, $content_type = 'application/x-tar', $x_registry_config = null, $platform = null, $target = null, $outputs = null, $version = '1', $input_stream = null, string $contentType = self::contentTypes['imageBuild'][0])
@@ -596,11 +605,11 @@ class ImageApi
      * @param  string|null $target Target build stage (optional)
      * @param  string|null $outputs BuildKit output configuration (optional)
      * @param  string|null $version Version of the builder backend to use.  - &#x60;1&#x60; is the first generation classic (deprecated) builder in the Docker daemon (default) - &#x60;2&#x60; is [BuildKit](https://github.com/moby/buildkit) (optional, default to '1')
-     * @param  \SplFileObject|null $input_stream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. (optional)
+     * @param  SplFileObject|null $input_stream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageBuild'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function imageBuildWithHttpInfo($dockerfile = 'Dockerfile', $t = null, $extrahosts = null, $remote = null, $q = false, $nocache = false, $cachefrom = null, $pull = null, $rm = true, $forcerm = false, $memory = null, $memswap = null, $cpushares = null, $cpusetcpus = null, $cpuperiod = null, $cpuquota = null, $buildargs = null, $shmsize = null, $squash = null, $labels = null, $networkmode = null, $content_type = 'application/x-tar', $x_registry_config = null, $platform = null, $target = null, $outputs = null, $version = '1', $input_stream = null, string $contentType = self::contentTypes['imageBuild'][0])
@@ -688,11 +697,11 @@ class ImageApi
      * @param  string|null $target Target build stage (optional)
      * @param  string|null $outputs BuildKit output configuration (optional)
      * @param  string|null $version Version of the builder backend to use.  - &#x60;1&#x60; is the first generation classic (deprecated) builder in the Docker daemon (default) - &#x60;2&#x60; is [BuildKit](https://github.com/moby/buildkit) (optional, default to '1')
-     * @param  \SplFileObject|null $input_stream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. (optional)
+     * @param  SplFileObject|null $input_stream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageBuild'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageBuildAsync($dockerfile = 'Dockerfile', $t = null, $extrahosts = null, $remote = null, $q = false, $nocache = false, $cachefrom = null, $pull = null, $rm = true, $forcerm = false, $memory = null, $memswap = null, $cpushares = null, $cpusetcpus = null, $cpuperiod = null, $cpuquota = null, $buildargs = null, $shmsize = null, $squash = null, $labels = null, $networkmode = null, $content_type = 'application/x-tar', $x_registry_config = null, $platform = null, $target = null, $outputs = null, $version = '1', $input_stream = null, string $contentType = self::contentTypes['imageBuild'][0])
     {
@@ -736,11 +745,11 @@ class ImageApi
      * @param  string|null $target Target build stage (optional)
      * @param  string|null $outputs BuildKit output configuration (optional)
      * @param  string|null $version Version of the builder backend to use.  - &#x60;1&#x60; is the first generation classic (deprecated) builder in the Docker daemon (default) - &#x60;2&#x60; is [BuildKit](https://github.com/moby/buildkit) (optional, default to '1')
-     * @param  \SplFileObject|null $input_stream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. (optional)
+     * @param  SplFileObject|null $input_stream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageBuild'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageBuildAsyncWithHttpInfo($dockerfile = 'Dockerfile', $t = null, $extrahosts = null, $remote = null, $q = false, $nocache = false, $cachefrom = null, $pull = null, $rm = true, $forcerm = false, $memory = null, $memswap = null, $cpushares = null, $cpusetcpus = null, $cpuperiod = null, $cpuquota = null, $buildargs = null, $shmsize = null, $squash = null, $labels = null, $networkmode = null, $content_type = 'application/x-tar', $x_registry_config = null, $platform = null, $target = null, $outputs = null, $version = '1', $input_stream = null, string $contentType = self::contentTypes['imageBuild'][0])
     {
@@ -800,11 +809,11 @@ class ImageApi
      * @param  string|null $target Target build stage (optional)
      * @param  string|null $outputs BuildKit output configuration (optional)
      * @param  string|null $version Version of the builder backend to use.  - &#x60;1&#x60; is the first generation classic (deprecated) builder in the Docker daemon (default) - &#x60;2&#x60; is [BuildKit](https://github.com/moby/buildkit) (optional, default to '1')
-     * @param  \SplFileObject|null $input_stream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. (optional)
+     * @param  SplFileObject|null $input_stream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageBuild'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function imageBuildRequest($dockerfile = 'Dockerfile', $t = null, $extrahosts = null, $remote = null, $q = false, $nocache = false, $cachefrom = null, $pull = null, $rm = true, $forcerm = false, $memory = null, $memswap = null, $cpushares = null, $cpusetcpus = null, $cpuperiod = null, $cpuquota = null, $buildargs = null, $shmsize = null, $squash = null, $labels = null, $networkmode = null, $content_type = 'application/x-tar', $x_registry_config = null, $platform = null, $target = null, $outputs = null, $version = '1', $input_stream = null, string $contentType = self::contentTypes['imageBuild'][0])
     {
@@ -1092,7 +1101,7 @@ class ImageApi
         if (isset($input_stream)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($input_stream));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($input_stream));
             } else {
                 $httpBody = $input_stream;
             }
@@ -1113,7 +1122,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1154,12 +1163,12 @@ class ImageApi
      * @param  string|null $author Author of the image (e.g., &#x60;John Hannibal Smith &lt;hannibal@a-team.com&gt;&#x60;) (optional)
      * @param  bool|null $pause Whether to pause the container before committing (optional, default to true)
      * @param  string|null $changes &#x60;Dockerfile&#x60; instructions to apply while committing (optional)
-     * @param  \OpenAPI\Client\Model\ContainerConfig|null $container_config The container configuration (optional)
+     * @param  ContainerConfig|null $container_config The container configuration (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageCommit'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\IDResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\IDResponse|ErrorResponse|ErrorResponse
+     *@throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function imageCommit($container = null, $repo = null, $tag = null, $comment = null, $author = null, $pause = true, $changes = null, $container_config = null, string $contentType = self::contentTypes['imageCommit'][0])
     {
@@ -1179,12 +1188,12 @@ class ImageApi
      * @param  string|null $author Author of the image (e.g., &#x60;John Hannibal Smith &lt;hannibal@a-team.com&gt;&#x60;) (optional)
      * @param  bool|null $pause Whether to pause the container before committing (optional, default to true)
      * @param  string|null $changes &#x60;Dockerfile&#x60; instructions to apply while committing (optional)
-     * @param  \OpenAPI\Client\Model\ContainerConfig|null $container_config The container configuration (optional)
+     * @param  ContainerConfig|null $container_config The container configuration (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageCommit'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\IDResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      */
     public function imageCommitWithHttpInfo($container = null, $repo = null, $tag = null, $comment = null, $author = null, $pause = true, $changes = null, $container_config = null, string $contentType = self::contentTypes['imageCommit'][0])
     {
@@ -1299,11 +1308,11 @@ class ImageApi
      * @param  string|null $author Author of the image (e.g., &#x60;John Hannibal Smith &lt;hannibal@a-team.com&gt;&#x60;) (optional)
      * @param  bool|null $pause Whether to pause the container before committing (optional, default to true)
      * @param  string|null $changes &#x60;Dockerfile&#x60; instructions to apply while committing (optional)
-     * @param  \OpenAPI\Client\Model\ContainerConfig|null $container_config The container configuration (optional)
+     * @param  ContainerConfig|null $container_config The container configuration (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageCommit'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageCommitAsync($container = null, $repo = null, $tag = null, $comment = null, $author = null, $pause = true, $changes = null, $container_config = null, string $contentType = self::contentTypes['imageCommit'][0])
     {
@@ -1327,11 +1336,11 @@ class ImageApi
      * @param  string|null $author Author of the image (e.g., &#x60;John Hannibal Smith &lt;hannibal@a-team.com&gt;&#x60;) (optional)
      * @param  bool|null $pause Whether to pause the container before committing (optional, default to true)
      * @param  string|null $changes &#x60;Dockerfile&#x60; instructions to apply while committing (optional)
-     * @param  \OpenAPI\Client\Model\ContainerConfig|null $container_config The container configuration (optional)
+     * @param  ContainerConfig|null $container_config The container configuration (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageCommit'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageCommitAsyncWithHttpInfo($container = null, $repo = null, $tag = null, $comment = null, $author = null, $pause = true, $changes = null, $container_config = null, string $contentType = self::contentTypes['imageCommit'][0])
     {
@@ -1384,11 +1393,11 @@ class ImageApi
      * @param  string|null $author Author of the image (e.g., &#x60;John Hannibal Smith &lt;hannibal@a-team.com&gt;&#x60;) (optional)
      * @param  bool|null $pause Whether to pause the container before committing (optional, default to true)
      * @param  string|null $changes &#x60;Dockerfile&#x60; instructions to apply while committing (optional)
-     * @param  \OpenAPI\Client\Model\ContainerConfig|null $container_config The container configuration (optional)
+     * @param  ContainerConfig|null $container_config The container configuration (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageCommit'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function imageCommitRequest($container = null, $repo = null, $tag = null, $comment = null, $author = null, $pause = true, $changes = null, $container_config = null, string $contentType = self::contentTypes['imageCommit'][0])
     {
@@ -1486,7 +1495,7 @@ class ImageApi
         if (isset($container_config)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($container_config));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($container_config));
             } else {
                 $httpBody = $container_config;
             }
@@ -1507,7 +1516,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1552,8 +1561,8 @@ class ImageApi
      * @param  string|null $input_image Image content if the value &#x60;-&#x60; has been specified in fromSrc query parameter (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageCreate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      * @return void
      */
     public function imageCreate($from_image = null, $from_src = null, $repo = null, $tag = null, $message = null, $x_registry_auth = null, $changes = null, $platform = null, $input_image = null, string $contentType = self::contentTypes['imageCreate'][0])
@@ -1577,8 +1586,8 @@ class ImageApi
      * @param  string|null $input_image Image content if the value &#x60;-&#x60; has been specified in fromSrc query parameter (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageCreate'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function imageCreateWithHttpInfo($from_image = null, $from_src = null, $repo = null, $tag = null, $message = null, $x_registry_auth = null, $changes = null, $platform = null, $input_image = null, string $contentType = self::contentTypes['imageCreate'][0])
@@ -1650,8 +1659,8 @@ class ImageApi
      * @param  string|null $input_image Image content if the value &#x60;-&#x60; has been specified in fromSrc query parameter (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageCreate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageCreateAsync($from_image = null, $from_src = null, $repo = null, $tag = null, $message = null, $x_registry_auth = null, $changes = null, $platform = null, $input_image = null, string $contentType = self::contentTypes['imageCreate'][0])
     {
@@ -1679,8 +1688,8 @@ class ImageApi
      * @param  string|null $input_image Image content if the value &#x60;-&#x60; has been specified in fromSrc query parameter (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageCreate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageCreateAsyncWithHttpInfo($from_image = null, $from_src = null, $repo = null, $tag = null, $message = null, $x_registry_auth = null, $changes = null, $platform = null, $input_image = null, string $contentType = self::contentTypes['imageCreate'][0])
     {
@@ -1724,8 +1733,8 @@ class ImageApi
      * @param  string|null $input_image Image content if the value &#x60;-&#x60; has been specified in fromSrc query parameter (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageCreate'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function imageCreateRequest($from_image = null, $from_src = null, $repo = null, $tag = null, $message = null, $x_registry_auth = null, $changes = null, $platform = null, $input_image = null, string $contentType = self::contentTypes['imageCreate'][0])
     {
@@ -1828,7 +1837,7 @@ class ImageApi
         if (isset($input_image)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($input_image));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($input_image));
             } else {
                 $httpBody = $input_image;
             }
@@ -1849,7 +1858,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1889,9 +1898,9 @@ class ImageApi
      * @param  string[]|null $platforms Select platform-specific content to delete. Multiple values are accepted. Each platform is a OCI platform encoded as a JSON string. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageDelete'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ImageDeleteResponseItem[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ImageDeleteResponseItem[]|ErrorResponse|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageDelete($name, $force = false, $noprune = false, $platforms = null, string $contentType = self::contentTypes['imageDelete'][0])
     {
@@ -1910,9 +1919,9 @@ class ImageApi
      * @param  string[]|null $platforms Select platform-specific content to delete. Multiple values are accepted. Each platform is a OCI platform encoded as a JSON string. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageDelete'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ImageDeleteResponseItem[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageDeleteWithHttpInfo($name, $force = false, $noprune = false, $platforms = null, string $contentType = self::contentTypes['imageDelete'][0])
     {
@@ -2040,8 +2049,8 @@ class ImageApi
      * @param  string[]|null $platforms Select platform-specific content to delete. Multiple values are accepted. Each platform is a OCI platform encoded as a JSON string. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageDelete'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageDeleteAsync($name, $force = false, $noprune = false, $platforms = null, string $contentType = self::contentTypes['imageDelete'][0])
     {
@@ -2064,8 +2073,8 @@ class ImageApi
      * @param  string[]|null $platforms Select platform-specific content to delete. Multiple values are accepted. Each platform is a OCI platform encoded as a JSON string. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageDelete'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageDeleteAsyncWithHttpInfo($name, $force = false, $noprune = false, $platforms = null, string $contentType = self::contentTypes['imageDelete'][0])
     {
@@ -2117,15 +2126,15 @@ class ImageApi
      * @param  string[]|null $platforms Select platform-specific content to delete. Multiple values are accepted. Each platform is a OCI platform encoded as a JSON string. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageDelete'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function imageDeleteRequest($name, $force = false, $noprune = false, $platforms = null, string $contentType = self::contentTypes['imageDelete'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling imageDelete'
             );
         }
@@ -2204,7 +2213,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2242,9 +2251,9 @@ class ImageApi
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageGet'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SplFileObject|\OpenAPI\Client\Model\ErrorResponse
+     * @return SplFileObject|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageGet($name, $platform = null, string $contentType = self::contentTypes['imageGet'][0])
     {
@@ -2261,9 +2270,9 @@ class ImageApi
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageGet'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageGetWithHttpInfo($name, $platform = null, string $contentType = self::contentTypes['imageGet'][0])
     {
@@ -2361,8 +2370,8 @@ class ImageApi
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageGet'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageGetAsync($name, $platform = null, string $contentType = self::contentTypes['imageGet'][0])
     {
@@ -2383,8 +2392,8 @@ class ImageApi
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageGet'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageGetAsyncWithHttpInfo($name, $platform = null, string $contentType = self::contentTypes['imageGet'][0])
     {
@@ -2434,15 +2443,15 @@ class ImageApi
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageGet'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function imageGetRequest($name, $platform = null, string $contentType = self::contentTypes['imageGet'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling imageGet'
             );
         }
@@ -2501,7 +2510,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2539,9 +2548,9 @@ class ImageApi
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageGetAll'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SplFileObject|\OpenAPI\Client\Model\ErrorResponse
+     * @return SplFileObject|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageGetAll($names = null, $platform = null, string $contentType = self::contentTypes['imageGetAll'][0])
     {
@@ -2558,9 +2567,9 @@ class ImageApi
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageGetAll'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageGetAllWithHttpInfo($names = null, $platform = null, string $contentType = self::contentTypes['imageGetAll'][0])
     {
@@ -2658,8 +2667,8 @@ class ImageApi
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageGetAll'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageGetAllAsync($names = null, $platform = null, string $contentType = self::contentTypes['imageGetAll'][0])
     {
@@ -2680,8 +2689,8 @@ class ImageApi
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageGetAll'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageGetAllAsyncWithHttpInfo($names = null, $platform = null, string $contentType = self::contentTypes['imageGetAll'][0])
     {
@@ -2731,8 +2740,8 @@ class ImageApi
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageGetAll'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function imageGetAllRequest($names = null, $platform = null, string $contentType = self::contentTypes['imageGetAll'][0])
     {
@@ -2793,7 +2802,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2831,9 +2840,9 @@ class ImageApi
      * @param  string|null $platform JSON-encoded OCI platform to select the platform-variant. If omitted, it defaults to any locally available platform, prioritizing the daemon&#39;s host platform.  If the daemon provides a multi-platform image store, this selects the platform-variant to show the history for. If the image is a single-platform image, or if the multi-platform image does not provide a variant matching the given platform, an error is returned.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageHistory'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\HistoryResponseItem[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\HistoryResponseItem[]|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageHistory($name, $platform = null, string $contentType = self::contentTypes['imageHistory'][0])
     {
@@ -2850,9 +2859,9 @@ class ImageApi
      * @param  string|null $platform JSON-encoded OCI platform to select the platform-variant. If omitted, it defaults to any locally available platform, prioritizing the daemon&#39;s host platform.  If the daemon provides a multi-platform image store, this selects the platform-variant to show the history for. If the image is a single-platform image, or if the multi-platform image does not provide a variant matching the given platform, an error is returned.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageHistory'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\HistoryResponseItem[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageHistoryWithHttpInfo($name, $platform = null, string $contentType = self::contentTypes['imageHistory'][0])
     {
@@ -2964,8 +2973,8 @@ class ImageApi
      * @param  string|null $platform JSON-encoded OCI platform to select the platform-variant. If omitted, it defaults to any locally available platform, prioritizing the daemon&#39;s host platform.  If the daemon provides a multi-platform image store, this selects the platform-variant to show the history for. If the image is a single-platform image, or if the multi-platform image does not provide a variant matching the given platform, an error is returned.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageHistory'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageHistoryAsync($name, $platform = null, string $contentType = self::contentTypes['imageHistory'][0])
     {
@@ -2986,8 +2995,8 @@ class ImageApi
      * @param  string|null $platform JSON-encoded OCI platform to select the platform-variant. If omitted, it defaults to any locally available platform, prioritizing the daemon&#39;s host platform.  If the daemon provides a multi-platform image store, this selects the platform-variant to show the history for. If the image is a single-platform image, or if the multi-platform image does not provide a variant matching the given platform, an error is returned.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageHistory'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageHistoryAsyncWithHttpInfo($name, $platform = null, string $contentType = self::contentTypes['imageHistory'][0])
     {
@@ -3037,15 +3046,15 @@ class ImageApi
      * @param  string|null $platform JSON-encoded OCI platform to select the platform-variant. If omitted, it defaults to any locally available platform, prioritizing the daemon&#39;s host platform.  If the daemon provides a multi-platform image store, this selects the platform-variant to show the history for. If the image is a single-platform image, or if the multi-platform image does not provide a variant matching the given platform, an error is returned.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageHistory'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function imageHistoryRequest($name, $platform = null, string $contentType = self::contentTypes['imageHistory'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling imageHistory'
             );
         }
@@ -3104,7 +3113,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3142,9 +3151,9 @@ class ImageApi
      * @param  bool|null $manifests Include Manifests in the image summary. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageInspect'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ImageInspect|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ImageInspect|ErrorResponse|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageInspect($name, $manifests = false, string $contentType = self::contentTypes['imageInspect'][0])
     {
@@ -3161,9 +3170,9 @@ class ImageApi
      * @param  bool|null $manifests Include Manifests in the image summary. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageInspect'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ImageInspect|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageInspectWithHttpInfo($name, $manifests = false, string $contentType = self::contentTypes['imageInspect'][0])
     {
@@ -3275,8 +3284,8 @@ class ImageApi
      * @param  bool|null $manifests Include Manifests in the image summary. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageInspectAsync($name, $manifests = false, string $contentType = self::contentTypes['imageInspect'][0])
     {
@@ -3297,8 +3306,8 @@ class ImageApi
      * @param  bool|null $manifests Include Manifests in the image summary. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageInspectAsyncWithHttpInfo($name, $manifests = false, string $contentType = self::contentTypes['imageInspect'][0])
     {
@@ -3348,15 +3357,15 @@ class ImageApi
      * @param  bool|null $manifests Include Manifests in the image summary. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageInspect'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function imageInspectRequest($name, $manifests = false, string $contentType = self::contentTypes['imageInspect'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling imageInspect'
             );
         }
@@ -3415,7 +3424,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3456,9 +3465,9 @@ class ImageApi
      * @param  bool|null $manifests Include &#x60;Manifests&#x60; in the image summary. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageList'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ImageSummary[]|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ImageSummary[]|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageList($all = false, $filters = null, $shared_size = false, $digests = false, $manifests = false, string $contentType = self::contentTypes['imageList'][0])
     {
@@ -3478,9 +3487,9 @@ class ImageApi
      * @param  bool|null $manifests Include &#x60;Manifests&#x60; in the image summary. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageList'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ImageSummary[]|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageListWithHttpInfo($all = false, $filters = null, $shared_size = false, $digests = false, $manifests = false, string $contentType = self::contentTypes['imageList'][0])
     {
@@ -3581,8 +3590,8 @@ class ImageApi
      * @param  bool|null $manifests Include &#x60;Manifests&#x60; in the image summary. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageList'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageListAsync($all = false, $filters = null, $shared_size = false, $digests = false, $manifests = false, string $contentType = self::contentTypes['imageList'][0])
     {
@@ -3606,8 +3615,8 @@ class ImageApi
      * @param  bool|null $manifests Include &#x60;Manifests&#x60; in the image summary. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageList'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageListAsyncWithHttpInfo($all = false, $filters = null, $shared_size = false, $digests = false, $manifests = false, string $contentType = self::contentTypes['imageList'][0])
     {
@@ -3660,8 +3669,8 @@ class ImageApi
      * @param  bool|null $manifests Include &#x60;Manifests&#x60; in the image summary. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageList'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function imageListRequest($all = false, $filters = null, $shared_size = false, $digests = false, $manifests = false, string $contentType = self::contentTypes['imageList'][0])
     {
@@ -3752,7 +3761,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3788,12 +3797,12 @@ class ImageApi
      *
      * @param  bool|null $quiet Suppress progress details during load. (optional, default to false)
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be load if the image is multi-platform. If not provided, the full multi-platform image will be loaded.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
-     * @param  \SplFileObject|null $images_tarball Tar archive containing images (optional)
+     * @param  SplFileObject|null $images_tarball Tar archive containing images (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageLoad'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageLoad($quiet = false, $platform = null, $images_tarball = null, string $contentType = self::contentTypes['imageLoad'][0])
     {
@@ -3807,12 +3816,12 @@ class ImageApi
      *
      * @param  bool|null $quiet Suppress progress details during load. (optional, default to false)
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be load if the image is multi-platform. If not provided, the full multi-platform image will be loaded.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
-     * @param  \SplFileObject|null $images_tarball Tar archive containing images (optional)
+     * @param  SplFileObject|null $images_tarball Tar archive containing images (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageLoad'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageLoadWithHttpInfo($quiet = false, $platform = null, $images_tarball = null, string $contentType = self::contentTypes['imageLoad'][0])
     {
@@ -3866,11 +3875,11 @@ class ImageApi
      *
      * @param  bool|null $quiet Suppress progress details during load. (optional, default to false)
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be load if the image is multi-platform. If not provided, the full multi-platform image will be loaded.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
-     * @param  \SplFileObject|null $images_tarball Tar archive containing images (optional)
+     * @param  SplFileObject|null $images_tarball Tar archive containing images (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageLoad'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageLoadAsync($quiet = false, $platform = null, $images_tarball = null, string $contentType = self::contentTypes['imageLoad'][0])
     {
@@ -3889,11 +3898,11 @@ class ImageApi
      *
      * @param  bool|null $quiet Suppress progress details during load. (optional, default to false)
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be load if the image is multi-platform. If not provided, the full multi-platform image will be loaded.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
-     * @param  \SplFileObject|null $images_tarball Tar archive containing images (optional)
+     * @param  SplFileObject|null $images_tarball Tar archive containing images (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageLoad'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageLoadAsyncWithHttpInfo($quiet = false, $platform = null, $images_tarball = null, string $contentType = self::contentTypes['imageLoad'][0])
     {
@@ -3928,11 +3937,11 @@ class ImageApi
      *
      * @param  bool|null $quiet Suppress progress details during load. (optional, default to false)
      * @param  string|null $platform JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be load if the image is multi-platform. If not provided, the full multi-platform image will be loaded.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
-     * @param  \SplFileObject|null $images_tarball Tar archive containing images (optional)
+     * @param  SplFileObject|null $images_tarball Tar archive containing images (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageLoad'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
+     *@throws InvalidArgumentException
      */
     public function imageLoadRequest($quiet = false, $platform = null, $images_tarball = null, string $contentType = self::contentTypes['imageLoad'][0])
     {
@@ -3980,7 +3989,7 @@ class ImageApi
         if (isset($images_tarball)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($images_tarball));
+                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($images_tarball));
             } else {
                 $httpBody = $images_tarball;
             }
@@ -4001,7 +4010,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4038,9 +4047,9 @@ class ImageApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;). Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only    unused *and* untagged images. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), all unused images are pruned. - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagePrune'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ImagePruneResponse|\OpenAPI\Client\Model\ErrorResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return ImagePruneResponse|ErrorResponse
      */
     public function imagePrune($filters = null, string $contentType = self::contentTypes['imagePrune'][0])
     {
@@ -4056,8 +4065,8 @@ class ImageApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;). Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only    unused *and* untagged images. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), all unused images are pruned. - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagePrune'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ImagePruneResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function imagePruneWithHttpInfo($filters = null, string $contentType = self::contentTypes['imagePrune'][0])
@@ -4155,8 +4164,8 @@ class ImageApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;). Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only    unused *and* untagged images. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), all unused images are pruned. - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagePrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imagePruneAsync($filters = null, string $contentType = self::contentTypes['imagePrune'][0])
     {
@@ -4176,8 +4185,8 @@ class ImageApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;). Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only    unused *and* untagged images. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), all unused images are pruned. - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagePrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imagePruneAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['imagePrune'][0])
     {
@@ -4226,8 +4235,8 @@ class ImageApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;). Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only    unused *and* untagged images. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), all unused images are pruned. - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagePrune'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function imagePruneRequest($filters = null, string $contentType = self::contentTypes['imagePrune'][0])
     {
@@ -4278,7 +4287,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4318,8 +4327,8 @@ class ImageApi
      * @param  string|null $platform JSON-encoded OCI platform to select the platform-variant to push. If not provided, all available variants will attempt to be pushed.  If the daemon provides a multi-platform image store, this selects the platform-variant to push to the registry. If the image is a single-platform image, or if the multi-platform image does not provide a variant matching the given platform, an error is returned.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagePush'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      * @return void
      */
     public function imagePush($name, $x_registry_auth, $tag = null, $platform = null, string $contentType = self::contentTypes['imagePush'][0])
@@ -4338,8 +4347,8 @@ class ImageApi
      * @param  string|null $platform JSON-encoded OCI platform to select the platform-variant to push. If not provided, all available variants will attempt to be pushed.  If the daemon provides a multi-platform image store, this selects the platform-variant to push to the registry. If the image is a single-platform image, or if the multi-platform image does not provide a variant matching the given platform, an error is returned.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagePush'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function imagePushWithHttpInfo($name, $x_registry_auth, $tag = null, $platform = null, string $contentType = self::contentTypes['imagePush'][0])
@@ -4406,8 +4415,8 @@ class ImageApi
      * @param  string|null $platform JSON-encoded OCI platform to select the platform-variant to push. If not provided, all available variants will attempt to be pushed.  If the daemon provides a multi-platform image store, this selects the platform-variant to push to the registry. If the image is a single-platform image, or if the multi-platform image does not provide a variant matching the given platform, an error is returned.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagePush'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imagePushAsync($name, $x_registry_auth, $tag = null, $platform = null, string $contentType = self::contentTypes['imagePush'][0])
     {
@@ -4430,8 +4439,8 @@ class ImageApi
      * @param  string|null $platform JSON-encoded OCI platform to select the platform-variant to push. If not provided, all available variants will attempt to be pushed.  If the daemon provides a multi-platform image store, this selects the platform-variant to push to the registry. If the image is a single-platform image, or if the multi-platform image does not provide a variant matching the given platform, an error is returned.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagePush'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imagePushAsyncWithHttpInfo($name, $x_registry_auth, $tag = null, $platform = null, string $contentType = self::contentTypes['imagePush'][0])
     {
@@ -4470,22 +4479,22 @@ class ImageApi
      * @param  string|null $platform JSON-encoded OCI platform to select the platform-variant to push. If not provided, all available variants will attempt to be pushed.  If the daemon provides a multi-platform image store, this selects the platform-variant to push to the registry. If the image is a single-platform image, or if the multi-platform image does not provide a variant matching the given platform, an error is returned.  Example: &#x60;{\&quot;os\&quot;: \&quot;linux\&quot;, \&quot;architecture\&quot;: \&quot;arm\&quot;, \&quot;variant\&quot;: \&quot;v5\&quot;}&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagePush'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function imagePushRequest($name, $x_registry_auth, $tag = null, $platform = null, string $contentType = self::contentTypes['imagePush'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling imagePush'
             );
         }
 
         // verify the required parameter 'x_registry_auth' is set
         if ($x_registry_auth === null || (is_array($x_registry_auth) && count($x_registry_auth) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $x_registry_auth when calling imagePush'
             );
         }
@@ -4558,7 +4567,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4597,9 +4606,9 @@ class ImageApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters:  - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that has at least &#39;number&#39; stars. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageSearch'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ImageSearchResponseItem[]|\OpenAPI\Client\Model\ErrorResponse
+     * @return \OpenAPI\Client\Model\ImageSearchResponseItem[]|ErrorResponse
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageSearch($term, $limit = null, $filters = null, string $contentType = self::contentTypes['imageSearch'][0])
     {
@@ -4617,9 +4626,9 @@ class ImageApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters:  - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that has at least &#39;number&#39; stars. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageSearch'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ImageSearchResponseItem[]|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageSearchWithHttpInfo($term, $limit = null, $filters = null, string $contentType = self::contentTypes['imageSearch'][0])
     {
@@ -4718,8 +4727,8 @@ class ImageApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters:  - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that has at least &#39;number&#39; stars. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageSearch'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageSearchAsync($term, $limit = null, $filters = null, string $contentType = self::contentTypes['imageSearch'][0])
     {
@@ -4741,8 +4750,8 @@ class ImageApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters:  - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that has at least &#39;number&#39; stars. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageSearch'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageSearchAsyncWithHttpInfo($term, $limit = null, $filters = null, string $contentType = self::contentTypes['imageSearch'][0])
     {
@@ -4793,15 +4802,15 @@ class ImageApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters:  - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that has at least &#39;number&#39; stars. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageSearch'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function imageSearchRequest($term, $limit = null, $filters = null, string $contentType = self::contentTypes['imageSearch'][0])
     {
 
         // verify the required parameter 'term' is set
         if ($term === null || (is_array($term) && count($term) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $term when calling imageSearch'
             );
         }
@@ -4871,7 +4880,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -4910,9 +4919,9 @@ class ImageApi
      * @param  string|null $tag The name of the new tag. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageTag'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return void
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageTag($name, $repo = null, $tag = null, string $contentType = self::contentTypes['imageTag'][0])
     {
@@ -4929,9 +4938,9 @@ class ImageApi
      * @param  string|null $tag The name of the new tag. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageTag'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     *@throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function imageTagWithHttpInfo($name, $repo = null, $tag = null, string $contentType = self::contentTypes['imageTag'][0])
     {
@@ -5012,8 +5021,8 @@ class ImageApi
      * @param  string|null $tag The name of the new tag. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageTag'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageTagAsync($name, $repo = null, $tag = null, string $contentType = self::contentTypes['imageTag'][0])
     {
@@ -5035,8 +5044,8 @@ class ImageApi
      * @param  string|null $tag The name of the new tag. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageTag'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
      */
     public function imageTagAsyncWithHttpInfo($name, $repo = null, $tag = null, string $contentType = self::contentTypes['imageTag'][0])
     {
@@ -5074,15 +5083,15 @@ class ImageApi
      * @param  string|null $tag The name of the new tag. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imageTag'] to see the possible values for this operation
      *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     * @return Request
      */
     public function imageTagRequest($name, $repo = null, $tag = null, string $contentType = self::contentTypes['imageTag'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $name when calling imageTag'
             );
         }
@@ -5151,7 +5160,7 @@ class ImageApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+                $httpBody = Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -5183,7 +5192,7 @@ class ImageApi
     /**
      * Create http client option
      *
-     * @throws \RuntimeException on file opening failure
+     * @throws RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -5192,7 +5201,7 @@ class ImageApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -5211,7 +5220,7 @@ class ImageApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
+                } catch (JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

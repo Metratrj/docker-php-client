@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * PortBinding Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class PortBinding implements ModelInterface, ArrayAccess, \JsonSerializable
+class PortBinding implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -317,7 +320,7 @@ class PortBinding implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setHostIp($host_ip)
     {
         if (is_null($host_ip)) {
-            throw new \InvalidArgumentException('non-nullable host_ip cannot be null');
+            throw new InvalidArgumentException('non-nullable host_ip cannot be null');
         }
         $this->container['host_ip'] = $host_ip;
 
@@ -344,7 +347,7 @@ class PortBinding implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setHostPort($host_port)
     {
         if (is_null($host_port)) {
-            throw new \InvalidArgumentException('non-nullable host_port cannot be null');
+            throw new InvalidArgumentException('non-nullable host_port cannot be null');
         }
         $this->container['host_port'] = $host_port;
 
@@ -369,7 +372,7 @@ class PortBinding implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -411,7 +414,7 @@ class PortBinding implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

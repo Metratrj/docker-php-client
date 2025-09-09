@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * MountPoint Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
+class MountPoint implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -391,11 +394,11 @@ class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setType($type)
     {
         if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+            throw new InvalidArgumentException('non-nullable type cannot be null');
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'type', must be one of '%s'",
                     $type,
@@ -428,7 +431,7 @@ class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+            throw new InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -455,7 +458,7 @@ class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSource($source)
     {
         if (is_null($source)) {
-            throw new \InvalidArgumentException('non-nullable source cannot be null');
+            throw new InvalidArgumentException('non-nullable source cannot be null');
         }
         $this->container['source'] = $source;
 
@@ -482,7 +485,7 @@ class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDestination($destination)
     {
         if (is_null($destination)) {
-            throw new \InvalidArgumentException('non-nullable destination cannot be null');
+            throw new InvalidArgumentException('non-nullable destination cannot be null');
         }
         $this->container['destination'] = $destination;
 
@@ -509,7 +512,7 @@ class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDriver($driver)
     {
         if (is_null($driver)) {
-            throw new \InvalidArgumentException('non-nullable driver cannot be null');
+            throw new InvalidArgumentException('non-nullable driver cannot be null');
         }
         $this->container['driver'] = $driver;
 
@@ -536,7 +539,7 @@ class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMode($mode)
     {
         if (is_null($mode)) {
-            throw new \InvalidArgumentException('non-nullable mode cannot be null');
+            throw new InvalidArgumentException('non-nullable mode cannot be null');
         }
         $this->container['mode'] = $mode;
 
@@ -563,7 +566,7 @@ class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setRw($rw)
     {
         if (is_null($rw)) {
-            throw new \InvalidArgumentException('non-nullable rw cannot be null');
+            throw new InvalidArgumentException('non-nullable rw cannot be null');
         }
         $this->container['rw'] = $rw;
 
@@ -590,7 +593,7 @@ class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setPropagation($propagation)
     {
         if (is_null($propagation)) {
-            throw new \InvalidArgumentException('non-nullable propagation cannot be null');
+            throw new InvalidArgumentException('non-nullable propagation cannot be null');
         }
         $this->container['propagation'] = $propagation;
 
@@ -615,7 +618,7 @@ class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -657,7 +660,7 @@ class MountPoint implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

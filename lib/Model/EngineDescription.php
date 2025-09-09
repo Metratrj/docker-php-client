@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * EngineDescription Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class EngineDescription implements ModelInterface, ArrayAccess, \JsonSerializable
+class EngineDescription implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -324,7 +327,7 @@ class EngineDescription implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setEngineVersion($engine_version)
     {
         if (is_null($engine_version)) {
-            throw new \InvalidArgumentException('non-nullable engine_version cannot be null');
+            throw new InvalidArgumentException('non-nullable engine_version cannot be null');
         }
         $this->container['engine_version'] = $engine_version;
 
@@ -351,7 +354,7 @@ class EngineDescription implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new \InvalidArgumentException('non-nullable labels cannot be null');
+            throw new InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -361,7 +364,7 @@ class EngineDescription implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets plugins
      *
-     * @return \OpenAPI\Client\Model\EngineDescriptionPluginsInner[]|null
+     * @return EngineDescriptionPluginsInner[]|null
      */
     public function getPlugins()
     {
@@ -371,14 +374,14 @@ class EngineDescription implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets plugins
      *
-     * @param \OpenAPI\Client\Model\EngineDescriptionPluginsInner[]|null $plugins plugins
+     * @param EngineDescriptionPluginsInner[]|null $plugins plugins
      *
      * @return self
      */
     public function setPlugins($plugins)
     {
         if (is_null($plugins)) {
-            throw new \InvalidArgumentException('non-nullable plugins cannot be null');
+            throw new InvalidArgumentException('non-nullable plugins cannot be null');
         }
         $this->container['plugins'] = $plugins;
 
@@ -403,7 +406,7 @@ class EngineDescription implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -445,7 +448,7 @@ class EngineDescription implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

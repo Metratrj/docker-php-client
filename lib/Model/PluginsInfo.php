@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * PluginsInfo Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class PluginsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class PluginsInfo implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -331,7 +334,7 @@ class PluginsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setVolume($volume)
     {
         if (is_null($volume)) {
-            throw new \InvalidArgumentException('non-nullable volume cannot be null');
+            throw new InvalidArgumentException('non-nullable volume cannot be null');
         }
         $this->container['volume'] = $volume;
 
@@ -358,7 +361,7 @@ class PluginsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setNetwork($network)
     {
         if (is_null($network)) {
-            throw new \InvalidArgumentException('non-nullable network cannot be null');
+            throw new InvalidArgumentException('non-nullable network cannot be null');
         }
         $this->container['network'] = $network;
 
@@ -385,7 +388,7 @@ class PluginsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAuthorization($authorization)
     {
         if (is_null($authorization)) {
-            throw new \InvalidArgumentException('non-nullable authorization cannot be null');
+            throw new InvalidArgumentException('non-nullable authorization cannot be null');
         }
         $this->container['authorization'] = $authorization;
 
@@ -412,7 +415,7 @@ class PluginsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLog($log)
     {
         if (is_null($log)) {
-            throw new \InvalidArgumentException('non-nullable log cannot be null');
+            throw new InvalidArgumentException('non-nullable log cannot be null');
         }
         $this->container['log'] = $log;
 
@@ -437,7 +440,7 @@ class PluginsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -479,7 +482,7 @@ class PluginsInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

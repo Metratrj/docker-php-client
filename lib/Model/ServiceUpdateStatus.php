@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ServiceUpdateStatus Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ServiceUpdateStatus implements ModelInterface, ArrayAccess, \JsonSerializable
+class ServiceUpdateStatus implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -357,11 +360,11 @@ class ServiceUpdateStatus implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setState($state)
     {
         if (is_null($state)) {
-            throw new \InvalidArgumentException('non-nullable state cannot be null');
+            throw new InvalidArgumentException('non-nullable state cannot be null');
         }
         $allowedValues = $this->getStateAllowableValues();
         if (!in_array($state, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'state', must be one of '%s'",
                     $state,
@@ -394,7 +397,7 @@ class ServiceUpdateStatus implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setStartedAt($started_at)
     {
         if (is_null($started_at)) {
-            throw new \InvalidArgumentException('non-nullable started_at cannot be null');
+            throw new InvalidArgumentException('non-nullable started_at cannot be null');
         }
         $this->container['started_at'] = $started_at;
 
@@ -421,7 +424,7 @@ class ServiceUpdateStatus implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setCompletedAt($completed_at)
     {
         if (is_null($completed_at)) {
-            throw new \InvalidArgumentException('non-nullable completed_at cannot be null');
+            throw new InvalidArgumentException('non-nullable completed_at cannot be null');
         }
         $this->container['completed_at'] = $completed_at;
 
@@ -448,7 +451,7 @@ class ServiceUpdateStatus implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setMessage($message)
     {
         if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
+            throw new InvalidArgumentException('non-nullable message cannot be null');
         }
         $this->container['message'] = $message;
 
@@ -473,7 +476,7 @@ class ServiceUpdateStatus implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -515,7 +518,7 @@ class ServiceUpdateStatus implements ModelInterface, ArrayAccess, \JsonSerializa
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * RestartPolicy Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class RestartPolicy implements ModelInterface, ArrayAccess, \JsonSerializable
+class RestartPolicy implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -347,11 +350,11 @@ class RestartPolicy implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+            throw new InvalidArgumentException('non-nullable name cannot be null');
         }
         $allowedValues = $this->getNameAllowableValues();
         if (!in_array($name, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'name', must be one of '%s'",
                     $name,
@@ -384,7 +387,7 @@ class RestartPolicy implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMaximumRetryCount($maximum_retry_count)
     {
         if (is_null($maximum_retry_count)) {
-            throw new \InvalidArgumentException('non-nullable maximum_retry_count cannot be null');
+            throw new InvalidArgumentException('non-nullable maximum_retry_count cannot be null');
         }
         $this->container['maximum_retry_count'] = $maximum_retry_count;
 
@@ -409,7 +412,7 @@ class RestartPolicy implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -451,7 +454,7 @@ class RestartPolicy implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

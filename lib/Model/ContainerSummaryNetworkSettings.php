@@ -28,8 +28,11 @@
 
 namespace OpenAPI\Client\Model;
 
-use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use ArrayAccess;
+use InvalidArgumentException;
+use JsonSerializable;
+use OpenAPI\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * ContainerSummaryNetworkSettings Class Doc Comment
@@ -39,9 +42,9 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
+ * @implements ArrayAccess<string, mixed>
  */
-class ContainerSummaryNetworkSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class ContainerSummaryNetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -293,7 +296,7 @@ class ContainerSummaryNetworkSettings implements ModelInterface, ArrayAccess, \J
     /**
      * Gets networks
      *
-     * @return array<string,\OpenAPI\Client\Model\EndpointSettings>|null
+     * @return array<string,EndpointSettings>|null
      */
     public function getNetworks()
     {
@@ -303,14 +306,14 @@ class ContainerSummaryNetworkSettings implements ModelInterface, ArrayAccess, \J
     /**
      * Sets networks
      *
-     * @param array<string,\OpenAPI\Client\Model\EndpointSettings>|null $networks Summary of network-settings for each network the container is attached to.
+     * @param array<string,EndpointSettings>|null $networks Summary of network-settings for each network the container is attached to.
      *
      * @return self
      */
     public function setNetworks($networks)
     {
         if (is_null($networks)) {
-            throw new \InvalidArgumentException('non-nullable networks cannot be null');
+            throw new InvalidArgumentException('non-nullable networks cannot be null');
         }
         $this->container['networks'] = $networks;
 
@@ -335,7 +338,7 @@ class ContainerSummaryNetworkSettings implements ModelInterface, ArrayAccess, \J
      *
      * @return mixed|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -377,7 +380,7 @@ class ContainerSummaryNetworkSettings implements ModelInterface, ArrayAccess, \J
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);
