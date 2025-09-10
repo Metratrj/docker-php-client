@@ -417,7 +417,7 @@ class ClusterVolumeSpecAccessModeSecretsInner implements ModelInterface, ArrayAc
     #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -443,5 +443,3 @@ class ClusterVolumeSpecAccessModeSecretsInner implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

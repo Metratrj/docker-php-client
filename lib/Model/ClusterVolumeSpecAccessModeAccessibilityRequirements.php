@@ -417,7 +417,7 @@ class ClusterVolumeSpecAccessModeAccessibilityRequirements implements ModelInter
     #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -443,5 +443,3 @@ class ClusterVolumeSpecAccessModeAccessibilityRequirements implements ModelInter
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
