@@ -545,7 +545,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('image_data', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -579,7 +579,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('attestation_data', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -652,7 +652,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -678,5 +678,3 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -383,7 +383,7 @@ class ContainerSummaryNetworkSettings implements ModelInterface, ArrayAccess, Js
     #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -409,5 +409,3 @@ class ContainerSummaryNetworkSettings implements ModelInterface, ArrayAccess, Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

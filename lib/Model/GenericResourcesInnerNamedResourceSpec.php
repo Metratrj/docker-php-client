@@ -416,7 +416,7 @@ class GenericResourcesInnerNamedResourceSpec implements ModelInterface, ArrayAcc
     #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -442,5 +442,3 @@ class GenericResourcesInnerNamedResourceSpec implements ModelInterface, ArrayAcc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

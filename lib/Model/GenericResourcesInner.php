@@ -416,7 +416,7 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializ
     #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -442,5 +442,3 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

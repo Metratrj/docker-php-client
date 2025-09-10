@@ -316,7 +316,7 @@ class ImageInspectMetadata implements ModelInterface, ArrayAccess, JsonSerializa
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('last_tag_time', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -389,7 +389,7 @@ class ImageInspectMetadata implements ModelInterface, ArrayAccess, JsonSerializa
     #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -415,5 +415,3 @@ class ImageInspectMetadata implements ModelInterface, ArrayAccess, JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

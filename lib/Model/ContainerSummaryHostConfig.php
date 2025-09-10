@@ -351,7 +351,7 @@ class ContainerSummaryHostConfig implements ModelInterface, ArrayAccess, JsonSer
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('annotations', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -424,7 +424,7 @@ class ContainerSummaryHostConfig implements ModelInterface, ArrayAccess, JsonSer
     #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -450,5 +450,3 @@ class ContainerSummaryHostConfig implements ModelInterface, ArrayAccess, JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

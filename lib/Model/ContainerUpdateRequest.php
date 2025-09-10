@@ -1213,7 +1213,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('init', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1247,7 +1247,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
             $index = array_search('pids_limit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1482,7 +1482,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1508,5 +1508,3 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
