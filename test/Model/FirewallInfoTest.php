@@ -1,4 +1,5 @@
 <?php
+
 /**
  * FirewallInfoTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class FirewallInfoTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

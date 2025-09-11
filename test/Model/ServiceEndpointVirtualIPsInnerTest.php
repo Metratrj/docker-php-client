@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceEndpointVirtualIPsInnerTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ServiceEndpointVirtualIPsInnerTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

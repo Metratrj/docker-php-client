@@ -1,4 +1,5 @@
 <?php
+
 /**
  * IPAMConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class IPAMConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

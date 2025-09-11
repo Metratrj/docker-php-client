@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageIDTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ImageIDTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

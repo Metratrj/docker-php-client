@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SwarmSpecEncryptionConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SwarmSpecEncryptionConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

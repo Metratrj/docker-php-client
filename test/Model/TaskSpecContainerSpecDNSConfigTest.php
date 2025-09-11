@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecContainerSpecDNSConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TaskSpecContainerSpecDNSConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

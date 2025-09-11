@@ -512,5 +512,3 @@ class ClusterVolumePublishStatusInner implements ModelInterface, ArrayAccess, \J
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

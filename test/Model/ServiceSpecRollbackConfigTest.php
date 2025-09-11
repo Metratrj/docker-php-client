@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceSpecRollbackConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ServiceSpecRollbackConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

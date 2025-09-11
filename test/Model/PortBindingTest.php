@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PortBindingTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PortBindingTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

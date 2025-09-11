@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PluginDeviceTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PluginDeviceTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

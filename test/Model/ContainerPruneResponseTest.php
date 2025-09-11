@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerPruneResponseTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContainerPruneResponseTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

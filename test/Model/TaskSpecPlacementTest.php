@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecPlacementTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TaskSpecPlacementTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

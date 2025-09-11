@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerUpdateRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContainerUpdateRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

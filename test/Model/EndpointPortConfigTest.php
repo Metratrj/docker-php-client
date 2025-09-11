@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EndpointPortConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class EndpointPortConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

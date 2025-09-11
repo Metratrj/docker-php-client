@@ -1,4 +1,5 @@
 <?php
+
 /**
  * IndexInfoTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class IndexInfoTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

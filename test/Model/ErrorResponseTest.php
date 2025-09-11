@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ErrorResponseTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ErrorResponseTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

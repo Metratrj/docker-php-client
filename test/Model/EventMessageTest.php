@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EventMessageTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class EventMessageTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

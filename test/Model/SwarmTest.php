@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SwarmTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SwarmTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

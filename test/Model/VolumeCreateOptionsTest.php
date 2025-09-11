@@ -1,4 +1,5 @@
 <?php
+
 /**
  * VolumeCreateOptionsTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class VolumeCreateOptionsTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

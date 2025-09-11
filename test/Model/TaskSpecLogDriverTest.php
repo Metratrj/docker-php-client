@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecLogDriverTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TaskSpecLogDriverTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

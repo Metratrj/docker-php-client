@@ -1,4 +1,5 @@
 <?php
+
 /**
  * HostConfigAllOfLogConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class HostConfigAllOfLogConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

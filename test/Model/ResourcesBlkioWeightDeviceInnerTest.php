@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResourcesBlkioWeightDeviceInnerTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ResourcesBlkioWeightDeviceInnerTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

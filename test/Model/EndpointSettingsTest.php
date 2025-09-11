@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EndpointSettingsTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class EndpointSettingsTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

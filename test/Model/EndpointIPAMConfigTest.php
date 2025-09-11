@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EndpointIPAMConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class EndpointIPAMConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

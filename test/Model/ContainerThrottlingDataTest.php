@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerThrottlingDataTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContainerThrottlingDataTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

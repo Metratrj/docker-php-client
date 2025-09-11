@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NetworkSettingsTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class NetworkSettingsTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

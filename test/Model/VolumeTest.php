@@ -1,4 +1,5 @@
 <?php
+
 /**
  * VolumeTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class VolumeTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

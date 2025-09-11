@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerInspectResponseTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContainerInspectResponseTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * RegistryServiceConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class RegistryServiceConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerSummaryHostConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContainerSummaryHostConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

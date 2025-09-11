@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ClusterVolumePublishStatusInnerTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ClusterVolumePublishStatusInnerTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

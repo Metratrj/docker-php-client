@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ReachabilityTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ReachabilityTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

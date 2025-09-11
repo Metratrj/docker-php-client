@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SystemAuthResponseTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SystemAuthResponseTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

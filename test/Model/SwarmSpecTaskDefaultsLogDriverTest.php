@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SwarmSpecTaskDefaultsLogDriverTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SwarmSpecTaskDefaultsLogDriverTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecPlacementPreferencesInnerSpreadTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TaskSpecPlacementPreferencesInnerSpreadTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

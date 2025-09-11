@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageInspectRootFSTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ImageInspectRootFSTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

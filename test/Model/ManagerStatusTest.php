@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ManagerStatusTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ManagerStatusTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

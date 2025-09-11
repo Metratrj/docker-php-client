@@ -543,5 +543,3 @@ class TaskSpecContainerSpecPrivileges implements ModelInterface, ArrayAccess, \J
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

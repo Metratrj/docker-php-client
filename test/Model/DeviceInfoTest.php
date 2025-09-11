@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DeviceInfoTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class DeviceInfoTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResourcesTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ResourcesTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

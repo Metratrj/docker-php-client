@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MountVolumeOptionsDriverConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class MountVolumeOptionsDriverConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

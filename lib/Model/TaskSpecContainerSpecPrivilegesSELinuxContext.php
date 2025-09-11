@@ -543,5 +543,3 @@ class TaskSpecContainerSpecPrivilegesSELinuxContext implements ModelInterface, A
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

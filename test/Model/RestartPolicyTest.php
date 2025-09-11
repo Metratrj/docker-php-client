@@ -1,4 +1,5 @@
 <?php
+
 /**
  * RestartPolicyTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class RestartPolicyTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

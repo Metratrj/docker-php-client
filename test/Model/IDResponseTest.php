@@ -1,4 +1,5 @@
 <?php
+
 /**
  * IDResponseTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class IDResponseTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

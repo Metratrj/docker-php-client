@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResourceObjectTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ResourceObjectTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

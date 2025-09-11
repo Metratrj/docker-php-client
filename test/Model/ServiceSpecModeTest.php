@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceSpecModeTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ServiceSpecModeTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ExecConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ExecConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

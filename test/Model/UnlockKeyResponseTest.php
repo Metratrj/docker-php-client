@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UnlockKeyResponseTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class UnlockKeyResponseTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

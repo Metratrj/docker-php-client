@@ -440,5 +440,3 @@ class GenericResourcesInnerDiscreteResourceSpec implements ModelInterface, Array
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -542,5 +542,3 @@ class ImageSearchResponseItem implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

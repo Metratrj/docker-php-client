@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BuildInfoTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class BuildInfoTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

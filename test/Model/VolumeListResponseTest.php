@@ -1,4 +1,5 @@
 <?php
+
 /**
  * VolumeListResponseTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class VolumeListResponseTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SecretCreateRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SecretCreateRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

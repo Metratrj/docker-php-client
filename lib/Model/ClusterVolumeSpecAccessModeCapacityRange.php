@@ -441,5 +441,3 @@ class ClusterVolumeSpecAccessModeCapacityRange implements ModelInterface, ArrayA
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

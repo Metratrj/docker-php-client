@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EngineDescriptionTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class EngineDescriptionTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

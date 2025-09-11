@@ -1,4 +1,5 @@
 <?php
+
 /**
  * GenericResourcesInnerNamedResourceSpecTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class GenericResourcesInnerNamedResourceSpecTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

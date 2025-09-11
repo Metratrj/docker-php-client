@@ -448,5 +448,3 @@ class ContainerSummaryHostConfig implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageManifestSummarySizeTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ImageManifestSummarySizeTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

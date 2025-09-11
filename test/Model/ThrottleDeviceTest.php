@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ThrottleDeviceTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ThrottleDeviceTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

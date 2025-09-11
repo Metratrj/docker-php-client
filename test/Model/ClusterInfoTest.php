@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ClusterInfoTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ClusterInfoTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

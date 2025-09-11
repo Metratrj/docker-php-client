@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PushImageInfoTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PushImageInfoTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

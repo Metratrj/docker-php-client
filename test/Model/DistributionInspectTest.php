@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DistributionInspectTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class DistributionInspectTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

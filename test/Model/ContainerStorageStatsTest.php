@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerStorageStatsTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContainerStorageStatsTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

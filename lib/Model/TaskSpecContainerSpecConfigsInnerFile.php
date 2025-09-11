@@ -509,5 +509,3 @@ class TaskSpecContainerSpecConfigsInnerFile implements ModelInterface, ArrayAcce
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -406,5 +406,3 @@ class TaskSpecPlacementPreferencesInnerSpread implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

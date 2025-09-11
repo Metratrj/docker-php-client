@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ConfigReferenceTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ConfigReferenceTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

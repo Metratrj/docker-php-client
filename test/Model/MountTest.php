@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MountTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class MountTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

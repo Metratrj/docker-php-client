@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SystemInfoDefaultAddressPoolsInnerTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SystemInfoDefaultAddressPoolsInnerTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

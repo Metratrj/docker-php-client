@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SystemVersionPlatformTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SystemVersionPlatformTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

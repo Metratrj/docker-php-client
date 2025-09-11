@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PortStatusTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PortStatusTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

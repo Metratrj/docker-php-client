@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BuildCacheTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class BuildCacheTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

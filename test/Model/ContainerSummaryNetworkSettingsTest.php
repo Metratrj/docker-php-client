@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerSummaryNetworkSettingsTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContainerSummaryNetworkSettingsTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

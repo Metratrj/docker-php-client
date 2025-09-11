@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EventActorTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class EventActorTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

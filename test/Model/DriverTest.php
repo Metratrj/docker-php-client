@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DriverTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class DriverTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

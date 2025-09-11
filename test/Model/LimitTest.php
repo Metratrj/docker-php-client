@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LimitTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class LimitTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

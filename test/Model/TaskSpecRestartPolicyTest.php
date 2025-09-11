@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecRestartPolicyTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TaskSpecRestartPolicyTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

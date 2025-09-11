@@ -28,6 +28,7 @@
  */
 
 namespace OpenAPI\Client\Model;
+
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
@@ -72,5 +73,3 @@ class LocalNodeState
         ];
     }
 }
-
-

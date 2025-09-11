@@ -441,5 +441,3 @@ class TaskSpecContainerSpecPrivilegesAppArmor implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

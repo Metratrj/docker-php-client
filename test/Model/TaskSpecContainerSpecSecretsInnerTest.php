@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecContainerSpecSecretsInnerTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TaskSpecContainerSpecSecretsInnerTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerBlkioStatEntryTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContainerBlkioStatEntryTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

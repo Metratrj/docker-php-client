@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskStatusTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TaskStatusTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

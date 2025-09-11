@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SystemDataUsageResponseTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SystemDataUsageResponseTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

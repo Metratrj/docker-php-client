@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecContainerSpecPrivilegesSELinuxContextTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TaskSpecContainerSpecPrivilegesSELinuxContextTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageInspectMetadataTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ImageInspectMetadataTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

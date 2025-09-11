@@ -1,4 +1,5 @@
 <?php
+
 /**
  * OCIPlatformTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class OCIPlatformTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

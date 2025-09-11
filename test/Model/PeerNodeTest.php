@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PeerNodeTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PeerNodeTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CreateImageInfoTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CreateImageInfoTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

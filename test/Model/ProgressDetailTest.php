@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ProgressDetailTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ProgressDetailTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

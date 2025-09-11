@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NodeDescriptionTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class NodeDescriptionTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

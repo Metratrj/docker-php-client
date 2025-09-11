@@ -477,5 +477,3 @@ class TaskSpecContainerSpecPrivilegesSeccomp implements ModelInterface, ArrayAcc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

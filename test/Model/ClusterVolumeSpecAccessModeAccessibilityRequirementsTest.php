@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ClusterVolumeSpecAccessModeAccessibilityRequirementsTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ClusterVolumeSpecAccessModeAccessibilityRequirementsTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

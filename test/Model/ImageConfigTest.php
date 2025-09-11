@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ImageConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

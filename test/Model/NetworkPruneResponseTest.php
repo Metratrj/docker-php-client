@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NetworkPruneResponseTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class NetworkPruneResponseTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

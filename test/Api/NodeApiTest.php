@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NodeApiTest
  * PHP version 8.1
@@ -42,7 +43,6 @@ use PHPUnit\Framework\TestCase;
  */
 class NodeApiTest extends TestCase
 {
-
     /**
      * Setup before running any test cases
      */

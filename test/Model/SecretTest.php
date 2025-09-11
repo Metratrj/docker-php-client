@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SecretTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SecretTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

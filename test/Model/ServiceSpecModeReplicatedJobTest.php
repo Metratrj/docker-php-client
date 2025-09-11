@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceSpecModeReplicatedJobTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ServiceSpecModeReplicatedJobTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

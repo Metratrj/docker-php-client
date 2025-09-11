@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PlatformTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PlatformTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

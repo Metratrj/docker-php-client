@@ -16,13 +16,13 @@ return $config->setRules([
         '@PSR12' => true,
         'phpdoc_order' => true,
         'array_syntax' => [ 'syntax' => 'short' ],
-        'strict_comparison' => true,
-        'strict_param' => true,
+        'strict_comparison' => false,
+        'strict_param' => false,
         'no_trailing_whitespace' => false,
         'no_trailing_whitespace_in_comment' => false,
         'braces' => false,
-        'single_blank_line_at_eof' => false,
-        'blank_line_after_namespace' => false,
+        'single_blank_line_at_eof' => true,
+        'blank_line_after_namespace' => true,
         'no_leading_import_slash' => false,
     ])
     ->setFinder($finder)

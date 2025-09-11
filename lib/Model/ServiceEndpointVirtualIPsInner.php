@@ -440,5 +440,3 @@ class ServiceEndpointVirtualIPsInner implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

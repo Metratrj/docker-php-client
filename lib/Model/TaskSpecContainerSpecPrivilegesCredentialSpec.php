@@ -475,5 +475,3 @@ class TaskSpecContainerSpecPrivilegesCredentialSpec implements ModelInterface, A
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

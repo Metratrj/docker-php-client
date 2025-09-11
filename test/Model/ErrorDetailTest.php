@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ErrorDetailTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ErrorDetailTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

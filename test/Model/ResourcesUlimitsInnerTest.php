@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResourcesUlimitsInnerTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ResourcesUlimitsInnerTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

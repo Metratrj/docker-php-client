@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NetworkDisconnectRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class NetworkDisconnectRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

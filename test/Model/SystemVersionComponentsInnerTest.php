@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SystemVersionComponentsInnerTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SystemVersionComponentsInnerTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

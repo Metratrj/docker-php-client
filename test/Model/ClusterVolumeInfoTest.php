@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ClusterVolumeInfoTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ClusterVolumeInfoTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

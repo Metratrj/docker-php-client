@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageInspectTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ImageInspectTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

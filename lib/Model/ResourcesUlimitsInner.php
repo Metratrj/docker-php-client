@@ -474,5 +474,3 @@ class ResourcesUlimitsInner implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerSummaryTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContainerSummaryTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

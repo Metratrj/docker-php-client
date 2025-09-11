@@ -1,4 +1,5 @@
 <?php
+
 /**
  * HealthTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class HealthTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ProcessConfigTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ProcessConfigTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

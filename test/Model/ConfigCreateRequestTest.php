@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ConfigCreateRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ConfigCreateRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

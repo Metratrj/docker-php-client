@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PluginConfigUserTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class PluginConfigUserTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

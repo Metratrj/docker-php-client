@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceUpdateRequestTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ServiceUpdateRequestTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */

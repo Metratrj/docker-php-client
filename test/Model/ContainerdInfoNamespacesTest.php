@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerdInfoNamespacesTest
  *
@@ -41,7 +42,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContainerdInfoNamespacesTest extends TestCase
 {
-
     /**
      * Setup before running any test case
      */
