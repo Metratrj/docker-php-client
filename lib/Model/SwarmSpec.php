@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SwarmSpec
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * SwarmSpec Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
+class SwarmSpec implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -362,7 +360,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new InvalidArgumentException('non-nullable name cannot be null');
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -389,7 +387,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new InvalidArgumentException('non-nullable labels cannot be null');
+            throw new \InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -399,7 +397,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets orchestration
      *
-     * @return SwarmSpecOrchestration|null
+     * @return \OpenAPI\Client\Model\SwarmSpecOrchestration|null
      */
     public function getOrchestration()
     {
@@ -409,7 +407,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets orchestration
      *
-     * @param SwarmSpecOrchestration|null $orchestration orchestration
+     * @param \OpenAPI\Client\Model\SwarmSpecOrchestration|null $orchestration orchestration
      *
      * @return self
      */
@@ -419,8 +417,8 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'orchestration');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('orchestration', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('orchestration', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -433,7 +431,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets raft
      *
-     * @return SwarmSpecRaft|null
+     * @return \OpenAPI\Client\Model\SwarmSpecRaft|null
      */
     public function getRaft()
     {
@@ -443,14 +441,14 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets raft
      *
-     * @param SwarmSpecRaft|null $raft raft
+     * @param \OpenAPI\Client\Model\SwarmSpecRaft|null $raft raft
      *
      * @return self
      */
     public function setRaft($raft)
     {
         if (is_null($raft)) {
-            throw new InvalidArgumentException('non-nullable raft cannot be null');
+            throw new \InvalidArgumentException('non-nullable raft cannot be null');
         }
         $this->container['raft'] = $raft;
 
@@ -460,7 +458,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets dispatcher
      *
-     * @return SwarmSpecDispatcher|null
+     * @return \OpenAPI\Client\Model\SwarmSpecDispatcher|null
      */
     public function getDispatcher()
     {
@@ -470,7 +468,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets dispatcher
      *
-     * @param SwarmSpecDispatcher|null $dispatcher dispatcher
+     * @param \OpenAPI\Client\Model\SwarmSpecDispatcher|null $dispatcher dispatcher
      *
      * @return self
      */
@@ -480,8 +478,8 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'dispatcher');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('dispatcher', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('dispatcher', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -494,7 +492,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets ca_config
      *
-     * @return SwarmSpecCAConfig|null
+     * @return \OpenAPI\Client\Model\SwarmSpecCAConfig|null
      */
     public function getCaConfig()
     {
@@ -504,7 +502,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets ca_config
      *
-     * @param SwarmSpecCAConfig|null $ca_config ca_config
+     * @param \OpenAPI\Client\Model\SwarmSpecCAConfig|null $ca_config ca_config
      *
      * @return self
      */
@@ -514,8 +512,8 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'ca_config');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('ca_config', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('ca_config', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -528,7 +526,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets encryption_config
      *
-     * @return SwarmSpecEncryptionConfig|null
+     * @return \OpenAPI\Client\Model\SwarmSpecEncryptionConfig|null
      */
     public function getEncryptionConfig()
     {
@@ -538,14 +536,14 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets encryption_config
      *
-     * @param SwarmSpecEncryptionConfig|null $encryption_config encryption_config
+     * @param \OpenAPI\Client\Model\SwarmSpecEncryptionConfig|null $encryption_config encryption_config
      *
      * @return self
      */
     public function setEncryptionConfig($encryption_config)
     {
         if (is_null($encryption_config)) {
-            throw new InvalidArgumentException('non-nullable encryption_config cannot be null');
+            throw new \InvalidArgumentException('non-nullable encryption_config cannot be null');
         }
         $this->container['encryption_config'] = $encryption_config;
 
@@ -555,7 +553,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets task_defaults
      *
-     * @return SwarmSpecTaskDefaults|null
+     * @return \OpenAPI\Client\Model\SwarmSpecTaskDefaults|null
      */
     public function getTaskDefaults()
     {
@@ -565,14 +563,14 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets task_defaults
      *
-     * @param SwarmSpecTaskDefaults|null $task_defaults task_defaults
+     * @param \OpenAPI\Client\Model\SwarmSpecTaskDefaults|null $task_defaults task_defaults
      *
      * @return self
      */
     public function setTaskDefaults($task_defaults)
     {
         if (is_null($task_defaults)) {
-            throw new InvalidArgumentException('non-nullable task_defaults cannot be null');
+            throw new \InvalidArgumentException('non-nullable task_defaults cannot be null');
         }
         $this->container['task_defaults'] = $task_defaults;
 
@@ -597,7 +595,7 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -639,10 +637,10 @@ class SwarmSpec implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

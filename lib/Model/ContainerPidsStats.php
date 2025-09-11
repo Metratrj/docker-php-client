@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerPidsStats
  *
@@ -28,10 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerPidsStats Class Doc Comment
@@ -41,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerPidsStats implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerPidsStats implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -322,7 +321,7 @@ class ContainerPidsStats implements ModelInterface, ArrayAccess, JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'current');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('current', $nullablesSetToNull);
+            $index = array_search('current', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -356,7 +355,7 @@ class ContainerPidsStats implements ModelInterface, ArrayAccess, JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('limit', $nullablesSetToNull);
+            $index = array_search('limit', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -385,7 +384,7 @@ class ContainerPidsStats implements ModelInterface, ArrayAccess, JsonSerializabl
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -427,7 +426,7 @@ class ContainerPidsStats implements ModelInterface, ArrayAccess, JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -456,3 +455,5 @@ class ContainerPidsStats implements ModelInterface, ArrayAccess, JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

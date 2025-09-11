@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerUpdateResponse
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerUpdateResponse Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerUpdateResponse implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerUpdateResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -313,7 +311,7 @@ class ContainerUpdateResponse implements ModelInterface, ArrayAccess, JsonSerial
     public function setWarnings($warnings)
     {
         if (is_null($warnings)) {
-            throw new InvalidArgumentException('non-nullable warnings cannot be null');
+            throw new \InvalidArgumentException('non-nullable warnings cannot be null');
         }
         $this->container['warnings'] = $warnings;
 
@@ -338,7 +336,7 @@ class ContainerUpdateResponse implements ModelInterface, ArrayAccess, JsonSerial
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -380,7 +378,7 @@ class ContainerUpdateResponse implements ModelInterface, ArrayAccess, JsonSerial
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -409,3 +407,5 @@ class ContainerUpdateResponse implements ModelInterface, ArrayAccess, JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

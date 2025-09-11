@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SecretSpec
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * SecretSpec Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class SecretSpec implements ModelInterface, ArrayAccess, JsonSerializable
+class SecretSpec implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -340,7 +338,7 @@ class SecretSpec implements ModelInterface, ArrayAccess, JsonSerializable
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new InvalidArgumentException('non-nullable name cannot be null');
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -367,7 +365,7 @@ class SecretSpec implements ModelInterface, ArrayAccess, JsonSerializable
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new InvalidArgumentException('non-nullable labels cannot be null');
+            throw new \InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -394,7 +392,7 @@ class SecretSpec implements ModelInterface, ArrayAccess, JsonSerializable
     public function setData($data)
     {
         if (is_null($data)) {
-            throw new InvalidArgumentException('non-nullable data cannot be null');
+            throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
         $this->container['data'] = $data;
 
@@ -404,7 +402,7 @@ class SecretSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets driver
      *
-     * @return Driver|null
+     * @return \OpenAPI\Client\Model\Driver|null
      */
     public function getDriver()
     {
@@ -414,14 +412,14 @@ class SecretSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets driver
      *
-     * @param Driver|null $driver driver
+     * @param \OpenAPI\Client\Model\Driver|null $driver driver
      *
      * @return self
      */
     public function setDriver($driver)
     {
         if (is_null($driver)) {
-            throw new InvalidArgumentException('non-nullable driver cannot be null');
+            throw new \InvalidArgumentException('non-nullable driver cannot be null');
         }
         $this->container['driver'] = $driver;
 
@@ -431,7 +429,7 @@ class SecretSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets templating
      *
-     * @return Driver|null
+     * @return \OpenAPI\Client\Model\Driver|null
      */
     public function getTemplating()
     {
@@ -441,14 +439,14 @@ class SecretSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets templating
      *
-     * @param Driver|null $templating templating
+     * @param \OpenAPI\Client\Model\Driver|null $templating templating
      *
      * @return self
      */
     public function setTemplating($templating)
     {
         if (is_null($templating)) {
-            throw new InvalidArgumentException('non-nullable templating cannot be null');
+            throw new \InvalidArgumentException('non-nullable templating cannot be null');
         }
         $this->container['templating'] = $templating;
 
@@ -473,7 +471,7 @@ class SecretSpec implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -515,10 +513,10 @@ class SecretSpec implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

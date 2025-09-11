@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceSpecUpdateConfig
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ServiceSpecUpdateConfig Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ServiceSpecUpdateConfig implements ModelInterface, ArrayAccess, JsonSerializable
+class ServiceSpecUpdateConfig implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -398,7 +396,7 @@ class ServiceSpecUpdateConfig implements ModelInterface, ArrayAccess, JsonSerial
     public function setParallelism($parallelism)
     {
         if (is_null($parallelism)) {
-            throw new InvalidArgumentException('non-nullable parallelism cannot be null');
+            throw new \InvalidArgumentException('non-nullable parallelism cannot be null');
         }
         $this->container['parallelism'] = $parallelism;
 
@@ -425,7 +423,7 @@ class ServiceSpecUpdateConfig implements ModelInterface, ArrayAccess, JsonSerial
     public function setDelay($delay)
     {
         if (is_null($delay)) {
-            throw new InvalidArgumentException('non-nullable delay cannot be null');
+            throw new \InvalidArgumentException('non-nullable delay cannot be null');
         }
         $this->container['delay'] = $delay;
 
@@ -452,11 +450,11 @@ class ServiceSpecUpdateConfig implements ModelInterface, ArrayAccess, JsonSerial
     public function setFailureAction($failure_action)
     {
         if (is_null($failure_action)) {
-            throw new InvalidArgumentException('non-nullable failure_action cannot be null');
+            throw new \InvalidArgumentException('non-nullable failure_action cannot be null');
         }
         $allowedValues = $this->getFailureActionAllowableValues();
         if (!in_array($failure_action, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'failure_action', must be one of '%s'",
                     $failure_action,
@@ -489,7 +487,7 @@ class ServiceSpecUpdateConfig implements ModelInterface, ArrayAccess, JsonSerial
     public function setMonitor($monitor)
     {
         if (is_null($monitor)) {
-            throw new InvalidArgumentException('non-nullable monitor cannot be null');
+            throw new \InvalidArgumentException('non-nullable monitor cannot be null');
         }
         $this->container['monitor'] = $monitor;
 
@@ -516,7 +514,7 @@ class ServiceSpecUpdateConfig implements ModelInterface, ArrayAccess, JsonSerial
     public function setMaxFailureRatio($max_failure_ratio)
     {
         if (is_null($max_failure_ratio)) {
-            throw new InvalidArgumentException('non-nullable max_failure_ratio cannot be null');
+            throw new \InvalidArgumentException('non-nullable max_failure_ratio cannot be null');
         }
         $this->container['max_failure_ratio'] = $max_failure_ratio;
 
@@ -543,11 +541,11 @@ class ServiceSpecUpdateConfig implements ModelInterface, ArrayAccess, JsonSerial
     public function setOrder($order)
     {
         if (is_null($order)) {
-            throw new InvalidArgumentException('non-nullable order cannot be null');
+            throw new \InvalidArgumentException('non-nullable order cannot be null');
         }
         $allowedValues = $this->getOrderAllowableValues();
         if (!in_array($order, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'order', must be one of '%s'",
                     $order,
@@ -578,7 +576,7 @@ class ServiceSpecUpdateConfig implements ModelInterface, ArrayAccess, JsonSerial
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -620,10 +618,10 @@ class ServiceSpecUpdateConfig implements ModelInterface, ArrayAccess, JsonSerial
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

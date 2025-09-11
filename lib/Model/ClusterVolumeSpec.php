@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ClusterVolumeSpec
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ClusterVolumeSpec Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ClusterVolumeSpec implements ModelInterface, ArrayAccess, JsonSerializable
+class ClusterVolumeSpec implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -320,7 +318,7 @@ class ClusterVolumeSpec implements ModelInterface, ArrayAccess, JsonSerializable
     public function setGroup($group)
     {
         if (is_null($group)) {
-            throw new InvalidArgumentException('non-nullable group cannot be null');
+            throw new \InvalidArgumentException('non-nullable group cannot be null');
         }
         $this->container['group'] = $group;
 
@@ -330,7 +328,7 @@ class ClusterVolumeSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets access_mode
      *
-     * @return ClusterVolumeSpecAccessMode|null
+     * @return \OpenAPI\Client\Model\ClusterVolumeSpecAccessMode|null
      */
     public function getAccessMode()
     {
@@ -340,14 +338,14 @@ class ClusterVolumeSpec implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets access_mode
      *
-     * @param ClusterVolumeSpecAccessMode|null $access_mode access_mode
+     * @param \OpenAPI\Client\Model\ClusterVolumeSpecAccessMode|null $access_mode access_mode
      *
      * @return self
      */
     public function setAccessMode($access_mode)
     {
         if (is_null($access_mode)) {
-            throw new InvalidArgumentException('non-nullable access_mode cannot be null');
+            throw new \InvalidArgumentException('non-nullable access_mode cannot be null');
         }
         $this->container['access_mode'] = $access_mode;
 
@@ -372,7 +370,7 @@ class ClusterVolumeSpec implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -414,7 +412,7 @@ class ClusterVolumeSpec implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -443,3 +441,5 @@ class ClusterVolumeSpec implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

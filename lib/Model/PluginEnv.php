@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PluginEnv
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * PluginEnv Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class PluginEnv implements ModelInterface, ArrayAccess, JsonSerializable
+class PluginEnv implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -345,7 +343,7 @@ class PluginEnv implements ModelInterface, ArrayAccess, JsonSerializable
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new InvalidArgumentException('non-nullable name cannot be null');
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -372,7 +370,7 @@ class PluginEnv implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDescription($description)
     {
         if (is_null($description)) {
-            throw new InvalidArgumentException('non-nullable description cannot be null');
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
 
@@ -399,7 +397,7 @@ class PluginEnv implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSettable($settable)
     {
         if (is_null($settable)) {
-            throw new InvalidArgumentException('non-nullable settable cannot be null');
+            throw new \InvalidArgumentException('non-nullable settable cannot be null');
         }
         $this->container['settable'] = $settable;
 
@@ -426,7 +424,7 @@ class PluginEnv implements ModelInterface, ArrayAccess, JsonSerializable
     public function setValue($value)
     {
         if (is_null($value)) {
-            throw new InvalidArgumentException('non-nullable value cannot be null');
+            throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
         $this->container['value'] = $value;
 
@@ -451,7 +449,7 @@ class PluginEnv implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -493,10 +491,10 @@ class PluginEnv implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

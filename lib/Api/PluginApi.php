@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PluginApi
  * PHP version 8.1
@@ -31,16 +32,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Utils;
-use InvalidArgumentException;
-use JsonException;
-use OpenAPI\Client\Model\ErrorResponse;
-use OpenAPI\Client\Model\Plugin;
-use OpenAPI\Client\Model\PluginPrivilege;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -48,8 +42,6 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
-use RuntimeException;
-use SplFileObject;
 
 /**
  * PluginApi Class Doc Comment
@@ -174,9 +166,9 @@ class PluginApi
      * @param  string $remote The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPluginPrivileges'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return PluginPrivilege[]|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\PluginPrivilege[]|\OpenAPI\Client\Model\ErrorResponse
      */
     public function getPluginPrivileges($remote, string $contentType = self::contentTypes['getPluginPrivileges'][0])
     {
@@ -192,8 +184,8 @@ class PluginApi
      * @param  string $remote The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPluginPrivileges'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PluginPrivilege[]|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getPluginPrivilegesWithHttpInfo($remote, string $contentType = self::contentTypes['getPluginPrivileges'][0])
@@ -223,7 +215,7 @@ class PluginApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\PluginPrivilege[]',
@@ -238,7 +230,7 @@ class PluginApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -277,7 +269,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -291,8 +283,8 @@ class PluginApi
      * @param  string $remote The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPluginPrivileges'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getPluginPrivilegesAsync($remote, string $contentType = self::contentTypes['getPluginPrivileges'][0])
     {
@@ -312,8 +304,8 @@ class PluginApi
      * @param  string $remote The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPluginPrivileges'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getPluginPrivilegesAsyncWithHttpInfo($remote, string $contentType = self::contentTypes['getPluginPrivileges'][0])
     {
@@ -362,15 +354,15 @@ class PluginApi
      * @param  string $remote The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPluginPrivileges'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function getPluginPrivilegesRequest($remote, string $contentType = self::contentTypes['getPluginPrivileges'][0])
     {
 
         // verify the required parameter 'remote' is set
         if ($remote === null || (is_array($remote) && count($remote) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $remote when calling getPluginPrivileges'
             );
         }
@@ -420,7 +412,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -455,11 +447,11 @@ class PluginApi
      * Create a plugin
      *
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
-     * @param  SplFileObject|null $tar_context Path to tar containing plugin rootfs and manifest (optional)
+     * @param  \SplFileObject|null $tar_context Path to tar containing plugin rootfs and manifest (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginCreate'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function pluginCreate($name, $tar_context = null, string $contentType = self::contentTypes['pluginCreate'][0])
@@ -473,11 +465,11 @@ class PluginApi
      * Create a plugin
      *
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
-     * @param  SplFileObject|null $tar_context Path to tar containing plugin rootfs and manifest (optional)
+     * @param  \SplFileObject|null $tar_context Path to tar containing plugin rootfs and manifest (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginCreate'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function pluginCreateWithHttpInfo($name, $tar_context = null, string $contentType = self::contentTypes['pluginCreate'][0])
@@ -519,7 +511,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -531,11 +523,11 @@ class PluginApi
      * Create a plugin
      *
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
-     * @param  SplFileObject|null $tar_context Path to tar containing plugin rootfs and manifest (optional)
+     * @param  \SplFileObject|null $tar_context Path to tar containing plugin rootfs and manifest (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginCreateAsync($name, $tar_context = null, string $contentType = self::contentTypes['pluginCreate'][0])
     {
@@ -553,11 +545,11 @@ class PluginApi
      * Create a plugin
      *
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
-     * @param  SplFileObject|null $tar_context Path to tar containing plugin rootfs and manifest (optional)
+     * @param  \SplFileObject|null $tar_context Path to tar containing plugin rootfs and manifest (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginCreateAsyncWithHttpInfo($name, $tar_context = null, string $contentType = self::contentTypes['pluginCreate'][0])
     {
@@ -591,18 +583,18 @@ class PluginApi
      * Create request for operation 'pluginCreate'
      *
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
-     * @param  SplFileObject|null $tar_context Path to tar containing plugin rootfs and manifest (optional)
+     * @param  \SplFileObject|null $tar_context Path to tar containing plugin rootfs and manifest (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function pluginCreateRequest($name, $tar_context = null, string $contentType = self::contentTypes['pluginCreate'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $name when calling pluginCreate'
             );
         }
@@ -639,7 +631,7 @@ class PluginApi
         if (isset($tar_context)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tar_context));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($tar_context));
             } else {
                 $httpBody = $tar_context;
             }
@@ -660,7 +652,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -698,9 +690,9 @@ class PluginApi
      * @param  bool|null $force Disable the plugin before removing. This may result in issues if the plugin is in use by a container. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginDelete'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return Plugin|ErrorResponse|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Plugin|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function pluginDelete($name, $force = false, string $contentType = self::contentTypes['pluginDelete'][0])
     {
@@ -717,8 +709,8 @@ class PluginApi
      * @param  bool|null $force Disable the plugin before removing. This may result in issues if the plugin is in use by a container. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginDelete'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Plugin|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function pluginDeleteWithHttpInfo($name, $force = false, string $contentType = self::contentTypes['pluginDelete'][0])
@@ -748,7 +740,7 @@ class PluginApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Plugin',
@@ -769,7 +761,7 @@ class PluginApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -816,7 +808,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -831,8 +823,8 @@ class PluginApi
      * @param  bool|null $force Disable the plugin before removing. This may result in issues if the plugin is in use by a container. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginDeleteAsync($name, $force = false, string $contentType = self::contentTypes['pluginDelete'][0])
     {
@@ -853,8 +845,8 @@ class PluginApi
      * @param  bool|null $force Disable the plugin before removing. This may result in issues if the plugin is in use by a container. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginDeleteAsyncWithHttpInfo($name, $force = false, string $contentType = self::contentTypes['pluginDelete'][0])
     {
@@ -904,15 +896,15 @@ class PluginApi
      * @param  bool|null $force Disable the plugin before removing. This may result in issues if the plugin is in use by a container. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function pluginDeleteRequest($name, $force = false, string $contentType = self::contentTypes['pluginDelete'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $name when calling pluginDelete'
             );
         }
@@ -971,7 +963,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1009,8 +1001,8 @@ class PluginApi
      * @param  bool|null $force Force disable a plugin even if still in use. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginDisable'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function pluginDisable($name, $force = null, string $contentType = self::contentTypes['pluginDisable'][0])
@@ -1027,8 +1019,8 @@ class PluginApi
      * @param  bool|null $force Force disable a plugin even if still in use. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginDisable'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function pluginDisableWithHttpInfo($name, $force = null, string $contentType = self::contentTypes['pluginDisable'][0])
@@ -1078,7 +1070,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1093,8 +1085,8 @@ class PluginApi
      * @param  bool|null $force Force disable a plugin even if still in use. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginDisable'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginDisableAsync($name, $force = null, string $contentType = self::contentTypes['pluginDisable'][0])
     {
@@ -1115,8 +1107,8 @@ class PluginApi
      * @param  bool|null $force Force disable a plugin even if still in use. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginDisable'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginDisableAsyncWithHttpInfo($name, $force = null, string $contentType = self::contentTypes['pluginDisable'][0])
     {
@@ -1153,15 +1145,15 @@ class PluginApi
      * @param  bool|null $force Force disable a plugin even if still in use. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginDisable'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function pluginDisableRequest($name, $force = null, string $contentType = self::contentTypes['pluginDisable'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $name when calling pluginDisable'
             );
         }
@@ -1220,7 +1212,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1258,8 +1250,8 @@ class PluginApi
      * @param  int|null $timeout Set the HTTP client timeout (in seconds) (optional, default to 0)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginEnable'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function pluginEnable($name, $timeout = 0, string $contentType = self::contentTypes['pluginEnable'][0])
@@ -1276,8 +1268,8 @@ class PluginApi
      * @param  int|null $timeout Set the HTTP client timeout (in seconds) (optional, default to 0)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginEnable'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function pluginEnableWithHttpInfo($name, $timeout = 0, string $contentType = self::contentTypes['pluginEnable'][0])
@@ -1327,7 +1319,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1342,8 +1334,8 @@ class PluginApi
      * @param  int|null $timeout Set the HTTP client timeout (in seconds) (optional, default to 0)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginEnable'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginEnableAsync($name, $timeout = 0, string $contentType = self::contentTypes['pluginEnable'][0])
     {
@@ -1364,8 +1356,8 @@ class PluginApi
      * @param  int|null $timeout Set the HTTP client timeout (in seconds) (optional, default to 0)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginEnable'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginEnableAsyncWithHttpInfo($name, $timeout = 0, string $contentType = self::contentTypes['pluginEnable'][0])
     {
@@ -1402,15 +1394,15 @@ class PluginApi
      * @param  int|null $timeout Set the HTTP client timeout (in seconds) (optional, default to 0)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginEnable'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function pluginEnableRequest($name, $timeout = 0, string $contentType = self::contentTypes['pluginEnable'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $name when calling pluginEnable'
             );
         }
@@ -1469,7 +1461,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1506,9 +1498,9 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginInspect'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return Plugin|ErrorResponse|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Plugin|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function pluginInspect($name, string $contentType = self::contentTypes['pluginInspect'][0])
     {
@@ -1524,8 +1516,8 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginInspect'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Plugin|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function pluginInspectWithHttpInfo($name, string $contentType = self::contentTypes['pluginInspect'][0])
@@ -1555,7 +1547,7 @@ class PluginApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Plugin',
@@ -1576,7 +1568,7 @@ class PluginApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1623,7 +1615,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1637,8 +1629,8 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginInspectAsync($name, string $contentType = self::contentTypes['pluginInspect'][0])
     {
@@ -1658,8 +1650,8 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginInspectAsyncWithHttpInfo($name, string $contentType = self::contentTypes['pluginInspect'][0])
     {
@@ -1708,15 +1700,15 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function pluginInspectRequest($name, string $contentType = self::contentTypes['pluginInspect'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $name when calling pluginInspect'
             );
         }
@@ -1765,7 +1757,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1802,9 +1794,9 @@ class PluginApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the plugin list.  Available filters:  - &#x60;capability&#x3D;&lt;capability name&gt;&#x60; - &#x60;enable&#x3D;&lt;true&gt;|&lt;false&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return Plugin[]|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Plugin[]|\OpenAPI\Client\Model\ErrorResponse
      */
     public function pluginList($filters = null, string $contentType = self::contentTypes['pluginList'][0])
     {
@@ -1820,8 +1812,8 @@ class PluginApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the plugin list.  Available filters:  - &#x60;capability&#x3D;&lt;capability name&gt;&#x60; - &#x60;enable&#x3D;&lt;true&gt;|&lt;false&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Plugin[]|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function pluginListWithHttpInfo($filters = null, string $contentType = self::contentTypes['pluginList'][0])
@@ -1851,7 +1843,7 @@ class PluginApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Plugin[]',
@@ -1866,7 +1858,7 @@ class PluginApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1905,7 +1897,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1919,8 +1911,8 @@ class PluginApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the plugin list.  Available filters:  - &#x60;capability&#x3D;&lt;capability name&gt;&#x60; - &#x60;enable&#x3D;&lt;true&gt;|&lt;false&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginListAsync($filters = null, string $contentType = self::contentTypes['pluginList'][0])
     {
@@ -1940,8 +1932,8 @@ class PluginApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the plugin list.  Available filters:  - &#x60;capability&#x3D;&lt;capability name&gt;&#x60; - &#x60;enable&#x3D;&lt;true&gt;|&lt;false&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginListAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['pluginList'][0])
     {
@@ -1990,8 +1982,8 @@ class PluginApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the plugin list.  Available filters:  - &#x60;capability&#x3D;&lt;capability name&gt;&#x60; - &#x60;enable&#x3D;&lt;true&gt;|&lt;false&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function pluginListRequest($filters = null, string $contentType = self::contentTypes['pluginList'][0])
     {
@@ -2042,7 +2034,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2079,11 +2071,11 @@ class PluginApi
      * @param  string $remote Remote reference for plugin to install.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (required)
      * @param  string|null $name Local name for the pulled plugin.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (optional)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration to use when pulling a plugin from a registry.  Refer to the [authentication section](#section/Authentication) for details. (optional)
-     * @param  PluginPrivilege[]|null $body body (optional)
+     * @param  \OpenAPI\Client\Model\PluginPrivilege[]|null $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginPull'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function pluginPull($remote, $name = null, $x_registry_auth = null, $body = null, string $contentType = self::contentTypes['pluginPull'][0])
@@ -2099,11 +2091,11 @@ class PluginApi
      * @param  string $remote Remote reference for plugin to install.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (required)
      * @param  string|null $name Local name for the pulled plugin.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (optional)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration to use when pulling a plugin from a registry.  Refer to the [authentication section](#section/Authentication) for details. (optional)
-     * @param  PluginPrivilege[]|null $body (optional)
+     * @param  \OpenAPI\Client\Model\PluginPrivilege[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginPull'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function pluginPullWithHttpInfo($remote, $name = null, $x_registry_auth = null, $body = null, string $contentType = self::contentTypes['pluginPull'][0])
@@ -2145,7 +2137,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -2159,11 +2151,11 @@ class PluginApi
      * @param  string $remote Remote reference for plugin to install.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (required)
      * @param  string|null $name Local name for the pulled plugin.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (optional)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration to use when pulling a plugin from a registry.  Refer to the [authentication section](#section/Authentication) for details. (optional)
-     * @param  PluginPrivilege[]|null $body (optional)
+     * @param  \OpenAPI\Client\Model\PluginPrivilege[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginPull'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginPullAsync($remote, $name = null, $x_registry_auth = null, $body = null, string $contentType = self::contentTypes['pluginPull'][0])
     {
@@ -2183,11 +2175,11 @@ class PluginApi
      * @param  string $remote Remote reference for plugin to install.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (required)
      * @param  string|null $name Local name for the pulled plugin.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (optional)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration to use when pulling a plugin from a registry.  Refer to the [authentication section](#section/Authentication) for details. (optional)
-     * @param  PluginPrivilege[]|null $body (optional)
+     * @param  \OpenAPI\Client\Model\PluginPrivilege[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginPull'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginPullAsyncWithHttpInfo($remote, $name = null, $x_registry_auth = null, $body = null, string $contentType = self::contentTypes['pluginPull'][0])
     {
@@ -2223,18 +2215,18 @@ class PluginApi
      * @param  string $remote Remote reference for plugin to install.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (required)
      * @param  string|null $name Local name for the pulled plugin.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (optional)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration to use when pulling a plugin from a registry.  Refer to the [authentication section](#section/Authentication) for details. (optional)
-     * @param  PluginPrivilege[]|null $body (optional)
+     * @param  \OpenAPI\Client\Model\PluginPrivilege[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginPull'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function pluginPullRequest($remote, $name = null, $x_registry_auth = null, $body = null, string $contentType = self::contentTypes['pluginPull'][0])
     {
 
         // verify the required parameter 'remote' is set
         if ($remote === null || (is_array($remote) && count($remote) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $remote when calling pluginPull'
             );
         }
@@ -2286,7 +2278,7 @@ class PluginApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -2307,7 +2299,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2344,8 +2336,8 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginPush'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function pluginPush($name, string $contentType = self::contentTypes['pluginPush'][0])
@@ -2361,8 +2353,8 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginPush'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function pluginPushWithHttpInfo($name, string $contentType = self::contentTypes['pluginPush'][0])
@@ -2412,7 +2404,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -2426,8 +2418,8 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginPush'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginPushAsync($name, string $contentType = self::contentTypes['pluginPush'][0])
     {
@@ -2447,8 +2439,8 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginPush'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginPushAsyncWithHttpInfo($name, string $contentType = self::contentTypes['pluginPush'][0])
     {
@@ -2484,15 +2476,15 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginPush'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function pluginPushRequest($name, string $contentType = self::contentTypes['pluginPush'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $name when calling pluginPush'
             );
         }
@@ -2541,7 +2533,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2579,8 +2571,8 @@ class PluginApi
      * @param  string[]|null $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginSet'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function pluginSet($name, $body = null, string $contentType = self::contentTypes['pluginSet'][0])
@@ -2597,8 +2589,8 @@ class PluginApi
      * @param  string[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginSet'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function pluginSetWithHttpInfo($name, $body = null, string $contentType = self::contentTypes['pluginSet'][0])
@@ -2648,7 +2640,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -2663,8 +2655,8 @@ class PluginApi
      * @param  string[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginSet'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginSetAsync($name, $body = null, string $contentType = self::contentTypes['pluginSet'][0])
     {
@@ -2685,8 +2677,8 @@ class PluginApi
      * @param  string[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginSet'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginSetAsyncWithHttpInfo($name, $body = null, string $contentType = self::contentTypes['pluginSet'][0])
     {
@@ -2723,15 +2715,15 @@ class PluginApi
      * @param  string[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginSet'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function pluginSetRequest($name, $body = null, string $contentType = self::contentTypes['pluginSet'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $name when calling pluginSet'
             );
         }
@@ -2767,7 +2759,7 @@ class PluginApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -2788,7 +2780,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2825,11 +2817,11 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $remote Remote reference to upgrade to.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (required)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration to use when pulling a plugin from a registry.  Refer to the [authentication section](#section/Authentication) for details. (optional)
-     * @param  PluginPrivilege[]|null $body body (optional)
+     * @param  \OpenAPI\Client\Model\PluginPrivilege[]|null $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginUpgrade'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
      */
     public function pluginUpgrade($name, $remote, $x_registry_auth = null, $body = null, string $contentType = self::contentTypes['pluginUpgrade'][0])
@@ -2845,11 +2837,11 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $remote Remote reference to upgrade to.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (required)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration to use when pulling a plugin from a registry.  Refer to the [authentication section](#section/Authentication) for details. (optional)
-     * @param  PluginPrivilege[]|null $body (optional)
+     * @param  \OpenAPI\Client\Model\PluginPrivilege[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginUpgrade'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function pluginUpgradeWithHttpInfo($name, $remote, $x_registry_auth = null, $body = null, string $contentType = self::contentTypes['pluginUpgrade'][0])
@@ -2899,7 +2891,7 @@ class PluginApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -2913,11 +2905,11 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $remote Remote reference to upgrade to.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (required)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration to use when pulling a plugin from a registry.  Refer to the [authentication section](#section/Authentication) for details. (optional)
-     * @param  PluginPrivilege[]|null $body (optional)
+     * @param  \OpenAPI\Client\Model\PluginPrivilege[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginUpgrade'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginUpgradeAsync($name, $remote, $x_registry_auth = null, $body = null, string $contentType = self::contentTypes['pluginUpgrade'][0])
     {
@@ -2937,11 +2929,11 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $remote Remote reference to upgrade to.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (required)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration to use when pulling a plugin from a registry.  Refer to the [authentication section](#section/Authentication) for details. (optional)
-     * @param  PluginPrivilege[]|null $body (optional)
+     * @param  \OpenAPI\Client\Model\PluginPrivilege[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginUpgrade'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pluginUpgradeAsyncWithHttpInfo($name, $remote, $x_registry_auth = null, $body = null, string $contentType = self::contentTypes['pluginUpgrade'][0])
     {
@@ -2977,25 +2969,25 @@ class PluginApi
      * @param  string $name The name of the plugin. The &#x60;:latest&#x60; tag is optional, and is the default if omitted. (required)
      * @param  string $remote Remote reference to upgrade to.  The &#x60;:latest&#x60; tag is optional, and is used as the default if omitted. (required)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration to use when pulling a plugin from a registry.  Refer to the [authentication section](#section/Authentication) for details. (optional)
-     * @param  PluginPrivilege[]|null $body (optional)
+     * @param  \OpenAPI\Client\Model\PluginPrivilege[]|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['pluginUpgrade'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function pluginUpgradeRequest($name, $remote, $x_registry_auth = null, $body = null, string $contentType = self::contentTypes['pluginUpgrade'][0])
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $name when calling pluginUpgrade'
             );
         }
 
         // verify the required parameter 'remote' is set
         if ($remote === null || (is_array($remote) && count($remote) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $remote when calling pluginUpgrade'
             );
         }
@@ -3045,7 +3037,7 @@ class PluginApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -3066,7 +3058,7 @@ class PluginApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -3098,7 +3090,7 @@ class PluginApi
     /**
      * Create http client option
      *
-     * @throws RuntimeException on file opening failure
+     * @throws \RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -3107,7 +3099,7 @@ class PluginApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -3126,7 +3118,7 @@ class PluginApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (JsonException $exception) {
+                } catch (\JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

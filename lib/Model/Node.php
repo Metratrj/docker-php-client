@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Node
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * Node Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class Node implements ModelInterface, ArrayAccess, JsonSerializable
+class Node implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -361,7 +359,7 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new InvalidArgumentException('non-nullable id cannot be null');
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -371,7 +369,7 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets version
      *
-     * @return ObjectVersion|null
+     * @return \OpenAPI\Client\Model\ObjectVersion|null
      */
     public function getVersion()
     {
@@ -381,14 +379,14 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets version
      *
-     * @param ObjectVersion|null $version version
+     * @param \OpenAPI\Client\Model\ObjectVersion|null $version version
      *
      * @return self
      */
     public function setVersion($version)
     {
         if (is_null($version)) {
-            throw new InvalidArgumentException('non-nullable version cannot be null');
+            throw new \InvalidArgumentException('non-nullable version cannot be null');
         }
         $this->container['version'] = $version;
 
@@ -415,7 +413,7 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
-            throw new InvalidArgumentException('non-nullable created_at cannot be null');
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
 
@@ -442,7 +440,7 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
-            throw new InvalidArgumentException('non-nullable updated_at cannot be null');
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
 
@@ -452,7 +450,7 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets spec
      *
-     * @return NodeSpec|null
+     * @return \OpenAPI\Client\Model\NodeSpec|null
      */
     public function getSpec()
     {
@@ -462,14 +460,14 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets spec
      *
-     * @param NodeSpec|null $spec spec
+     * @param \OpenAPI\Client\Model\NodeSpec|null $spec spec
      *
      * @return self
      */
     public function setSpec($spec)
     {
         if (is_null($spec)) {
-            throw new InvalidArgumentException('non-nullable spec cannot be null');
+            throw new \InvalidArgumentException('non-nullable spec cannot be null');
         }
         $this->container['spec'] = $spec;
 
@@ -479,7 +477,7 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets description
      *
-     * @return NodeDescription|null
+     * @return \OpenAPI\Client\Model\NodeDescription|null
      */
     public function getDescription()
     {
@@ -489,14 +487,14 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets description
      *
-     * @param NodeDescription|null $description description
+     * @param \OpenAPI\Client\Model\NodeDescription|null $description description
      *
      * @return self
      */
     public function setDescription($description)
     {
         if (is_null($description)) {
-            throw new InvalidArgumentException('non-nullable description cannot be null');
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
 
@@ -506,7 +504,7 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets status
      *
-     * @return NodeStatus|null
+     * @return \OpenAPI\Client\Model\NodeStatus|null
      */
     public function getStatus()
     {
@@ -516,14 +514,14 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets status
      *
-     * @param NodeStatus|null $status status
+     * @param \OpenAPI\Client\Model\NodeStatus|null $status status
      *
      * @return self
      */
     public function setStatus($status)
     {
         if (is_null($status)) {
-            throw new InvalidArgumentException('non-nullable status cannot be null');
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
         $this->container['status'] = $status;
 
@@ -533,7 +531,7 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets manager_status
      *
-     * @return ManagerStatus|null
+     * @return \OpenAPI\Client\Model\ManagerStatus|null
      */
     public function getManagerStatus()
     {
@@ -543,7 +541,7 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets manager_status
      *
-     * @param ManagerStatus|null $manager_status manager_status
+     * @param \OpenAPI\Client\Model\ManagerStatus|null $manager_status manager_status
      *
      * @return self
      */
@@ -553,8 +551,8 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'manager_status');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('manager_status', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('manager_status', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -582,7 +580,7 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -624,10 +622,10 @@ class Node implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

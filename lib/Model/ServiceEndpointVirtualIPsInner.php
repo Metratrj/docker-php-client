@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceEndpointVirtualIPsInner
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ServiceEndpointVirtualIPsInner Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ServiceEndpointVirtualIPsInner implements ModelInterface, ArrayAccess, JsonSerializable
+class ServiceEndpointVirtualIPsInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -319,7 +317,7 @@ class ServiceEndpointVirtualIPsInner implements ModelInterface, ArrayAccess, Jso
     public function setNetworkId($network_id)
     {
         if (is_null($network_id)) {
-            throw new InvalidArgumentException('non-nullable network_id cannot be null');
+            throw new \InvalidArgumentException('non-nullable network_id cannot be null');
         }
         $this->container['network_id'] = $network_id;
 
@@ -346,7 +344,7 @@ class ServiceEndpointVirtualIPsInner implements ModelInterface, ArrayAccess, Jso
     public function setAddr($addr)
     {
         if (is_null($addr)) {
-            throw new InvalidArgumentException('non-nullable addr cannot be null');
+            throw new \InvalidArgumentException('non-nullable addr cannot be null');
         }
         $this->container['addr'] = $addr;
 
@@ -371,7 +369,7 @@ class ServiceEndpointVirtualIPsInner implements ModelInterface, ArrayAccess, Jso
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -413,10 +411,10 @@ class ServiceEndpointVirtualIPsInner implements ModelInterface, ArrayAccess, Jso
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

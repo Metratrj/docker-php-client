@@ -1,4 +1,5 @@
 <?php
+
 /**
  * FilesystemChange
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * FilesystemChange Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class FilesystemChange implements ModelInterface, ArrayAccess, JsonSerializable
+class FilesystemChange implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -326,7 +324,7 @@ class FilesystemChange implements ModelInterface, ArrayAccess, JsonSerializable
     public function setPath($path)
     {
         if (is_null($path)) {
-            throw new InvalidArgumentException('non-nullable path cannot be null');
+            throw new \InvalidArgumentException('non-nullable path cannot be null');
         }
         $this->container['path'] = $path;
 
@@ -336,7 +334,7 @@ class FilesystemChange implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets kind
      *
-     * @return ChangeType
+     * @return \OpenAPI\Client\Model\ChangeType
      */
     public function getKind()
     {
@@ -346,14 +344,14 @@ class FilesystemChange implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets kind
      *
-     * @param ChangeType $kind kind
+     * @param \OpenAPI\Client\Model\ChangeType $kind kind
      *
      * @return self
      */
     public function setKind($kind)
     {
         if (is_null($kind)) {
-            throw new InvalidArgumentException('non-nullable kind cannot be null');
+            throw new \InvalidArgumentException('non-nullable kind cannot be null');
         }
         $this->container['kind'] = $kind;
 
@@ -378,7 +376,7 @@ class FilesystemChange implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -420,7 +418,7 @@ class FilesystemChange implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -449,3 +447,5 @@ class FilesystemChange implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

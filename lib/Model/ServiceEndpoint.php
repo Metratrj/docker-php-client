@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceEndpoint
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ServiceEndpoint Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ServiceEndpoint implements ModelInterface, ArrayAccess, JsonSerializable
+class ServiceEndpoint implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -309,7 +307,7 @@ class ServiceEndpoint implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets spec
      *
-     * @return EndpointSpec|null
+     * @return \OpenAPI\Client\Model\EndpointSpec|null
      */
     public function getSpec()
     {
@@ -319,14 +317,14 @@ class ServiceEndpoint implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets spec
      *
-     * @param EndpointSpec|null $spec spec
+     * @param \OpenAPI\Client\Model\EndpointSpec|null $spec spec
      *
      * @return self
      */
     public function setSpec($spec)
     {
         if (is_null($spec)) {
-            throw new InvalidArgumentException('non-nullable spec cannot be null');
+            throw new \InvalidArgumentException('non-nullable spec cannot be null');
         }
         $this->container['spec'] = $spec;
 
@@ -336,7 +334,7 @@ class ServiceEndpoint implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets ports
      *
-     * @return EndpointPortConfig[]|null
+     * @return \OpenAPI\Client\Model\EndpointPortConfig[]|null
      */
     public function getPorts()
     {
@@ -346,14 +344,14 @@ class ServiceEndpoint implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets ports
      *
-     * @param EndpointPortConfig[]|null $ports ports
+     * @param \OpenAPI\Client\Model\EndpointPortConfig[]|null $ports ports
      *
      * @return self
      */
     public function setPorts($ports)
     {
         if (is_null($ports)) {
-            throw new InvalidArgumentException('non-nullable ports cannot be null');
+            throw new \InvalidArgumentException('non-nullable ports cannot be null');
         }
         $this->container['ports'] = $ports;
 
@@ -363,7 +361,7 @@ class ServiceEndpoint implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets virtual_ips
      *
-     * @return ServiceEndpointVirtualIPsInner[]|null
+     * @return \OpenAPI\Client\Model\ServiceEndpointVirtualIPsInner[]|null
      */
     public function getVirtualIps()
     {
@@ -373,14 +371,14 @@ class ServiceEndpoint implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets virtual_ips
      *
-     * @param ServiceEndpointVirtualIPsInner[]|null $virtual_ips virtual_ips
+     * @param \OpenAPI\Client\Model\ServiceEndpointVirtualIPsInner[]|null $virtual_ips virtual_ips
      *
      * @return self
      */
     public function setVirtualIps($virtual_ips)
     {
         if (is_null($virtual_ips)) {
-            throw new InvalidArgumentException('non-nullable virtual_ips cannot be null');
+            throw new \InvalidArgumentException('non-nullable virtual_ips cannot be null');
         }
         $this->container['virtual_ips'] = $virtual_ips;
 
@@ -405,7 +403,7 @@ class ServiceEndpoint implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -447,10 +445,10 @@ class ServiceEndpoint implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

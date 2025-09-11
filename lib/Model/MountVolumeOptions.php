@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MountVolumeOptions
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * MountVolumeOptions Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class MountVolumeOptions implements ModelInterface, ArrayAccess, JsonSerializable
+class MountVolumeOptions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -334,7 +332,7 @@ class MountVolumeOptions implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setNoCopy($no_copy)
     {
         if (is_null($no_copy)) {
-            throw new InvalidArgumentException('non-nullable no_copy cannot be null');
+            throw new \InvalidArgumentException('non-nullable no_copy cannot be null');
         }
         $this->container['no_copy'] = $no_copy;
 
@@ -361,7 +359,7 @@ class MountVolumeOptions implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new InvalidArgumentException('non-nullable labels cannot be null');
+            throw new \InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -371,7 +369,7 @@ class MountVolumeOptions implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Gets driver_config
      *
-     * @return MountVolumeOptionsDriverConfig|null
+     * @return \OpenAPI\Client\Model\MountVolumeOptionsDriverConfig|null
      */
     public function getDriverConfig()
     {
@@ -381,14 +379,14 @@ class MountVolumeOptions implements ModelInterface, ArrayAccess, JsonSerializabl
     /**
      * Sets driver_config
      *
-     * @param MountVolumeOptionsDriverConfig|null $driver_config driver_config
+     * @param \OpenAPI\Client\Model\MountVolumeOptionsDriverConfig|null $driver_config driver_config
      *
      * @return self
      */
     public function setDriverConfig($driver_config)
     {
         if (is_null($driver_config)) {
-            throw new InvalidArgumentException('non-nullable driver_config cannot be null');
+            throw new \InvalidArgumentException('non-nullable driver_config cannot be null');
         }
         $this->container['driver_config'] = $driver_config;
 
@@ -415,7 +413,7 @@ class MountVolumeOptions implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setSubpath($subpath)
     {
         if (is_null($subpath)) {
-            throw new InvalidArgumentException('non-nullable subpath cannot be null');
+            throw new \InvalidArgumentException('non-nullable subpath cannot be null');
         }
         $this->container['subpath'] = $subpath;
 
@@ -440,7 +438,7 @@ class MountVolumeOptions implements ModelInterface, ArrayAccess, JsonSerializabl
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -482,7 +480,7 @@ class MountVolumeOptions implements ModelInterface, ArrayAccess, JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -511,3 +509,5 @@ class MountVolumeOptions implements ModelInterface, ArrayAccess, JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

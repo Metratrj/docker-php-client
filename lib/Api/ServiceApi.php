@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceApi
  * PHP version 8.1
@@ -31,17 +32,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Utils;
-use InvalidArgumentException;
-use JsonException;
-use OpenAPI\Client\Model\ErrorResponse;
-use OpenAPI\Client\Model\Service;
-use OpenAPI\Client\Model\ServiceCreateRequest;
-use OpenAPI\Client\Model\ServiceUpdateRequest;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -49,7 +42,6 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
-use RuntimeException;
 
 /**
  * ServiceApi Class Doc Comment
@@ -154,13 +146,13 @@ class ServiceApi
      *
      * Create a service
      *
-     * @param  ServiceCreateRequest $body body (required)
+     * @param  \OpenAPI\Client\Model\ServiceCreateRequest $body body (required)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration for pulling from private registries.  Refer to the [authentication section](#section/Authentication) for details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceCreate'] to see the possible values for this operation
      *
-     * @return \OpenAPI\Client\Model\ServiceCreateResponse|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ServiceCreateResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function serviceCreate($body, $x_registry_auth = null, string $contentType = self::contentTypes['serviceCreate'][0])
     {
@@ -173,13 +165,13 @@ class ServiceApi
      *
      * Create a service
      *
-     * @param  ServiceCreateRequest $body (required)
+     * @param  \OpenAPI\Client\Model\ServiceCreateRequest $body (required)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration for pulling from private registries.  Refer to the [authentication section](#section/Authentication) for details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceCreate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ServiceCreateResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function serviceCreateWithHttpInfo($body, $x_registry_auth = null, string $contentType = self::contentTypes['serviceCreate'][0])
     {
@@ -208,7 +200,7 @@ class ServiceApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\ServiceCreateResponse',
@@ -247,7 +239,7 @@ class ServiceApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -318,7 +310,7 @@ class ServiceApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -329,12 +321,12 @@ class ServiceApi
      *
      * Create a service
      *
-     * @param  ServiceCreateRequest $body (required)
+     * @param  \OpenAPI\Client\Model\ServiceCreateRequest $body (required)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration for pulling from private registries.  Refer to the [authentication section](#section/Authentication) for details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceCreateAsync($body, $x_registry_auth = null, string $contentType = self::contentTypes['serviceCreate'][0])
     {
@@ -351,12 +343,12 @@ class ServiceApi
      *
      * Create a service
      *
-     * @param  ServiceCreateRequest $body (required)
+     * @param  \OpenAPI\Client\Model\ServiceCreateRequest $body (required)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration for pulling from private registries.  Refer to the [authentication section](#section/Authentication) for details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceCreateAsyncWithHttpInfo($body, $x_registry_auth = null, string $contentType = self::contentTypes['serviceCreate'][0])
     {
@@ -402,19 +394,19 @@ class ServiceApi
     /**
      * Create request for operation 'serviceCreate'
      *
-     * @param  ServiceCreateRequest $body (required)
+     * @param  \OpenAPI\Client\Model\ServiceCreateRequest $body (required)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration for pulling from private registries.  Refer to the [authentication section](#section/Authentication) for details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceCreate'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function serviceCreateRequest($body, $x_registry_auth = null, string $contentType = self::contentTypes['serviceCreate'][0])
     {
 
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $body when calling serviceCreate'
             );
         }
@@ -446,7 +438,7 @@ class ServiceApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -467,7 +459,7 @@ class ServiceApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -504,9 +496,9 @@ class ServiceApi
      * @param  string $id ID or name of service. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceDelete'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function serviceDelete($id, string $contentType = self::contentTypes['serviceDelete'][0])
     {
@@ -521,9 +513,9 @@ class ServiceApi
      * @param  string $id ID or name of service. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceDelete'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function serviceDeleteWithHttpInfo($id, string $contentType = self::contentTypes['serviceDelete'][0])
     {
@@ -580,7 +572,7 @@ class ServiceApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -594,8 +586,8 @@ class ServiceApi
      * @param  string $id ID or name of service. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceDeleteAsync($id, string $contentType = self::contentTypes['serviceDelete'][0])
     {
@@ -615,8 +607,8 @@ class ServiceApi
      * @param  string $id ID or name of service. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['serviceDelete'][0])
     {
@@ -652,15 +644,15 @@ class ServiceApi
      * @param  string $id ID or name of service. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceDelete'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function serviceDeleteRequest($id, string $contentType = self::contentTypes['serviceDelete'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling serviceDelete'
             );
         }
@@ -709,7 +701,7 @@ class ServiceApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -747,9 +739,9 @@ class ServiceApi
      * @param  bool|null $insert_defaults Fill empty fields with default values. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceInspect'] to see the possible values for this operation
      *
-     * @return Service|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Service|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function serviceInspect($id, $insert_defaults = false, string $contentType = self::contentTypes['serviceInspect'][0])
     {
@@ -766,9 +758,9 @@ class ServiceApi
      * @param  bool|null $insert_defaults Fill empty fields with default values. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceInspect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Service|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function serviceInspectWithHttpInfo($id, $insert_defaults = false, string $contentType = self::contentTypes['serviceInspect'][0])
     {
@@ -797,7 +789,7 @@ class ServiceApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Service',
@@ -824,7 +816,7 @@ class ServiceApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -879,7 +871,7 @@ class ServiceApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -894,8 +886,8 @@ class ServiceApi
      * @param  bool|null $insert_defaults Fill empty fields with default values. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceInspectAsync($id, $insert_defaults = false, string $contentType = self::contentTypes['serviceInspect'][0])
     {
@@ -916,8 +908,8 @@ class ServiceApi
      * @param  bool|null $insert_defaults Fill empty fields with default values. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceInspectAsyncWithHttpInfo($id, $insert_defaults = false, string $contentType = self::contentTypes['serviceInspect'][0])
     {
@@ -967,15 +959,15 @@ class ServiceApi
      * @param  bool|null $insert_defaults Fill empty fields with default values. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceInspect'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function serviceInspectRequest($id, $insert_defaults = false, string $contentType = self::contentTypes['serviceInspect'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling serviceInspect'
             );
         }
@@ -1034,7 +1026,7 @@ class ServiceApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1072,9 +1064,9 @@ class ServiceApi
      * @param  bool|null $status Include service status, with count of running and desired tasks. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return Service[]|ErrorResponse|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Service[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function serviceList($filters = null, $status = null, string $contentType = self::contentTypes['serviceList'][0])
     {
@@ -1091,8 +1083,8 @@ class ServiceApi
      * @param  bool|null $status Include service status, with count of running and desired tasks. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Service[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function serviceListWithHttpInfo($filters = null, $status = null, string $contentType = self::contentTypes['serviceList'][0])
@@ -1122,7 +1114,7 @@ class ServiceApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Service[]',
@@ -1143,7 +1135,7 @@ class ServiceApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1190,7 +1182,7 @@ class ServiceApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1205,8 +1197,8 @@ class ServiceApi
      * @param  bool|null $status Include service status, with count of running and desired tasks. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceListAsync($filters = null, $status = null, string $contentType = self::contentTypes['serviceList'][0])
     {
@@ -1227,8 +1219,8 @@ class ServiceApi
      * @param  bool|null $status Include service status, with count of running and desired tasks. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceListAsyncWithHttpInfo($filters = null, $status = null, string $contentType = self::contentTypes['serviceList'][0])
     {
@@ -1278,8 +1270,8 @@ class ServiceApi
      * @param  bool|null $status Include service status, with count of running and desired tasks. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function serviceListRequest($filters = null, $status = null, string $contentType = self::contentTypes['serviceList'][0])
     {
@@ -1340,7 +1332,7 @@ class ServiceApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1384,9 +1376,9 @@ class ServiceApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceLogs'] to see the possible values for this operation
      *
-     * @return \SplFileObject|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SplFileObject|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function serviceLogs($id, $details = false, $follow = false, $stdout = false, $stderr = false, $since = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['serviceLogs'][0])
     {
@@ -1409,9 +1401,9 @@ class ServiceApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceLogs'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      */
     public function serviceLogsWithHttpInfo($id, $details = false, $follow = false, $stdout = false, $stderr = false, $since = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['serviceLogs'][0])
     {
@@ -1440,7 +1432,7 @@ class ServiceApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\SplFileObject',
@@ -1467,7 +1459,7 @@ class ServiceApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1522,7 +1514,7 @@ class ServiceApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1543,8 +1535,8 @@ class ServiceApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceLogs'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceLogsAsync($id, $details = false, $follow = false, $stdout = false, $stderr = false, $since = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['serviceLogs'][0])
     {
@@ -1571,8 +1563,8 @@ class ServiceApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceLogs'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceLogsAsyncWithHttpInfo($id, $details = false, $follow = false, $stdout = false, $stderr = false, $since = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['serviceLogs'][0])
     {
@@ -1628,15 +1620,15 @@ class ServiceApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceLogs'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function serviceLogsRequest($id, $details = false, $follow = false, $stdout = false, $stderr = false, $since = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['serviceLogs'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling serviceLogs'
             );
         }
@@ -1755,7 +1747,7 @@ class ServiceApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1791,15 +1783,15 @@ class ServiceApi
      *
      * @param  string $id ID or name of service. (required)
      * @param  int $version The version number of the service object being updated. This is required to avoid conflicting writes. This version number should be the value as currently set on the service *before* the update. You can find the current version by calling &#x60;GET /services/{id}&#x60; (required)
-     * @param  ServiceUpdateRequest $body body (required)
+     * @param  \OpenAPI\Client\Model\ServiceUpdateRequest $body body (required)
      * @param  string|null $registry_auth_from If the &#x60;X-Registry-Auth&#x60; header is not specified, this parameter indicates where to find registry authorization credentials. (optional, default to 'spec')
      * @param  string|null $rollback Set to this parameter to &#x60;previous&#x60; to cause a server-side rollback to the previous service spec. The supplied spec will be ignored in this case. (optional)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration for pulling from private registries.  Refer to the [authentication section](#section/Authentication) for details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceUpdate'] to see the possible values for this operation
      *
-     * @return \OpenAPI\Client\Model\ServiceUpdateResponse|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ServiceUpdateResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function serviceUpdate($id, $version, $body, $registry_auth_from = 'spec', $rollback = null, $x_registry_auth = null, string $contentType = self::contentTypes['serviceUpdate'][0])
     {
@@ -1814,15 +1806,15 @@ class ServiceApi
      *
      * @param  string $id ID or name of service. (required)
      * @param  int $version The version number of the service object being updated. This is required to avoid conflicting writes. This version number should be the value as currently set on the service *before* the update. You can find the current version by calling &#x60;GET /services/{id}&#x60; (required)
-     * @param  ServiceUpdateRequest $body (required)
+     * @param  \OpenAPI\Client\Model\ServiceUpdateRequest $body (required)
      * @param  string|null $registry_auth_from If the &#x60;X-Registry-Auth&#x60; header is not specified, this parameter indicates where to find registry authorization credentials. (optional, default to 'spec')
      * @param  string|null $rollback Set to this parameter to &#x60;previous&#x60; to cause a server-side rollback to the previous service spec. The supplied spec will be ignored in this case. (optional)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration for pulling from private registries.  Refer to the [authentication section](#section/Authentication) for details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceUpdate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ServiceUpdateResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      */
     public function serviceUpdateWithHttpInfo($id, $version, $body, $registry_auth_from = 'spec', $rollback = null, $x_registry_auth = null, string $contentType = self::contentTypes['serviceUpdate'][0])
     {
@@ -1851,7 +1843,7 @@ class ServiceApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\ServiceUpdateResponse',
@@ -1884,7 +1876,7 @@ class ServiceApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1947,7 +1939,7 @@ class ServiceApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1960,14 +1952,14 @@ class ServiceApi
      *
      * @param  string $id ID or name of service. (required)
      * @param  int $version The version number of the service object being updated. This is required to avoid conflicting writes. This version number should be the value as currently set on the service *before* the update. You can find the current version by calling &#x60;GET /services/{id}&#x60; (required)
-     * @param  ServiceUpdateRequest $body (required)
+     * @param  \OpenAPI\Client\Model\ServiceUpdateRequest $body (required)
      * @param  string|null $registry_auth_from If the &#x60;X-Registry-Auth&#x60; header is not specified, this parameter indicates where to find registry authorization credentials. (optional, default to 'spec')
      * @param  string|null $rollback Set to this parameter to &#x60;previous&#x60; to cause a server-side rollback to the previous service spec. The supplied spec will be ignored in this case. (optional)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration for pulling from private registries.  Refer to the [authentication section](#section/Authentication) for details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceUpdate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceUpdateAsync($id, $version, $body, $registry_auth_from = 'spec', $rollback = null, $x_registry_auth = null, string $contentType = self::contentTypes['serviceUpdate'][0])
     {
@@ -1986,14 +1978,14 @@ class ServiceApi
      *
      * @param  string $id ID or name of service. (required)
      * @param  int $version The version number of the service object being updated. This is required to avoid conflicting writes. This version number should be the value as currently set on the service *before* the update. You can find the current version by calling &#x60;GET /services/{id}&#x60; (required)
-     * @param  ServiceUpdateRequest $body (required)
+     * @param  \OpenAPI\Client\Model\ServiceUpdateRequest $body (required)
      * @param  string|null $registry_auth_from If the &#x60;X-Registry-Auth&#x60; header is not specified, this parameter indicates where to find registry authorization credentials. (optional, default to 'spec')
      * @param  string|null $rollback Set to this parameter to &#x60;previous&#x60; to cause a server-side rollback to the previous service spec. The supplied spec will be ignored in this case. (optional)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration for pulling from private registries.  Refer to the [authentication section](#section/Authentication) for details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceUpdate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function serviceUpdateAsyncWithHttpInfo($id, $version, $body, $registry_auth_from = 'spec', $rollback = null, $x_registry_auth = null, string $contentType = self::contentTypes['serviceUpdate'][0])
     {
@@ -2041,35 +2033,35 @@ class ServiceApi
      *
      * @param  string $id ID or name of service. (required)
      * @param  int $version The version number of the service object being updated. This is required to avoid conflicting writes. This version number should be the value as currently set on the service *before* the update. You can find the current version by calling &#x60;GET /services/{id}&#x60; (required)
-     * @param  ServiceUpdateRequest $body (required)
+     * @param  \OpenAPI\Client\Model\ServiceUpdateRequest $body (required)
      * @param  string|null $registry_auth_from If the &#x60;X-Registry-Auth&#x60; header is not specified, this parameter indicates where to find registry authorization credentials. (optional, default to 'spec')
      * @param  string|null $rollback Set to this parameter to &#x60;previous&#x60; to cause a server-side rollback to the previous service spec. The supplied spec will be ignored in this case. (optional)
      * @param  string|null $x_registry_auth A base64url-encoded auth configuration for pulling from private registries.  Refer to the [authentication section](#section/Authentication) for details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['serviceUpdate'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function serviceUpdateRequest($id, $version, $body, $registry_auth_from = 'spec', $rollback = null, $x_registry_auth = null, string $contentType = self::contentTypes['serviceUpdate'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling serviceUpdate'
             );
         }
 
         // verify the required parameter 'version' is set
         if ($version === null || (is_array($version) && count($version) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $version when calling serviceUpdate'
             );
         }
 
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $body when calling serviceUpdate'
             );
         }
@@ -2138,7 +2130,7 @@ class ServiceApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -2159,7 +2151,7 @@ class ServiceApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2191,7 +2183,7 @@ class ServiceApi
     /**
      * Create http client option
      *
-     * @throws RuntimeException on file opening failure
+     * @throws \RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -2200,7 +2192,7 @@ class ServiceApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -2219,7 +2211,7 @@ class ServiceApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (JsonException $exception) {
+                } catch (\JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecResources
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * TaskSpecResources Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class TaskSpecResources implements ModelInterface, ArrayAccess, JsonSerializable
+class TaskSpecResources implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -303,7 +301,7 @@ class TaskSpecResources implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets limits
      *
-     * @return Limit|null
+     * @return \OpenAPI\Client\Model\Limit|null
      */
     public function getLimits()
     {
@@ -313,14 +311,14 @@ class TaskSpecResources implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets limits
      *
-     * @param Limit|null $limits limits
+     * @param \OpenAPI\Client\Model\Limit|null $limits limits
      *
      * @return self
      */
     public function setLimits($limits)
     {
         if (is_null($limits)) {
-            throw new InvalidArgumentException('non-nullable limits cannot be null');
+            throw new \InvalidArgumentException('non-nullable limits cannot be null');
         }
         $this->container['limits'] = $limits;
 
@@ -330,7 +328,7 @@ class TaskSpecResources implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets reservations
      *
-     * @return ResourceObject|null
+     * @return \OpenAPI\Client\Model\ResourceObject|null
      */
     public function getReservations()
     {
@@ -340,14 +338,14 @@ class TaskSpecResources implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets reservations
      *
-     * @param ResourceObject|null $reservations reservations
+     * @param \OpenAPI\Client\Model\ResourceObject|null $reservations reservations
      *
      * @return self
      */
     public function setReservations($reservations)
     {
         if (is_null($reservations)) {
-            throw new InvalidArgumentException('non-nullable reservations cannot be null');
+            throw new \InvalidArgumentException('non-nullable reservations cannot be null');
         }
         $this->container['reservations'] = $reservations;
 
@@ -372,7 +370,7 @@ class TaskSpecResources implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -414,10 +412,10 @@ class TaskSpecResources implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

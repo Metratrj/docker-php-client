@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PluginSettings
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * PluginSettings Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class PluginSettings implements ModelInterface, ArrayAccess, JsonSerializable
+class PluginSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -329,7 +327,7 @@ class PluginSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets mounts
      *
-     * @return PluginMount[]
+     * @return \OpenAPI\Client\Model\PluginMount[]
      */
     public function getMounts()
     {
@@ -339,14 +337,14 @@ class PluginSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets mounts
      *
-     * @param PluginMount[] $mounts mounts
+     * @param \OpenAPI\Client\Model\PluginMount[] $mounts mounts
      *
      * @return self
      */
     public function setMounts($mounts)
     {
         if (is_null($mounts)) {
-            throw new InvalidArgumentException('non-nullable mounts cannot be null');
+            throw new \InvalidArgumentException('non-nullable mounts cannot be null');
         }
         $this->container['mounts'] = $mounts;
 
@@ -373,7 +371,7 @@ class PluginSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setEnv($env)
     {
         if (is_null($env)) {
-            throw new InvalidArgumentException('non-nullable env cannot be null');
+            throw new \InvalidArgumentException('non-nullable env cannot be null');
         }
         $this->container['env'] = $env;
 
@@ -400,7 +398,7 @@ class PluginSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setArgs($args)
     {
         if (is_null($args)) {
-            throw new InvalidArgumentException('non-nullable args cannot be null');
+            throw new \InvalidArgumentException('non-nullable args cannot be null');
         }
         $this->container['args'] = $args;
 
@@ -410,7 +408,7 @@ class PluginSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets devices
      *
-     * @return PluginDevice[]
+     * @return \OpenAPI\Client\Model\PluginDevice[]
      */
     public function getDevices()
     {
@@ -420,14 +418,14 @@ class PluginSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets devices
      *
-     * @param PluginDevice[] $devices devices
+     * @param \OpenAPI\Client\Model\PluginDevice[] $devices devices
      *
      * @return self
      */
     public function setDevices($devices)
     {
         if (is_null($devices)) {
-            throw new InvalidArgumentException('non-nullable devices cannot be null');
+            throw new \InvalidArgumentException('non-nullable devices cannot be null');
         }
         $this->container['devices'] = $devices;
 
@@ -452,7 +450,7 @@ class PluginSettings implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -494,10 +492,10 @@ class PluginSettings implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

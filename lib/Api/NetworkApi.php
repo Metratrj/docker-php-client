@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NetworkApi
  * PHP version 8.1
@@ -31,19 +32,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Utils;
-use InvalidArgumentException;
-use JsonException;
-use OpenAPI\Client\Model\ErrorResponse;
-use OpenAPI\Client\Model\Network;
-use OpenAPI\Client\Model\NetworkConnectRequest;
-use OpenAPI\Client\Model\NetworkCreateRequest;
-use OpenAPI\Client\Model\NetworkDisconnectRequest;
-use OpenAPI\Client\Model\NetworkPruneResponse;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -51,7 +42,6 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
-use RuntimeException;
 
 /**
  * NetworkApi Class Doc Comment
@@ -160,12 +150,12 @@ class NetworkApi
      * Connect a container to a network
      *
      * @param  string $id Network ID or name (required)
-     * @param  NetworkConnectRequest $container container (required)
+     * @param  \OpenAPI\Client\Model\NetworkConnectRequest $container container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkConnect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function networkConnect($id, $container, string $contentType = self::contentTypes['networkConnect'][0])
     {
@@ -178,12 +168,12 @@ class NetworkApi
      * Connect a container to a network
      *
      * @param  string $id Network ID or name (required)
-     * @param  NetworkConnectRequest $container (required)
+     * @param  \OpenAPI\Client\Model\NetworkConnectRequest $container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkConnect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function networkConnectWithHttpInfo($id, $container, string $contentType = self::contentTypes['networkConnect'][0])
     {
@@ -248,7 +238,7 @@ class NetworkApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -260,11 +250,11 @@ class NetworkApi
      * Connect a container to a network
      *
      * @param  string $id Network ID or name (required)
-     * @param  NetworkConnectRequest $container (required)
+     * @param  \OpenAPI\Client\Model\NetworkConnectRequest $container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkConnect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkConnectAsync($id, $container, string $contentType = self::contentTypes['networkConnect'][0])
     {
@@ -282,11 +272,11 @@ class NetworkApi
      * Connect a container to a network
      *
      * @param  string $id Network ID or name (required)
-     * @param  NetworkConnectRequest $container (required)
+     * @param  \OpenAPI\Client\Model\NetworkConnectRequest $container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkConnect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkConnectAsyncWithHttpInfo($id, $container, string $contentType = self::contentTypes['networkConnect'][0])
     {
@@ -320,25 +310,25 @@ class NetworkApi
      * Create request for operation 'networkConnect'
      *
      * @param  string $id Network ID or name (required)
-     * @param  NetworkConnectRequest $container (required)
+     * @param  \OpenAPI\Client\Model\NetworkConnectRequest $container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkConnect'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function networkConnectRequest($id, $container, string $contentType = self::contentTypes['networkConnect'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling networkConnect'
             );
         }
 
         // verify the required parameter 'container' is set
         if ($container === null || (is_array($container) && count($container) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $container when calling networkConnect'
             );
         }
@@ -373,7 +363,7 @@ class NetworkApi
         if (isset($container)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($container));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($container));
             } else {
                 $httpBody = $container;
             }
@@ -391,9 +381,10 @@ class NetworkApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -427,12 +418,12 @@ class NetworkApi
      *
      * Create a network
      *
-     * @param  NetworkCreateRequest $network_config Network configuration (required)
+     * @param  \OpenAPI\Client\Model\NetworkCreateRequest $network_config Network configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkCreate'] to see the possible values for this operation
      *
-     * @return \OpenAPI\Client\Model\NetworkCreateResponse|ErrorResponse|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\NetworkCreateResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function networkCreate($network_config, string $contentType = self::contentTypes['networkCreate'][0])
     {
@@ -445,12 +436,12 @@ class NetworkApi
      *
      * Create a network
      *
-     * @param  NetworkCreateRequest $network_config Network configuration (required)
+     * @param  \OpenAPI\Client\Model\NetworkCreateRequest $network_config Network configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkCreate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\NetworkCreateResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function networkCreateWithHttpInfo($network_config, string $contentType = self::contentTypes['networkCreate'][0])
     {
@@ -512,7 +503,7 @@ class NetworkApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -575,7 +566,7 @@ class NetworkApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -586,11 +577,11 @@ class NetworkApi
      *
      * Create a network
      *
-     * @param  NetworkCreateRequest $network_config Network configuration (required)
+     * @param  \OpenAPI\Client\Model\NetworkCreateRequest $network_config Network configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkCreateAsync($network_config, string $contentType = self::contentTypes['networkCreate'][0])
     {
@@ -607,11 +598,11 @@ class NetworkApi
      *
      * Create a network
      *
-     * @param  NetworkCreateRequest $network_config Network configuration (required)
+     * @param  \OpenAPI\Client\Model\NetworkCreateRequest $network_config Network configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkCreateAsyncWithHttpInfo($network_config, string $contentType = self::contentTypes['networkCreate'][0])
     {
@@ -657,18 +648,18 @@ class NetworkApi
     /**
      * Create request for operation 'networkCreate'
      *
-     * @param  NetworkCreateRequest $network_config Network configuration (required)
+     * @param  \OpenAPI\Client\Model\NetworkCreateRequest $network_config Network configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkCreate'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function networkCreateRequest($network_config, string $contentType = self::contentTypes['networkCreate'][0])
     {
 
         // verify the required parameter 'network_config' is set
         if ($network_config === null || (is_array($network_config) && count($network_config) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $network_config when calling networkCreate'
             );
         }
@@ -695,7 +686,7 @@ class NetworkApi
         if (isset($network_config)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($network_config));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($network_config));
             } else {
                 $httpBody = $network_config;
             }
@@ -713,9 +704,10 @@ class NetworkApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -752,9 +744,9 @@ class NetworkApi
      * @param  string $id Network ID or name (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkDelete'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function networkDelete($id, string $contentType = self::contentTypes['networkDelete'][0])
     {
@@ -769,9 +761,9 @@ class NetworkApi
      * @param  string $id Network ID or name (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkDelete'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function networkDeleteWithHttpInfo($id, string $contentType = self::contentTypes['networkDelete'][0])
     {
@@ -828,7 +820,7 @@ class NetworkApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -842,8 +834,8 @@ class NetworkApi
      * @param  string $id Network ID or name (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkDeleteAsync($id, string $contentType = self::contentTypes['networkDelete'][0])
     {
@@ -863,8 +855,8 @@ class NetworkApi
      * @param  string $id Network ID or name (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['networkDelete'][0])
     {
@@ -900,15 +892,15 @@ class NetworkApi
      * @param  string $id Network ID or name (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkDelete'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function networkDeleteRequest($id, string $contentType = self::contentTypes['networkDelete'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling networkDelete'
             );
         }
@@ -954,9 +946,10 @@ class NetworkApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -991,12 +984,12 @@ class NetworkApi
      * Disconnect a container from a network
      *
      * @param  string $id Network ID or name (required)
-     * @param  NetworkDisconnectRequest $container container (required)
+     * @param  \OpenAPI\Client\Model\NetworkDisconnectRequest $container container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkDisconnect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function networkDisconnect($id, $container, string $contentType = self::contentTypes['networkDisconnect'][0])
     {
@@ -1009,12 +1002,12 @@ class NetworkApi
      * Disconnect a container from a network
      *
      * @param  string $id Network ID or name (required)
-     * @param  NetworkDisconnectRequest $container (required)
+     * @param  \OpenAPI\Client\Model\NetworkDisconnectRequest $container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkDisconnect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function networkDisconnectWithHttpInfo($id, $container, string $contentType = self::contentTypes['networkDisconnect'][0])
     {
@@ -1071,7 +1064,7 @@ class NetworkApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1083,11 +1076,11 @@ class NetworkApi
      * Disconnect a container from a network
      *
      * @param  string $id Network ID or name (required)
-     * @param  NetworkDisconnectRequest $container (required)
+     * @param  \OpenAPI\Client\Model\NetworkDisconnectRequest $container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkDisconnect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkDisconnectAsync($id, $container, string $contentType = self::contentTypes['networkDisconnect'][0])
     {
@@ -1105,11 +1098,11 @@ class NetworkApi
      * Disconnect a container from a network
      *
      * @param  string $id Network ID or name (required)
-     * @param  NetworkDisconnectRequest $container (required)
+     * @param  \OpenAPI\Client\Model\NetworkDisconnectRequest $container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkDisconnect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkDisconnectAsyncWithHttpInfo($id, $container, string $contentType = self::contentTypes['networkDisconnect'][0])
     {
@@ -1143,25 +1136,25 @@ class NetworkApi
      * Create request for operation 'networkDisconnect'
      *
      * @param  string $id Network ID or name (required)
-     * @param  NetworkDisconnectRequest $container (required)
+     * @param  \OpenAPI\Client\Model\NetworkDisconnectRequest $container (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkDisconnect'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function networkDisconnectRequest($id, $container, string $contentType = self::contentTypes['networkDisconnect'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling networkDisconnect'
             );
         }
 
         // verify the required parameter 'container' is set
         if ($container === null || (is_array($container) && count($container) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $container when calling networkDisconnect'
             );
         }
@@ -1196,7 +1189,7 @@ class NetworkApi
         if (isset($container)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($container));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($container));
             } else {
                 $httpBody = $container;
             }
@@ -1214,9 +1207,10 @@ class NetworkApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1255,9 +1249,9 @@ class NetworkApi
      * @param  string|null $scope Filter the network by scope (swarm, global, or local) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkInspect'] to see the possible values for this operation
      *
-     * @return Network|ErrorResponse|ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Network|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function networkInspect($id, $verbose = false, $scope = null, string $contentType = self::contentTypes['networkInspect'][0])
     {
@@ -1275,9 +1269,9 @@ class NetworkApi
      * @param  string|null $scope Filter the network by scope (swarm, global, or local) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkInspect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Network|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function networkInspectWithHttpInfo($id, $verbose = false, $scope = null, string $contentType = self::contentTypes['networkInspect'][0])
     {
@@ -1327,7 +1321,7 @@ class NetworkApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1374,7 +1368,7 @@ class NetworkApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1390,8 +1384,8 @@ class NetworkApi
      * @param  string|null $scope Filter the network by scope (swarm, global, or local) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkInspectAsync($id, $verbose = false, $scope = null, string $contentType = self::contentTypes['networkInspect'][0])
     {
@@ -1413,8 +1407,8 @@ class NetworkApi
      * @param  string|null $scope Filter the network by scope (swarm, global, or local) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkInspectAsyncWithHttpInfo($id, $verbose = false, $scope = null, string $contentType = self::contentTypes['networkInspect'][0])
     {
@@ -1465,15 +1459,15 @@ class NetworkApi
      * @param  string|null $scope Filter the network by scope (swarm, global, or local) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkInspect'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function networkInspectRequest($id, $verbose = false, $scope = null, string $contentType = self::contentTypes['networkInspect'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling networkInspect'
             );
         }
@@ -1539,9 +1533,10 @@ class NetworkApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1578,9 +1573,9 @@ class NetworkApi
      * @param  string|null $filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the networks list.  Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), returns all    networks that are not in use by a container. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), only networks that are in use by one or more    containers are returned. - &#x60;driver&#x3D;&lt;driver-name&gt;&#x60; Matches a network&#39;s driver. - &#x60;id&#x3D;&lt;network-id&gt;&#x60; Matches all or part of a network ID. - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60; of a network label. - &#x60;name&#x3D;&lt;network-name&gt;&#x60; Matches all or part of a network name. - &#x60;scope&#x3D;[\&quot;swarm\&quot;|\&quot;global\&quot;|\&quot;local\&quot;]&#x60; Filters networks by scope (&#x60;swarm&#x60;, &#x60;global&#x60;, or &#x60;local&#x60;). - &#x60;type&#x3D;[\&quot;custom\&quot;|\&quot;builtin\&quot;]&#x60; Filters networks by type. The &#x60;custom&#x60; keyword returns all user-defined networks. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return Network[]|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Network[]|\OpenAPI\Client\Model\ErrorResponse
      */
     public function networkList($filters = null, string $contentType = self::contentTypes['networkList'][0])
     {
@@ -1596,8 +1591,8 @@ class NetworkApi
      * @param  string|null $filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the networks list.  Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), returns all    networks that are not in use by a container. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), only networks that are in use by one or more    containers are returned. - &#x60;driver&#x3D;&lt;driver-name&gt;&#x60; Matches a network&#39;s driver. - &#x60;id&#x3D;&lt;network-id&gt;&#x60; Matches all or part of a network ID. - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60; of a network label. - &#x60;name&#x3D;&lt;network-name&gt;&#x60; Matches all or part of a network name. - &#x60;scope&#x3D;[\&quot;swarm\&quot;|\&quot;global\&quot;|\&quot;local\&quot;]&#x60; Filters networks by scope (&#x60;swarm&#x60;, &#x60;global&#x60;, or &#x60;local&#x60;). - &#x60;type&#x3D;[\&quot;custom\&quot;|\&quot;builtin\&quot;]&#x60; Filters networks by type. The &#x60;custom&#x60; keyword returns all user-defined networks. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Network[]|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function networkListWithHttpInfo($filters = null, string $contentType = self::contentTypes['networkList'][0])
@@ -1642,7 +1637,7 @@ class NetworkApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1681,7 +1676,7 @@ class NetworkApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1695,8 +1690,8 @@ class NetworkApi
      * @param  string|null $filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the networks list.  Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), returns all    networks that are not in use by a container. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), only networks that are in use by one or more    containers are returned. - &#x60;driver&#x3D;&lt;driver-name&gt;&#x60; Matches a network&#39;s driver. - &#x60;id&#x3D;&lt;network-id&gt;&#x60; Matches all or part of a network ID. - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60; of a network label. - &#x60;name&#x3D;&lt;network-name&gt;&#x60; Matches all or part of a network name. - &#x60;scope&#x3D;[\&quot;swarm\&quot;|\&quot;global\&quot;|\&quot;local\&quot;]&#x60; Filters networks by scope (&#x60;swarm&#x60;, &#x60;global&#x60;, or &#x60;local&#x60;). - &#x60;type&#x3D;[\&quot;custom\&quot;|\&quot;builtin\&quot;]&#x60; Filters networks by type. The &#x60;custom&#x60; keyword returns all user-defined networks. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkListAsync($filters = null, string $contentType = self::contentTypes['networkList'][0])
     {
@@ -1716,8 +1711,8 @@ class NetworkApi
      * @param  string|null $filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the networks list.  Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), returns all    networks that are not in use by a container. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), only networks that are in use by one or more    containers are returned. - &#x60;driver&#x3D;&lt;driver-name&gt;&#x60; Matches a network&#39;s driver. - &#x60;id&#x3D;&lt;network-id&gt;&#x60; Matches all or part of a network ID. - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60; of a network label. - &#x60;name&#x3D;&lt;network-name&gt;&#x60; Matches all or part of a network name. - &#x60;scope&#x3D;[\&quot;swarm\&quot;|\&quot;global\&quot;|\&quot;local\&quot;]&#x60; Filters networks by scope (&#x60;swarm&#x60;, &#x60;global&#x60;, or &#x60;local&#x60;). - &#x60;type&#x3D;[\&quot;custom\&quot;|\&quot;builtin\&quot;]&#x60; Filters networks by type. The &#x60;custom&#x60; keyword returns all user-defined networks. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkListAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['networkList'][0])
     {
@@ -1766,8 +1761,8 @@ class NetworkApi
      * @param  string|null $filters JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the networks list.  Available filters:  - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), returns all    networks that are not in use by a container. When set to &#x60;false&#x60;    (or &#x60;0&#x60;), only networks that are in use by one or more    containers are returned. - &#x60;driver&#x3D;&lt;driver-name&gt;&#x60; Matches a network&#39;s driver. - &#x60;id&#x3D;&lt;network-id&gt;&#x60; Matches all or part of a network ID. - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60; of a network label. - &#x60;name&#x3D;&lt;network-name&gt;&#x60; Matches all or part of a network name. - &#x60;scope&#x3D;[\&quot;swarm\&quot;|\&quot;global\&quot;|\&quot;local\&quot;]&#x60; Filters networks by scope (&#x60;swarm&#x60;, &#x60;global&#x60;, or &#x60;local&#x60;). - &#x60;type&#x3D;[\&quot;custom\&quot;|\&quot;builtin\&quot;]&#x60; Filters networks by type. The &#x60;custom&#x60; keyword returns all user-defined networks. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function networkListRequest($filters = null, string $contentType = self::contentTypes['networkList'][0])
     {
@@ -1815,9 +1810,10 @@ class NetworkApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1854,9 +1850,9 @@ class NetworkApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune networks created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune networks with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkPrune'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return NetworkPruneResponse|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\NetworkPruneResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function networkPrune($filters = null, string $contentType = self::contentTypes['networkPrune'][0])
     {
@@ -1872,8 +1868,8 @@ class NetworkApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune networks created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune networks with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkPrune'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\NetworkPruneResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function networkPruneWithHttpInfo($filters = null, string $contentType = self::contentTypes['networkPrune'][0])
@@ -1918,7 +1914,7 @@ class NetworkApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1957,7 +1953,7 @@ class NetworkApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1971,8 +1967,8 @@ class NetworkApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune networks created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune networks with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkPrune'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkPruneAsync($filters = null, string $contentType = self::contentTypes['networkPrune'][0])
     {
@@ -1992,8 +1988,8 @@ class NetworkApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune networks created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune networks with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkPrune'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function networkPruneAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['networkPrune'][0])
     {
@@ -2042,8 +2038,8 @@ class NetworkApi
      * @param  string|null $filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune networks created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune networks with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['networkPrune'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function networkPruneRequest($filters = null, string $contentType = self::contentTypes['networkPrune'][0])
     {
@@ -2091,9 +2087,10 @@ class NetworkApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -2125,7 +2122,7 @@ class NetworkApi
     /**
      * Create http client option
      *
-     * @throws RuntimeException on file opening failure
+     * @throws \RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -2134,7 +2131,7 @@ class NetworkApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -2153,7 +2150,7 @@ class NetworkApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (JsonException $exception) {
+                } catch (\JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageSearchResponseItem
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ImageSearchResponseItem Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ImageSearchResponseItem implements ModelInterface, ArrayAccess, JsonSerializable
+class ImageSearchResponseItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -340,7 +338,7 @@ class ImageSearchResponseItem implements ModelInterface, ArrayAccess, JsonSerial
     public function setDescription($description)
     {
         if (is_null($description)) {
-            throw new InvalidArgumentException('non-nullable description cannot be null');
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
 
@@ -367,7 +365,7 @@ class ImageSearchResponseItem implements ModelInterface, ArrayAccess, JsonSerial
     public function setIsOfficial($is_official)
     {
         if (is_null($is_official)) {
-            throw new InvalidArgumentException('non-nullable is_official cannot be null');
+            throw new \InvalidArgumentException('non-nullable is_official cannot be null');
         }
         $this->container['is_official'] = $is_official;
 
@@ -394,7 +392,7 @@ class ImageSearchResponseItem implements ModelInterface, ArrayAccess, JsonSerial
     public function setIsAutomated($is_automated)
     {
         if (is_null($is_automated)) {
-            throw new InvalidArgumentException('non-nullable is_automated cannot be null');
+            throw new \InvalidArgumentException('non-nullable is_automated cannot be null');
         }
         $this->container['is_automated'] = $is_automated;
 
@@ -421,7 +419,7 @@ class ImageSearchResponseItem implements ModelInterface, ArrayAccess, JsonSerial
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new InvalidArgumentException('non-nullable name cannot be null');
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -448,7 +446,7 @@ class ImageSearchResponseItem implements ModelInterface, ArrayAccess, JsonSerial
     public function setStarCount($star_count)
     {
         if (is_null($star_count)) {
-            throw new InvalidArgumentException('non-nullable star_count cannot be null');
+            throw new \InvalidArgumentException('non-nullable star_count cannot be null');
         }
         $this->container['star_count'] = $star_count;
 
@@ -473,7 +471,7 @@ class ImageSearchResponseItem implements ModelInterface, ArrayAccess, JsonSerial
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -515,7 +513,7 @@ class ImageSearchResponseItem implements ModelInterface, ArrayAccess, JsonSerial
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -544,3 +542,5 @@ class ImageSearchResponseItem implements ModelInterface, ArrayAccess, JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

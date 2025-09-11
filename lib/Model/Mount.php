@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Mount
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * Mount Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class Mount implements ModelInterface, ArrayAccess, JsonSerializable
+class Mount implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -400,7 +398,7 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setTarget($target)
     {
         if (is_null($target)) {
-            throw new InvalidArgumentException('non-nullable target cannot be null');
+            throw new \InvalidArgumentException('non-nullable target cannot be null');
         }
         $this->container['target'] = $target;
 
@@ -427,7 +425,7 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSource($source)
     {
         if (is_null($source)) {
-            throw new InvalidArgumentException('non-nullable source cannot be null');
+            throw new \InvalidArgumentException('non-nullable source cannot be null');
         }
         $this->container['source'] = $source;
 
@@ -454,11 +452,11 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setType($type)
     {
         if (is_null($type)) {
-            throw new InvalidArgumentException('non-nullable type cannot be null');
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'type', must be one of '%s'",
                     $type,
@@ -491,7 +489,7 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setReadOnly($read_only)
     {
         if (is_null($read_only)) {
-            throw new InvalidArgumentException('non-nullable read_only cannot be null');
+            throw new \InvalidArgumentException('non-nullable read_only cannot be null');
         }
         $this->container['read_only'] = $read_only;
 
@@ -518,7 +516,7 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setConsistency($consistency)
     {
         if (is_null($consistency)) {
-            throw new InvalidArgumentException('non-nullable consistency cannot be null');
+            throw new \InvalidArgumentException('non-nullable consistency cannot be null');
         }
         $this->container['consistency'] = $consistency;
 
@@ -528,7 +526,7 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets bind_options
      *
-     * @return MountBindOptions|null
+     * @return \OpenAPI\Client\Model\MountBindOptions|null
      */
     public function getBindOptions()
     {
@@ -538,14 +536,14 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets bind_options
      *
-     * @param MountBindOptions|null $bind_options bind_options
+     * @param \OpenAPI\Client\Model\MountBindOptions|null $bind_options bind_options
      *
      * @return self
      */
     public function setBindOptions($bind_options)
     {
         if (is_null($bind_options)) {
-            throw new InvalidArgumentException('non-nullable bind_options cannot be null');
+            throw new \InvalidArgumentException('non-nullable bind_options cannot be null');
         }
         $this->container['bind_options'] = $bind_options;
 
@@ -555,7 +553,7 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets volume_options
      *
-     * @return MountVolumeOptions|null
+     * @return \OpenAPI\Client\Model\MountVolumeOptions|null
      */
     public function getVolumeOptions()
     {
@@ -565,14 +563,14 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets volume_options
      *
-     * @param MountVolumeOptions|null $volume_options volume_options
+     * @param \OpenAPI\Client\Model\MountVolumeOptions|null $volume_options volume_options
      *
      * @return self
      */
     public function setVolumeOptions($volume_options)
     {
         if (is_null($volume_options)) {
-            throw new InvalidArgumentException('non-nullable volume_options cannot be null');
+            throw new \InvalidArgumentException('non-nullable volume_options cannot be null');
         }
         $this->container['volume_options'] = $volume_options;
 
@@ -582,7 +580,7 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets image_options
      *
-     * @return MountImageOptions|null
+     * @return \OpenAPI\Client\Model\MountImageOptions|null
      */
     public function getImageOptions()
     {
@@ -592,14 +590,14 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets image_options
      *
-     * @param MountImageOptions|null $image_options image_options
+     * @param \OpenAPI\Client\Model\MountImageOptions|null $image_options image_options
      *
      * @return self
      */
     public function setImageOptions($image_options)
     {
         if (is_null($image_options)) {
-            throw new InvalidArgumentException('non-nullable image_options cannot be null');
+            throw new \InvalidArgumentException('non-nullable image_options cannot be null');
         }
         $this->container['image_options'] = $image_options;
 
@@ -609,7 +607,7 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets tmpfs_options
      *
-     * @return MountTmpfsOptions|null
+     * @return \OpenAPI\Client\Model\MountTmpfsOptions|null
      */
     public function getTmpfsOptions()
     {
@@ -619,14 +617,14 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets tmpfs_options
      *
-     * @param MountTmpfsOptions|null $tmpfs_options tmpfs_options
+     * @param \OpenAPI\Client\Model\MountTmpfsOptions|null $tmpfs_options tmpfs_options
      *
      * @return self
      */
     public function setTmpfsOptions($tmpfs_options)
     {
         if (is_null($tmpfs_options)) {
-            throw new InvalidArgumentException('non-nullable tmpfs_options cannot be null');
+            throw new \InvalidArgumentException('non-nullable tmpfs_options cannot be null');
         }
         $this->container['tmpfs_options'] = $tmpfs_options;
 
@@ -651,7 +649,7 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -693,7 +691,7 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -722,3 +720,5 @@ class Mount implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

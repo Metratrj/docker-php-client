@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageInspectMetadata
  *
@@ -28,10 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ImageInspectMetadata Class Doc Comment
@@ -41,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ImageInspectMetadata implements ModelInterface, ArrayAccess, JsonSerializable
+class ImageInspectMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -315,7 +314,7 @@ class ImageInspectMetadata implements ModelInterface, ArrayAccess, JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'last_tag_time');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_tag_time', $nullablesSetToNull);
+            $index = array_search('last_tag_time', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -344,7 +343,7 @@ class ImageInspectMetadata implements ModelInterface, ArrayAccess, JsonSerializa
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -386,7 +385,7 @@ class ImageInspectMetadata implements ModelInterface, ArrayAccess, JsonSerializa
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -415,3 +414,5 @@ class ImageInspectMetadata implements ModelInterface, ArrayAccess, JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

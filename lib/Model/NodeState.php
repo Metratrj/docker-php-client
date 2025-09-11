@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NodeState
  *
@@ -27,7 +28,7 @@
  */
 
 namespace OpenAPI\Client\Model;
-use OpenAPI\Client\ObjectSerializer;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * NodeState Class Doc Comment

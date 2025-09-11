@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NetworkSettings
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * NetworkSettings Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
+class NetworkSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -432,7 +430,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setBridge($bridge)
     {
         if (is_null($bridge)) {
-            throw new InvalidArgumentException('non-nullable bridge cannot be null');
+            throw new \InvalidArgumentException('non-nullable bridge cannot be null');
         }
         $this->container['bridge'] = $bridge;
 
@@ -459,7 +457,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSandboxId($sandbox_id)
     {
         if (is_null($sandbox_id)) {
-            throw new InvalidArgumentException('non-nullable sandbox_id cannot be null');
+            throw new \InvalidArgumentException('non-nullable sandbox_id cannot be null');
         }
         $this->container['sandbox_id'] = $sandbox_id;
 
@@ -486,7 +484,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setHairpinMode($hairpin_mode)
     {
         if (is_null($hairpin_mode)) {
-            throw new InvalidArgumentException('non-nullable hairpin_mode cannot be null');
+            throw new \InvalidArgumentException('non-nullable hairpin_mode cannot be null');
         }
         $this->container['hairpin_mode'] = $hairpin_mode;
 
@@ -513,7 +511,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setLinkLocalIpv6Address($link_local_ipv6_address)
     {
         if (is_null($link_local_ipv6_address)) {
-            throw new InvalidArgumentException('non-nullable link_local_ipv6_address cannot be null');
+            throw new \InvalidArgumentException('non-nullable link_local_ipv6_address cannot be null');
         }
         $this->container['link_local_ipv6_address'] = $link_local_ipv6_address;
 
@@ -540,7 +538,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setLinkLocalIpv6PrefixLen($link_local_ipv6_prefix_len)
     {
         if (is_null($link_local_ipv6_prefix_len)) {
-            throw new InvalidArgumentException('non-nullable link_local_ipv6_prefix_len cannot be null');
+            throw new \InvalidArgumentException('non-nullable link_local_ipv6_prefix_len cannot be null');
         }
         $this->container['link_local_ipv6_prefix_len'] = $link_local_ipv6_prefix_len;
 
@@ -550,7 +548,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets ports
      *
-     * @return array<string,PortBinding[]>|null
+     * @return array<string,\OpenAPI\Client\Model\PortBinding[]>|null
      */
     public function getPorts()
     {
@@ -560,14 +558,14 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets ports
      *
-     * @param array<string,PortBinding[]>|null $ports PortMap describes the mapping of container ports to host ports, using the container's port-number and protocol as key in the format `<port>/<protocol>`, for example, `80/udp`.  If a container's port is mapped for multiple protocols, separate entries are added to the mapping table.
+     * @param array<string,\OpenAPI\Client\Model\PortBinding[]>|null $ports PortMap describes the mapping of container ports to host ports, using the container's port-number and protocol as key in the format `<port>/<protocol>`, for example, `80/udp`.  If a container's port is mapped for multiple protocols, separate entries are added to the mapping table.
      *
      * @return self
      */
     public function setPorts($ports)
     {
         if (is_null($ports)) {
-            throw new InvalidArgumentException('non-nullable ports cannot be null');
+            throw new \InvalidArgumentException('non-nullable ports cannot be null');
         }
         $this->container['ports'] = $ports;
 
@@ -594,7 +592,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSandboxKey($sandbox_key)
     {
         if (is_null($sandbox_key)) {
-            throw new InvalidArgumentException('non-nullable sandbox_key cannot be null');
+            throw new \InvalidArgumentException('non-nullable sandbox_key cannot be null');
         }
         $this->container['sandbox_key'] = $sandbox_key;
 
@@ -604,7 +602,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets secondary_ip_addresses
      *
-     * @return Address[]|null
+     * @return \OpenAPI\Client\Model\Address[]|null
      */
     public function getSecondaryIpAddresses()
     {
@@ -614,7 +612,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets secondary_ip_addresses
      *
-     * @param Address[]|null $secondary_ip_addresses Deprecated: This field is never set and will be removed in a future release.
+     * @param \OpenAPI\Client\Model\Address[]|null $secondary_ip_addresses Deprecated: This field is never set and will be removed in a future release.
      *
      * @return self
      */
@@ -624,8 +622,8 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'secondary_ip_addresses');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('secondary_ip_addresses', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('secondary_ip_addresses', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -638,7 +636,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets secondary_ipv6_addresses
      *
-     * @return Address[]|null
+     * @return \OpenAPI\Client\Model\Address[]|null
      */
     public function getSecondaryIpv6Addresses()
     {
@@ -648,7 +646,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets secondary_ipv6_addresses
      *
-     * @param Address[]|null $secondary_ipv6_addresses Deprecated: This field is never set and will be removed in a future release.
+     * @param \OpenAPI\Client\Model\Address[]|null $secondary_ipv6_addresses Deprecated: This field is never set and will be removed in a future release.
      *
      * @return self
      */
@@ -658,8 +656,8 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'secondary_ipv6_addresses');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('secondary_ipv6_addresses', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('secondary_ipv6_addresses', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -689,7 +687,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setEndpointId($endpoint_id)
     {
         if (is_null($endpoint_id)) {
-            throw new InvalidArgumentException('non-nullable endpoint_id cannot be null');
+            throw new \InvalidArgumentException('non-nullable endpoint_id cannot be null');
         }
         $this->container['endpoint_id'] = $endpoint_id;
 
@@ -716,7 +714,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setGateway($gateway)
     {
         if (is_null($gateway)) {
-            throw new InvalidArgumentException('non-nullable gateway cannot be null');
+            throw new \InvalidArgumentException('non-nullable gateway cannot be null');
         }
         $this->container['gateway'] = $gateway;
 
@@ -743,7 +741,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setGlobalIpv6Address($global_ipv6_address)
     {
         if (is_null($global_ipv6_address)) {
-            throw new InvalidArgumentException('non-nullable global_ipv6_address cannot be null');
+            throw new \InvalidArgumentException('non-nullable global_ipv6_address cannot be null');
         }
         $this->container['global_ipv6_address'] = $global_ipv6_address;
 
@@ -770,7 +768,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setGlobalIpv6PrefixLen($global_ipv6_prefix_len)
     {
         if (is_null($global_ipv6_prefix_len)) {
-            throw new InvalidArgumentException('non-nullable global_ipv6_prefix_len cannot be null');
+            throw new \InvalidArgumentException('non-nullable global_ipv6_prefix_len cannot be null');
         }
         $this->container['global_ipv6_prefix_len'] = $global_ipv6_prefix_len;
 
@@ -797,7 +795,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setIpAddress($ip_address)
     {
         if (is_null($ip_address)) {
-            throw new InvalidArgumentException('non-nullable ip_address cannot be null');
+            throw new \InvalidArgumentException('non-nullable ip_address cannot be null');
         }
         $this->container['ip_address'] = $ip_address;
 
@@ -824,7 +822,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setIpPrefixLen($ip_prefix_len)
     {
         if (is_null($ip_prefix_len)) {
-            throw new InvalidArgumentException('non-nullable ip_prefix_len cannot be null');
+            throw new \InvalidArgumentException('non-nullable ip_prefix_len cannot be null');
         }
         $this->container['ip_prefix_len'] = $ip_prefix_len;
 
@@ -851,7 +849,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setIpv6Gateway($ipv6_gateway)
     {
         if (is_null($ipv6_gateway)) {
-            throw new InvalidArgumentException('non-nullable ipv6_gateway cannot be null');
+            throw new \InvalidArgumentException('non-nullable ipv6_gateway cannot be null');
         }
         $this->container['ipv6_gateway'] = $ipv6_gateway;
 
@@ -878,7 +876,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     public function setMacAddress($mac_address)
     {
         if (is_null($mac_address)) {
-            throw new InvalidArgumentException('non-nullable mac_address cannot be null');
+            throw new \InvalidArgumentException('non-nullable mac_address cannot be null');
         }
         $this->container['mac_address'] = $mac_address;
 
@@ -888,7 +886,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets networks
      *
-     * @return array<string,EndpointSettings>|null
+     * @return array<string,\OpenAPI\Client\Model\EndpointSettings>|null
      */
     public function getNetworks()
     {
@@ -898,14 +896,14 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets networks
      *
-     * @param array<string,EndpointSettings>|null $networks Information about all networks that the container is connected to.
+     * @param array<string,\OpenAPI\Client\Model\EndpointSettings>|null $networks Information about all networks that the container is connected to.
      *
      * @return self
      */
     public function setNetworks($networks)
     {
         if (is_null($networks)) {
-            throw new InvalidArgumentException('non-nullable networks cannot be null');
+            throw new \InvalidArgumentException('non-nullable networks cannot be null');
         }
         $this->container['networks'] = $networks;
 
@@ -930,7 +928,7 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -972,10 +970,10 @@ class NetworkSettings implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PluginMount
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * PluginMount Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class PluginMount implements ModelInterface, ArrayAccess, JsonSerializable
+class PluginMount implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -375,7 +373,7 @@ class PluginMount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new InvalidArgumentException('non-nullable name cannot be null');
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -402,7 +400,7 @@ class PluginMount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDescription($description)
     {
         if (is_null($description)) {
-            throw new InvalidArgumentException('non-nullable description cannot be null');
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
 
@@ -429,7 +427,7 @@ class PluginMount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSettable($settable)
     {
         if (is_null($settable)) {
-            throw new InvalidArgumentException('non-nullable settable cannot be null');
+            throw new \InvalidArgumentException('non-nullable settable cannot be null');
         }
         $this->container['settable'] = $settable;
 
@@ -456,7 +454,7 @@ class PluginMount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSource($source)
     {
         if (is_null($source)) {
-            throw new InvalidArgumentException('non-nullable source cannot be null');
+            throw new \InvalidArgumentException('non-nullable source cannot be null');
         }
         $this->container['source'] = $source;
 
@@ -483,7 +481,7 @@ class PluginMount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDestination($destination)
     {
         if (is_null($destination)) {
-            throw new InvalidArgumentException('non-nullable destination cannot be null');
+            throw new \InvalidArgumentException('non-nullable destination cannot be null');
         }
         $this->container['destination'] = $destination;
 
@@ -510,7 +508,7 @@ class PluginMount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setType($type)
     {
         if (is_null($type)) {
-            throw new InvalidArgumentException('non-nullable type cannot be null');
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $this->container['type'] = $type;
 
@@ -537,7 +535,7 @@ class PluginMount implements ModelInterface, ArrayAccess, JsonSerializable
     public function setOptions($options)
     {
         if (is_null($options)) {
-            throw new InvalidArgumentException('non-nullable options cannot be null');
+            throw new \InvalidArgumentException('non-nullable options cannot be null');
         }
         $this->container['options'] = $options;
 
@@ -562,7 +560,7 @@ class PluginMount implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -604,10 +602,10 @@ class PluginMount implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Service
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * Service Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class Service implements ModelInterface, ArrayAccess, JsonSerializable
+class Service implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -368,7 +366,7 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new InvalidArgumentException('non-nullable id cannot be null');
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -378,7 +376,7 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets version
      *
-     * @return ObjectVersion|null
+     * @return \OpenAPI\Client\Model\ObjectVersion|null
      */
     public function getVersion()
     {
@@ -388,14 +386,14 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets version
      *
-     * @param ObjectVersion|null $version version
+     * @param \OpenAPI\Client\Model\ObjectVersion|null $version version
      *
      * @return self
      */
     public function setVersion($version)
     {
         if (is_null($version)) {
-            throw new InvalidArgumentException('non-nullable version cannot be null');
+            throw new \InvalidArgumentException('non-nullable version cannot be null');
         }
         $this->container['version'] = $version;
 
@@ -422,7 +420,7 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
-            throw new InvalidArgumentException('non-nullable created_at cannot be null');
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
 
@@ -449,7 +447,7 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
-            throw new InvalidArgumentException('non-nullable updated_at cannot be null');
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
 
@@ -459,7 +457,7 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets spec
      *
-     * @return ServiceSpec|null
+     * @return \OpenAPI\Client\Model\ServiceSpec|null
      */
     public function getSpec()
     {
@@ -469,14 +467,14 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets spec
      *
-     * @param ServiceSpec|null $spec spec
+     * @param \OpenAPI\Client\Model\ServiceSpec|null $spec spec
      *
      * @return self
      */
     public function setSpec($spec)
     {
         if (is_null($spec)) {
-            throw new InvalidArgumentException('non-nullable spec cannot be null');
+            throw new \InvalidArgumentException('non-nullable spec cannot be null');
         }
         $this->container['spec'] = $spec;
 
@@ -486,7 +484,7 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets endpoint
      *
-     * @return ServiceEndpoint|null
+     * @return \OpenAPI\Client\Model\ServiceEndpoint|null
      */
     public function getEndpoint()
     {
@@ -496,14 +494,14 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets endpoint
      *
-     * @param ServiceEndpoint|null $endpoint endpoint
+     * @param \OpenAPI\Client\Model\ServiceEndpoint|null $endpoint endpoint
      *
      * @return self
      */
     public function setEndpoint($endpoint)
     {
         if (is_null($endpoint)) {
-            throw new InvalidArgumentException('non-nullable endpoint cannot be null');
+            throw new \InvalidArgumentException('non-nullable endpoint cannot be null');
         }
         $this->container['endpoint'] = $endpoint;
 
@@ -513,7 +511,7 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets update_status
      *
-     * @return ServiceUpdateStatus|null
+     * @return \OpenAPI\Client\Model\ServiceUpdateStatus|null
      */
     public function getUpdateStatus()
     {
@@ -523,14 +521,14 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets update_status
      *
-     * @param ServiceUpdateStatus|null $update_status update_status
+     * @param \OpenAPI\Client\Model\ServiceUpdateStatus|null $update_status update_status
      *
      * @return self
      */
     public function setUpdateStatus($update_status)
     {
         if (is_null($update_status)) {
-            throw new InvalidArgumentException('non-nullable update_status cannot be null');
+            throw new \InvalidArgumentException('non-nullable update_status cannot be null');
         }
         $this->container['update_status'] = $update_status;
 
@@ -540,7 +538,7 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets service_status
      *
-     * @return ServiceServiceStatus|null
+     * @return \OpenAPI\Client\Model\ServiceServiceStatus|null
      */
     public function getServiceStatus()
     {
@@ -550,14 +548,14 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets service_status
      *
-     * @param ServiceServiceStatus|null $service_status service_status
+     * @param \OpenAPI\Client\Model\ServiceServiceStatus|null $service_status service_status
      *
      * @return self
      */
     public function setServiceStatus($service_status)
     {
         if (is_null($service_status)) {
-            throw new InvalidArgumentException('non-nullable service_status cannot be null');
+            throw new \InvalidArgumentException('non-nullable service_status cannot be null');
         }
         $this->container['service_status'] = $service_status;
 
@@ -567,7 +565,7 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets job_status
      *
-     * @return ServiceJobStatus|null
+     * @return \OpenAPI\Client\Model\ServiceJobStatus|null
      */
     public function getJobStatus()
     {
@@ -577,14 +575,14 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets job_status
      *
-     * @param ServiceJobStatus|null $job_status job_status
+     * @param \OpenAPI\Client\Model\ServiceJobStatus|null $job_status job_status
      *
      * @return self
      */
     public function setJobStatus($job_status)
     {
         if (is_null($job_status)) {
-            throw new InvalidArgumentException('non-nullable job_status cannot be null');
+            throw new \InvalidArgumentException('non-nullable job_status cannot be null');
         }
         $this->container['job_status'] = $job_status;
 
@@ -609,7 +607,7 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -651,10 +649,10 @@ class Service implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

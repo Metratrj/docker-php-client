@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TLSInfo
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * TLSInfo Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class TLSInfo implements ModelInterface, ArrayAccess, JsonSerializable
+class TLSInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -327,7 +325,7 @@ class TLSInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setTrustRoot($trust_root)
     {
         if (is_null($trust_root)) {
-            throw new InvalidArgumentException('non-nullable trust_root cannot be null');
+            throw new \InvalidArgumentException('non-nullable trust_root cannot be null');
         }
         $this->container['trust_root'] = $trust_root;
 
@@ -354,7 +352,7 @@ class TLSInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCertIssuerSubject($cert_issuer_subject)
     {
         if (is_null($cert_issuer_subject)) {
-            throw new InvalidArgumentException('non-nullable cert_issuer_subject cannot be null');
+            throw new \InvalidArgumentException('non-nullable cert_issuer_subject cannot be null');
         }
         $this->container['cert_issuer_subject'] = $cert_issuer_subject;
 
@@ -381,7 +379,7 @@ class TLSInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCertIssuerPublicKey($cert_issuer_public_key)
     {
         if (is_null($cert_issuer_public_key)) {
-            throw new InvalidArgumentException('non-nullable cert_issuer_public_key cannot be null');
+            throw new \InvalidArgumentException('non-nullable cert_issuer_public_key cannot be null');
         }
         $this->container['cert_issuer_public_key'] = $cert_issuer_public_key;
 
@@ -406,7 +404,7 @@ class TLSInfo implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -448,10 +446,10 @@ class TLSInfo implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

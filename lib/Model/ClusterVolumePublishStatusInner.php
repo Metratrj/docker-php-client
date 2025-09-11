@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ClusterVolumePublishStatusInner
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ClusterVolumePublishStatusInner Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ClusterVolumePublishStatusInner implements ModelInterface, ArrayAccess, JsonSerializable
+class ClusterVolumePublishStatusInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -354,7 +352,7 @@ class ClusterVolumePublishStatusInner implements ModelInterface, ArrayAccess, Js
     public function setNodeId($node_id)
     {
         if (is_null($node_id)) {
-            throw new InvalidArgumentException('non-nullable node_id cannot be null');
+            throw new \InvalidArgumentException('non-nullable node_id cannot be null');
         }
         $this->container['node_id'] = $node_id;
 
@@ -381,11 +379,11 @@ class ClusterVolumePublishStatusInner implements ModelInterface, ArrayAccess, Js
     public function setState($state)
     {
         if (is_null($state)) {
-            throw new InvalidArgumentException('non-nullable state cannot be null');
+            throw new \InvalidArgumentException('non-nullable state cannot be null');
         }
         $allowedValues = $this->getStateAllowableValues();
         if (!in_array($state, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'state', must be one of '%s'",
                     $state,
@@ -418,7 +416,7 @@ class ClusterVolumePublishStatusInner implements ModelInterface, ArrayAccess, Js
     public function setPublishContext($publish_context)
     {
         if (is_null($publish_context)) {
-            throw new InvalidArgumentException('non-nullable publish_context cannot be null');
+            throw new \InvalidArgumentException('non-nullable publish_context cannot be null');
         }
         $this->container['publish_context'] = $publish_context;
 
@@ -443,7 +441,7 @@ class ClusterVolumePublishStatusInner implements ModelInterface, ArrayAccess, Js
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -485,7 +483,7 @@ class ClusterVolumePublishStatusInner implements ModelInterface, ArrayAccess, Js
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -514,3 +512,5 @@ class ClusterVolumePublishStatusInner implements ModelInterface, ArrayAccess, Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

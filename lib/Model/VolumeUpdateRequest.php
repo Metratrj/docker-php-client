@@ -1,4 +1,5 @@
 <?php
+
 /**
  * VolumeUpdateRequest
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * VolumeUpdateRequest Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class VolumeUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class VolumeUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -296,7 +294,7 @@ class VolumeUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets spec
      *
-     * @return ClusterVolumeSpec|null
+     * @return \OpenAPI\Client\Model\ClusterVolumeSpec|null
      */
     public function getSpec()
     {
@@ -306,14 +304,14 @@ class VolumeUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets spec
      *
-     * @param ClusterVolumeSpec|null $spec spec
+     * @param \OpenAPI\Client\Model\ClusterVolumeSpec|null $spec spec
      *
      * @return self
      */
     public function setSpec($spec)
     {
         if (is_null($spec)) {
-            throw new InvalidArgumentException('non-nullable spec cannot be null');
+            throw new \InvalidArgumentException('non-nullable spec cannot be null');
         }
         $this->container['spec'] = $spec;
 
@@ -338,7 +336,7 @@ class VolumeUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializab
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -380,10 +378,10 @@ class VolumeUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializab
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

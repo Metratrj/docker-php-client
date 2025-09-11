@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecContainerSpec
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * TaskSpecContainerSpec Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializable
+class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -530,7 +528,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new InvalidArgumentException('non-nullable image cannot be null');
+            throw new \InvalidArgumentException('non-nullable image cannot be null');
         }
         $this->container['image'] = $image;
 
@@ -557,7 +555,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new InvalidArgumentException('non-nullable labels cannot be null');
+            throw new \InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -584,7 +582,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setCommand($command)
     {
         if (is_null($command)) {
-            throw new InvalidArgumentException('non-nullable command cannot be null');
+            throw new \InvalidArgumentException('non-nullable command cannot be null');
         }
         $this->container['command'] = $command;
 
@@ -611,7 +609,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setArgs($args)
     {
         if (is_null($args)) {
-            throw new InvalidArgumentException('non-nullable args cannot be null');
+            throw new \InvalidArgumentException('non-nullable args cannot be null');
         }
         $this->container['args'] = $args;
 
@@ -638,7 +636,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setHostname($hostname)
     {
         if (is_null($hostname)) {
-            throw new InvalidArgumentException('non-nullable hostname cannot be null');
+            throw new \InvalidArgumentException('non-nullable hostname cannot be null');
         }
         $this->container['hostname'] = $hostname;
 
@@ -665,7 +663,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setEnv($env)
     {
         if (is_null($env)) {
-            throw new InvalidArgumentException('non-nullable env cannot be null');
+            throw new \InvalidArgumentException('non-nullable env cannot be null');
         }
         $this->container['env'] = $env;
 
@@ -692,7 +690,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setDir($dir)
     {
         if (is_null($dir)) {
-            throw new InvalidArgumentException('non-nullable dir cannot be null');
+            throw new \InvalidArgumentException('non-nullable dir cannot be null');
         }
         $this->container['dir'] = $dir;
 
@@ -719,7 +717,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setUser($user)
     {
         if (is_null($user)) {
-            throw new InvalidArgumentException('non-nullable user cannot be null');
+            throw new \InvalidArgumentException('non-nullable user cannot be null');
         }
         $this->container['user'] = $user;
 
@@ -746,7 +744,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setGroups($groups)
     {
         if (is_null($groups)) {
-            throw new InvalidArgumentException('non-nullable groups cannot be null');
+            throw new \InvalidArgumentException('non-nullable groups cannot be null');
         }
         $this->container['groups'] = $groups;
 
@@ -756,7 +754,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets privileges
      *
-     * @return TaskSpecContainerSpecPrivileges|null
+     * @return \OpenAPI\Client\Model\TaskSpecContainerSpecPrivileges|null
      */
     public function getPrivileges()
     {
@@ -766,14 +764,14 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets privileges
      *
-     * @param TaskSpecContainerSpecPrivileges|null $privileges privileges
+     * @param \OpenAPI\Client\Model\TaskSpecContainerSpecPrivileges|null $privileges privileges
      *
      * @return self
      */
     public function setPrivileges($privileges)
     {
         if (is_null($privileges)) {
-            throw new InvalidArgumentException('non-nullable privileges cannot be null');
+            throw new \InvalidArgumentException('non-nullable privileges cannot be null');
         }
         $this->container['privileges'] = $privileges;
 
@@ -800,7 +798,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setTty($tty)
     {
         if (is_null($tty)) {
-            throw new InvalidArgumentException('non-nullable tty cannot be null');
+            throw new \InvalidArgumentException('non-nullable tty cannot be null');
         }
         $this->container['tty'] = $tty;
 
@@ -827,7 +825,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setOpenStdin($open_stdin)
     {
         if (is_null($open_stdin)) {
-            throw new InvalidArgumentException('non-nullable open_stdin cannot be null');
+            throw new \InvalidArgumentException('non-nullable open_stdin cannot be null');
         }
         $this->container['open_stdin'] = $open_stdin;
 
@@ -854,7 +852,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setReadOnly($read_only)
     {
         if (is_null($read_only)) {
-            throw new InvalidArgumentException('non-nullable read_only cannot be null');
+            throw new \InvalidArgumentException('non-nullable read_only cannot be null');
         }
         $this->container['read_only'] = $read_only;
 
@@ -864,7 +862,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets mounts
      *
-     * @return Mount[]|null
+     * @return \OpenAPI\Client\Model\Mount[]|null
      */
     public function getMounts()
     {
@@ -874,14 +872,14 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets mounts
      *
-     * @param Mount[]|null $mounts Specification for mounts to be added to containers created as part of the service.
+     * @param \OpenAPI\Client\Model\Mount[]|null $mounts Specification for mounts to be added to containers created as part of the service.
      *
      * @return self
      */
     public function setMounts($mounts)
     {
         if (is_null($mounts)) {
-            throw new InvalidArgumentException('non-nullable mounts cannot be null');
+            throw new \InvalidArgumentException('non-nullable mounts cannot be null');
         }
         $this->container['mounts'] = $mounts;
 
@@ -908,7 +906,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setStopSignal($stop_signal)
     {
         if (is_null($stop_signal)) {
-            throw new InvalidArgumentException('non-nullable stop_signal cannot be null');
+            throw new \InvalidArgumentException('non-nullable stop_signal cannot be null');
         }
         $this->container['stop_signal'] = $stop_signal;
 
@@ -935,7 +933,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setStopGracePeriod($stop_grace_period)
     {
         if (is_null($stop_grace_period)) {
-            throw new InvalidArgumentException('non-nullable stop_grace_period cannot be null');
+            throw new \InvalidArgumentException('non-nullable stop_grace_period cannot be null');
         }
         $this->container['stop_grace_period'] = $stop_grace_period;
 
@@ -945,7 +943,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets health_check
      *
-     * @return HealthConfig|null
+     * @return \OpenAPI\Client\Model\HealthConfig|null
      */
     public function getHealthCheck()
     {
@@ -955,14 +953,14 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets health_check
      *
-     * @param HealthConfig|null $health_check health_check
+     * @param \OpenAPI\Client\Model\HealthConfig|null $health_check health_check
      *
      * @return self
      */
     public function setHealthCheck($health_check)
     {
         if (is_null($health_check)) {
-            throw new InvalidArgumentException('non-nullable health_check cannot be null');
+            throw new \InvalidArgumentException('non-nullable health_check cannot be null');
         }
         $this->container['health_check'] = $health_check;
 
@@ -989,7 +987,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setHosts($hosts)
     {
         if (is_null($hosts)) {
-            throw new InvalidArgumentException('non-nullable hosts cannot be null');
+            throw new \InvalidArgumentException('non-nullable hosts cannot be null');
         }
         $this->container['hosts'] = $hosts;
 
@@ -999,7 +997,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets dns_config
      *
-     * @return TaskSpecContainerSpecDNSConfig|null
+     * @return \OpenAPI\Client\Model\TaskSpecContainerSpecDNSConfig|null
      */
     public function getDnsConfig()
     {
@@ -1009,14 +1007,14 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets dns_config
      *
-     * @param TaskSpecContainerSpecDNSConfig|null $dns_config dns_config
+     * @param \OpenAPI\Client\Model\TaskSpecContainerSpecDNSConfig|null $dns_config dns_config
      *
      * @return self
      */
     public function setDnsConfig($dns_config)
     {
         if (is_null($dns_config)) {
-            throw new InvalidArgumentException('non-nullable dns_config cannot be null');
+            throw new \InvalidArgumentException('non-nullable dns_config cannot be null');
         }
         $this->container['dns_config'] = $dns_config;
 
@@ -1026,7 +1024,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets secrets
      *
-     * @return TaskSpecContainerSpecSecretsInner[]|null
+     * @return \OpenAPI\Client\Model\TaskSpecContainerSpecSecretsInner[]|null
      */
     public function getSecrets()
     {
@@ -1036,14 +1034,14 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets secrets
      *
-     * @param TaskSpecContainerSpecSecretsInner[]|null $secrets Secrets contains references to zero or more secrets that will be exposed to the service.
+     * @param \OpenAPI\Client\Model\TaskSpecContainerSpecSecretsInner[]|null $secrets Secrets contains references to zero or more secrets that will be exposed to the service.
      *
      * @return self
      */
     public function setSecrets($secrets)
     {
         if (is_null($secrets)) {
-            throw new InvalidArgumentException('non-nullable secrets cannot be null');
+            throw new \InvalidArgumentException('non-nullable secrets cannot be null');
         }
         $this->container['secrets'] = $secrets;
 
@@ -1070,7 +1068,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setOomScoreAdj($oom_score_adj)
     {
         if (is_null($oom_score_adj)) {
-            throw new InvalidArgumentException('non-nullable oom_score_adj cannot be null');
+            throw new \InvalidArgumentException('non-nullable oom_score_adj cannot be null');
         }
         $this->container['oom_score_adj'] = $oom_score_adj;
 
@@ -1080,7 +1078,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets configs
      *
-     * @return TaskSpecContainerSpecConfigsInner[]|null
+     * @return \OpenAPI\Client\Model\TaskSpecContainerSpecConfigsInner[]|null
      */
     public function getConfigs()
     {
@@ -1090,14 +1088,14 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets configs
      *
-     * @param TaskSpecContainerSpecConfigsInner[]|null $configs Configs contains references to zero or more configs that will be exposed to the service.
+     * @param \OpenAPI\Client\Model\TaskSpecContainerSpecConfigsInner[]|null $configs Configs contains references to zero or more configs that will be exposed to the service.
      *
      * @return self
      */
     public function setConfigs($configs)
     {
         if (is_null($configs)) {
-            throw new InvalidArgumentException('non-nullable configs cannot be null');
+            throw new \InvalidArgumentException('non-nullable configs cannot be null');
         }
         $this->container['configs'] = $configs;
 
@@ -1124,11 +1122,11 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setIsolation($isolation)
     {
         if (is_null($isolation)) {
-            throw new InvalidArgumentException('non-nullable isolation cannot be null');
+            throw new \InvalidArgumentException('non-nullable isolation cannot be null');
         }
         $allowedValues = $this->getIsolationAllowableValues();
         if (!in_array($isolation, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'isolation', must be one of '%s'",
                     $isolation,
@@ -1164,8 +1162,8 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'init');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('init', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('init', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1195,7 +1193,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setSysctls($sysctls)
     {
         if (is_null($sysctls)) {
-            throw new InvalidArgumentException('non-nullable sysctls cannot be null');
+            throw new \InvalidArgumentException('non-nullable sysctls cannot be null');
         }
         $this->container['sysctls'] = $sysctls;
 
@@ -1222,7 +1220,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setCapabilityAdd($capability_add)
     {
         if (is_null($capability_add)) {
-            throw new InvalidArgumentException('non-nullable capability_add cannot be null');
+            throw new \InvalidArgumentException('non-nullable capability_add cannot be null');
         }
         $this->container['capability_add'] = $capability_add;
 
@@ -1249,7 +1247,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     public function setCapabilityDrop($capability_drop)
     {
         if (is_null($capability_drop)) {
-            throw new InvalidArgumentException('non-nullable capability_drop cannot be null');
+            throw new \InvalidArgumentException('non-nullable capability_drop cannot be null');
         }
         $this->container['capability_drop'] = $capability_drop;
 
@@ -1259,7 +1257,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets ulimits
      *
-     * @return ResourcesUlimitsInner[]|null
+     * @return \OpenAPI\Client\Model\ResourcesUlimitsInner[]|null
      */
     public function getUlimits()
     {
@@ -1269,14 +1267,14 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets ulimits
      *
-     * @param ResourcesUlimitsInner[]|null $ulimits A list of resource limits to set in the container. For example: `{\"Name\": \"nofile\", \"Soft\": 1024, \"Hard\": 2048}`\"
+     * @param \OpenAPI\Client\Model\ResourcesUlimitsInner[]|null $ulimits A list of resource limits to set in the container. For example: `{\"Name\": \"nofile\", \"Soft\": 1024, \"Hard\": 2048}`\"
      *
      * @return self
      */
     public function setUlimits($ulimits)
     {
         if (is_null($ulimits)) {
-            throw new InvalidArgumentException('non-nullable ulimits cannot be null');
+            throw new \InvalidArgumentException('non-nullable ulimits cannot be null');
         }
         $this->container['ulimits'] = $ulimits;
 
@@ -1301,7 +1299,7 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -1343,10 +1341,10 @@ class TaskSpecContainerSpec implements ModelInterface, ArrayAccess, JsonSerializ
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

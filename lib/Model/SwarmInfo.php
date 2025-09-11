@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SwarmInfo
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * SwarmInfo Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
+class SwarmInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -369,7 +367,7 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNodeId($node_id)
     {
         if (is_null($node_id)) {
-            throw new InvalidArgumentException('non-nullable node_id cannot be null');
+            throw new \InvalidArgumentException('non-nullable node_id cannot be null');
         }
         $this->container['node_id'] = $node_id;
 
@@ -396,7 +394,7 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNodeAddr($node_addr)
     {
         if (is_null($node_addr)) {
-            throw new InvalidArgumentException('non-nullable node_addr cannot be null');
+            throw new \InvalidArgumentException('non-nullable node_addr cannot be null');
         }
         $this->container['node_addr'] = $node_addr;
 
@@ -406,7 +404,7 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets local_node_state
      *
-     * @return LocalNodeState|null
+     * @return \OpenAPI\Client\Model\LocalNodeState|null
      */
     public function getLocalNodeState()
     {
@@ -416,14 +414,14 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets local_node_state
      *
-     * @param LocalNodeState|null $local_node_state local_node_state
+     * @param \OpenAPI\Client\Model\LocalNodeState|null $local_node_state local_node_state
      *
      * @return self
      */
     public function setLocalNodeState($local_node_state)
     {
         if (is_null($local_node_state)) {
-            throw new InvalidArgumentException('non-nullable local_node_state cannot be null');
+            throw new \InvalidArgumentException('non-nullable local_node_state cannot be null');
         }
         $this->container['local_node_state'] = $local_node_state;
 
@@ -450,7 +448,7 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setControlAvailable($control_available)
     {
         if (is_null($control_available)) {
-            throw new InvalidArgumentException('non-nullable control_available cannot be null');
+            throw new \InvalidArgumentException('non-nullable control_available cannot be null');
         }
         $this->container['control_available'] = $control_available;
 
@@ -477,7 +475,7 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setError($error)
     {
         if (is_null($error)) {
-            throw new InvalidArgumentException('non-nullable error cannot be null');
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
         }
         $this->container['error'] = $error;
 
@@ -487,7 +485,7 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets remote_managers
      *
-     * @return PeerNode[]|null
+     * @return \OpenAPI\Client\Model\PeerNode[]|null
      */
     public function getRemoteManagers()
     {
@@ -497,7 +495,7 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets remote_managers
      *
-     * @param PeerNode[]|null $remote_managers List of ID's and addresses of other managers in the swarm.
+     * @param \OpenAPI\Client\Model\PeerNode[]|null $remote_managers List of ID's and addresses of other managers in the swarm.
      *
      * @return self
      */
@@ -507,8 +505,8 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'remote_managers');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('remote_managers', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('remote_managers', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -541,8 +539,8 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'nodes');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('nodes', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('nodes', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -575,8 +573,8 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'managers');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('managers', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('managers', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -589,7 +587,7 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets cluster
      *
-     * @return ClusterInfo|null
+     * @return \OpenAPI\Client\Model\ClusterInfo|null
      */
     public function getCluster()
     {
@@ -599,7 +597,7 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets cluster
      *
-     * @param ClusterInfo|null $cluster cluster
+     * @param \OpenAPI\Client\Model\ClusterInfo|null $cluster cluster
      *
      * @return self
      */
@@ -609,8 +607,8 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'cluster');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cluster', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('cluster', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -638,7 +636,7 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -680,10 +678,10 @@ class SwarmInfo implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

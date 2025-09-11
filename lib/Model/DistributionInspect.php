@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DistributionInspect
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * DistributionInspect Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class DistributionInspect implements ModelInterface, ArrayAccess, JsonSerializable
+class DistributionInspect implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -309,7 +307,7 @@ class DistributionInspect implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets descriptor
      *
-     * @return OCIDescriptor
+     * @return \OpenAPI\Client\Model\OCIDescriptor
      */
     public function getDescriptor()
     {
@@ -319,14 +317,14 @@ class DistributionInspect implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets descriptor
      *
-     * @param OCIDescriptor $descriptor descriptor
+     * @param \OpenAPI\Client\Model\OCIDescriptor $descriptor descriptor
      *
      * @return self
      */
     public function setDescriptor($descriptor)
     {
         if (is_null($descriptor)) {
-            throw new InvalidArgumentException('non-nullable descriptor cannot be null');
+            throw new \InvalidArgumentException('non-nullable descriptor cannot be null');
         }
         $this->container['descriptor'] = $descriptor;
 
@@ -336,7 +334,7 @@ class DistributionInspect implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets platforms
      *
-     * @return OCIPlatform[]
+     * @return \OpenAPI\Client\Model\OCIPlatform[]
      */
     public function getPlatforms()
     {
@@ -346,14 +344,14 @@ class DistributionInspect implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets platforms
      *
-     * @param OCIPlatform[] $platforms An array containing all platforms supported by the image.
+     * @param \OpenAPI\Client\Model\OCIPlatform[] $platforms An array containing all platforms supported by the image.
      *
      * @return self
      */
     public function setPlatforms($platforms)
     {
         if (is_null($platforms)) {
-            throw new InvalidArgumentException('non-nullable platforms cannot be null');
+            throw new \InvalidArgumentException('non-nullable platforms cannot be null');
         }
         $this->container['platforms'] = $platforms;
 
@@ -378,7 +376,7 @@ class DistributionInspect implements ModelInterface, ArrayAccess, JsonSerializab
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -420,7 +418,7 @@ class DistributionInspect implements ModelInterface, ArrayAccess, JsonSerializab
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -449,3 +447,5 @@ class DistributionInspect implements ModelInterface, ArrayAccess, JsonSerializab
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

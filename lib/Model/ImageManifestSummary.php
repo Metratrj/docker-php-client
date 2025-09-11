@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageManifestSummary
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ImageManifestSummary Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializable
+class ImageManifestSummary implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -396,7 +394,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new InvalidArgumentException('non-nullable id cannot be null');
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -406,7 +404,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets descriptor
      *
-     * @return OCIDescriptor
+     * @return \OpenAPI\Client\Model\OCIDescriptor
      */
     public function getDescriptor()
     {
@@ -416,14 +414,14 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets descriptor
      *
-     * @param OCIDescriptor $descriptor descriptor
+     * @param \OpenAPI\Client\Model\OCIDescriptor $descriptor descriptor
      *
      * @return self
      */
     public function setDescriptor($descriptor)
     {
         if (is_null($descriptor)) {
-            throw new InvalidArgumentException('non-nullable descriptor cannot be null');
+            throw new \InvalidArgumentException('non-nullable descriptor cannot be null');
         }
         $this->container['descriptor'] = $descriptor;
 
@@ -450,7 +448,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     public function setAvailable($available)
     {
         if (is_null($available)) {
-            throw new InvalidArgumentException('non-nullable available cannot be null');
+            throw new \InvalidArgumentException('non-nullable available cannot be null');
         }
         $this->container['available'] = $available;
 
@@ -460,7 +458,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets size
      *
-     * @return ImageManifestSummarySize
+     * @return \OpenAPI\Client\Model\ImageManifestSummarySize
      */
     public function getSize()
     {
@@ -470,14 +468,14 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets size
      *
-     * @param ImageManifestSummarySize $size size
+     * @param \OpenAPI\Client\Model\ImageManifestSummarySize $size size
      *
      * @return self
      */
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new InvalidArgumentException('non-nullable size cannot be null');
+            throw new \InvalidArgumentException('non-nullable size cannot be null');
         }
         $this->container['size'] = $size;
 
@@ -504,11 +502,11 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     public function setKind($kind)
     {
         if (is_null($kind)) {
-            throw new InvalidArgumentException('non-nullable kind cannot be null');
+            throw new \InvalidArgumentException('non-nullable kind cannot be null');
         }
         $allowedValues = $this->getKindAllowableValues();
         if (!in_array($kind, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'kind', must be one of '%s'",
                     $kind,
@@ -524,7 +522,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets image_data
      *
-     * @return ImageManifestSummaryImageData|null
+     * @return \OpenAPI\Client\Model\ImageManifestSummaryImageData|null
      */
     public function getImageData()
     {
@@ -534,7 +532,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets image_data
      *
-     * @param ImageManifestSummaryImageData|null $image_data image_data
+     * @param \OpenAPI\Client\Model\ImageManifestSummaryImageData|null $image_data image_data
      *
      * @return self
      */
@@ -544,7 +542,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'image_data');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('image_data', $nullablesSetToNull);
+            $index = array_search('image_data', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -558,7 +556,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets attestation_data
      *
-     * @return ImageManifestSummaryAttestationData|null
+     * @return \OpenAPI\Client\Model\ImageManifestSummaryAttestationData|null
      */
     public function getAttestationData()
     {
@@ -568,7 +566,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets attestation_data
      *
-     * @param ImageManifestSummaryAttestationData|null $attestation_data attestation_data
+     * @param \OpenAPI\Client\Model\ImageManifestSummaryAttestationData|null $attestation_data attestation_data
      *
      * @return self
      */
@@ -578,7 +576,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'attestation_data');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('attestation_data', $nullablesSetToNull);
+            $index = array_search('attestation_data', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -607,7 +605,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -649,7 +647,7 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -678,3 +676,5 @@ class ImageManifestSummary implements ModelInterface, ArrayAccess, JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

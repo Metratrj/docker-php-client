@@ -1,4 +1,5 @@
 <?php
+
 /**
  * HostConfigAllOfLogConfig
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * HostConfigAllOfLogConfig Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class HostConfigAllOfLogConfig implements ModelInterface, ArrayAccess, JsonSerializable
+class HostConfigAllOfLogConfig implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -360,11 +358,11 @@ class HostConfigAllOfLogConfig implements ModelInterface, ArrayAccess, JsonSeria
     public function setType($type)
     {
         if (is_null($type)) {
-            throw new InvalidArgumentException('non-nullable type cannot be null');
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'type', must be one of '%s'",
                     $type,
@@ -397,7 +395,7 @@ class HostConfigAllOfLogConfig implements ModelInterface, ArrayAccess, JsonSeria
     public function setConfig($config)
     {
         if (is_null($config)) {
-            throw new InvalidArgumentException('non-nullable config cannot be null');
+            throw new \InvalidArgumentException('non-nullable config cannot be null');
         }
         $this->container['config'] = $config;
 
@@ -422,7 +420,7 @@ class HostConfigAllOfLogConfig implements ModelInterface, ArrayAccess, JsonSeria
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -464,7 +462,7 @@ class HostConfigAllOfLogConfig implements ModelInterface, ArrayAccess, JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -493,3 +491,5 @@ class HostConfigAllOfLogConfig implements ModelInterface, ArrayAccess, JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

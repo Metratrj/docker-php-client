@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DeviceMapping
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * DeviceMapping Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class DeviceMapping implements ModelInterface, ArrayAccess, JsonSerializable
+class DeviceMapping implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -327,7 +325,7 @@ class DeviceMapping implements ModelInterface, ArrayAccess, JsonSerializable
     public function setPathOnHost($path_on_host)
     {
         if (is_null($path_on_host)) {
-            throw new InvalidArgumentException('non-nullable path_on_host cannot be null');
+            throw new \InvalidArgumentException('non-nullable path_on_host cannot be null');
         }
         $this->container['path_on_host'] = $path_on_host;
 
@@ -354,7 +352,7 @@ class DeviceMapping implements ModelInterface, ArrayAccess, JsonSerializable
     public function setPathInContainer($path_in_container)
     {
         if (is_null($path_in_container)) {
-            throw new InvalidArgumentException('non-nullable path_in_container cannot be null');
+            throw new \InvalidArgumentException('non-nullable path_in_container cannot be null');
         }
         $this->container['path_in_container'] = $path_in_container;
 
@@ -381,7 +379,7 @@ class DeviceMapping implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCgroupPermissions($cgroup_permissions)
     {
         if (is_null($cgroup_permissions)) {
-            throw new InvalidArgumentException('non-nullable cgroup_permissions cannot be null');
+            throw new \InvalidArgumentException('non-nullable cgroup_permissions cannot be null');
         }
         $this->container['cgroup_permissions'] = $cgroup_permissions;
 
@@ -406,7 +404,7 @@ class DeviceMapping implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -448,7 +446,7 @@ class DeviceMapping implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -477,3 +475,5 @@ class DeviceMapping implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

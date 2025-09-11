@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ManagerStatus
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ManagerStatus Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ManagerStatus implements ModelInterface, ArrayAccess, JsonSerializable
+class ManagerStatus implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -327,7 +325,7 @@ class ManagerStatus implements ModelInterface, ArrayAccess, JsonSerializable
     public function setLeader($leader)
     {
         if (is_null($leader)) {
-            throw new InvalidArgumentException('non-nullable leader cannot be null');
+            throw new \InvalidArgumentException('non-nullable leader cannot be null');
         }
         $this->container['leader'] = $leader;
 
@@ -337,7 +335,7 @@ class ManagerStatus implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets reachability
      *
-     * @return Reachability|null
+     * @return \OpenAPI\Client\Model\Reachability|null
      */
     public function getReachability()
     {
@@ -347,14 +345,14 @@ class ManagerStatus implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets reachability
      *
-     * @param Reachability|null $reachability reachability
+     * @param \OpenAPI\Client\Model\Reachability|null $reachability reachability
      *
      * @return self
      */
     public function setReachability($reachability)
     {
         if (is_null($reachability)) {
-            throw new InvalidArgumentException('non-nullable reachability cannot be null');
+            throw new \InvalidArgumentException('non-nullable reachability cannot be null');
         }
         $this->container['reachability'] = $reachability;
 
@@ -381,7 +379,7 @@ class ManagerStatus implements ModelInterface, ArrayAccess, JsonSerializable
     public function setAddr($addr)
     {
         if (is_null($addr)) {
-            throw new InvalidArgumentException('non-nullable addr cannot be null');
+            throw new \InvalidArgumentException('non-nullable addr cannot be null');
         }
         $this->container['addr'] = $addr;
 
@@ -406,7 +404,7 @@ class ManagerStatus implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -448,7 +446,7 @@ class ManagerStatus implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -477,3 +475,5 @@ class ManagerStatus implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

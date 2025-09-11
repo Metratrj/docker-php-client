@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BuildCache
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * BuildCache Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
+class BuildCache implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -415,7 +413,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new InvalidArgumentException('non-nullable id cannot be null');
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -445,7 +443,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'parent');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('parent', $nullablesSetToNull);
+            $index = array_search('parent', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -479,7 +477,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'parents');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('parents', $nullablesSetToNull);
+            $index = array_search('parents', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -510,11 +508,11 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
     public function setType($type)
     {
         if (is_null($type)) {
-            throw new InvalidArgumentException('non-nullable type cannot be null');
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'type', must be one of '%s'",
                     $type,
@@ -547,7 +545,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDescription($description)
     {
         if (is_null($description)) {
-            throw new InvalidArgumentException('non-nullable description cannot be null');
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
         $this->container['description'] = $description;
 
@@ -574,7 +572,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
     public function setInUse($in_use)
     {
         if (is_null($in_use)) {
-            throw new InvalidArgumentException('non-nullable in_use cannot be null');
+            throw new \InvalidArgumentException('non-nullable in_use cannot be null');
         }
         $this->container['in_use'] = $in_use;
 
@@ -601,7 +599,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
     public function setShared($shared)
     {
         if (is_null($shared)) {
-            throw new InvalidArgumentException('non-nullable shared cannot be null');
+            throw new \InvalidArgumentException('non-nullable shared cannot be null');
         }
         $this->container['shared'] = $shared;
 
@@ -628,7 +626,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new InvalidArgumentException('non-nullable size cannot be null');
+            throw new \InvalidArgumentException('non-nullable size cannot be null');
         }
         $this->container['size'] = $size;
 
@@ -655,7 +653,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
-            throw new InvalidArgumentException('non-nullable created_at cannot be null');
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
 
@@ -685,7 +683,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'last_used_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_used_at', $nullablesSetToNull);
+            $index = array_search('last_used_at', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -716,7 +714,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
     public function setUsageCount($usage_count)
     {
         if (is_null($usage_count)) {
-            throw new InvalidArgumentException('non-nullable usage_count cannot be null');
+            throw new \InvalidArgumentException('non-nullable usage_count cannot be null');
         }
         $this->container['usage_count'] = $usage_count;
 
@@ -741,7 +739,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -783,7 +781,7 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -812,3 +810,5 @@ class BuildCache implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

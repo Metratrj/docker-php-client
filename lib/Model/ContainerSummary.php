@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerSummary
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerSummary Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerSummary implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -463,16 +461,16 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new InvalidArgumentException('non-nullable id cannot be null');
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         if ((mb_strlen($id) > 64)) {
-            throw new InvalidArgumentException('invalid length for $id when calling ContainerSummary., must be smaller than or equal to 64.');
+            throw new \InvalidArgumentException('invalid length for $id when calling ContainerSummary., must be smaller than or equal to 64.');
         }
         if ((mb_strlen($id) < 64)) {
-            throw new InvalidArgumentException('invalid length for $id when calling ContainerSummary., must be bigger than or equal to 64.');
+            throw new \InvalidArgumentException('invalid length for $id when calling ContainerSummary., must be bigger than or equal to 64.');
         }
         if ((!preg_match("/^[0-9a-fA-F]{64}$/", ObjectSerializer::toString($id)))) {
-            throw new InvalidArgumentException("invalid value for \$id when calling ContainerSummary., must conform to the pattern /^[0-9a-fA-F]{64}$/.");
+            throw new \InvalidArgumentException("invalid value for \$id when calling ContainerSummary., must conform to the pattern /^[0-9a-fA-F]{64}$/.");
         }
 
         $this->container['id'] = $id;
@@ -500,7 +498,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNames($names)
     {
         if (is_null($names)) {
-            throw new InvalidArgumentException('non-nullable names cannot be null');
+            throw new \InvalidArgumentException('non-nullable names cannot be null');
         }
         $this->container['names'] = $names;
 
@@ -527,7 +525,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new InvalidArgumentException('non-nullable image cannot be null');
+            throw new \InvalidArgumentException('non-nullable image cannot be null');
         }
         $this->container['image'] = $image;
 
@@ -554,7 +552,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     public function setImageId($image_id)
     {
         if (is_null($image_id)) {
-            throw new InvalidArgumentException('non-nullable image_id cannot be null');
+            throw new \InvalidArgumentException('non-nullable image_id cannot be null');
         }
         $this->container['image_id'] = $image_id;
 
@@ -564,7 +562,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets image_manifest_descriptor
      *
-     * @return OCIDescriptor|null
+     * @return \OpenAPI\Client\Model\OCIDescriptor|null
      */
     public function getImageManifestDescriptor()
     {
@@ -574,14 +572,14 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets image_manifest_descriptor
      *
-     * @param OCIDescriptor|null $image_manifest_descriptor image_manifest_descriptor
+     * @param \OpenAPI\Client\Model\OCIDescriptor|null $image_manifest_descriptor image_manifest_descriptor
      *
      * @return self
      */
     public function setImageManifestDescriptor($image_manifest_descriptor)
     {
         if (is_null($image_manifest_descriptor)) {
-            throw new InvalidArgumentException('non-nullable image_manifest_descriptor cannot be null');
+            throw new \InvalidArgumentException('non-nullable image_manifest_descriptor cannot be null');
         }
         $this->container['image_manifest_descriptor'] = $image_manifest_descriptor;
 
@@ -608,7 +606,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCommand($command)
     {
         if (is_null($command)) {
-            throw new InvalidArgumentException('non-nullable command cannot be null');
+            throw new \InvalidArgumentException('non-nullable command cannot be null');
         }
         $this->container['command'] = $command;
 
@@ -635,7 +633,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCreated($created)
     {
         if (is_null($created)) {
-            throw new InvalidArgumentException('non-nullable created cannot be null');
+            throw new \InvalidArgumentException('non-nullable created cannot be null');
         }
         $this->container['created'] = $created;
 
@@ -645,7 +643,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets ports
      *
-     * @return Port[]|null
+     * @return \OpenAPI\Client\Model\Port[]|null
      */
     public function getPorts()
     {
@@ -655,14 +653,14 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets ports
      *
-     * @param Port[]|null $ports Port-mappings for the container.
+     * @param \OpenAPI\Client\Model\Port[]|null $ports Port-mappings for the container.
      *
      * @return self
      */
     public function setPorts($ports)
     {
         if (is_null($ports)) {
-            throw new InvalidArgumentException('non-nullable ports cannot be null');
+            throw new \InvalidArgumentException('non-nullable ports cannot be null');
         }
         $this->container['ports'] = $ports;
 
@@ -692,7 +690,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'size_rw');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('size_rw', $nullablesSetToNull);
+            $index = array_search('size_rw', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -726,7 +724,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'size_root_fs');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('size_root_fs', $nullablesSetToNull);
+            $index = array_search('size_root_fs', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -757,7 +755,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new InvalidArgumentException('non-nullable labels cannot be null');
+            throw new \InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -784,11 +782,11 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     public function setState($state)
     {
         if (is_null($state)) {
-            throw new InvalidArgumentException('non-nullable state cannot be null');
+            throw new \InvalidArgumentException('non-nullable state cannot be null');
         }
         $allowedValues = $this->getStateAllowableValues();
         if (!in_array($state, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'state', must be one of '%s'",
                     $state,
@@ -821,7 +819,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     public function setStatus($status)
     {
         if (is_null($status)) {
-            throw new InvalidArgumentException('non-nullable status cannot be null');
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
         $this->container['status'] = $status;
 
@@ -831,7 +829,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets host_config
      *
-     * @return ContainerSummaryHostConfig|null
+     * @return \OpenAPI\Client\Model\ContainerSummaryHostConfig|null
      */
     public function getHostConfig()
     {
@@ -841,14 +839,14 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets host_config
      *
-     * @param ContainerSummaryHostConfig|null $host_config host_config
+     * @param \OpenAPI\Client\Model\ContainerSummaryHostConfig|null $host_config host_config
      *
      * @return self
      */
     public function setHostConfig($host_config)
     {
         if (is_null($host_config)) {
-            throw new InvalidArgumentException('non-nullable host_config cannot be null');
+            throw new \InvalidArgumentException('non-nullable host_config cannot be null');
         }
         $this->container['host_config'] = $host_config;
 
@@ -858,7 +856,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets network_settings
      *
-     * @return ContainerSummaryNetworkSettings|null
+     * @return \OpenAPI\Client\Model\ContainerSummaryNetworkSettings|null
      */
     public function getNetworkSettings()
     {
@@ -868,14 +866,14 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets network_settings
      *
-     * @param ContainerSummaryNetworkSettings|null $network_settings network_settings
+     * @param \OpenAPI\Client\Model\ContainerSummaryNetworkSettings|null $network_settings network_settings
      *
      * @return self
      */
     public function setNetworkSettings($network_settings)
     {
         if (is_null($network_settings)) {
-            throw new InvalidArgumentException('non-nullable network_settings cannot be null');
+            throw new \InvalidArgumentException('non-nullable network_settings cannot be null');
         }
         $this->container['network_settings'] = $network_settings;
 
@@ -885,7 +883,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets mounts
      *
-     * @return MountPoint[]|null
+     * @return \OpenAPI\Client\Model\MountPoint[]|null
      */
     public function getMounts()
     {
@@ -895,14 +893,14 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets mounts
      *
-     * @param MountPoint[]|null $mounts List of mounts used by the container.
+     * @param \OpenAPI\Client\Model\MountPoint[]|null $mounts List of mounts used by the container.
      *
      * @return self
      */
     public function setMounts($mounts)
     {
         if (is_null($mounts)) {
-            throw new InvalidArgumentException('non-nullable mounts cannot be null');
+            throw new \InvalidArgumentException('non-nullable mounts cannot be null');
         }
         $this->container['mounts'] = $mounts;
 
@@ -927,7 +925,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -969,7 +967,7 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -998,3 +996,5 @@ class ContainerSummary implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

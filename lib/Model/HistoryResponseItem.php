@@ -1,4 +1,5 @@
 <?php
+
 /**
  * HistoryResponseItem
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * HistoryResponseItem Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class HistoryResponseItem implements ModelInterface, ArrayAccess, JsonSerializable
+class HistoryResponseItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -366,7 +364,7 @@ class HistoryResponseItem implements ModelInterface, ArrayAccess, JsonSerializab
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new InvalidArgumentException('non-nullable id cannot be null');
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -393,7 +391,7 @@ class HistoryResponseItem implements ModelInterface, ArrayAccess, JsonSerializab
     public function setCreated($created)
     {
         if (is_null($created)) {
-            throw new InvalidArgumentException('non-nullable created cannot be null');
+            throw new \InvalidArgumentException('non-nullable created cannot be null');
         }
         $this->container['created'] = $created;
 
@@ -420,7 +418,7 @@ class HistoryResponseItem implements ModelInterface, ArrayAccess, JsonSerializab
     public function setCreatedBy($created_by)
     {
         if (is_null($created_by)) {
-            throw new InvalidArgumentException('non-nullable created_by cannot be null');
+            throw new \InvalidArgumentException('non-nullable created_by cannot be null');
         }
         $this->container['created_by'] = $created_by;
 
@@ -447,7 +445,7 @@ class HistoryResponseItem implements ModelInterface, ArrayAccess, JsonSerializab
     public function setTags($tags)
     {
         if (is_null($tags)) {
-            throw new InvalidArgumentException('non-nullable tags cannot be null');
+            throw new \InvalidArgumentException('non-nullable tags cannot be null');
         }
         $this->container['tags'] = $tags;
 
@@ -474,7 +472,7 @@ class HistoryResponseItem implements ModelInterface, ArrayAccess, JsonSerializab
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new InvalidArgumentException('non-nullable size cannot be null');
+            throw new \InvalidArgumentException('non-nullable size cannot be null');
         }
         $this->container['size'] = $size;
 
@@ -501,7 +499,7 @@ class HistoryResponseItem implements ModelInterface, ArrayAccess, JsonSerializab
     public function setComment($comment)
     {
         if (is_null($comment)) {
-            throw new InvalidArgumentException('non-nullable comment cannot be null');
+            throw new \InvalidArgumentException('non-nullable comment cannot be null');
         }
         $this->container['comment'] = $comment;
 
@@ -526,7 +524,7 @@ class HistoryResponseItem implements ModelInterface, ArrayAccess, JsonSerializab
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -568,7 +566,7 @@ class HistoryResponseItem implements ModelInterface, ArrayAccess, JsonSerializab
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -597,3 +595,5 @@ class HistoryResponseItem implements ModelInterface, ArrayAccess, JsonSerializab
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

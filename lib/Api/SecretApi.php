@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SecretApi
  * PHP version 8.1
@@ -31,17 +32,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Utils;
-use InvalidArgumentException;
-use JsonException;
-use OpenAPI\Client\Model\ErrorResponse;
-use OpenAPI\Client\Model\Secret;
-use OpenAPI\Client\Model\SecretCreateRequest;
-use OpenAPI\Client\Model\SecretSpec;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -49,7 +42,6 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
-use RuntimeException;
 
 /**
  * SecretApi Class Doc Comment
@@ -152,12 +144,12 @@ class SecretApi
      *
      * Create a secret
      *
-     * @param  SecretCreateRequest|null $body body (optional)
+     * @param  \OpenAPI\Client\Model\SecretCreateRequest|null $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretCreate'] to see the possible values for this operation
      *
-     * @return \OpenAPI\Client\Model\IDResponse|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\IDResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function secretCreate($body = null, string $contentType = self::contentTypes['secretCreate'][0])
     {
@@ -170,12 +162,12 @@ class SecretApi
      *
      * Create a secret
      *
-     * @param  SecretCreateRequest|null $body (optional)
+     * @param  \OpenAPI\Client\Model\SecretCreateRequest|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretCreate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\IDResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function secretCreateWithHttpInfo($body = null, string $contentType = self::contentTypes['secretCreate'][0])
     {
@@ -204,7 +196,7 @@ class SecretApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\IDResponse',
@@ -231,7 +223,7 @@ class SecretApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -286,7 +278,7 @@ class SecretApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -297,11 +289,11 @@ class SecretApi
      *
      * Create a secret
      *
-     * @param  SecretCreateRequest|null $body (optional)
+     * @param  \OpenAPI\Client\Model\SecretCreateRequest|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function secretCreateAsync($body = null, string $contentType = self::contentTypes['secretCreate'][0])
     {
@@ -318,11 +310,11 @@ class SecretApi
      *
      * Create a secret
      *
-     * @param  SecretCreateRequest|null $body (optional)
+     * @param  \OpenAPI\Client\Model\SecretCreateRequest|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function secretCreateAsyncWithHttpInfo($body = null, string $contentType = self::contentTypes['secretCreate'][0])
     {
@@ -368,11 +360,11 @@ class SecretApi
     /**
      * Create request for operation 'secretCreate'
      *
-     * @param  SecretCreateRequest|null $body (optional)
+     * @param  \OpenAPI\Client\Model\SecretCreateRequest|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretCreate'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function secretCreateRequest($body = null, string $contentType = self::contentTypes['secretCreate'][0])
     {
@@ -400,7 +392,7 @@ class SecretApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -421,7 +413,7 @@ class SecretApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -458,9 +450,9 @@ class SecretApi
      * @param  string $id ID of the secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretDelete'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function secretDelete($id, string $contentType = self::contentTypes['secretDelete'][0])
     {
@@ -475,9 +467,9 @@ class SecretApi
      * @param  string $id ID of the secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretDelete'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function secretDeleteWithHttpInfo($id, string $contentType = self::contentTypes['secretDelete'][0])
     {
@@ -534,7 +526,7 @@ class SecretApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -548,8 +540,8 @@ class SecretApi
      * @param  string $id ID of the secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function secretDeleteAsync($id, string $contentType = self::contentTypes['secretDelete'][0])
     {
@@ -569,8 +561,8 @@ class SecretApi
      * @param  string $id ID of the secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function secretDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['secretDelete'][0])
     {
@@ -606,15 +598,15 @@ class SecretApi
      * @param  string $id ID of the secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretDelete'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function secretDeleteRequest($id, string $contentType = self::contentTypes['secretDelete'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling secretDelete'
             );
         }
@@ -663,7 +655,7 @@ class SecretApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -700,9 +692,9 @@ class SecretApi
      * @param  string $id ID of the secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretInspect'] to see the possible values for this operation
      *
-     * @return Secret|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Secret|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function secretInspect($id, string $contentType = self::contentTypes['secretInspect'][0])
     {
@@ -718,9 +710,9 @@ class SecretApi
      * @param  string $id ID of the secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretInspect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Secret|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function secretInspectWithHttpInfo($id, string $contentType = self::contentTypes['secretInspect'][0])
     {
@@ -749,7 +741,7 @@ class SecretApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Secret',
@@ -776,7 +768,7 @@ class SecretApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -831,7 +823,7 @@ class SecretApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -845,8 +837,8 @@ class SecretApi
      * @param  string $id ID of the secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function secretInspectAsync($id, string $contentType = self::contentTypes['secretInspect'][0])
     {
@@ -866,8 +858,8 @@ class SecretApi
      * @param  string $id ID of the secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function secretInspectAsyncWithHttpInfo($id, string $contentType = self::contentTypes['secretInspect'][0])
     {
@@ -916,15 +908,15 @@ class SecretApi
      * @param  string $id ID of the secret (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretInspect'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function secretInspectRequest($id, string $contentType = self::contentTypes['secretInspect'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling secretInspect'
             );
         }
@@ -973,7 +965,7 @@ class SecretApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1010,9 +1002,9 @@ class SecretApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list.  Available filters:  - &#x60;id&#x3D;&lt;secret id&gt;&#x60; - &#x60;label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;&#x3D;value&#x60; - &#x60;name&#x3D;&lt;secret name&gt;&#x60; - &#x60;names&#x3D;&lt;secret name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return Secret[]|ErrorResponse|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Secret[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function secretList($filters = null, string $contentType = self::contentTypes['secretList'][0])
     {
@@ -1028,8 +1020,8 @@ class SecretApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list.  Available filters:  - &#x60;id&#x3D;&lt;secret id&gt;&#x60; - &#x60;label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;&#x3D;value&#x60; - &#x60;name&#x3D;&lt;secret name&gt;&#x60; - &#x60;names&#x3D;&lt;secret name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Secret[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function secretListWithHttpInfo($filters = null, string $contentType = self::contentTypes['secretList'][0])
@@ -1059,7 +1051,7 @@ class SecretApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Secret[]',
@@ -1080,7 +1072,7 @@ class SecretApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1127,7 +1119,7 @@ class SecretApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1141,8 +1133,8 @@ class SecretApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list.  Available filters:  - &#x60;id&#x3D;&lt;secret id&gt;&#x60; - &#x60;label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;&#x3D;value&#x60; - &#x60;name&#x3D;&lt;secret name&gt;&#x60; - &#x60;names&#x3D;&lt;secret name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function secretListAsync($filters = null, string $contentType = self::contentTypes['secretList'][0])
     {
@@ -1162,8 +1154,8 @@ class SecretApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list.  Available filters:  - &#x60;id&#x3D;&lt;secret id&gt;&#x60; - &#x60;label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;&#x3D;value&#x60; - &#x60;name&#x3D;&lt;secret name&gt;&#x60; - &#x60;names&#x3D;&lt;secret name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function secretListAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['secretList'][0])
     {
@@ -1212,8 +1204,8 @@ class SecretApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the secrets list.  Available filters:  - &#x60;id&#x3D;&lt;secret id&gt;&#x60; - &#x60;label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;&#x3D;value&#x60; - &#x60;name&#x3D;&lt;secret name&gt;&#x60; - &#x60;names&#x3D;&lt;secret name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function secretListRequest($filters = null, string $contentType = self::contentTypes['secretList'][0])
     {
@@ -1264,7 +1256,7 @@ class SecretApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1300,12 +1292,12 @@ class SecretApi
      *
      * @param  string $id The ID or name of the secret (required)
      * @param  int $version The version number of the secret object being updated. This is required to avoid conflicting writes. (required)
-     * @param  SecretSpec|null $body The spec of the secret to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [SecretInspect endpoint](#operation/SecretInspect) response values. (optional)
+     * @param  \OpenAPI\Client\Model\SecretSpec|null $body The spec of the secret to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [SecretInspect endpoint](#operation/SecretInspect) response values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretUpdate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function secretUpdate($id, $version, $body = null, string $contentType = self::contentTypes['secretUpdate'][0])
     {
@@ -1319,12 +1311,12 @@ class SecretApi
      *
      * @param  string $id The ID or name of the secret (required)
      * @param  int $version The version number of the secret object being updated. This is required to avoid conflicting writes. (required)
-     * @param  SecretSpec|null $body The spec of the secret to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [SecretInspect endpoint](#operation/SecretInspect) response values. (optional)
+     * @param  \OpenAPI\Client\Model\SecretSpec|null $body The spec of the secret to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [SecretInspect endpoint](#operation/SecretInspect) response values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretUpdate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function secretUpdateWithHttpInfo($id, $version, $body = null, string $contentType = self::contentTypes['secretUpdate'][0])
     {
@@ -1389,7 +1381,7 @@ class SecretApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1402,11 +1394,11 @@ class SecretApi
      *
      * @param  string $id The ID or name of the secret (required)
      * @param  int $version The version number of the secret object being updated. This is required to avoid conflicting writes. (required)
-     * @param  SecretSpec|null $body The spec of the secret to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [SecretInspect endpoint](#operation/SecretInspect) response values. (optional)
+     * @param  \OpenAPI\Client\Model\SecretSpec|null $body The spec of the secret to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [SecretInspect endpoint](#operation/SecretInspect) response values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretUpdate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function secretUpdateAsync($id, $version, $body = null, string $contentType = self::contentTypes['secretUpdate'][0])
     {
@@ -1425,11 +1417,11 @@ class SecretApi
      *
      * @param  string $id The ID or name of the secret (required)
      * @param  int $version The version number of the secret object being updated. This is required to avoid conflicting writes. (required)
-     * @param  SecretSpec|null $body The spec of the secret to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [SecretInspect endpoint](#operation/SecretInspect) response values. (optional)
+     * @param  \OpenAPI\Client\Model\SecretSpec|null $body The spec of the secret to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [SecretInspect endpoint](#operation/SecretInspect) response values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretUpdate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function secretUpdateAsyncWithHttpInfo($id, $version, $body = null, string $contentType = self::contentTypes['secretUpdate'][0])
     {
@@ -1464,25 +1456,25 @@ class SecretApi
      *
      * @param  string $id The ID or name of the secret (required)
      * @param  int $version The version number of the secret object being updated. This is required to avoid conflicting writes. (required)
-     * @param  SecretSpec|null $body The spec of the secret to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [SecretInspect endpoint](#operation/SecretInspect) response values. (optional)
+     * @param  \OpenAPI\Client\Model\SecretSpec|null $body The spec of the secret to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [SecretInspect endpoint](#operation/SecretInspect) response values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['secretUpdate'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function secretUpdateRequest($id, $version, $body = null, string $contentType = self::contentTypes['secretUpdate'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling secretUpdate'
             );
         }
 
         // verify the required parameter 'version' is set
         if ($version === null || (is_array($version) && count($version) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $version when calling secretUpdate'
             );
         }
@@ -1527,7 +1519,7 @@ class SecretApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -1548,7 +1540,7 @@ class SecretApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1580,7 +1572,7 @@ class SecretApi
     /**
      * Create http client option
      *
-     * @throws RuntimeException on file opening failure
+     * @throws \RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -1589,7 +1581,7 @@ class SecretApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -1608,7 +1600,7 @@ class SecretApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (JsonException $exception) {
+                } catch (\JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

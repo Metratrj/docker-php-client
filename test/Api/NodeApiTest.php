@@ -27,9 +27,9 @@
 
 namespace OpenAPI\Client\Test\Api;
 
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\ObjectSerializer;
+use \OpenAPI\Client\Configuration;
+use \OpenAPI\Client\ApiException;
+use \OpenAPI\Client\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 /**

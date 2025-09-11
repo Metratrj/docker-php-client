@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ClusterInfo
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ClusterInfo Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
+class ClusterInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -380,7 +378,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new InvalidArgumentException('non-nullable id cannot be null');
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -390,7 +388,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets version
      *
-     * @return ObjectVersion|null
+     * @return \OpenAPI\Client\Model\ObjectVersion|null
      */
     public function getVersion()
     {
@@ -400,14 +398,14 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets version
      *
-     * @param ObjectVersion|null $version version
+     * @param \OpenAPI\Client\Model\ObjectVersion|null $version version
      *
      * @return self
      */
     public function setVersion($version)
     {
         if (is_null($version)) {
-            throw new InvalidArgumentException('non-nullable version cannot be null');
+            throw new \InvalidArgumentException('non-nullable version cannot be null');
         }
         $this->container['version'] = $version;
 
@@ -434,7 +432,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCreatedAt($created_at)
     {
         if (is_null($created_at)) {
-            throw new InvalidArgumentException('non-nullable created_at cannot be null');
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
 
@@ -461,7 +459,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setUpdatedAt($updated_at)
     {
         if (is_null($updated_at)) {
-            throw new InvalidArgumentException('non-nullable updated_at cannot be null');
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
 
@@ -471,7 +469,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets spec
      *
-     * @return SwarmSpec|null
+     * @return \OpenAPI\Client\Model\SwarmSpec|null
      */
     public function getSpec()
     {
@@ -481,14 +479,14 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets spec
      *
-     * @param SwarmSpec|null $spec spec
+     * @param \OpenAPI\Client\Model\SwarmSpec|null $spec spec
      *
      * @return self
      */
     public function setSpec($spec)
     {
         if (is_null($spec)) {
-            throw new InvalidArgumentException('non-nullable spec cannot be null');
+            throw new \InvalidArgumentException('non-nullable spec cannot be null');
         }
         $this->container['spec'] = $spec;
 
@@ -498,7 +496,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets tls_info
      *
-     * @return TLSInfo|null
+     * @return \OpenAPI\Client\Model\TLSInfo|null
      */
     public function getTlsInfo()
     {
@@ -508,14 +506,14 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets tls_info
      *
-     * @param TLSInfo|null $tls_info tls_info
+     * @param \OpenAPI\Client\Model\TLSInfo|null $tls_info tls_info
      *
      * @return self
      */
     public function setTlsInfo($tls_info)
     {
         if (is_null($tls_info)) {
-            throw new InvalidArgumentException('non-nullable tls_info cannot be null');
+            throw new \InvalidArgumentException('non-nullable tls_info cannot be null');
         }
         $this->container['tls_info'] = $tls_info;
 
@@ -542,7 +540,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setRootRotationInProgress($root_rotation_in_progress)
     {
         if (is_null($root_rotation_in_progress)) {
-            throw new InvalidArgumentException('non-nullable root_rotation_in_progress cannot be null');
+            throw new \InvalidArgumentException('non-nullable root_rotation_in_progress cannot be null');
         }
         $this->container['root_rotation_in_progress'] = $root_rotation_in_progress;
 
@@ -569,7 +567,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDataPathPort($data_path_port)
     {
         if (is_null($data_path_port)) {
-            throw new InvalidArgumentException('non-nullable data_path_port cannot be null');
+            throw new \InvalidArgumentException('non-nullable data_path_port cannot be null');
         }
         $this->container['data_path_port'] = $data_path_port;
 
@@ -596,7 +594,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDefaultAddrPool($default_addr_pool)
     {
         if (is_null($default_addr_pool)) {
-            throw new InvalidArgumentException('non-nullable default_addr_pool cannot be null');
+            throw new \InvalidArgumentException('non-nullable default_addr_pool cannot be null');
         }
         $this->container['default_addr_pool'] = $default_addr_pool;
 
@@ -623,11 +621,11 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSubnetSize($subnet_size)
     {
         if (is_null($subnet_size)) {
-            throw new InvalidArgumentException('non-nullable subnet_size cannot be null');
+            throw new \InvalidArgumentException('non-nullable subnet_size cannot be null');
         }
 
         if (($subnet_size > 29)) {
-            throw new InvalidArgumentException('invalid value for $subnet_size when calling ClusterInfo., must be smaller than or equal to 29.');
+            throw new \InvalidArgumentException('invalid value for $subnet_size when calling ClusterInfo., must be smaller than or equal to 29.');
         }
 
         $this->container['subnet_size'] = $subnet_size;
@@ -653,7 +651,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -695,7 +693,7 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -724,3 +722,5 @@ class ClusterInfo implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

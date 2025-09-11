@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecContainerSpecConfigsInner
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * TaskSpecContainerSpecConfigsInner Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class TaskSpecContainerSpecConfigsInner implements ModelInterface, ArrayAccess, JsonSerializable
+class TaskSpecContainerSpecConfigsInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -316,7 +314,7 @@ class TaskSpecContainerSpecConfigsInner implements ModelInterface, ArrayAccess, 
     /**
      * Gets file
      *
-     * @return TaskSpecContainerSpecConfigsInnerFile|null
+     * @return \OpenAPI\Client\Model\TaskSpecContainerSpecConfigsInnerFile|null
      */
     public function getFile()
     {
@@ -326,14 +324,14 @@ class TaskSpecContainerSpecConfigsInner implements ModelInterface, ArrayAccess, 
     /**
      * Sets file
      *
-     * @param TaskSpecContainerSpecConfigsInnerFile|null $file file
+     * @param \OpenAPI\Client\Model\TaskSpecContainerSpecConfigsInnerFile|null $file file
      *
      * @return self
      */
     public function setFile($file)
     {
         if (is_null($file)) {
-            throw new InvalidArgumentException('non-nullable file cannot be null');
+            throw new \InvalidArgumentException('non-nullable file cannot be null');
         }
         $this->container['file'] = $file;
 
@@ -360,7 +358,7 @@ class TaskSpecContainerSpecConfigsInner implements ModelInterface, ArrayAccess, 
     public function setRuntime($runtime)
     {
         if (is_null($runtime)) {
-            throw new InvalidArgumentException('non-nullable runtime cannot be null');
+            throw new \InvalidArgumentException('non-nullable runtime cannot be null');
         }
         $this->container['runtime'] = $runtime;
 
@@ -387,7 +385,7 @@ class TaskSpecContainerSpecConfigsInner implements ModelInterface, ArrayAccess, 
     public function setConfigId($config_id)
     {
         if (is_null($config_id)) {
-            throw new InvalidArgumentException('non-nullable config_id cannot be null');
+            throw new \InvalidArgumentException('non-nullable config_id cannot be null');
         }
         $this->container['config_id'] = $config_id;
 
@@ -414,7 +412,7 @@ class TaskSpecContainerSpecConfigsInner implements ModelInterface, ArrayAccess, 
     public function setConfigName($config_name)
     {
         if (is_null($config_name)) {
-            throw new InvalidArgumentException('non-nullable config_name cannot be null');
+            throw new \InvalidArgumentException('non-nullable config_name cannot be null');
         }
         $this->container['config_name'] = $config_name;
 
@@ -439,7 +437,7 @@ class TaskSpecContainerSpecConfigsInner implements ModelInterface, ArrayAccess, 
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -481,10 +479,10 @@ class TaskSpecContainerSpecConfigsInner implements ModelInterface, ArrayAccess, 
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

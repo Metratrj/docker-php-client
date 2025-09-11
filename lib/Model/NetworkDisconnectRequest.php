@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NetworkDisconnectRequest
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * NetworkDisconnectRequest Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class NetworkDisconnectRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class NetworkDisconnectRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -319,7 +317,7 @@ class NetworkDisconnectRequest implements ModelInterface, ArrayAccess, JsonSeria
     public function setContainer($container)
     {
         if (is_null($container)) {
-            throw new InvalidArgumentException('non-nullable container cannot be null');
+            throw new \InvalidArgumentException('non-nullable container cannot be null');
         }
         $this->container['container'] = $container;
 
@@ -346,7 +344,7 @@ class NetworkDisconnectRequest implements ModelInterface, ArrayAccess, JsonSeria
     public function setForce($force)
     {
         if (is_null($force)) {
-            throw new InvalidArgumentException('non-nullable force cannot be null');
+            throw new \InvalidArgumentException('non-nullable force cannot be null');
         }
         $this->container['force'] = $force;
 
@@ -371,7 +369,7 @@ class NetworkDisconnectRequest implements ModelInterface, ArrayAccess, JsonSeria
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -413,7 +411,7 @@ class NetworkDisconnectRequest implements ModelInterface, ArrayAccess, JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -442,3 +440,5 @@ class NetworkDisconnectRequest implements ModelInterface, ArrayAccess, JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ThrottleDevice
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ThrottleDevice Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ThrottleDevice implements ModelInterface, ArrayAccess, JsonSerializable
+class ThrottleDevice implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -323,7 +321,7 @@ class ThrottleDevice implements ModelInterface, ArrayAccess, JsonSerializable
     public function setPath($path)
     {
         if (is_null($path)) {
-            throw new InvalidArgumentException('non-nullable path cannot be null');
+            throw new \InvalidArgumentException('non-nullable path cannot be null');
         }
         $this->container['path'] = $path;
 
@@ -350,11 +348,11 @@ class ThrottleDevice implements ModelInterface, ArrayAccess, JsonSerializable
     public function setRate($rate)
     {
         if (is_null($rate)) {
-            throw new InvalidArgumentException('non-nullable rate cannot be null');
+            throw new \InvalidArgumentException('non-nullable rate cannot be null');
         }
 
         if (($rate < 0)) {
-            throw new InvalidArgumentException('invalid value for $rate when calling ThrottleDevice., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for $rate when calling ThrottleDevice., must be bigger than or equal to 0.');
         }
 
         $this->container['rate'] = $rate;
@@ -380,7 +378,7 @@ class ThrottleDevice implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -422,10 +420,10 @@ class ThrottleDevice implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

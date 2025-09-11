@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerStatsResponse
  *
@@ -28,12 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use DateTime;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerStatsResponse Class Doc Comment
@@ -43,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerStatsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -394,7 +391,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
+            $index = array_search('name', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -428,7 +425,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
+            $index = array_search('id', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -442,7 +439,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets read
      *
-     * @return DateTime|null
+     * @return \DateTime|null
      */
     public function getRead()
     {
@@ -452,14 +449,14 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets read
      *
-     * @param DateTime|null $read Date and time at which this sample was collected. The value is formatted as [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) with nano-seconds.
+     * @param \DateTime|null $read Date and time at which this sample was collected. The value is formatted as [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) with nano-seconds.
      *
      * @return self
      */
     public function setRead($read)
     {
         if (is_null($read)) {
-            throw new InvalidArgumentException('non-nullable read cannot be null');
+            throw new \InvalidArgumentException('non-nullable read cannot be null');
         }
         $this->container['read'] = $read;
 
@@ -469,7 +466,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets preread
      *
-     * @return DateTime|null
+     * @return \DateTime|null
      */
     public function getPreread()
     {
@@ -479,14 +476,14 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets preread
      *
-     * @param DateTime|null $preread Date and time at which this first sample was collected. This field is not propagated if the \"one-shot\" option is set. If the \"one-shot\" option is set, this field may be omitted, empty, or set to a default date (`0001-01-01T00:00:00Z`).  The value is formatted as [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) with nano-seconds.
+     * @param \DateTime|null $preread Date and time at which this first sample was collected. This field is not propagated if the \"one-shot\" option is set. If the \"one-shot\" option is set, this field may be omitted, empty, or set to a default date (`0001-01-01T00:00:00Z`).  The value is formatted as [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) with nano-seconds.
      *
      * @return self
      */
     public function setPreread($preread)
     {
         if (is_null($preread)) {
-            throw new InvalidArgumentException('non-nullable preread cannot be null');
+            throw new \InvalidArgumentException('non-nullable preread cannot be null');
         }
         $this->container['preread'] = $preread;
 
@@ -496,7 +493,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets pids_stats
      *
-     * @return ContainerPidsStats|null
+     * @return \OpenAPI\Client\Model\ContainerPidsStats|null
      */
     public function getPidsStats()
     {
@@ -506,7 +503,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets pids_stats
      *
-     * @param ContainerPidsStats|null $pids_stats pids_stats
+     * @param \OpenAPI\Client\Model\ContainerPidsStats|null $pids_stats pids_stats
      *
      * @return self
      */
@@ -516,7 +513,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'pids_stats');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('pids_stats', $nullablesSetToNull);
+            $index = array_search('pids_stats', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -530,7 +527,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets blkio_stats
      *
-     * @return ContainerBlkioStats|null
+     * @return \OpenAPI\Client\Model\ContainerBlkioStats|null
      */
     public function getBlkioStats()
     {
@@ -540,7 +537,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets blkio_stats
      *
-     * @param ContainerBlkioStats|null $blkio_stats blkio_stats
+     * @param \OpenAPI\Client\Model\ContainerBlkioStats|null $blkio_stats blkio_stats
      *
      * @return self
      */
@@ -550,7 +547,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'blkio_stats');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('blkio_stats', $nullablesSetToNull);
+            $index = array_search('blkio_stats', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -581,7 +578,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     public function setNumProcs($num_procs)
     {
         if (is_null($num_procs)) {
-            throw new InvalidArgumentException('non-nullable num_procs cannot be null');
+            throw new \InvalidArgumentException('non-nullable num_procs cannot be null');
         }
         $this->container['num_procs'] = $num_procs;
 
@@ -591,7 +588,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets storage_stats
      *
-     * @return ContainerStorageStats|null
+     * @return \OpenAPI\Client\Model\ContainerStorageStats|null
      */
     public function getStorageStats()
     {
@@ -601,7 +598,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets storage_stats
      *
-     * @param ContainerStorageStats|null $storage_stats storage_stats
+     * @param \OpenAPI\Client\Model\ContainerStorageStats|null $storage_stats storage_stats
      *
      * @return self
      */
@@ -611,7 +608,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'storage_stats');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('storage_stats', $nullablesSetToNull);
+            $index = array_search('storage_stats', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -625,7 +622,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets cpu_stats
      *
-     * @return ContainerCPUStats|null
+     * @return \OpenAPI\Client\Model\ContainerCPUStats|null
      */
     public function getCpuStats()
     {
@@ -635,7 +632,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets cpu_stats
      *
-     * @param ContainerCPUStats|null $cpu_stats cpu_stats
+     * @param \OpenAPI\Client\Model\ContainerCPUStats|null $cpu_stats cpu_stats
      *
      * @return self
      */
@@ -645,7 +642,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'cpu_stats');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cpu_stats', $nullablesSetToNull);
+            $index = array_search('cpu_stats', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -659,7 +656,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets precpu_stats
      *
-     * @return ContainerCPUStats|null
+     * @return \OpenAPI\Client\Model\ContainerCPUStats|null
      */
     public function getPrecpuStats()
     {
@@ -669,7 +666,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets precpu_stats
      *
-     * @param ContainerCPUStats|null $precpu_stats precpu_stats
+     * @param \OpenAPI\Client\Model\ContainerCPUStats|null $precpu_stats precpu_stats
      *
      * @return self
      */
@@ -679,7 +676,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'precpu_stats');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('precpu_stats', $nullablesSetToNull);
+            $index = array_search('precpu_stats', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -693,7 +690,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets memory_stats
      *
-     * @return ContainerMemoryStats|null
+     * @return \OpenAPI\Client\Model\ContainerMemoryStats|null
      */
     public function getMemoryStats()
     {
@@ -703,14 +700,14 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets memory_stats
      *
-     * @param ContainerMemoryStats|null $memory_stats memory_stats
+     * @param \OpenAPI\Client\Model\ContainerMemoryStats|null $memory_stats memory_stats
      *
      * @return self
      */
     public function setMemoryStats($memory_stats)
     {
         if (is_null($memory_stats)) {
-            throw new InvalidArgumentException('non-nullable memory_stats cannot be null');
+            throw new \InvalidArgumentException('non-nullable memory_stats cannot be null');
         }
         $this->container['memory_stats'] = $memory_stats;
 
@@ -740,7 +737,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'networks');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('networks', $nullablesSetToNull);
+            $index = array_search('networks', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -769,7 +766,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -811,7 +808,7 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -840,3 +837,5 @@ class ContainerStatsResponse implements ModelInterface, ArrayAccess, JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

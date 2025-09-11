@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SystemDataUsageResponse
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * SystemDataUsageResponse Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerializable
+class SystemDataUsageResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -340,7 +338,7 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
     public function setLayersSize($layers_size)
     {
         if (is_null($layers_size)) {
-            throw new InvalidArgumentException('non-nullable layers_size cannot be null');
+            throw new \InvalidArgumentException('non-nullable layers_size cannot be null');
         }
         $this->container['layers_size'] = $layers_size;
 
@@ -350,7 +348,7 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Gets images
      *
-     * @return ImageSummary[]|null
+     * @return \OpenAPI\Client\Model\ImageSummary[]|null
      */
     public function getImages()
     {
@@ -360,14 +358,14 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets images
      *
-     * @param ImageSummary[]|null $images images
+     * @param \OpenAPI\Client\Model\ImageSummary[]|null $images images
      *
      * @return self
      */
     public function setImages($images)
     {
         if (is_null($images)) {
-            throw new InvalidArgumentException('non-nullable images cannot be null');
+            throw new \InvalidArgumentException('non-nullable images cannot be null');
         }
         $this->container['images'] = $images;
 
@@ -377,7 +375,7 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Gets containers
      *
-     * @return ContainerSummary[]|null
+     * @return \OpenAPI\Client\Model\ContainerSummary[]|null
      */
     public function getContainers()
     {
@@ -387,14 +385,14 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets containers
      *
-     * @param ContainerSummary[]|null $containers containers
+     * @param \OpenAPI\Client\Model\ContainerSummary[]|null $containers containers
      *
      * @return self
      */
     public function setContainers($containers)
     {
         if (is_null($containers)) {
-            throw new InvalidArgumentException('non-nullable containers cannot be null');
+            throw new \InvalidArgumentException('non-nullable containers cannot be null');
         }
         $this->container['containers'] = $containers;
 
@@ -404,7 +402,7 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Gets volumes
      *
-     * @return Volume[]|null
+     * @return \OpenAPI\Client\Model\Volume[]|null
      */
     public function getVolumes()
     {
@@ -414,14 +412,14 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets volumes
      *
-     * @param Volume[]|null $volumes volumes
+     * @param \OpenAPI\Client\Model\Volume[]|null $volumes volumes
      *
      * @return self
      */
     public function setVolumes($volumes)
     {
         if (is_null($volumes)) {
-            throw new InvalidArgumentException('non-nullable volumes cannot be null');
+            throw new \InvalidArgumentException('non-nullable volumes cannot be null');
         }
         $this->container['volumes'] = $volumes;
 
@@ -431,7 +429,7 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Gets build_cache
      *
-     * @return BuildCache[]|null
+     * @return \OpenAPI\Client\Model\BuildCache[]|null
      */
     public function getBuildCache()
     {
@@ -441,14 +439,14 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
     /**
      * Sets build_cache
      *
-     * @param BuildCache[]|null $build_cache build_cache
+     * @param \OpenAPI\Client\Model\BuildCache[]|null $build_cache build_cache
      *
      * @return self
      */
     public function setBuildCache($build_cache)
     {
         if (is_null($build_cache)) {
-            throw new InvalidArgumentException('non-nullable build_cache cannot be null');
+            throw new \InvalidArgumentException('non-nullable build_cache cannot be null');
         }
         $this->container['build_cache'] = $build_cache;
 
@@ -473,7 +471,7 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -515,10 +513,10 @@ class SystemDataUsageResponse implements ModelInterface, ArrayAccess, JsonSerial
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

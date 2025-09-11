@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageManifestSummaryImageDataSize
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ImageManifestSummaryImageDataSize Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ImageManifestSummaryImageDataSize implements ModelInterface, ArrayAccess, JsonSerializable
+class ImageManifestSummaryImageDataSize implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -315,7 +313,7 @@ class ImageManifestSummaryImageDataSize implements ModelInterface, ArrayAccess, 
     public function setUnpacked($unpacked)
     {
         if (is_null($unpacked)) {
-            throw new InvalidArgumentException('non-nullable unpacked cannot be null');
+            throw new \InvalidArgumentException('non-nullable unpacked cannot be null');
         }
         $this->container['unpacked'] = $unpacked;
 
@@ -340,7 +338,7 @@ class ImageManifestSummaryImageDataSize implements ModelInterface, ArrayAccess, 
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -382,7 +380,7 @@ class ImageManifestSummaryImageDataSize implements ModelInterface, ArrayAccess, 
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -411,3 +409,5 @@ class ImageManifestSummaryImageDataSize implements ModelInterface, ArrayAccess, 
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

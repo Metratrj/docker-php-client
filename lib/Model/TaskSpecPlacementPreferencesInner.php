@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecPlacementPreferencesInner
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * TaskSpecPlacementPreferencesInner Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class TaskSpecPlacementPreferencesInner implements ModelInterface, ArrayAccess, JsonSerializable
+class TaskSpecPlacementPreferencesInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -295,7 +293,7 @@ class TaskSpecPlacementPreferencesInner implements ModelInterface, ArrayAccess, 
     /**
      * Gets spread
      *
-     * @return TaskSpecPlacementPreferencesInnerSpread|null
+     * @return \OpenAPI\Client\Model\TaskSpecPlacementPreferencesInnerSpread|null
      */
     public function getSpread()
     {
@@ -305,14 +303,14 @@ class TaskSpecPlacementPreferencesInner implements ModelInterface, ArrayAccess, 
     /**
      * Sets spread
      *
-     * @param TaskSpecPlacementPreferencesInnerSpread|null $spread spread
+     * @param \OpenAPI\Client\Model\TaskSpecPlacementPreferencesInnerSpread|null $spread spread
      *
      * @return self
      */
     public function setSpread($spread)
     {
         if (is_null($spread)) {
-            throw new InvalidArgumentException('non-nullable spread cannot be null');
+            throw new \InvalidArgumentException('non-nullable spread cannot be null');
         }
         $this->container['spread'] = $spread;
 
@@ -337,7 +335,7 @@ class TaskSpecPlacementPreferencesInner implements ModelInterface, ArrayAccess, 
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -379,10 +377,10 @@ class TaskSpecPlacementPreferencesInner implements ModelInterface, ArrayAccess, 
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * HealthConfig
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * HealthConfig Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class HealthConfig implements ModelInterface, ArrayAccess, JsonSerializable
+class HealthConfig implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -348,7 +346,7 @@ class HealthConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setTest($test)
     {
         if (is_null($test)) {
-            throw new InvalidArgumentException('non-nullable test cannot be null');
+            throw new \InvalidArgumentException('non-nullable test cannot be null');
         }
         $this->container['test'] = $test;
 
@@ -375,7 +373,7 @@ class HealthConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setInterval($interval)
     {
         if (is_null($interval)) {
-            throw new InvalidArgumentException('non-nullable interval cannot be null');
+            throw new \InvalidArgumentException('non-nullable interval cannot be null');
         }
         $this->container['interval'] = $interval;
 
@@ -402,7 +400,7 @@ class HealthConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setTimeout($timeout)
     {
         if (is_null($timeout)) {
-            throw new InvalidArgumentException('non-nullable timeout cannot be null');
+            throw new \InvalidArgumentException('non-nullable timeout cannot be null');
         }
         $this->container['timeout'] = $timeout;
 
@@ -429,7 +427,7 @@ class HealthConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setRetries($retries)
     {
         if (is_null($retries)) {
-            throw new InvalidArgumentException('non-nullable retries cannot be null');
+            throw new \InvalidArgumentException('non-nullable retries cannot be null');
         }
         $this->container['retries'] = $retries;
 
@@ -456,7 +454,7 @@ class HealthConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setStartPeriod($start_period)
     {
         if (is_null($start_period)) {
-            throw new InvalidArgumentException('non-nullable start_period cannot be null');
+            throw new \InvalidArgumentException('non-nullable start_period cannot be null');
         }
         $this->container['start_period'] = $start_period;
 
@@ -483,7 +481,7 @@ class HealthConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setStartInterval($start_interval)
     {
         if (is_null($start_interval)) {
-            throw new InvalidArgumentException('non-nullable start_interval cannot be null');
+            throw new \InvalidArgumentException('non-nullable start_interval cannot be null');
         }
         $this->container['start_interval'] = $start_interval;
 
@@ -508,7 +506,7 @@ class HealthConfig implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -550,7 +548,7 @@ class HealthConfig implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -579,3 +577,5 @@ class HealthConfig implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

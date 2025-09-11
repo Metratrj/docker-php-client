@@ -1,4 +1,5 @@
 <?php
+
 /**
  * OCIDescriptor
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * OCIDescriptor Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
+class OCIDescriptor implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -362,7 +360,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
     public function setMediaType($media_type)
     {
         if (is_null($media_type)) {
-            throw new InvalidArgumentException('non-nullable media_type cannot be null');
+            throw new \InvalidArgumentException('non-nullable media_type cannot be null');
         }
         $this->container['media_type'] = $media_type;
 
@@ -389,7 +387,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDigest($digest)
     {
         if (is_null($digest)) {
-            throw new InvalidArgumentException('non-nullable digest cannot be null');
+            throw new \InvalidArgumentException('non-nullable digest cannot be null');
         }
         $this->container['digest'] = $digest;
 
@@ -416,7 +414,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new InvalidArgumentException('non-nullable size cannot be null');
+            throw new \InvalidArgumentException('non-nullable size cannot be null');
         }
         $this->container['size'] = $size;
 
@@ -446,8 +444,8 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'urls');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('urls', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('urls', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -480,8 +478,8 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'annotations');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('annotations', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('annotations', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -514,8 +512,8 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'data');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('data', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('data', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -528,7 +526,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets platform
      *
-     * @return OCIPlatform|null
+     * @return \OpenAPI\Client\Model\OCIPlatform|null
      */
     public function getPlatform()
     {
@@ -538,7 +536,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets platform
      *
-     * @param OCIPlatform|null $platform platform
+     * @param \OpenAPI\Client\Model\OCIPlatform|null $platform platform
      *
      * @return self
      */
@@ -548,8 +546,8 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'platform');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('platform', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('platform', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -582,8 +580,8 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'artifact_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('artifact_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('artifact_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -611,7 +609,7 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -653,10 +651,10 @@ class OCIDescriptor implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Configuration
  * PHP version 8.1
@@ -26,8 +27,6 @@
  */
 
 namespace OpenAPI\Client;
-
-use InvalidArgumentException;
 
 /**
  * Configuration Class Doc Comment
@@ -306,13 +305,13 @@ class Configuration
      *
      * @param string $userAgent the user agent of the api client
      *
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setUserAgent($userAgent)
     {
         if (!is_string($userAgent)) {
-            throw new InvalidArgumentException('User-agent must be a string.');
+            throw new \InvalidArgumentException('User-agent must be a string.');
         }
 
         $this->userAgent = $userAgent;
@@ -435,6 +434,7 @@ class Configuration
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    The version of the OpenAPI document: 1.51' . PHP_EOL;
+        $report .= '    SDK Package Version: 1.0.0' . PHP_EOL;
         $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
 
         return $report;
@@ -496,7 +496,7 @@ class Configuration
 
         // check array index out of bound
         if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
-            throw new InvalidArgumentException("Invalid index $hostIndex when selecting the host. Must be less than ".count($hostSettings));
+            throw new \InvalidArgumentException("Invalid index $hostIndex when selecting the host. Must be less than ".count($hostSettings));
         }
 
         $host = $hostSettings[$hostIndex];
@@ -508,7 +508,7 @@ class Configuration
                 if (!isset($variable['enum_values']) || in_array($variables[$name], $variable["enum_values"], true)) { // check to see if the value is in the enum
                     $url = str_replace("{".$name."}", $variables[$name], $url);
                 } else {
-                    throw new InvalidArgumentException("The variable `$name` in the host URL has invalid value ".$variables[$name].". Must be ".join(',', $variable["enum_values"]).".");
+                    throw new \InvalidArgumentException("The variable `$name` in the host URL has invalid value ".$variables[$name].". Must be ".join(',', $variable["enum_values"]).".");
                 }
             } else {
                 // use default value

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SwarmJoinRequest
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * SwarmJoinRequest Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class SwarmJoinRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class SwarmJoinRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -340,7 +338,7 @@ class SwarmJoinRequest implements ModelInterface, ArrayAccess, JsonSerializable
     public function setListenAddr($listen_addr)
     {
         if (is_null($listen_addr)) {
-            throw new InvalidArgumentException('non-nullable listen_addr cannot be null');
+            throw new \InvalidArgumentException('non-nullable listen_addr cannot be null');
         }
         $this->container['listen_addr'] = $listen_addr;
 
@@ -367,7 +365,7 @@ class SwarmJoinRequest implements ModelInterface, ArrayAccess, JsonSerializable
     public function setAdvertiseAddr($advertise_addr)
     {
         if (is_null($advertise_addr)) {
-            throw new InvalidArgumentException('non-nullable advertise_addr cannot be null');
+            throw new \InvalidArgumentException('non-nullable advertise_addr cannot be null');
         }
         $this->container['advertise_addr'] = $advertise_addr;
 
@@ -394,7 +392,7 @@ class SwarmJoinRequest implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDataPathAddr($data_path_addr)
     {
         if (is_null($data_path_addr)) {
-            throw new InvalidArgumentException('non-nullable data_path_addr cannot be null');
+            throw new \InvalidArgumentException('non-nullable data_path_addr cannot be null');
         }
         $this->container['data_path_addr'] = $data_path_addr;
 
@@ -421,7 +419,7 @@ class SwarmJoinRequest implements ModelInterface, ArrayAccess, JsonSerializable
     public function setRemoteAddrs($remote_addrs)
     {
         if (is_null($remote_addrs)) {
-            throw new InvalidArgumentException('non-nullable remote_addrs cannot be null');
+            throw new \InvalidArgumentException('non-nullable remote_addrs cannot be null');
         }
         $this->container['remote_addrs'] = $remote_addrs;
 
@@ -448,7 +446,7 @@ class SwarmJoinRequest implements ModelInterface, ArrayAccess, JsonSerializable
     public function setJoinToken($join_token)
     {
         if (is_null($join_token)) {
-            throw new InvalidArgumentException('non-nullable join_token cannot be null');
+            throw new \InvalidArgumentException('non-nullable join_token cannot be null');
         }
         $this->container['join_token'] = $join_token;
 
@@ -473,7 +471,7 @@ class SwarmJoinRequest implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -515,10 +513,10 @@ class SwarmJoinRequest implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

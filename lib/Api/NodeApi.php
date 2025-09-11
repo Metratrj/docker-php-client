@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NodeApi
  * PHP version 8.1
@@ -31,16 +32,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Utils;
-use InvalidArgumentException;
-use JsonException;
-use OpenAPI\Client\Model\ErrorResponse;
-use OpenAPI\Client\Model\Node;
-use OpenAPI\Client\Model\NodeSpec;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -48,7 +42,6 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
-use RuntimeException;
 
 /**
  * NodeApi Class Doc Comment
@@ -152,9 +145,9 @@ class NodeApi
      * @param  bool|null $force Force remove a node from the swarm (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeDelete'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function nodeDelete($id, $force = false, string $contentType = self::contentTypes['nodeDelete'][0])
     {
@@ -170,9 +163,9 @@ class NodeApi
      * @param  bool|null $force Force remove a node from the swarm (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeDelete'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function nodeDeleteWithHttpInfo($id, $force = false, string $contentType = self::contentTypes['nodeDelete'][0])
     {
@@ -229,7 +222,7 @@ class NodeApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -244,8 +237,8 @@ class NodeApi
      * @param  bool|null $force Force remove a node from the swarm (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function nodeDeleteAsync($id, $force = false, string $contentType = self::contentTypes['nodeDelete'][0])
     {
@@ -266,8 +259,8 @@ class NodeApi
      * @param  bool|null $force Force remove a node from the swarm (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function nodeDeleteAsyncWithHttpInfo($id, $force = false, string $contentType = self::contentTypes['nodeDelete'][0])
     {
@@ -304,15 +297,15 @@ class NodeApi
      * @param  bool|null $force Force remove a node from the swarm (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeDelete'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function nodeDeleteRequest($id, $force = false, string $contentType = self::contentTypes['nodeDelete'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling nodeDelete'
             );
         }
@@ -371,7 +364,7 @@ class NodeApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -408,9 +401,9 @@ class NodeApi
      * @param  string $id The ID or name of the node (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeInspect'] to see the possible values for this operation
      *
-     * @return Node|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Node|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function nodeInspect($id, string $contentType = self::contentTypes['nodeInspect'][0])
     {
@@ -426,9 +419,9 @@ class NodeApi
      * @param  string $id The ID or name of the node (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeInspect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Node|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function nodeInspectWithHttpInfo($id, string $contentType = self::contentTypes['nodeInspect'][0])
     {
@@ -457,7 +450,7 @@ class NodeApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Node',
@@ -484,7 +477,7 @@ class NodeApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -539,7 +532,7 @@ class NodeApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -553,8 +546,8 @@ class NodeApi
      * @param  string $id The ID or name of the node (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function nodeInspectAsync($id, string $contentType = self::contentTypes['nodeInspect'][0])
     {
@@ -574,8 +567,8 @@ class NodeApi
      * @param  string $id The ID or name of the node (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function nodeInspectAsyncWithHttpInfo($id, string $contentType = self::contentTypes['nodeInspect'][0])
     {
@@ -624,15 +617,15 @@ class NodeApi
      * @param  string $id The ID or name of the node (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeInspect'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function nodeInspectRequest($id, string $contentType = self::contentTypes['nodeInspect'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling nodeInspect'
             );
         }
@@ -681,7 +674,7 @@ class NodeApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -718,9 +711,9 @@ class NodeApi
      * @param  string|null $filters Filters to process on the nodes list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;id&#x3D;&lt;node id&gt;&#x60; - &#x60;label&#x3D;&lt;engine label&gt;&#x60; - &#x60;membership&#x3D;&#x60;(&#x60;accepted&#x60;|&#x60;pending&#x60;)&#x60; - &#x60;name&#x3D;&lt;node name&gt;&#x60; - &#x60;node.label&#x3D;&lt;node label&gt;&#x60; - &#x60;role&#x3D;&#x60;(&#x60;manager&#x60;|&#x60;worker&#x60;)&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return Node[]|ErrorResponse|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Node[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function nodeList($filters = null, string $contentType = self::contentTypes['nodeList'][0])
     {
@@ -736,8 +729,8 @@ class NodeApi
      * @param  string|null $filters Filters to process on the nodes list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;id&#x3D;&lt;node id&gt;&#x60; - &#x60;label&#x3D;&lt;engine label&gt;&#x60; - &#x60;membership&#x3D;&#x60;(&#x60;accepted&#x60;|&#x60;pending&#x60;)&#x60; - &#x60;name&#x3D;&lt;node name&gt;&#x60; - &#x60;node.label&#x3D;&lt;node label&gt;&#x60; - &#x60;role&#x3D;&#x60;(&#x60;manager&#x60;|&#x60;worker&#x60;)&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Node[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function nodeListWithHttpInfo($filters = null, string $contentType = self::contentTypes['nodeList'][0])
@@ -767,7 +760,7 @@ class NodeApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Node[]',
@@ -788,7 +781,7 @@ class NodeApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -835,7 +828,7 @@ class NodeApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -849,8 +842,8 @@ class NodeApi
      * @param  string|null $filters Filters to process on the nodes list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;id&#x3D;&lt;node id&gt;&#x60; - &#x60;label&#x3D;&lt;engine label&gt;&#x60; - &#x60;membership&#x3D;&#x60;(&#x60;accepted&#x60;|&#x60;pending&#x60;)&#x60; - &#x60;name&#x3D;&lt;node name&gt;&#x60; - &#x60;node.label&#x3D;&lt;node label&gt;&#x60; - &#x60;role&#x3D;&#x60;(&#x60;manager&#x60;|&#x60;worker&#x60;)&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function nodeListAsync($filters = null, string $contentType = self::contentTypes['nodeList'][0])
     {
@@ -870,8 +863,8 @@ class NodeApi
      * @param  string|null $filters Filters to process on the nodes list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;id&#x3D;&lt;node id&gt;&#x60; - &#x60;label&#x3D;&lt;engine label&gt;&#x60; - &#x60;membership&#x3D;&#x60;(&#x60;accepted&#x60;|&#x60;pending&#x60;)&#x60; - &#x60;name&#x3D;&lt;node name&gt;&#x60; - &#x60;node.label&#x3D;&lt;node label&gt;&#x60; - &#x60;role&#x3D;&#x60;(&#x60;manager&#x60;|&#x60;worker&#x60;)&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function nodeListAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['nodeList'][0])
     {
@@ -920,8 +913,8 @@ class NodeApi
      * @param  string|null $filters Filters to process on the nodes list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters: - &#x60;id&#x3D;&lt;node id&gt;&#x60; - &#x60;label&#x3D;&lt;engine label&gt;&#x60; - &#x60;membership&#x3D;&#x60;(&#x60;accepted&#x60;|&#x60;pending&#x60;)&#x60; - &#x60;name&#x3D;&lt;node name&gt;&#x60; - &#x60;node.label&#x3D;&lt;node label&gt;&#x60; - &#x60;role&#x3D;&#x60;(&#x60;manager&#x60;|&#x60;worker&#x60;)&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function nodeListRequest($filters = null, string $contentType = self::contentTypes['nodeList'][0])
     {
@@ -972,7 +965,7 @@ class NodeApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1008,12 +1001,12 @@ class NodeApi
      *
      * @param  string $id The ID of the node (required)
      * @param  int $version The version number of the node object being updated. This is required to avoid conflicting writes. (required)
-     * @param  NodeSpec|null $body body (optional)
+     * @param  \OpenAPI\Client\Model\NodeSpec|null $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeUpdate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function nodeUpdate($id, $version, $body = null, string $contentType = self::contentTypes['nodeUpdate'][0])
     {
@@ -1027,12 +1020,12 @@ class NodeApi
      *
      * @param  string $id The ID of the node (required)
      * @param  int $version The version number of the node object being updated. This is required to avoid conflicting writes. (required)
-     * @param  NodeSpec|null $body (optional)
+     * @param  \OpenAPI\Client\Model\NodeSpec|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeUpdate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function nodeUpdateWithHttpInfo($id, $version, $body = null, string $contentType = self::contentTypes['nodeUpdate'][0])
     {
@@ -1097,7 +1090,7 @@ class NodeApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1110,11 +1103,11 @@ class NodeApi
      *
      * @param  string $id The ID of the node (required)
      * @param  int $version The version number of the node object being updated. This is required to avoid conflicting writes. (required)
-     * @param  NodeSpec|null $body (optional)
+     * @param  \OpenAPI\Client\Model\NodeSpec|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeUpdate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function nodeUpdateAsync($id, $version, $body = null, string $contentType = self::contentTypes['nodeUpdate'][0])
     {
@@ -1133,11 +1126,11 @@ class NodeApi
      *
      * @param  string $id The ID of the node (required)
      * @param  int $version The version number of the node object being updated. This is required to avoid conflicting writes. (required)
-     * @param  NodeSpec|null $body (optional)
+     * @param  \OpenAPI\Client\Model\NodeSpec|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeUpdate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function nodeUpdateAsyncWithHttpInfo($id, $version, $body = null, string $contentType = self::contentTypes['nodeUpdate'][0])
     {
@@ -1172,25 +1165,25 @@ class NodeApi
      *
      * @param  string $id The ID of the node (required)
      * @param  int $version The version number of the node object being updated. This is required to avoid conflicting writes. (required)
-     * @param  NodeSpec|null $body (optional)
+     * @param  \OpenAPI\Client\Model\NodeSpec|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['nodeUpdate'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function nodeUpdateRequest($id, $version, $body = null, string $contentType = self::contentTypes['nodeUpdate'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling nodeUpdate'
             );
         }
 
         // verify the required parameter 'version' is set
         if ($version === null || (is_array($version) && count($version) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $version when calling nodeUpdate'
             );
         }
@@ -1235,7 +1228,7 @@ class NodeApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -1256,7 +1249,7 @@ class NodeApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1288,7 +1281,7 @@ class NodeApi
     /**
      * Create http client option
      *
-     * @throws RuntimeException on file opening failure
+     * @throws \RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -1297,7 +1290,7 @@ class NodeApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -1316,7 +1309,7 @@ class NodeApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (JsonException $exception) {
+                } catch (\JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

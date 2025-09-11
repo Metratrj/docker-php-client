@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecNetworkAttachmentSpec
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * TaskSpecNetworkAttachmentSpec Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class TaskSpecNetworkAttachmentSpec implements ModelInterface, ArrayAccess, JsonSerializable
+class TaskSpecNetworkAttachmentSpec implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -313,7 +311,7 @@ class TaskSpecNetworkAttachmentSpec implements ModelInterface, ArrayAccess, Json
     public function setContainerId($container_id)
     {
         if (is_null($container_id)) {
-            throw new InvalidArgumentException('non-nullable container_id cannot be null');
+            throw new \InvalidArgumentException('non-nullable container_id cannot be null');
         }
         $this->container['container_id'] = $container_id;
 
@@ -338,7 +336,7 @@ class TaskSpecNetworkAttachmentSpec implements ModelInterface, ArrayAccess, Json
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -380,10 +378,10 @@ class TaskSpecNetworkAttachmentSpec implements ModelInterface, ArrayAccess, Json
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

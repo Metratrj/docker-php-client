@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EventMessage
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * EventMessage Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
+class EventMessage implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -414,11 +412,11 @@ class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
     public function setType($type)
     {
         if (is_null($type)) {
-            throw new InvalidArgumentException('non-nullable type cannot be null');
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'type', must be one of '%s'",
                     $type,
@@ -451,7 +449,7 @@ class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
     public function setAction($action)
     {
         if (is_null($action)) {
-            throw new InvalidArgumentException('non-nullable action cannot be null');
+            throw new \InvalidArgumentException('non-nullable action cannot be null');
         }
         $this->container['action'] = $action;
 
@@ -461,7 +459,7 @@ class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets actor
      *
-     * @return EventActor|null
+     * @return \OpenAPI\Client\Model\EventActor|null
      */
     public function getActor()
     {
@@ -471,14 +469,14 @@ class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets actor
      *
-     * @param EventActor|null $actor actor
+     * @param \OpenAPI\Client\Model\EventActor|null $actor actor
      *
      * @return self
      */
     public function setActor($actor)
     {
         if (is_null($actor)) {
-            throw new InvalidArgumentException('non-nullable actor cannot be null');
+            throw new \InvalidArgumentException('non-nullable actor cannot be null');
         }
         $this->container['actor'] = $actor;
 
@@ -505,11 +503,11 @@ class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
     public function setScope($scope)
     {
         if (is_null($scope)) {
-            throw new InvalidArgumentException('non-nullable scope cannot be null');
+            throw new \InvalidArgumentException('non-nullable scope cannot be null');
         }
         $allowedValues = $this->getScopeAllowableValues();
         if (!in_array($scope, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'scope', must be one of '%s'",
                     $scope,
@@ -542,7 +540,7 @@ class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
     public function setTime($time)
     {
         if (is_null($time)) {
-            throw new InvalidArgumentException('non-nullable time cannot be null');
+            throw new \InvalidArgumentException('non-nullable time cannot be null');
         }
         $this->container['time'] = $time;
 
@@ -569,7 +567,7 @@ class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
     public function setTimeNano($time_nano)
     {
         if (is_null($time_nano)) {
-            throw new InvalidArgumentException('non-nullable time_nano cannot be null');
+            throw new \InvalidArgumentException('non-nullable time_nano cannot be null');
         }
         $this->container['time_nano'] = $time_nano;
 
@@ -594,7 +592,7 @@ class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -636,7 +634,7 @@ class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -665,3 +663,5 @@ class EventMessage implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

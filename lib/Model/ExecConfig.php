@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ExecConfig
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ExecConfig Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
+class ExecConfig implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -390,7 +388,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setAttachStdin($attach_stdin)
     {
         if (is_null($attach_stdin)) {
-            throw new InvalidArgumentException('non-nullable attach_stdin cannot be null');
+            throw new \InvalidArgumentException('non-nullable attach_stdin cannot be null');
         }
         $this->container['attach_stdin'] = $attach_stdin;
 
@@ -417,7 +415,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setAttachStdout($attach_stdout)
     {
         if (is_null($attach_stdout)) {
-            throw new InvalidArgumentException('non-nullable attach_stdout cannot be null');
+            throw new \InvalidArgumentException('non-nullable attach_stdout cannot be null');
         }
         $this->container['attach_stdout'] = $attach_stdout;
 
@@ -444,7 +442,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setAttachStderr($attach_stderr)
     {
         if (is_null($attach_stderr)) {
-            throw new InvalidArgumentException('non-nullable attach_stderr cannot be null');
+            throw new \InvalidArgumentException('non-nullable attach_stderr cannot be null');
         }
         $this->container['attach_stderr'] = $attach_stderr;
 
@@ -474,7 +472,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'console_size');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('console_size', $nullablesSetToNull);
+            $index = array_search('console_size', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -482,10 +480,10 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
         }
 
         if (!is_null($console_size) && (count($console_size) > 2)) {
-            throw new InvalidArgumentException('invalid value for $console_size when calling ExecConfig., number of items must be less than or equal to 2.');
+            throw new \InvalidArgumentException('invalid value for $console_size when calling ExecConfig., number of items must be less than or equal to 2.');
         }
         if (!is_null($console_size) && (count($console_size) < 2)) {
-            throw new InvalidArgumentException('invalid length for $console_size when calling ExecConfig., number of items must be greater than or equal to 2.');
+            throw new \InvalidArgumentException('invalid length for $console_size when calling ExecConfig., number of items must be greater than or equal to 2.');
         }
         $this->container['console_size'] = $console_size;
 
@@ -512,7 +510,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDetachKeys($detach_keys)
     {
         if (is_null($detach_keys)) {
-            throw new InvalidArgumentException('non-nullable detach_keys cannot be null');
+            throw new \InvalidArgumentException('non-nullable detach_keys cannot be null');
         }
         $this->container['detach_keys'] = $detach_keys;
 
@@ -539,7 +537,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setTty($tty)
     {
         if (is_null($tty)) {
-            throw new InvalidArgumentException('non-nullable tty cannot be null');
+            throw new \InvalidArgumentException('non-nullable tty cannot be null');
         }
         $this->container['tty'] = $tty;
 
@@ -566,7 +564,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setEnv($env)
     {
         if (is_null($env)) {
-            throw new InvalidArgumentException('non-nullable env cannot be null');
+            throw new \InvalidArgumentException('non-nullable env cannot be null');
         }
         $this->container['env'] = $env;
 
@@ -593,7 +591,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCmd($cmd)
     {
         if (is_null($cmd)) {
-            throw new InvalidArgumentException('non-nullable cmd cannot be null');
+            throw new \InvalidArgumentException('non-nullable cmd cannot be null');
         }
         $this->container['cmd'] = $cmd;
 
@@ -620,7 +618,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setPrivileged($privileged)
     {
         if (is_null($privileged)) {
-            throw new InvalidArgumentException('non-nullable privileged cannot be null');
+            throw new \InvalidArgumentException('non-nullable privileged cannot be null');
         }
         $this->container['privileged'] = $privileged;
 
@@ -647,7 +645,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setUser($user)
     {
         if (is_null($user)) {
-            throw new InvalidArgumentException('non-nullable user cannot be null');
+            throw new \InvalidArgumentException('non-nullable user cannot be null');
         }
         $this->container['user'] = $user;
 
@@ -674,7 +672,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
     public function setWorkingDir($working_dir)
     {
         if (is_null($working_dir)) {
-            throw new InvalidArgumentException('non-nullable working_dir cannot be null');
+            throw new \InvalidArgumentException('non-nullable working_dir cannot be null');
         }
         $this->container['working_dir'] = $working_dir;
 
@@ -699,7 +697,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -741,7 +739,7 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -770,3 +768,5 @@ class ExecConfig implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * GenericResourcesInner
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * GenericResourcesInner Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializable
+class GenericResourcesInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -302,7 +300,7 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets named_resource_spec
      *
-     * @return GenericResourcesInnerNamedResourceSpec|null
+     * @return \OpenAPI\Client\Model\GenericResourcesInnerNamedResourceSpec|null
      */
     public function getNamedResourceSpec()
     {
@@ -312,14 +310,14 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets named_resource_spec
      *
-     * @param GenericResourcesInnerNamedResourceSpec|null $named_resource_spec named_resource_spec
+     * @param \OpenAPI\Client\Model\GenericResourcesInnerNamedResourceSpec|null $named_resource_spec named_resource_spec
      *
      * @return self
      */
     public function setNamedResourceSpec($named_resource_spec)
     {
         if (is_null($named_resource_spec)) {
-            throw new InvalidArgumentException('non-nullable named_resource_spec cannot be null');
+            throw new \InvalidArgumentException('non-nullable named_resource_spec cannot be null');
         }
         $this->container['named_resource_spec'] = $named_resource_spec;
 
@@ -329,7 +327,7 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets discrete_resource_spec
      *
-     * @return GenericResourcesInnerDiscreteResourceSpec|null
+     * @return \OpenAPI\Client\Model\GenericResourcesInnerDiscreteResourceSpec|null
      */
     public function getDiscreteResourceSpec()
     {
@@ -339,14 +337,14 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets discrete_resource_spec
      *
-     * @param GenericResourcesInnerDiscreteResourceSpec|null $discrete_resource_spec discrete_resource_spec
+     * @param \OpenAPI\Client\Model\GenericResourcesInnerDiscreteResourceSpec|null $discrete_resource_spec discrete_resource_spec
      *
      * @return self
      */
     public function setDiscreteResourceSpec($discrete_resource_spec)
     {
         if (is_null($discrete_resource_spec)) {
-            throw new InvalidArgumentException('non-nullable discrete_resource_spec cannot be null');
+            throw new \InvalidArgumentException('non-nullable discrete_resource_spec cannot be null');
         }
         $this->container['discrete_resource_spec'] = $discrete_resource_spec;
 
@@ -371,7 +369,7 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializ
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -413,7 +411,7 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializ
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -442,3 +440,5 @@ class GenericResourcesInner implements ModelInterface, ArrayAccess, JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

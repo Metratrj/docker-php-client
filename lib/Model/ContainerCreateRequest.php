@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerCreateRequest
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerCreateRequest Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -494,7 +492,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setHostname($hostname)
     {
         if (is_null($hostname)) {
-            throw new InvalidArgumentException('non-nullable hostname cannot be null');
+            throw new \InvalidArgumentException('non-nullable hostname cannot be null');
         }
         $this->container['hostname'] = $hostname;
 
@@ -521,7 +519,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setDomainname($domainname)
     {
         if (is_null($domainname)) {
-            throw new InvalidArgumentException('non-nullable domainname cannot be null');
+            throw new \InvalidArgumentException('non-nullable domainname cannot be null');
         }
         $this->container['domainname'] = $domainname;
 
@@ -548,7 +546,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setUser($user)
     {
         if (is_null($user)) {
-            throw new InvalidArgumentException('non-nullable user cannot be null');
+            throw new \InvalidArgumentException('non-nullable user cannot be null');
         }
         $this->container['user'] = $user;
 
@@ -575,7 +573,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setAttachStdin($attach_stdin)
     {
         if (is_null($attach_stdin)) {
-            throw new InvalidArgumentException('non-nullable attach_stdin cannot be null');
+            throw new \InvalidArgumentException('non-nullable attach_stdin cannot be null');
         }
         $this->container['attach_stdin'] = $attach_stdin;
 
@@ -602,7 +600,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setAttachStdout($attach_stdout)
     {
         if (is_null($attach_stdout)) {
-            throw new InvalidArgumentException('non-nullable attach_stdout cannot be null');
+            throw new \InvalidArgumentException('non-nullable attach_stdout cannot be null');
         }
         $this->container['attach_stdout'] = $attach_stdout;
 
@@ -629,7 +627,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setAttachStderr($attach_stderr)
     {
         if (is_null($attach_stderr)) {
-            throw new InvalidArgumentException('non-nullable attach_stderr cannot be null');
+            throw new \InvalidArgumentException('non-nullable attach_stderr cannot be null');
         }
         $this->container['attach_stderr'] = $attach_stderr;
 
@@ -659,7 +657,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'exposed_ports');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('exposed_ports', $nullablesSetToNull);
+            $index = array_search('exposed_ports', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -690,7 +688,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setTty($tty)
     {
         if (is_null($tty)) {
-            throw new InvalidArgumentException('non-nullable tty cannot be null');
+            throw new \InvalidArgumentException('non-nullable tty cannot be null');
         }
         $this->container['tty'] = $tty;
 
@@ -717,7 +715,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setOpenStdin($open_stdin)
     {
         if (is_null($open_stdin)) {
-            throw new InvalidArgumentException('non-nullable open_stdin cannot be null');
+            throw new \InvalidArgumentException('non-nullable open_stdin cannot be null');
         }
         $this->container['open_stdin'] = $open_stdin;
 
@@ -744,7 +742,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setStdinOnce($stdin_once)
     {
         if (is_null($stdin_once)) {
-            throw new InvalidArgumentException('non-nullable stdin_once cannot be null');
+            throw new \InvalidArgumentException('non-nullable stdin_once cannot be null');
         }
         $this->container['stdin_once'] = $stdin_once;
 
@@ -771,7 +769,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setEnv($env)
     {
         if (is_null($env)) {
-            throw new InvalidArgumentException('non-nullable env cannot be null');
+            throw new \InvalidArgumentException('non-nullable env cannot be null');
         }
         $this->container['env'] = $env;
 
@@ -798,7 +796,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCmd($cmd)
     {
         if (is_null($cmd)) {
-            throw new InvalidArgumentException('non-nullable cmd cannot be null');
+            throw new \InvalidArgumentException('non-nullable cmd cannot be null');
         }
         $this->container['cmd'] = $cmd;
 
@@ -808,7 +806,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets healthcheck
      *
-     * @return HealthConfig|null
+     * @return \OpenAPI\Client\Model\HealthConfig|null
      */
     public function getHealthcheck()
     {
@@ -818,14 +816,14 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets healthcheck
      *
-     * @param HealthConfig|null $healthcheck healthcheck
+     * @param \OpenAPI\Client\Model\HealthConfig|null $healthcheck healthcheck
      *
      * @return self
      */
     public function setHealthcheck($healthcheck)
     {
         if (is_null($healthcheck)) {
-            throw new InvalidArgumentException('non-nullable healthcheck cannot be null');
+            throw new \InvalidArgumentException('non-nullable healthcheck cannot be null');
         }
         $this->container['healthcheck'] = $healthcheck;
 
@@ -855,7 +853,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'args_escaped');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('args_escaped', $nullablesSetToNull);
+            $index = array_search('args_escaped', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -886,7 +884,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new InvalidArgumentException('non-nullable image cannot be null');
+            throw new \InvalidArgumentException('non-nullable image cannot be null');
         }
         $this->container['image'] = $image;
 
@@ -913,7 +911,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setVolumes($volumes)
     {
         if (is_null($volumes)) {
-            throw new InvalidArgumentException('non-nullable volumes cannot be null');
+            throw new \InvalidArgumentException('non-nullable volumes cannot be null');
         }
         $this->container['volumes'] = $volumes;
 
@@ -940,7 +938,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setWorkingDir($working_dir)
     {
         if (is_null($working_dir)) {
-            throw new InvalidArgumentException('non-nullable working_dir cannot be null');
+            throw new \InvalidArgumentException('non-nullable working_dir cannot be null');
         }
         $this->container['working_dir'] = $working_dir;
 
@@ -967,7 +965,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setEntrypoint($entrypoint)
     {
         if (is_null($entrypoint)) {
-            throw new InvalidArgumentException('non-nullable entrypoint cannot be null');
+            throw new \InvalidArgumentException('non-nullable entrypoint cannot be null');
         }
         $this->container['entrypoint'] = $entrypoint;
 
@@ -997,7 +995,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'network_disabled');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('network_disabled', $nullablesSetToNull);
+            $index = array_search('network_disabled', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1031,7 +1029,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'mac_address');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('mac_address', $nullablesSetToNull);
+            $index = array_search('mac_address', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1065,7 +1063,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'on_build');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('on_build', $nullablesSetToNull);
+            $index = array_search('on_build', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1096,7 +1094,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new InvalidArgumentException('non-nullable labels cannot be null');
+            throw new \InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -1126,7 +1124,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'stop_signal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('stop_signal', $nullablesSetToNull);
+            $index = array_search('stop_signal', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1160,7 +1158,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'stop_timeout');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('stop_timeout', $nullablesSetToNull);
+            $index = array_search('stop_timeout', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1194,7 +1192,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'shell');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('shell', $nullablesSetToNull);
+            $index = array_search('shell', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1208,7 +1206,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets host_config
      *
-     * @return HostConfig|null
+     * @return \OpenAPI\Client\Model\HostConfig|null
      */
     public function getHostConfig()
     {
@@ -1218,14 +1216,14 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets host_config
      *
-     * @param HostConfig|null $host_config host_config
+     * @param \OpenAPI\Client\Model\HostConfig|null $host_config host_config
      *
      * @return self
      */
     public function setHostConfig($host_config)
     {
         if (is_null($host_config)) {
-            throw new InvalidArgumentException('non-nullable host_config cannot be null');
+            throw new \InvalidArgumentException('non-nullable host_config cannot be null');
         }
         $this->container['host_config'] = $host_config;
 
@@ -1235,7 +1233,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets networking_config
      *
-     * @return NetworkingConfig|null
+     * @return \OpenAPI\Client\Model\NetworkingConfig|null
      */
     public function getNetworkingConfig()
     {
@@ -1245,14 +1243,14 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets networking_config
      *
-     * @param NetworkingConfig|null $networking_config networking_config
+     * @param \OpenAPI\Client\Model\NetworkingConfig|null $networking_config networking_config
      *
      * @return self
      */
     public function setNetworkingConfig($networking_config)
     {
         if (is_null($networking_config)) {
-            throw new InvalidArgumentException('non-nullable networking_config cannot be null');
+            throw new \InvalidArgumentException('non-nullable networking_config cannot be null');
         }
         $this->container['networking_config'] = $networking_config;
 
@@ -1277,7 +1275,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -1319,7 +1317,7 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -1348,3 +1346,5 @@ class ContainerCreateRequest implements ModelInterface, ArrayAccess, JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

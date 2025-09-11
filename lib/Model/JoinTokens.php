@@ -1,4 +1,5 @@
 <?php
+
 /**
  * JoinTokens
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * JoinTokens Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class JoinTokens implements ModelInterface, ArrayAccess, JsonSerializable
+class JoinTokens implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -320,7 +318,7 @@ class JoinTokens implements ModelInterface, ArrayAccess, JsonSerializable
     public function setWorker($worker)
     {
         if (is_null($worker)) {
-            throw new InvalidArgumentException('non-nullable worker cannot be null');
+            throw new \InvalidArgumentException('non-nullable worker cannot be null');
         }
         $this->container['worker'] = $worker;
 
@@ -347,7 +345,7 @@ class JoinTokens implements ModelInterface, ArrayAccess, JsonSerializable
     public function setManager($manager)
     {
         if (is_null($manager)) {
-            throw new InvalidArgumentException('non-nullable manager cannot be null');
+            throw new \InvalidArgumentException('non-nullable manager cannot be null');
         }
         $this->container['manager'] = $manager;
 
@@ -372,7 +370,7 @@ class JoinTokens implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -414,7 +412,7 @@ class JoinTokens implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -443,3 +441,5 @@ class JoinTokens implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

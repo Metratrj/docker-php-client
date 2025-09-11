@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerThrottlingData
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerThrottlingData Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerThrottlingData implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerThrottlingData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -327,7 +325,7 @@ class ContainerThrottlingData implements ModelInterface, ArrayAccess, JsonSerial
     public function setPeriods($periods)
     {
         if (is_null($periods)) {
-            throw new InvalidArgumentException('non-nullable periods cannot be null');
+            throw new \InvalidArgumentException('non-nullable periods cannot be null');
         }
         $this->container['periods'] = $periods;
 
@@ -354,7 +352,7 @@ class ContainerThrottlingData implements ModelInterface, ArrayAccess, JsonSerial
     public function setThrottledPeriods($throttled_periods)
     {
         if (is_null($throttled_periods)) {
-            throw new InvalidArgumentException('non-nullable throttled_periods cannot be null');
+            throw new \InvalidArgumentException('non-nullable throttled_periods cannot be null');
         }
         $this->container['throttled_periods'] = $throttled_periods;
 
@@ -381,7 +379,7 @@ class ContainerThrottlingData implements ModelInterface, ArrayAccess, JsonSerial
     public function setThrottledTime($throttled_time)
     {
         if (is_null($throttled_time)) {
-            throw new InvalidArgumentException('non-nullable throttled_time cannot be null');
+            throw new \InvalidArgumentException('non-nullable throttled_time cannot be null');
         }
         $this->container['throttled_time'] = $throttled_time;
 
@@ -406,7 +404,7 @@ class ContainerThrottlingData implements ModelInterface, ArrayAccess, JsonSerial
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -448,7 +446,7 @@ class ContainerThrottlingData implements ModelInterface, ArrayAccess, JsonSerial
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -477,3 +475,5 @@ class ContainerThrottlingData implements ModelInterface, ArrayAccess, JsonSerial
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

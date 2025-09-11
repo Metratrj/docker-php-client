@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EndpointPortConfig
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * EndpointPortConfig Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class EndpointPortConfig implements ModelInterface, ArrayAccess, JsonSerializable
+class EndpointPortConfig implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -390,7 +388,7 @@ class EndpointPortConfig implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new InvalidArgumentException('non-nullable name cannot be null');
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -417,11 +415,11 @@ class EndpointPortConfig implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setProtocol($protocol)
     {
         if (is_null($protocol)) {
-            throw new InvalidArgumentException('non-nullable protocol cannot be null');
+            throw new \InvalidArgumentException('non-nullable protocol cannot be null');
         }
         $allowedValues = $this->getProtocolAllowableValues();
         if (!in_array($protocol, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'protocol', must be one of '%s'",
                     $protocol,
@@ -454,7 +452,7 @@ class EndpointPortConfig implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setTargetPort($target_port)
     {
         if (is_null($target_port)) {
-            throw new InvalidArgumentException('non-nullable target_port cannot be null');
+            throw new \InvalidArgumentException('non-nullable target_port cannot be null');
         }
         $this->container['target_port'] = $target_port;
 
@@ -481,7 +479,7 @@ class EndpointPortConfig implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setPublishedPort($published_port)
     {
         if (is_null($published_port)) {
-            throw new InvalidArgumentException('non-nullable published_port cannot be null');
+            throw new \InvalidArgumentException('non-nullable published_port cannot be null');
         }
         $this->container['published_port'] = $published_port;
 
@@ -508,11 +506,11 @@ class EndpointPortConfig implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setPublishMode($publish_mode)
     {
         if (is_null($publish_mode)) {
-            throw new InvalidArgumentException('non-nullable publish_mode cannot be null');
+            throw new \InvalidArgumentException('non-nullable publish_mode cannot be null');
         }
         $allowedValues = $this->getPublishModeAllowableValues();
         if (!in_array($publish_mode, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'publish_mode', must be one of '%s'",
                     $publish_mode,
@@ -543,7 +541,7 @@ class EndpointPortConfig implements ModelInterface, ArrayAccess, JsonSerializabl
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -585,7 +583,7 @@ class EndpointPortConfig implements ModelInterface, ArrayAccess, JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -614,3 +612,5 @@ class EndpointPortConfig implements ModelInterface, ArrayAccess, JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

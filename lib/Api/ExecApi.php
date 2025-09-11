@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ExecApi
  * PHP version 8.1
@@ -31,15 +32,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Utils;
-use InvalidArgumentException;
-use JsonException;
-use OpenAPI\Client\Model\ExecConfig;
-use OpenAPI\Client\Model\ExecStartConfig;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -47,7 +42,6 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
-use RuntimeException;
 
 /**
  * ExecApi Class Doc Comment
@@ -147,12 +141,12 @@ class ExecApi
      * Create an exec instance
      *
      * @param  string $id ID or name of container (required)
-     * @param  ExecConfig $exec_config Exec configuration (required)
+     * @param  \OpenAPI\Client\Model\ExecConfig $exec_config Exec configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerExec'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\IDResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerExec($id, $exec_config, string $contentType = self::contentTypes['containerExec'][0])
     {
@@ -166,12 +160,12 @@ class ExecApi
      * Create an exec instance
      *
      * @param  string $id ID or name of container (required)
-     * @param  ExecConfig $exec_config Exec configuration (required)
+     * @param  \OpenAPI\Client\Model\ExecConfig $exec_config Exec configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerExec'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\IDResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function containerExecWithHttpInfo($id, $exec_config, string $contentType = self::contentTypes['containerExec'][0])
     {
@@ -227,7 +221,7 @@ class ExecApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -282,7 +276,7 @@ class ExecApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -294,11 +288,11 @@ class ExecApi
      * Create an exec instance
      *
      * @param  string $id ID or name of container (required)
-     * @param  ExecConfig $exec_config Exec configuration (required)
+     * @param  \OpenAPI\Client\Model\ExecConfig $exec_config Exec configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerExec'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function containerExecAsync($id, $exec_config, string $contentType = self::contentTypes['containerExec'][0])
     {
@@ -316,11 +310,11 @@ class ExecApi
      * Create an exec instance
      *
      * @param  string $id ID or name of container (required)
-     * @param  ExecConfig $exec_config Exec configuration (required)
+     * @param  \OpenAPI\Client\Model\ExecConfig $exec_config Exec configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerExec'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function containerExecAsyncWithHttpInfo($id, $exec_config, string $contentType = self::contentTypes['containerExec'][0])
     {
@@ -367,25 +361,25 @@ class ExecApi
      * Create request for operation 'containerExec'
      *
      * @param  string $id ID or name of container (required)
-     * @param  ExecConfig $exec_config Exec configuration (required)
+     * @param  \OpenAPI\Client\Model\ExecConfig $exec_config Exec configuration (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['containerExec'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function containerExecRequest($id, $exec_config, string $contentType = self::contentTypes['containerExec'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling containerExec'
             );
         }
 
         // verify the required parameter 'exec_config' is set
         if ($exec_config === null || (is_array($exec_config) && count($exec_config) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $exec_config when calling containerExec'
             );
         }
@@ -420,7 +414,7 @@ class ExecApi
         if (isset($exec_config)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($exec_config));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($exec_config));
             } else {
                 $httpBody = $exec_config;
             }
@@ -438,9 +432,10 @@ class ExecApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -477,9 +472,9 @@ class ExecApi
      * @param  string $id Exec instance ID (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execInspect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\ExecInspectResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function execInspect($id, string $contentType = self::contentTypes['execInspect'][0])
     {
@@ -495,9 +490,9 @@ class ExecApi
      * @param  string $id Exec instance ID (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execInspect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\ExecInspectResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function execInspectWithHttpInfo($id, string $contentType = self::contentTypes['execInspect'][0])
     {
@@ -547,7 +542,7 @@ class ExecApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -594,7 +589,7 @@ class ExecApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -608,8 +603,8 @@ class ExecApi
      * @param  string $id Exec instance ID (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function execInspectAsync($id, string $contentType = self::contentTypes['execInspect'][0])
     {
@@ -629,8 +624,8 @@ class ExecApi
      * @param  string $id Exec instance ID (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function execInspectAsyncWithHttpInfo($id, string $contentType = self::contentTypes['execInspect'][0])
     {
@@ -679,15 +674,15 @@ class ExecApi
      * @param  string $id Exec instance ID (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execInspect'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function execInspectRequest($id, string $contentType = self::contentTypes['execInspect'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling execInspect'
             );
         }
@@ -733,9 +728,10 @@ class ExecApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -774,9 +770,9 @@ class ExecApi
      * @param  int $w Width of the TTY session in characters (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execResize'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function execResize($id, $h, $w, string $contentType = self::contentTypes['execResize'][0])
     {
@@ -793,9 +789,9 @@ class ExecApi
      * @param  int $w Width of the TTY session in characters (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execResize'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function execResizeWithHttpInfo($id, $h, $w, string $contentType = self::contentTypes['execResize'][0])
     {
@@ -852,7 +848,7 @@ class ExecApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -868,8 +864,8 @@ class ExecApi
      * @param  int $w Width of the TTY session in characters (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execResize'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function execResizeAsync($id, $h, $w, string $contentType = self::contentTypes['execResize'][0])
     {
@@ -891,8 +887,8 @@ class ExecApi
      * @param  int $w Width of the TTY session in characters (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execResize'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function execResizeAsyncWithHttpInfo($id, $h, $w, string $contentType = self::contentTypes['execResize'][0])
     {
@@ -930,29 +926,29 @@ class ExecApi
      * @param  int $w Width of the TTY session in characters (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execResize'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function execResizeRequest($id, $h, $w, string $contentType = self::contentTypes['execResize'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling execResize'
             );
         }
 
         // verify the required parameter 'h' is set
         if ($h === null || (is_array($h) && count($h) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $h when calling execResize'
             );
         }
 
         // verify the required parameter 'w' is set
         if ($w === null || (is_array($w) && count($w) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $w when calling execResize'
             );
         }
@@ -1016,9 +1012,10 @@ class ExecApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1053,12 +1050,12 @@ class ExecApi
      * Start an exec instance
      *
      * @param  string $id Exec instance ID (required)
-     * @param  ExecStartConfig|null $exec_start_config exec_start_config (optional)
+     * @param  \OpenAPI\Client\Model\ExecStartConfig|null $exec_start_config exec_start_config (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execStart'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function execStart($id, $exec_start_config = null, string $contentType = self::contentTypes['execStart'][0])
     {
@@ -1071,12 +1068,12 @@ class ExecApi
      * Start an exec instance
      *
      * @param  string $id Exec instance ID (required)
-     * @param  ExecStartConfig|null $exec_start_config (optional)
+     * @param  \OpenAPI\Client\Model\ExecStartConfig|null $exec_start_config (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execStart'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function execStartWithHttpInfo($id, $exec_start_config = null, string $contentType = self::contentTypes['execStart'][0])
     {
@@ -1125,7 +1122,7 @@ class ExecApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1137,11 +1134,11 @@ class ExecApi
      * Start an exec instance
      *
      * @param  string $id Exec instance ID (required)
-     * @param  ExecStartConfig|null $exec_start_config (optional)
+     * @param  \OpenAPI\Client\Model\ExecStartConfig|null $exec_start_config (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execStart'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function execStartAsync($id, $exec_start_config = null, string $contentType = self::contentTypes['execStart'][0])
     {
@@ -1159,11 +1156,11 @@ class ExecApi
      * Start an exec instance
      *
      * @param  string $id Exec instance ID (required)
-     * @param  ExecStartConfig|null $exec_start_config (optional)
+     * @param  \OpenAPI\Client\Model\ExecStartConfig|null $exec_start_config (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execStart'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function execStartAsyncWithHttpInfo($id, $exec_start_config = null, string $contentType = self::contentTypes['execStart'][0])
     {
@@ -1197,18 +1194,18 @@ class ExecApi
      * Create request for operation 'execStart'
      *
      * @param  string $id Exec instance ID (required)
-     * @param  ExecStartConfig|null $exec_start_config (optional)
+     * @param  \OpenAPI\Client\Model\ExecStartConfig|null $exec_start_config (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['execStart'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function execStartRequest($id, $exec_start_config = null, string $contentType = self::contentTypes['execStart'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling execStart'
             );
         }
@@ -1244,7 +1241,7 @@ class ExecApi
         if (isset($exec_start_config)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($exec_start_config));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($exec_start_config));
             } else {
                 $httpBody = $exec_start_config;
             }
@@ -1262,9 +1259,10 @@ class ExecApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1296,7 +1294,7 @@ class ExecApi
     /**
      * Create http client option
      *
-     * @throws RuntimeException on file opening failure
+     * @throws \RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -1305,7 +1303,7 @@ class ExecApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -1324,7 +1322,7 @@ class ExecApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (JsonException $exception) {
+                } catch (\JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

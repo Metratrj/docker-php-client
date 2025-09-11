@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskApi
  * PHP version 8.1
@@ -31,15 +32,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Utils;
-use InvalidArgumentException;
-use JsonException;
-use OpenAPI\Client\Model\ErrorResponse;
-use OpenAPI\Client\Model\Task;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -47,7 +42,6 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
-use RuntimeException;
 
 /**
  * TaskApi Class Doc Comment
@@ -146,9 +140,9 @@ class TaskApi
      * @param  string $id ID of the task (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskInspect'] to see the possible values for this operation
      *
-     * @return Task|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Task|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function taskInspect($id, string $contentType = self::contentTypes['taskInspect'][0])
     {
@@ -164,9 +158,9 @@ class TaskApi
      * @param  string $id ID of the task (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskInspect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Task|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function taskInspectWithHttpInfo($id, string $contentType = self::contentTypes['taskInspect'][0])
     {
@@ -195,7 +189,7 @@ class TaskApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Task',
@@ -222,7 +216,7 @@ class TaskApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -277,7 +271,7 @@ class TaskApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -291,8 +285,8 @@ class TaskApi
      * @param  string $id ID of the task (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function taskInspectAsync($id, string $contentType = self::contentTypes['taskInspect'][0])
     {
@@ -312,8 +306,8 @@ class TaskApi
      * @param  string $id ID of the task (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function taskInspectAsyncWithHttpInfo($id, string $contentType = self::contentTypes['taskInspect'][0])
     {
@@ -362,15 +356,15 @@ class TaskApi
      * @param  string $id ID of the task (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskInspect'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function taskInspectRequest($id, string $contentType = self::contentTypes['taskInspect'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling taskInspect'
             );
         }
@@ -419,7 +413,7 @@ class TaskApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,9 +450,9 @@ class TaskApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the tasks list.  Available filters:  - &#x60;desired-state&#x3D;(running | shutdown | accepted)&#x60; - &#x60;id&#x3D;&lt;task id&gt;&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; - &#x60;name&#x3D;&lt;task name&gt;&#x60; - &#x60;node&#x3D;&lt;node id or name&gt;&#x60; - &#x60;service&#x3D;&lt;service name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return Task[]|ErrorResponse|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Task[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function taskList($filters = null, string $contentType = self::contentTypes['taskList'][0])
     {
@@ -474,8 +468,8 @@ class TaskApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the tasks list.  Available filters:  - &#x60;desired-state&#x3D;(running | shutdown | accepted)&#x60; - &#x60;id&#x3D;&lt;task id&gt;&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; - &#x60;name&#x3D;&lt;task name&gt;&#x60; - &#x60;node&#x3D;&lt;node id or name&gt;&#x60; - &#x60;service&#x3D;&lt;service name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Task[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function taskListWithHttpInfo($filters = null, string $contentType = self::contentTypes['taskList'][0])
@@ -505,7 +499,7 @@ class TaskApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\OpenAPI\Client\Model\Task[]',
@@ -526,7 +520,7 @@ class TaskApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -573,7 +567,7 @@ class TaskApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -587,8 +581,8 @@ class TaskApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the tasks list.  Available filters:  - &#x60;desired-state&#x3D;(running | shutdown | accepted)&#x60; - &#x60;id&#x3D;&lt;task id&gt;&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; - &#x60;name&#x3D;&lt;task name&gt;&#x60; - &#x60;node&#x3D;&lt;node id or name&gt;&#x60; - &#x60;service&#x3D;&lt;service name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function taskListAsync($filters = null, string $contentType = self::contentTypes['taskList'][0])
     {
@@ -608,8 +602,8 @@ class TaskApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the tasks list.  Available filters:  - &#x60;desired-state&#x3D;(running | shutdown | accepted)&#x60; - &#x60;id&#x3D;&lt;task id&gt;&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; - &#x60;name&#x3D;&lt;task name&gt;&#x60; - &#x60;node&#x3D;&lt;node id or name&gt;&#x60; - &#x60;service&#x3D;&lt;service name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function taskListAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['taskList'][0])
     {
@@ -658,8 +652,8 @@ class TaskApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the tasks list.  Available filters:  - &#x60;desired-state&#x3D;(running | shutdown | accepted)&#x60; - &#x60;id&#x3D;&lt;task id&gt;&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; - &#x60;name&#x3D;&lt;task name&gt;&#x60; - &#x60;node&#x3D;&lt;node id or name&gt;&#x60; - &#x60;service&#x3D;&lt;service name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function taskListRequest($filters = null, string $contentType = self::contentTypes['taskList'][0])
     {
@@ -710,7 +704,7 @@ class TaskApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -754,9 +748,9 @@ class TaskApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskLogs'] to see the possible values for this operation
      *
-     * @return \SplFileObject|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SplFileObject|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function taskLogs($id, $details = false, $follow = false, $stdout = false, $stderr = false, $since = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['taskLogs'][0])
     {
@@ -779,9 +773,9 @@ class TaskApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskLogs'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
      */
     public function taskLogsWithHttpInfo($id, $details = false, $follow = false, $stdout = false, $stderr = false, $since = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['taskLogs'][0])
     {
@@ -810,7 +804,7 @@ class TaskApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\SplFileObject',
@@ -837,7 +831,7 @@ class TaskApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -892,7 +886,7 @@ class TaskApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -913,8 +907,8 @@ class TaskApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskLogs'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function taskLogsAsync($id, $details = false, $follow = false, $stdout = false, $stderr = false, $since = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['taskLogs'][0])
     {
@@ -941,8 +935,8 @@ class TaskApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskLogs'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function taskLogsAsyncWithHttpInfo($id, $details = false, $follow = false, $stdout = false, $stderr = false, $since = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['taskLogs'][0])
     {
@@ -998,15 +992,15 @@ class TaskApi
      * @param  string|null $tail Only return this number of log lines from the end of the logs. Specify as an integer or &#x60;all&#x60; to output all log lines. (optional, default to 'all')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['taskLogs'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function taskLogsRequest($id, $details = false, $follow = false, $stdout = false, $stderr = false, $since = 0, $timestamps = false, $tail = 'all', string $contentType = self::contentTypes['taskLogs'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling taskLogs'
             );
         }
@@ -1125,7 +1119,7 @@ class TaskApi
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1157,7 +1151,7 @@ class TaskApi
     /**
      * Create http client option
      *
-     * @throws RuntimeException on file opening failure
+     * @throws \RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -1166,7 +1160,7 @@ class TaskApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -1185,7 +1179,7 @@ class TaskApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (JsonException $exception) {
+                } catch (\JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

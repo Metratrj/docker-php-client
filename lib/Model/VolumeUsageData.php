@@ -1,4 +1,5 @@
 <?php
+
 /**
  * VolumeUsageData
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * VolumeUsageData Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class VolumeUsageData implements ModelInterface, ArrayAccess, JsonSerializable
+class VolumeUsageData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -326,7 +324,7 @@ class VolumeUsageData implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSize($size)
     {
         if (is_null($size)) {
-            throw new InvalidArgumentException('non-nullable size cannot be null');
+            throw new \InvalidArgumentException('non-nullable size cannot be null');
         }
         $this->container['size'] = $size;
 
@@ -353,7 +351,7 @@ class VolumeUsageData implements ModelInterface, ArrayAccess, JsonSerializable
     public function setRefCount($ref_count)
     {
         if (is_null($ref_count)) {
-            throw new InvalidArgumentException('non-nullable ref_count cannot be null');
+            throw new \InvalidArgumentException('non-nullable ref_count cannot be null');
         }
         $this->container['ref_count'] = $ref_count;
 
@@ -378,7 +376,7 @@ class VolumeUsageData implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -420,10 +418,10 @@ class VolumeUsageData implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

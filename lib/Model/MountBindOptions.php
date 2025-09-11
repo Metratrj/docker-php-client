@@ -1,4 +1,5 @@
 <?php
+
 /**
  * MountBindOptions
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * MountBindOptions Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class MountBindOptions implements ModelInterface, ArrayAccess, JsonSerializable
+class MountBindOptions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -373,11 +371,11 @@ class MountBindOptions implements ModelInterface, ArrayAccess, JsonSerializable
     public function setPropagation($propagation)
     {
         if (is_null($propagation)) {
-            throw new InvalidArgumentException('non-nullable propagation cannot be null');
+            throw new \InvalidArgumentException('non-nullable propagation cannot be null');
         }
         $allowedValues = $this->getPropagationAllowableValues();
         if (!in_array($propagation, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'propagation', must be one of '%s'",
                     $propagation,
@@ -410,7 +408,7 @@ class MountBindOptions implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNonRecursive($non_recursive)
     {
         if (is_null($non_recursive)) {
-            throw new InvalidArgumentException('non-nullable non_recursive cannot be null');
+            throw new \InvalidArgumentException('non-nullable non_recursive cannot be null');
         }
         $this->container['non_recursive'] = $non_recursive;
 
@@ -437,7 +435,7 @@ class MountBindOptions implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCreateMountpoint($create_mountpoint)
     {
         if (is_null($create_mountpoint)) {
-            throw new InvalidArgumentException('non-nullable create_mountpoint cannot be null');
+            throw new \InvalidArgumentException('non-nullable create_mountpoint cannot be null');
         }
         $this->container['create_mountpoint'] = $create_mountpoint;
 
@@ -464,7 +462,7 @@ class MountBindOptions implements ModelInterface, ArrayAccess, JsonSerializable
     public function setReadOnlyNonRecursive($read_only_non_recursive)
     {
         if (is_null($read_only_non_recursive)) {
-            throw new InvalidArgumentException('non-nullable read_only_non_recursive cannot be null');
+            throw new \InvalidArgumentException('non-nullable read_only_non_recursive cannot be null');
         }
         $this->container['read_only_non_recursive'] = $read_only_non_recursive;
 
@@ -491,7 +489,7 @@ class MountBindOptions implements ModelInterface, ArrayAccess, JsonSerializable
     public function setReadOnlyForceRecursive($read_only_force_recursive)
     {
         if (is_null($read_only_force_recursive)) {
-            throw new InvalidArgumentException('non-nullable read_only_force_recursive cannot be null');
+            throw new \InvalidArgumentException('non-nullable read_only_force_recursive cannot be null');
         }
         $this->container['read_only_force_recursive'] = $read_only_force_recursive;
 
@@ -516,7 +514,7 @@ class MountBindOptions implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -558,7 +556,7 @@ class MountBindOptions implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -587,3 +585,5 @@ class MountBindOptions implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

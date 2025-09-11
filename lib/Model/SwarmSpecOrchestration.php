@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SwarmSpecOrchestration
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * SwarmSpecOrchestration Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class SwarmSpecOrchestration implements ModelInterface, ArrayAccess, JsonSerializable
+class SwarmSpecOrchestration implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -313,7 +311,7 @@ class SwarmSpecOrchestration implements ModelInterface, ArrayAccess, JsonSeriali
     public function setTaskHistoryRetentionLimit($task_history_retention_limit)
     {
         if (is_null($task_history_retention_limit)) {
-            throw new InvalidArgumentException('non-nullable task_history_retention_limit cannot be null');
+            throw new \InvalidArgumentException('non-nullable task_history_retention_limit cannot be null');
         }
         $this->container['task_history_retention_limit'] = $task_history_retention_limit;
 
@@ -338,7 +336,7 @@ class SwarmSpecOrchestration implements ModelInterface, ArrayAccess, JsonSeriali
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -380,10 +378,10 @@ class SwarmSpecOrchestration implements ModelInterface, ArrayAccess, JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

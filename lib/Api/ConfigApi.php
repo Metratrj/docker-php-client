@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ConfigApi
  * PHP version 8.1
@@ -31,17 +32,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Utils;
-use InvalidArgumentException;
-use JsonException;
-use OpenAPI\Client\Model\Config;
-use OpenAPI\Client\Model\ConfigCreateRequest;
-use OpenAPI\Client\Model\ConfigSpec;
-use OpenAPI\Client\Model\ErrorResponse;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use OpenAPI\Client\ApiException;
@@ -49,7 +42,6 @@ use OpenAPI\Client\Configuration;
 use OpenAPI\Client\FormDataProcessor;
 use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
-use RuntimeException;
 
 /**
  * ConfigApi Class Doc Comment
@@ -152,12 +144,12 @@ class ConfigApi
      *
      * Create a config
      *
-     * @param  ConfigCreateRequest|null $body body (optional)
+     * @param  \OpenAPI\Client\Model\ConfigCreateRequest|null $body body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configCreate'] to see the possible values for this operation
      *
-     * @return \OpenAPI\Client\Model\IDResponse|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\IDResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function configCreate($body = null, string $contentType = self::contentTypes['configCreate'][0])
     {
@@ -170,12 +162,12 @@ class ConfigApi
      *
      * Create a config
      *
-     * @param  ConfigCreateRequest|null $body (optional)
+     * @param  \OpenAPI\Client\Model\ConfigCreateRequest|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configCreate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\IDResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function configCreateWithHttpInfo($body = null, string $contentType = self::contentTypes['configCreate'][0])
     {
@@ -231,7 +223,7 @@ class ConfigApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -286,7 +278,7 @@ class ConfigApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -297,11 +289,11 @@ class ConfigApi
      *
      * Create a config
      *
-     * @param  ConfigCreateRequest|null $body (optional)
+     * @param  \OpenAPI\Client\Model\ConfigCreateRequest|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function configCreateAsync($body = null, string $contentType = self::contentTypes['configCreate'][0])
     {
@@ -318,11 +310,11 @@ class ConfigApi
      *
      * Create a config
      *
-     * @param  ConfigCreateRequest|null $body (optional)
+     * @param  \OpenAPI\Client\Model\ConfigCreateRequest|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configCreate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function configCreateAsyncWithHttpInfo($body = null, string $contentType = self::contentTypes['configCreate'][0])
     {
@@ -368,11 +360,11 @@ class ConfigApi
     /**
      * Create request for operation 'configCreate'
      *
-     * @param  ConfigCreateRequest|null $body (optional)
+     * @param  \OpenAPI\Client\Model\ConfigCreateRequest|null $body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configCreate'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function configCreateRequest($body = null, string $contentType = self::contentTypes['configCreate'][0])
     {
@@ -400,7 +392,7 @@ class ConfigApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -418,9 +410,10 @@ class ConfigApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -457,9 +450,9 @@ class ConfigApi
      * @param  string $id ID of the config (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configDelete'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function configDelete($id, string $contentType = self::contentTypes['configDelete'][0])
     {
@@ -474,9 +467,9 @@ class ConfigApi
      * @param  string $id ID of the config (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configDelete'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function configDeleteWithHttpInfo($id, string $contentType = self::contentTypes['configDelete'][0])
     {
@@ -533,7 +526,7 @@ class ConfigApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -547,8 +540,8 @@ class ConfigApi
      * @param  string $id ID of the config (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function configDeleteAsync($id, string $contentType = self::contentTypes['configDelete'][0])
     {
@@ -568,8 +561,8 @@ class ConfigApi
      * @param  string $id ID of the config (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configDelete'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function configDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['configDelete'][0])
     {
@@ -605,15 +598,15 @@ class ConfigApi
      * @param  string $id ID of the config (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configDelete'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function configDeleteRequest($id, string $contentType = self::contentTypes['configDelete'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling configDelete'
             );
         }
@@ -659,9 +652,10 @@ class ConfigApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -698,9 +692,9 @@ class ConfigApi
      * @param  string $id ID of the config (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configInspect'] to see the possible values for this operation
      *
-     * @return Config|ErrorResponse|ErrorResponse|ErrorResponse
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Config|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function configInspect($id, string $contentType = self::contentTypes['configInspect'][0])
     {
@@ -716,9 +710,9 @@ class ConfigApi
      * @param  string $id ID of the config (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configInspect'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Config|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function configInspectWithHttpInfo($id, string $contentType = self::contentTypes['configInspect'][0])
     {
@@ -774,7 +768,7 @@ class ConfigApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -829,7 +823,7 @@ class ConfigApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -843,8 +837,8 @@ class ConfigApi
      * @param  string $id ID of the config (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function configInspectAsync($id, string $contentType = self::contentTypes['configInspect'][0])
     {
@@ -864,8 +858,8 @@ class ConfigApi
      * @param  string $id ID of the config (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configInspect'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function configInspectAsyncWithHttpInfo($id, string $contentType = self::contentTypes['configInspect'][0])
     {
@@ -914,15 +908,15 @@ class ConfigApi
      * @param  string $id ID of the config (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configInspect'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function configInspectRequest($id, string $contentType = self::contentTypes['configInspect'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling configInspect'
             );
         }
@@ -968,9 +962,10 @@ class ConfigApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1007,9 +1002,9 @@ class ConfigApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the configs list.  Available filters:  - &#x60;id&#x3D;&lt;config id&gt;&#x60; - &#x60;label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;&#x3D;value&#x60; - &#x60;name&#x3D;&lt;config name&gt;&#x60; - &#x60;names&#x3D;&lt;config name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return Config[]|ErrorResponse|ErrorResponse
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\Config[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse
      */
     public function configList($filters = null, string $contentType = self::contentTypes['configList'][0])
     {
@@ -1025,8 +1020,8 @@ class ConfigApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the configs list.  Available filters:  - &#x60;id&#x3D;&lt;config id&gt;&#x60; - &#x60;label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;&#x3D;value&#x60; - &#x60;name&#x3D;&lt;config name&gt;&#x60; - &#x60;names&#x3D;&lt;config name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configList'] to see the possible values for this operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Config[]|\OpenAPI\Client\Model\ErrorResponse|\OpenAPI\Client\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function configListWithHttpInfo($filters = null, string $contentType = self::contentTypes['configList'][0])
@@ -1077,7 +1072,7 @@ class ConfigApi
                     );
             }
 
-            
+
 
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
@@ -1124,7 +1119,7 @@ class ConfigApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1138,8 +1133,8 @@ class ConfigApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the configs list.  Available filters:  - &#x60;id&#x3D;&lt;config id&gt;&#x60; - &#x60;label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;&#x3D;value&#x60; - &#x60;name&#x3D;&lt;config name&gt;&#x60; - &#x60;names&#x3D;&lt;config name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function configListAsync($filters = null, string $contentType = self::contentTypes['configList'][0])
     {
@@ -1159,8 +1154,8 @@ class ConfigApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the configs list.  Available filters:  - &#x60;id&#x3D;&lt;config id&gt;&#x60; - &#x60;label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;&#x3D;value&#x60; - &#x60;name&#x3D;&lt;config name&gt;&#x60; - &#x60;names&#x3D;&lt;config name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function configListAsyncWithHttpInfo($filters = null, string $contentType = self::contentTypes['configList'][0])
     {
@@ -1209,8 +1204,8 @@ class ConfigApi
      * @param  string|null $filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the configs list.  Available filters:  - &#x60;id&#x3D;&lt;config id&gt;&#x60; - &#x60;label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;&#x3D;value&#x60; - &#x60;name&#x3D;&lt;config name&gt;&#x60; - &#x60;names&#x3D;&lt;config name&gt;&#x60; (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configList'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return Request
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function configListRequest($filters = null, string $contentType = self::contentTypes['configList'][0])
     {
@@ -1258,9 +1253,10 @@ class ConfigApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1296,12 +1292,12 @@ class ConfigApi
      *
      * @param  string $id The ID or name of the config (required)
      * @param  int $version The version number of the config object being updated. This is required to avoid conflicting writes. (required)
-     * @param  ConfigSpec|null $body The spec of the config to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [ConfigInspect endpoint](#operation/ConfigInspect) response values. (optional)
+     * @param  \OpenAPI\Client\Model\ConfigSpec|null $body The spec of the config to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [ConfigInspect endpoint](#operation/ConfigInspect) response values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configUpdate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return void
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function configUpdate($id, $version, $body = null, string $contentType = self::contentTypes['configUpdate'][0])
     {
@@ -1315,12 +1311,12 @@ class ConfigApi
      *
      * @param  string $id The ID or name of the config (required)
      * @param  int $version The version number of the config object being updated. This is required to avoid conflicting writes. (required)
-     * @param  ConfigSpec|null $body The spec of the config to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [ConfigInspect endpoint](#operation/ConfigInspect) response values. (optional)
+     * @param  \OpenAPI\Client\Model\ConfigSpec|null $body The spec of the config to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [ConfigInspect endpoint](#operation/ConfigInspect) response values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configUpdate'] to see the possible values for this operation
      *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     *@throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function configUpdateWithHttpInfo($id, $version, $body = null, string $contentType = self::contentTypes['configUpdate'][0])
     {
@@ -1385,7 +1381,7 @@ class ConfigApi
                     $e->setResponseObject($data);
                     throw $e;
             }
-        
+
 
             throw $e;
         }
@@ -1398,11 +1394,11 @@ class ConfigApi
      *
      * @param  string $id The ID or name of the config (required)
      * @param  int $version The version number of the config object being updated. This is required to avoid conflicting writes. (required)
-     * @param  ConfigSpec|null $body The spec of the config to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [ConfigInspect endpoint](#operation/ConfigInspect) response values. (optional)
+     * @param  \OpenAPI\Client\Model\ConfigSpec|null $body The spec of the config to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [ConfigInspect endpoint](#operation/ConfigInspect) response values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configUpdate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function configUpdateAsync($id, $version, $body = null, string $contentType = self::contentTypes['configUpdate'][0])
     {
@@ -1421,11 +1417,11 @@ class ConfigApi
      *
      * @param  string $id The ID or name of the config (required)
      * @param  int $version The version number of the config object being updated. This is required to avoid conflicting writes. (required)
-     * @param  ConfigSpec|null $body The spec of the config to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [ConfigInspect endpoint](#operation/ConfigInspect) response values. (optional)
+     * @param  \OpenAPI\Client\Model\ConfigSpec|null $body The spec of the config to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [ConfigInspect endpoint](#operation/ConfigInspect) response values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configUpdate'] to see the possible values for this operation
      *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function configUpdateAsyncWithHttpInfo($id, $version, $body = null, string $contentType = self::contentTypes['configUpdate'][0])
     {
@@ -1460,25 +1456,25 @@ class ConfigApi
      *
      * @param  string $id The ID or name of the config (required)
      * @param  int $version The version number of the config object being updated. This is required to avoid conflicting writes. (required)
-     * @param  ConfigSpec|null $body The spec of the config to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [ConfigInspect endpoint](#operation/ConfigInspect) response values. (optional)
+     * @param  \OpenAPI\Client\Model\ConfigSpec|null $body The spec of the config to update. Currently, only the Labels field can be updated. All other fields must remain unchanged from the [ConfigInspect endpoint](#operation/ConfigInspect) response values. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['configUpdate'] to see the possible values for this operation
      *
-     * @return Request
-     *@throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function configUpdateRequest($id, $version, $body = null, string $contentType = self::contentTypes['configUpdate'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling configUpdate'
             );
         }
 
         // verify the required parameter 'version' is set
         if ($version === null || (is_array($version) && count($version) === 0)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $version when calling configUpdate'
             );
         }
@@ -1523,7 +1519,7 @@ class ConfigApi
         if (isset($body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
                 $httpBody = $body;
             }
@@ -1541,9 +1537,10 @@ class ConfigApi
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
+
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = Utils::jsonEncode($formParams);
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1575,7 +1572,7 @@ class ConfigApi
     /**
      * Create http client option
      *
-     * @throws RuntimeException on file opening failure
+     * @throws \RuntimeException on file opening failure
      * @return array of http client options
      */
     protected function createHttpClientOption()
@@ -1584,7 +1581,7 @@ class ConfigApi
         if ($this->config->getDebug()) {
             $options[RequestOptions::DEBUG] = fopen($this->config->getDebugFile(), 'a');
             if (!$options[RequestOptions::DEBUG]) {
-                throw new RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
+                throw new \RuntimeException('Failed to open the debug file: ' . $this->config->getDebugFile());
             }
         }
 
@@ -1603,7 +1600,7 @@ class ConfigApi
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (JsonException $exception) {
+                } catch (\JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',

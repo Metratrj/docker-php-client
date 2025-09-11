@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ClusterVolumeSpecAccessModeSecretsInner
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ClusterVolumeSpecAccessModeSecretsInner Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ClusterVolumeSpecAccessModeSecretsInner implements ModelInterface, ArrayAccess, JsonSerializable
+class ClusterVolumeSpecAccessModeSecretsInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -320,7 +318,7 @@ class ClusterVolumeSpecAccessModeSecretsInner implements ModelInterface, ArrayAc
     public function setKey($key)
     {
         if (is_null($key)) {
-            throw new InvalidArgumentException('non-nullable key cannot be null');
+            throw new \InvalidArgumentException('non-nullable key cannot be null');
         }
         $this->container['key'] = $key;
 
@@ -347,7 +345,7 @@ class ClusterVolumeSpecAccessModeSecretsInner implements ModelInterface, ArrayAc
     public function setSecret($secret)
     {
         if (is_null($secret)) {
-            throw new InvalidArgumentException('non-nullable secret cannot be null');
+            throw new \InvalidArgumentException('non-nullable secret cannot be null');
         }
         $this->container['secret'] = $secret;
 
@@ -372,7 +370,7 @@ class ClusterVolumeSpecAccessModeSecretsInner implements ModelInterface, ArrayAc
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -414,7 +412,7 @@ class ClusterVolumeSpecAccessModeSecretsInner implements ModelInterface, ArrayAc
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -443,3 +441,5 @@ class ClusterVolumeSpecAccessModeSecretsInner implements ModelInterface, ArrayAc
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

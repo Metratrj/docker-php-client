@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceSpecModeReplicated
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ServiceSpecModeReplicated Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ServiceSpecModeReplicated implements ModelInterface, ArrayAccess, JsonSerializable
+class ServiceSpecModeReplicated implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -312,7 +310,7 @@ class ServiceSpecModeReplicated implements ModelInterface, ArrayAccess, JsonSeri
     public function setReplicas($replicas)
     {
         if (is_null($replicas)) {
-            throw new InvalidArgumentException('non-nullable replicas cannot be null');
+            throw new \InvalidArgumentException('non-nullable replicas cannot be null');
         }
         $this->container['replicas'] = $replicas;
 
@@ -337,7 +335,7 @@ class ServiceSpecModeReplicated implements ModelInterface, ArrayAccess, JsonSeri
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -379,10 +377,10 @@ class ServiceSpecModeReplicated implements ModelInterface, ArrayAccess, JsonSeri
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

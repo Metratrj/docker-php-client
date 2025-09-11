@@ -1,4 +1,5 @@
 <?php
+
 /**
  * HeaderSelector
  * PHP version 8.1
@@ -105,7 +106,7 @@ class HeaderSelector
     {
         return preg_match('~^application/(json|[\w!#$&.+-^_]+\+json)\s*(;|$)~', $searchString) === 1;
     }
-    
+
     /**
     * Select all items from a list containing a JSON mime type
     *
@@ -141,6 +142,7 @@ class HeaderSelector
         ];
 
         foreach ($accept as $header) {
+
             $headerData = $this->getHeaderAndWeight($header);
 
             if (stripos($headerData['header'], 'application/json') === 0) {

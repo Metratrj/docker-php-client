@@ -1,4 +1,5 @@
 <?php
+
 /**
  * HealthcheckResult
  *
@@ -28,12 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use DateTime;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * HealthcheckResult Class Doc Comment
@@ -43,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class HealthcheckResult implements ModelInterface, ArrayAccess, JsonSerializable
+class HealthcheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -318,7 +315,7 @@ class HealthcheckResult implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets start
      *
-     * @return DateTime|null
+     * @return \DateTime|null
      */
     public function getStart()
     {
@@ -328,14 +325,14 @@ class HealthcheckResult implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets start
      *
-     * @param DateTime|null $start Date and time at which this check started in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds.
+     * @param \DateTime|null $start Date and time at which this check started in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds.
      *
      * @return self
      */
     public function setStart($start)
     {
         if (is_null($start)) {
-            throw new InvalidArgumentException('non-nullable start cannot be null');
+            throw new \InvalidArgumentException('non-nullable start cannot be null');
         }
         $this->container['start'] = $start;
 
@@ -362,7 +359,7 @@ class HealthcheckResult implements ModelInterface, ArrayAccess, JsonSerializable
     public function setEnd($end)
     {
         if (is_null($end)) {
-            throw new InvalidArgumentException('non-nullable end cannot be null');
+            throw new \InvalidArgumentException('non-nullable end cannot be null');
         }
         $this->container['end'] = $end;
 
@@ -389,7 +386,7 @@ class HealthcheckResult implements ModelInterface, ArrayAccess, JsonSerializable
     public function setExitCode($exit_code)
     {
         if (is_null($exit_code)) {
-            throw new InvalidArgumentException('non-nullable exit_code cannot be null');
+            throw new \InvalidArgumentException('non-nullable exit_code cannot be null');
         }
         $this->container['exit_code'] = $exit_code;
 
@@ -416,7 +413,7 @@ class HealthcheckResult implements ModelInterface, ArrayAccess, JsonSerializable
     public function setOutput($output)
     {
         if (is_null($output)) {
-            throw new InvalidArgumentException('non-nullable output cannot be null');
+            throw new \InvalidArgumentException('non-nullable output cannot be null');
         }
         $this->container['output'] = $output;
 
@@ -441,7 +438,7 @@ class HealthcheckResult implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -483,7 +480,7 @@ class HealthcheckResult implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -512,3 +509,5 @@ class HealthcheckResult implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ServiceCreateRequest
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ServiceCreateRequest Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class ServiceCreateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -361,7 +359,7 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new InvalidArgumentException('non-nullable name cannot be null');
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -388,7 +386,7 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new InvalidArgumentException('non-nullable labels cannot be null');
+            throw new \InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -398,7 +396,7 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets task_template
      *
-     * @return TaskSpec|null
+     * @return \OpenAPI\Client\Model\TaskSpec|null
      */
     public function getTaskTemplate()
     {
@@ -408,14 +406,14 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets task_template
      *
-     * @param TaskSpec|null $task_template task_template
+     * @param \OpenAPI\Client\Model\TaskSpec|null $task_template task_template
      *
      * @return self
      */
     public function setTaskTemplate($task_template)
     {
         if (is_null($task_template)) {
-            throw new InvalidArgumentException('non-nullable task_template cannot be null');
+            throw new \InvalidArgumentException('non-nullable task_template cannot be null');
         }
         $this->container['task_template'] = $task_template;
 
@@ -425,7 +423,7 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets mode
      *
-     * @return ServiceSpecMode|null
+     * @return \OpenAPI\Client\Model\ServiceSpecMode|null
      */
     public function getMode()
     {
@@ -435,14 +433,14 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets mode
      *
-     * @param ServiceSpecMode|null $mode mode
+     * @param \OpenAPI\Client\Model\ServiceSpecMode|null $mode mode
      *
      * @return self
      */
     public function setMode($mode)
     {
         if (is_null($mode)) {
-            throw new InvalidArgumentException('non-nullable mode cannot be null');
+            throw new \InvalidArgumentException('non-nullable mode cannot be null');
         }
         $this->container['mode'] = $mode;
 
@@ -452,7 +450,7 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets update_config
      *
-     * @return ServiceSpecUpdateConfig|null
+     * @return \OpenAPI\Client\Model\ServiceSpecUpdateConfig|null
      */
     public function getUpdateConfig()
     {
@@ -462,14 +460,14 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets update_config
      *
-     * @param ServiceSpecUpdateConfig|null $update_config update_config
+     * @param \OpenAPI\Client\Model\ServiceSpecUpdateConfig|null $update_config update_config
      *
      * @return self
      */
     public function setUpdateConfig($update_config)
     {
         if (is_null($update_config)) {
-            throw new InvalidArgumentException('non-nullable update_config cannot be null');
+            throw new \InvalidArgumentException('non-nullable update_config cannot be null');
         }
         $this->container['update_config'] = $update_config;
 
@@ -479,7 +477,7 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets rollback_config
      *
-     * @return ServiceSpecRollbackConfig|null
+     * @return \OpenAPI\Client\Model\ServiceSpecRollbackConfig|null
      */
     public function getRollbackConfig()
     {
@@ -489,14 +487,14 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets rollback_config
      *
-     * @param ServiceSpecRollbackConfig|null $rollback_config rollback_config
+     * @param \OpenAPI\Client\Model\ServiceSpecRollbackConfig|null $rollback_config rollback_config
      *
      * @return self
      */
     public function setRollbackConfig($rollback_config)
     {
         if (is_null($rollback_config)) {
-            throw new InvalidArgumentException('non-nullable rollback_config cannot be null');
+            throw new \InvalidArgumentException('non-nullable rollback_config cannot be null');
         }
         $this->container['rollback_config'] = $rollback_config;
 
@@ -506,7 +504,7 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets networks
      *
-     * @return NetworkAttachmentConfig[]|null
+     * @return \OpenAPI\Client\Model\NetworkAttachmentConfig[]|null
      */
     public function getNetworks()
     {
@@ -516,14 +514,14 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets networks
      *
-     * @param NetworkAttachmentConfig[]|null $networks Specifies which networks the service should attach to.  Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead.
+     * @param \OpenAPI\Client\Model\NetworkAttachmentConfig[]|null $networks Specifies which networks the service should attach to.  Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead.
      *
      * @return self
      */
     public function setNetworks($networks)
     {
         if (is_null($networks)) {
-            throw new InvalidArgumentException('non-nullable networks cannot be null');
+            throw new \InvalidArgumentException('non-nullable networks cannot be null');
         }
         $this->container['networks'] = $networks;
 
@@ -533,7 +531,7 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Gets endpoint_spec
      *
-     * @return EndpointSpec|null
+     * @return \OpenAPI\Client\Model\EndpointSpec|null
      */
     public function getEndpointSpec()
     {
@@ -543,14 +541,14 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
     /**
      * Sets endpoint_spec
      *
-     * @param EndpointSpec|null $endpoint_spec endpoint_spec
+     * @param \OpenAPI\Client\Model\EndpointSpec|null $endpoint_spec endpoint_spec
      *
      * @return self
      */
     public function setEndpointSpec($endpoint_spec)
     {
         if (is_null($endpoint_spec)) {
-            throw new InvalidArgumentException('non-nullable endpoint_spec cannot be null');
+            throw new \InvalidArgumentException('non-nullable endpoint_spec cannot be null');
         }
         $this->container['endpoint_spec'] = $endpoint_spec;
 
@@ -575,7 +573,7 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -617,10 +615,10 @@ class ServiceCreateRequest implements ModelInterface, ArrayAccess, JsonSerializa
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

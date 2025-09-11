@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerMemoryStats
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerMemoryStats Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerMemoryStats implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -365,7 +363,7 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'usage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('usage', $nullablesSetToNull);
+            $index = array_search('usage', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -399,7 +397,7 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'max_usage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('max_usage', $nullablesSetToNull);
+            $index = array_search('max_usage', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -430,7 +428,7 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
     public function setStats($stats)
     {
         if (is_null($stats)) {
-            throw new InvalidArgumentException('non-nullable stats cannot be null');
+            throw new \InvalidArgumentException('non-nullable stats cannot be null');
         }
         $this->container['stats'] = $stats;
 
@@ -460,7 +458,7 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'failcnt');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('failcnt', $nullablesSetToNull);
+            $index = array_search('failcnt', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -494,7 +492,7 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('limit', $nullablesSetToNull);
+            $index = array_search('limit', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -528,7 +526,7 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'commitbytes');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('commitbytes', $nullablesSetToNull);
+            $index = array_search('commitbytes', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -562,7 +560,7 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'commitpeakbytes');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('commitpeakbytes', $nullablesSetToNull);
+            $index = array_search('commitpeakbytes', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -596,7 +594,7 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'privateworkingset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('privateworkingset', $nullablesSetToNull);
+            $index = array_search('privateworkingset', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -625,7 +623,7 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -667,7 +665,7 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -696,3 +694,5 @@ class ContainerMemoryStats implements ModelInterface, ArrayAccess, JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

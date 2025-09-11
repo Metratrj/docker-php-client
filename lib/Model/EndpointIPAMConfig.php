@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EndpointIPAMConfig
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * EndpointIPAMConfig Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class EndpointIPAMConfig implements ModelInterface, ArrayAccess, JsonSerializable
+class EndpointIPAMConfig implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -327,7 +325,7 @@ class EndpointIPAMConfig implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setIpv4Address($ipv4_address)
     {
         if (is_null($ipv4_address)) {
-            throw new InvalidArgumentException('non-nullable ipv4_address cannot be null');
+            throw new \InvalidArgumentException('non-nullable ipv4_address cannot be null');
         }
         $this->container['ipv4_address'] = $ipv4_address;
 
@@ -354,7 +352,7 @@ class EndpointIPAMConfig implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setIpv6Address($ipv6_address)
     {
         if (is_null($ipv6_address)) {
-            throw new InvalidArgumentException('non-nullable ipv6_address cannot be null');
+            throw new \InvalidArgumentException('non-nullable ipv6_address cannot be null');
         }
         $this->container['ipv6_address'] = $ipv6_address;
 
@@ -381,7 +379,7 @@ class EndpointIPAMConfig implements ModelInterface, ArrayAccess, JsonSerializabl
     public function setLinkLocalIps($link_local_ips)
     {
         if (is_null($link_local_ips)) {
-            throw new InvalidArgumentException('non-nullable link_local_ips cannot be null');
+            throw new \InvalidArgumentException('non-nullable link_local_ips cannot be null');
         }
         $this->container['link_local_ips'] = $link_local_ips;
 
@@ -406,7 +404,7 @@ class EndpointIPAMConfig implements ModelInterface, ArrayAccess, JsonSerializabl
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -448,7 +446,7 @@ class EndpointIPAMConfig implements ModelInterface, ArrayAccess, JsonSerializabl
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -477,3 +475,5 @@ class EndpointIPAMConfig implements ModelInterface, ArrayAccess, JsonSerializabl
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

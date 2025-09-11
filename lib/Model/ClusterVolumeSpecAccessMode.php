@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ClusterVolumeSpecAccessMode
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ClusterVolumeSpecAccessMode Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSerializable
+class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -433,11 +431,11 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
     public function setScope($scope)
     {
         if (is_null($scope)) {
-            throw new InvalidArgumentException('non-nullable scope cannot be null');
+            throw new \InvalidArgumentException('non-nullable scope cannot be null');
         }
         $allowedValues = $this->getScopeAllowableValues();
         if (!in_array($scope, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'scope', must be one of '%s'",
                     $scope,
@@ -470,11 +468,11 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
     public function setSharing($sharing)
     {
         if (is_null($sharing)) {
-            throw new InvalidArgumentException('non-nullable sharing cannot be null');
+            throw new \InvalidArgumentException('non-nullable sharing cannot be null');
         }
         $allowedValues = $this->getSharingAllowableValues();
         if (!in_array($sharing, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'sharing', must be one of '%s'",
                     $sharing,
@@ -507,7 +505,7 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
     public function setMountVolume($mount_volume)
     {
         if (is_null($mount_volume)) {
-            throw new InvalidArgumentException('non-nullable mount_volume cannot be null');
+            throw new \InvalidArgumentException('non-nullable mount_volume cannot be null');
         }
         $this->container['mount_volume'] = $mount_volume;
 
@@ -517,7 +515,7 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Gets secrets
      *
-     * @return ClusterVolumeSpecAccessModeSecretsInner[]|null
+     * @return \OpenAPI\Client\Model\ClusterVolumeSpecAccessModeSecretsInner[]|null
      */
     public function getSecrets()
     {
@@ -527,14 +525,14 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets secrets
      *
-     * @param ClusterVolumeSpecAccessModeSecretsInner[]|null $secrets Swarm Secrets that are passed to the CSI storage plugin when operating on this volume.
+     * @param \OpenAPI\Client\Model\ClusterVolumeSpecAccessModeSecretsInner[]|null $secrets Swarm Secrets that are passed to the CSI storage plugin when operating on this volume.
      *
      * @return self
      */
     public function setSecrets($secrets)
     {
         if (is_null($secrets)) {
-            throw new InvalidArgumentException('non-nullable secrets cannot be null');
+            throw new \InvalidArgumentException('non-nullable secrets cannot be null');
         }
         $this->container['secrets'] = $secrets;
 
@@ -544,7 +542,7 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Gets accessibility_requirements
      *
-     * @return ClusterVolumeSpecAccessModeAccessibilityRequirements|null
+     * @return \OpenAPI\Client\Model\ClusterVolumeSpecAccessModeAccessibilityRequirements|null
      */
     public function getAccessibilityRequirements()
     {
@@ -554,14 +552,14 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets accessibility_requirements
      *
-     * @param ClusterVolumeSpecAccessModeAccessibilityRequirements|null $accessibility_requirements accessibility_requirements
+     * @param \OpenAPI\Client\Model\ClusterVolumeSpecAccessModeAccessibilityRequirements|null $accessibility_requirements accessibility_requirements
      *
      * @return self
      */
     public function setAccessibilityRequirements($accessibility_requirements)
     {
         if (is_null($accessibility_requirements)) {
-            throw new InvalidArgumentException('non-nullable accessibility_requirements cannot be null');
+            throw new \InvalidArgumentException('non-nullable accessibility_requirements cannot be null');
         }
         $this->container['accessibility_requirements'] = $accessibility_requirements;
 
@@ -571,7 +569,7 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Gets capacity_range
      *
-     * @return ClusterVolumeSpecAccessModeCapacityRange|null
+     * @return \OpenAPI\Client\Model\ClusterVolumeSpecAccessModeCapacityRange|null
      */
     public function getCapacityRange()
     {
@@ -581,14 +579,14 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
     /**
      * Sets capacity_range
      *
-     * @param ClusterVolumeSpecAccessModeCapacityRange|null $capacity_range capacity_range
+     * @param \OpenAPI\Client\Model\ClusterVolumeSpecAccessModeCapacityRange|null $capacity_range capacity_range
      *
      * @return self
      */
     public function setCapacityRange($capacity_range)
     {
         if (is_null($capacity_range)) {
-            throw new InvalidArgumentException('non-nullable capacity_range cannot be null');
+            throw new \InvalidArgumentException('non-nullable capacity_range cannot be null');
         }
         $this->container['capacity_range'] = $capacity_range;
 
@@ -615,11 +613,11 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
     public function setAvailability($availability)
     {
         if (is_null($availability)) {
-            throw new InvalidArgumentException('non-nullable availability cannot be null');
+            throw new \InvalidArgumentException('non-nullable availability cannot be null');
         }
         $allowedValues = $this->getAvailabilityAllowableValues();
         if (!in_array($availability, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'availability', must be one of '%s'",
                     $availability,
@@ -650,7 +648,7 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -692,7 +690,7 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -721,3 +719,5 @@ class ClusterVolumeSpecAccessMode implements ModelInterface, ArrayAccess, JsonSe
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerInspectResponse
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerInspectResponse Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerInspectResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -499,16 +497,16 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new InvalidArgumentException('non-nullable id cannot be null');
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         if ((mb_strlen($id) > 64)) {
-            throw new InvalidArgumentException('invalid length for $id when calling ContainerInspectResponse., must be smaller than or equal to 64.');
+            throw new \InvalidArgumentException('invalid length for $id when calling ContainerInspectResponse., must be smaller than or equal to 64.');
         }
         if ((mb_strlen($id) < 64)) {
-            throw new InvalidArgumentException('invalid length for $id when calling ContainerInspectResponse., must be bigger than or equal to 64.');
+            throw new \InvalidArgumentException('invalid length for $id when calling ContainerInspectResponse., must be bigger than or equal to 64.');
         }
         if ((!preg_match("/^[0-9a-fA-F]{64}$/", ObjectSerializer::toString($id)))) {
-            throw new InvalidArgumentException("invalid value for \$id when calling ContainerInspectResponse., must conform to the pattern /^[0-9a-fA-F]{64}$/.");
+            throw new \InvalidArgumentException("invalid value for \$id when calling ContainerInspectResponse., must conform to the pattern /^[0-9a-fA-F]{64}$/.");
         }
 
         $this->container['id'] = $id;
@@ -539,7 +537,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
             array_push($this->openAPINullablesSetToNull, 'created');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('created', $nullablesSetToNull);
+            $index = array_search('created', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -570,7 +568,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setPath($path)
     {
         if (is_null($path)) {
-            throw new InvalidArgumentException('non-nullable path cannot be null');
+            throw new \InvalidArgumentException('non-nullable path cannot be null');
         }
         $this->container['path'] = $path;
 
@@ -597,7 +595,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setArgs($args)
     {
         if (is_null($args)) {
-            throw new InvalidArgumentException('non-nullable args cannot be null');
+            throw new \InvalidArgumentException('non-nullable args cannot be null');
         }
         $this->container['args'] = $args;
 
@@ -607,7 +605,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets state
      *
-     * @return ContainerState|null
+     * @return \OpenAPI\Client\Model\ContainerState|null
      */
     public function getState()
     {
@@ -617,7 +615,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets state
      *
-     * @param ContainerState|null $state state
+     * @param \OpenAPI\Client\Model\ContainerState|null $state state
      *
      * @return self
      */
@@ -627,7 +625,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
             array_push($this->openAPINullablesSetToNull, 'state');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('state', $nullablesSetToNull);
+            $index = array_search('state', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -658,7 +656,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setImage($image)
     {
         if (is_null($image)) {
-            throw new InvalidArgumentException('non-nullable image cannot be null');
+            throw new \InvalidArgumentException('non-nullable image cannot be null');
         }
         $this->container['image'] = $image;
 
@@ -685,7 +683,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setResolvConfPath($resolv_conf_path)
     {
         if (is_null($resolv_conf_path)) {
-            throw new InvalidArgumentException('non-nullable resolv_conf_path cannot be null');
+            throw new \InvalidArgumentException('non-nullable resolv_conf_path cannot be null');
         }
         $this->container['resolv_conf_path'] = $resolv_conf_path;
 
@@ -712,7 +710,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setHostnamePath($hostname_path)
     {
         if (is_null($hostname_path)) {
-            throw new InvalidArgumentException('non-nullable hostname_path cannot be null');
+            throw new \InvalidArgumentException('non-nullable hostname_path cannot be null');
         }
         $this->container['hostname_path'] = $hostname_path;
 
@@ -739,7 +737,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setHostsPath($hosts_path)
     {
         if (is_null($hosts_path)) {
-            throw new InvalidArgumentException('non-nullable hosts_path cannot be null');
+            throw new \InvalidArgumentException('non-nullable hosts_path cannot be null');
         }
         $this->container['hosts_path'] = $hosts_path;
 
@@ -769,7 +767,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
             array_push($this->openAPINullablesSetToNull, 'log_path');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('log_path', $nullablesSetToNull);
+            $index = array_search('log_path', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -800,7 +798,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new InvalidArgumentException('non-nullable name cannot be null');
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -827,7 +825,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setRestartCount($restart_count)
     {
         if (is_null($restart_count)) {
-            throw new InvalidArgumentException('non-nullable restart_count cannot be null');
+            throw new \InvalidArgumentException('non-nullable restart_count cannot be null');
         }
         $this->container['restart_count'] = $restart_count;
 
@@ -854,7 +852,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setDriver($driver)
     {
         if (is_null($driver)) {
-            throw new InvalidArgumentException('non-nullable driver cannot be null');
+            throw new \InvalidArgumentException('non-nullable driver cannot be null');
         }
         $this->container['driver'] = $driver;
 
@@ -881,7 +879,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setPlatform($platform)
     {
         if (is_null($platform)) {
-            throw new InvalidArgumentException('non-nullable platform cannot be null');
+            throw new \InvalidArgumentException('non-nullable platform cannot be null');
         }
         $this->container['platform'] = $platform;
 
@@ -891,7 +889,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets image_manifest_descriptor
      *
-     * @return OCIDescriptor|null
+     * @return \OpenAPI\Client\Model\OCIDescriptor|null
      */
     public function getImageManifestDescriptor()
     {
@@ -901,14 +899,14 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets image_manifest_descriptor
      *
-     * @param OCIDescriptor|null $image_manifest_descriptor image_manifest_descriptor
+     * @param \OpenAPI\Client\Model\OCIDescriptor|null $image_manifest_descriptor image_manifest_descriptor
      *
      * @return self
      */
     public function setImageManifestDescriptor($image_manifest_descriptor)
     {
         if (is_null($image_manifest_descriptor)) {
-            throw new InvalidArgumentException('non-nullable image_manifest_descriptor cannot be null');
+            throw new \InvalidArgumentException('non-nullable image_manifest_descriptor cannot be null');
         }
         $this->container['image_manifest_descriptor'] = $image_manifest_descriptor;
 
@@ -935,7 +933,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setMountLabel($mount_label)
     {
         if (is_null($mount_label)) {
-            throw new InvalidArgumentException('non-nullable mount_label cannot be null');
+            throw new \InvalidArgumentException('non-nullable mount_label cannot be null');
         }
         $this->container['mount_label'] = $mount_label;
 
@@ -962,7 +960,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setProcessLabel($process_label)
     {
         if (is_null($process_label)) {
-            throw new InvalidArgumentException('non-nullable process_label cannot be null');
+            throw new \InvalidArgumentException('non-nullable process_label cannot be null');
         }
         $this->container['process_label'] = $process_label;
 
@@ -989,7 +987,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     public function setAppArmorProfile($app_armor_profile)
     {
         if (is_null($app_armor_profile)) {
-            throw new InvalidArgumentException('non-nullable app_armor_profile cannot be null');
+            throw new \InvalidArgumentException('non-nullable app_armor_profile cannot be null');
         }
         $this->container['app_armor_profile'] = $app_armor_profile;
 
@@ -1019,7 +1017,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
             array_push($this->openAPINullablesSetToNull, 'exec_ids');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('exec_ids', $nullablesSetToNull);
+            $index = array_search('exec_ids', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1033,7 +1031,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets host_config
      *
-     * @return HostConfig|null
+     * @return \OpenAPI\Client\Model\HostConfig|null
      */
     public function getHostConfig()
     {
@@ -1043,14 +1041,14 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets host_config
      *
-     * @param HostConfig|null $host_config host_config
+     * @param \OpenAPI\Client\Model\HostConfig|null $host_config host_config
      *
      * @return self
      */
     public function setHostConfig($host_config)
     {
         if (is_null($host_config)) {
-            throw new InvalidArgumentException('non-nullable host_config cannot be null');
+            throw new \InvalidArgumentException('non-nullable host_config cannot be null');
         }
         $this->container['host_config'] = $host_config;
 
@@ -1060,7 +1058,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets graph_driver
      *
-     * @return DriverData|null
+     * @return \OpenAPI\Client\Model\DriverData|null
      */
     public function getGraphDriver()
     {
@@ -1070,14 +1068,14 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets graph_driver
      *
-     * @param DriverData|null $graph_driver graph_driver
+     * @param \OpenAPI\Client\Model\DriverData|null $graph_driver graph_driver
      *
      * @return self
      */
     public function setGraphDriver($graph_driver)
     {
         if (is_null($graph_driver)) {
-            throw new InvalidArgumentException('non-nullable graph_driver cannot be null');
+            throw new \InvalidArgumentException('non-nullable graph_driver cannot be null');
         }
         $this->container['graph_driver'] = $graph_driver;
 
@@ -1107,7 +1105,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
             array_push($this->openAPINullablesSetToNull, 'size_rw');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('size_rw', $nullablesSetToNull);
+            $index = array_search('size_rw', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1141,7 +1139,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
             array_push($this->openAPINullablesSetToNull, 'size_root_fs');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('size_root_fs', $nullablesSetToNull);
+            $index = array_search('size_root_fs', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1155,7 +1153,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets mounts
      *
-     * @return MountPoint[]|null
+     * @return \OpenAPI\Client\Model\MountPoint[]|null
      */
     public function getMounts()
     {
@@ -1165,14 +1163,14 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets mounts
      *
-     * @param MountPoint[]|null $mounts List of mounts used by the container.
+     * @param \OpenAPI\Client\Model\MountPoint[]|null $mounts List of mounts used by the container.
      *
      * @return self
      */
     public function setMounts($mounts)
     {
         if (is_null($mounts)) {
-            throw new InvalidArgumentException('non-nullable mounts cannot be null');
+            throw new \InvalidArgumentException('non-nullable mounts cannot be null');
         }
         $this->container['mounts'] = $mounts;
 
@@ -1182,7 +1180,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets config
      *
-     * @return ContainerConfig|null
+     * @return \OpenAPI\Client\Model\ContainerConfig|null
      */
     public function getConfig()
     {
@@ -1192,14 +1190,14 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets config
      *
-     * @param ContainerConfig|null $config config
+     * @param \OpenAPI\Client\Model\ContainerConfig|null $config config
      *
      * @return self
      */
     public function setConfig($config)
     {
         if (is_null($config)) {
-            throw new InvalidArgumentException('non-nullable config cannot be null');
+            throw new \InvalidArgumentException('non-nullable config cannot be null');
         }
         $this->container['config'] = $config;
 
@@ -1209,7 +1207,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Gets network_settings
      *
-     * @return NetworkSettings|null
+     * @return \OpenAPI\Client\Model\NetworkSettings|null
      */
     public function getNetworkSettings()
     {
@@ -1219,14 +1217,14 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
     /**
      * Sets network_settings
      *
-     * @param NetworkSettings|null $network_settings network_settings
+     * @param \OpenAPI\Client\Model\NetworkSettings|null $network_settings network_settings
      *
      * @return self
      */
     public function setNetworkSettings($network_settings)
     {
         if (is_null($network_settings)) {
-            throw new InvalidArgumentException('non-nullable network_settings cannot be null');
+            throw new \InvalidArgumentException('non-nullable network_settings cannot be null');
         }
         $this->container['network_settings'] = $network_settings;
 
@@ -1251,7 +1249,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -1293,7 +1291,7 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -1322,3 +1320,5 @@ class ContainerInspectResponse implements ModelInterface, ArrayAccess, JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

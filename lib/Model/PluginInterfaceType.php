@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PluginInterfaceType
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * PluginInterfaceType Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class PluginInterfaceType implements ModelInterface, ArrayAccess, JsonSerializable
+class PluginInterfaceType implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -335,7 +333,7 @@ class PluginInterfaceType implements ModelInterface, ArrayAccess, JsonSerializab
     public function setPrefix($prefix)
     {
         if (is_null($prefix)) {
-            throw new InvalidArgumentException('non-nullable prefix cannot be null');
+            throw new \InvalidArgumentException('non-nullable prefix cannot be null');
         }
         $this->container['prefix'] = $prefix;
 
@@ -362,7 +360,7 @@ class PluginInterfaceType implements ModelInterface, ArrayAccess, JsonSerializab
     public function setCapability($capability)
     {
         if (is_null($capability)) {
-            throw new InvalidArgumentException('non-nullable capability cannot be null');
+            throw new \InvalidArgumentException('non-nullable capability cannot be null');
         }
         $this->container['capability'] = $capability;
 
@@ -389,7 +387,7 @@ class PluginInterfaceType implements ModelInterface, ArrayAccess, JsonSerializab
     public function setVersion($version)
     {
         if (is_null($version)) {
-            throw new InvalidArgumentException('non-nullable version cannot be null');
+            throw new \InvalidArgumentException('non-nullable version cannot be null');
         }
         $this->container['version'] = $version;
 
@@ -414,7 +412,7 @@ class PluginInterfaceType implements ModelInterface, ArrayAccess, JsonSerializab
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -456,10 +454,10 @@ class PluginInterfaceType implements ModelInterface, ArrayAccess, JsonSerializab
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

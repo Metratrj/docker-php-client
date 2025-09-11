@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LocalNodeState
  *
@@ -27,8 +28,7 @@
  */
 
 namespace OpenAPI\Client\Model;
-
-use OpenAPI\Client\ObjectSerializer;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * LocalNodeState Class Doc Comment
@@ -72,3 +72,5 @@ class LocalNodeState
         ];
     }
 }
+
+

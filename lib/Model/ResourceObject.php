@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResourceObject
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ResourceObject Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ResourceObject implements ModelInterface, ArrayAccess, JsonSerializable
+class ResourceObject implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -327,7 +325,7 @@ class ResourceObject implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNanoCpus($nano_cpus)
     {
         if (is_null($nano_cpus)) {
-            throw new InvalidArgumentException('non-nullable nano_cpus cannot be null');
+            throw new \InvalidArgumentException('non-nullable nano_cpus cannot be null');
         }
         $this->container['nano_cpus'] = $nano_cpus;
 
@@ -354,7 +352,7 @@ class ResourceObject implements ModelInterface, ArrayAccess, JsonSerializable
     public function setMemoryBytes($memory_bytes)
     {
         if (is_null($memory_bytes)) {
-            throw new InvalidArgumentException('non-nullable memory_bytes cannot be null');
+            throw new \InvalidArgumentException('non-nullable memory_bytes cannot be null');
         }
         $this->container['memory_bytes'] = $memory_bytes;
 
@@ -364,7 +362,7 @@ class ResourceObject implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets generic_resources
      *
-     * @return GenericResourcesInner[]|null
+     * @return \OpenAPI\Client\Model\GenericResourcesInner[]|null
      */
     public function getGenericResources()
     {
@@ -374,14 +372,14 @@ class ResourceObject implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets generic_resources
      *
-     * @param GenericResourcesInner[]|null $generic_resources User-defined resources can be either Integer resources (e.g, `SSD=3`) or String resources (e.g, `GPU=UUID1`).
+     * @param \OpenAPI\Client\Model\GenericResourcesInner[]|null $generic_resources User-defined resources can be either Integer resources (e.g, `SSD=3`) or String resources (e.g, `GPU=UUID1`).
      *
      * @return self
      */
     public function setGenericResources($generic_resources)
     {
         if (is_null($generic_resources)) {
-            throw new InvalidArgumentException('non-nullable generic_resources cannot be null');
+            throw new \InvalidArgumentException('non-nullable generic_resources cannot be null');
         }
         $this->container['generic_resources'] = $generic_resources;
 
@@ -406,7 +404,7 @@ class ResourceObject implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -448,10 +446,10 @@ class ResourceObject implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

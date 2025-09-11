@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NodeDescription
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * NodeDescription Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
+class NodeDescription implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -341,7 +339,7 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
     public function setHostname($hostname)
     {
         if (is_null($hostname)) {
-            throw new InvalidArgumentException('non-nullable hostname cannot be null');
+            throw new \InvalidArgumentException('non-nullable hostname cannot be null');
         }
         $this->container['hostname'] = $hostname;
 
@@ -351,7 +349,7 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets platform
      *
-     * @return Platform|null
+     * @return \OpenAPI\Client\Model\Platform|null
      */
     public function getPlatform()
     {
@@ -361,14 +359,14 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets platform
      *
-     * @param Platform|null $platform platform
+     * @param \OpenAPI\Client\Model\Platform|null $platform platform
      *
      * @return self
      */
     public function setPlatform($platform)
     {
         if (is_null($platform)) {
-            throw new InvalidArgumentException('non-nullable platform cannot be null');
+            throw new \InvalidArgumentException('non-nullable platform cannot be null');
         }
         $this->container['platform'] = $platform;
 
@@ -378,7 +376,7 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets resources
      *
-     * @return ResourceObject|null
+     * @return \OpenAPI\Client\Model\ResourceObject|null
      */
     public function getResources()
     {
@@ -388,14 +386,14 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets resources
      *
-     * @param ResourceObject|null $resources resources
+     * @param \OpenAPI\Client\Model\ResourceObject|null $resources resources
      *
      * @return self
      */
     public function setResources($resources)
     {
         if (is_null($resources)) {
-            throw new InvalidArgumentException('non-nullable resources cannot be null');
+            throw new \InvalidArgumentException('non-nullable resources cannot be null');
         }
         $this->container['resources'] = $resources;
 
@@ -405,7 +403,7 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets engine
      *
-     * @return EngineDescription|null
+     * @return \OpenAPI\Client\Model\EngineDescription|null
      */
     public function getEngine()
     {
@@ -415,14 +413,14 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets engine
      *
-     * @param EngineDescription|null $engine engine
+     * @param \OpenAPI\Client\Model\EngineDescription|null $engine engine
      *
      * @return self
      */
     public function setEngine($engine)
     {
         if (is_null($engine)) {
-            throw new InvalidArgumentException('non-nullable engine cannot be null');
+            throw new \InvalidArgumentException('non-nullable engine cannot be null');
         }
         $this->container['engine'] = $engine;
 
@@ -432,7 +430,7 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets tls_info
      *
-     * @return TLSInfo|null
+     * @return \OpenAPI\Client\Model\TLSInfo|null
      */
     public function getTlsInfo()
     {
@@ -442,14 +440,14 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets tls_info
      *
-     * @param TLSInfo|null $tls_info tls_info
+     * @param \OpenAPI\Client\Model\TLSInfo|null $tls_info tls_info
      *
      * @return self
      */
     public function setTlsInfo($tls_info)
     {
         if (is_null($tls_info)) {
-            throw new InvalidArgumentException('non-nullable tls_info cannot be null');
+            throw new \InvalidArgumentException('non-nullable tls_info cannot be null');
         }
         $this->container['tls_info'] = $tls_info;
 
@@ -474,7 +472,7 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -516,10 +514,10 @@ class NodeDescription implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerStorageStats
  *
@@ -28,10 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerStorageStats Class Doc Comment
@@ -41,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerStorageStats implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerStorageStats implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -336,7 +335,7 @@ class ContainerStorageStats implements ModelInterface, ArrayAccess, JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'read_count_normalized');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('read_count_normalized', $nullablesSetToNull);
+            $index = array_search('read_count_normalized', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -370,7 +369,7 @@ class ContainerStorageStats implements ModelInterface, ArrayAccess, JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'read_size_bytes');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('read_size_bytes', $nullablesSetToNull);
+            $index = array_search('read_size_bytes', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -404,7 +403,7 @@ class ContainerStorageStats implements ModelInterface, ArrayAccess, JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'write_count_normalized');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('write_count_normalized', $nullablesSetToNull);
+            $index = array_search('write_count_normalized', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -438,7 +437,7 @@ class ContainerStorageStats implements ModelInterface, ArrayAccess, JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'write_size_bytes');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('write_size_bytes', $nullablesSetToNull);
+            $index = array_search('write_size_bytes', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -467,7 +466,7 @@ class ContainerStorageStats implements ModelInterface, ArrayAccess, JsonSerializ
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -509,7 +508,7 @@ class ContainerStorageStats implements ModelInterface, ArrayAccess, JsonSerializ
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -538,3 +537,5 @@ class ContainerStorageStats implements ModelInterface, ArrayAccess, JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

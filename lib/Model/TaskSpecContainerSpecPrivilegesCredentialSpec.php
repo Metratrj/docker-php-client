@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TaskSpecContainerSpecPrivilegesCredentialSpec
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * TaskSpecContainerSpecPrivilegesCredentialSpec Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class TaskSpecContainerSpecPrivilegesCredentialSpec implements ModelInterface, ArrayAccess, JsonSerializable
+class TaskSpecContainerSpecPrivilegesCredentialSpec implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -327,7 +325,7 @@ class TaskSpecContainerSpecPrivilegesCredentialSpec implements ModelInterface, A
     public function setConfig($config)
     {
         if (is_null($config)) {
-            throw new InvalidArgumentException('non-nullable config cannot be null');
+            throw new \InvalidArgumentException('non-nullable config cannot be null');
         }
         $this->container['config'] = $config;
 
@@ -354,7 +352,7 @@ class TaskSpecContainerSpecPrivilegesCredentialSpec implements ModelInterface, A
     public function setFile($file)
     {
         if (is_null($file)) {
-            throw new InvalidArgumentException('non-nullable file cannot be null');
+            throw new \InvalidArgumentException('non-nullable file cannot be null');
         }
         $this->container['file'] = $file;
 
@@ -381,7 +379,7 @@ class TaskSpecContainerSpecPrivilegesCredentialSpec implements ModelInterface, A
     public function setRegistry($registry)
     {
         if (is_null($registry)) {
-            throw new InvalidArgumentException('non-nullable registry cannot be null');
+            throw new \InvalidArgumentException('non-nullable registry cannot be null');
         }
         $this->container['registry'] = $registry;
 
@@ -406,7 +404,7 @@ class TaskSpecContainerSpecPrivilegesCredentialSpec implements ModelInterface, A
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -448,10 +446,10 @@ class TaskSpecContainerSpecPrivilegesCredentialSpec implements ModelInterface, A
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

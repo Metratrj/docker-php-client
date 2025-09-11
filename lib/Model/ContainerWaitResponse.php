@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerWaitResponse
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerWaitResponse Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerWaitResponse implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerWaitResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -323,7 +321,7 @@ class ContainerWaitResponse implements ModelInterface, ArrayAccess, JsonSerializ
     public function setStatusCode($status_code)
     {
         if (is_null($status_code)) {
-            throw new InvalidArgumentException('non-nullable status_code cannot be null');
+            throw new \InvalidArgumentException('non-nullable status_code cannot be null');
         }
         $this->container['status_code'] = $status_code;
 
@@ -333,7 +331,7 @@ class ContainerWaitResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets error
      *
-     * @return ContainerWaitExitError|null
+     * @return \OpenAPI\Client\Model\ContainerWaitExitError|null
      */
     public function getError()
     {
@@ -343,14 +341,14 @@ class ContainerWaitResponse implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets error
      *
-     * @param ContainerWaitExitError|null $error error
+     * @param \OpenAPI\Client\Model\ContainerWaitExitError|null $error error
      *
      * @return self
      */
     public function setError($error)
     {
         if (is_null($error)) {
-            throw new InvalidArgumentException('non-nullable error cannot be null');
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
         }
         $this->container['error'] = $error;
 
@@ -375,7 +373,7 @@ class ContainerWaitResponse implements ModelInterface, ArrayAccess, JsonSerializ
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -417,7 +415,7 @@ class ContainerWaitResponse implements ModelInterface, ArrayAccess, JsonSerializ
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -446,3 +444,5 @@ class ContainerWaitResponse implements ModelInterface, ArrayAccess, JsonSerializ
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

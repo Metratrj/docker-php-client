@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SwarmSpecDispatcher
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * SwarmSpecDispatcher Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class SwarmSpecDispatcher implements ModelInterface, ArrayAccess, JsonSerializable
+class SwarmSpecDispatcher implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -313,7 +311,7 @@ class SwarmSpecDispatcher implements ModelInterface, ArrayAccess, JsonSerializab
     public function setHeartbeatPeriod($heartbeat_period)
     {
         if (is_null($heartbeat_period)) {
-            throw new InvalidArgumentException('non-nullable heartbeat_period cannot be null');
+            throw new \InvalidArgumentException('non-nullable heartbeat_period cannot be null');
         }
         $this->container['heartbeat_period'] = $heartbeat_period;
 
@@ -338,7 +336,7 @@ class SwarmSpecDispatcher implements ModelInterface, ArrayAccess, JsonSerializab
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -380,10 +378,10 @@ class SwarmSpecDispatcher implements ModelInterface, ArrayAccess, JsonSerializab
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

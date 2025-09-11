@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SystemInfo
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * SystemInfo Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
+class SystemInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -831,7 +829,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setId($id)
     {
         if (is_null($id)) {
-            throw new InvalidArgumentException('non-nullable id cannot be null');
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
 
@@ -858,7 +856,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setContainers($containers)
     {
         if (is_null($containers)) {
-            throw new InvalidArgumentException('non-nullable containers cannot be null');
+            throw new \InvalidArgumentException('non-nullable containers cannot be null');
         }
         $this->container['containers'] = $containers;
 
@@ -885,7 +883,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setContainersRunning($containers_running)
     {
         if (is_null($containers_running)) {
-            throw new InvalidArgumentException('non-nullable containers_running cannot be null');
+            throw new \InvalidArgumentException('non-nullable containers_running cannot be null');
         }
         $this->container['containers_running'] = $containers_running;
 
@@ -912,7 +910,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setContainersPaused($containers_paused)
     {
         if (is_null($containers_paused)) {
-            throw new InvalidArgumentException('non-nullable containers_paused cannot be null');
+            throw new \InvalidArgumentException('non-nullable containers_paused cannot be null');
         }
         $this->container['containers_paused'] = $containers_paused;
 
@@ -939,7 +937,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setContainersStopped($containers_stopped)
     {
         if (is_null($containers_stopped)) {
-            throw new InvalidArgumentException('non-nullable containers_stopped cannot be null');
+            throw new \InvalidArgumentException('non-nullable containers_stopped cannot be null');
         }
         $this->container['containers_stopped'] = $containers_stopped;
 
@@ -966,7 +964,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setImages($images)
     {
         if (is_null($images)) {
-            throw new InvalidArgumentException('non-nullable images cannot be null');
+            throw new \InvalidArgumentException('non-nullable images cannot be null');
         }
         $this->container['images'] = $images;
 
@@ -993,7 +991,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDriver($driver)
     {
         if (is_null($driver)) {
-            throw new InvalidArgumentException('non-nullable driver cannot be null');
+            throw new \InvalidArgumentException('non-nullable driver cannot be null');
         }
         $this->container['driver'] = $driver;
 
@@ -1020,7 +1018,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDriverStatus($driver_status)
     {
         if (is_null($driver_status)) {
-            throw new InvalidArgumentException('non-nullable driver_status cannot be null');
+            throw new \InvalidArgumentException('non-nullable driver_status cannot be null');
         }
         $this->container['driver_status'] = $driver_status;
 
@@ -1047,7 +1045,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDockerRootDir($docker_root_dir)
     {
         if (is_null($docker_root_dir)) {
-            throw new InvalidArgumentException('non-nullable docker_root_dir cannot be null');
+            throw new \InvalidArgumentException('non-nullable docker_root_dir cannot be null');
         }
         $this->container['docker_root_dir'] = $docker_root_dir;
 
@@ -1057,7 +1055,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets plugins
      *
-     * @return PluginsInfo|null
+     * @return \OpenAPI\Client\Model\PluginsInfo|null
      */
     public function getPlugins()
     {
@@ -1067,14 +1065,14 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets plugins
      *
-     * @param PluginsInfo|null $plugins plugins
+     * @param \OpenAPI\Client\Model\PluginsInfo|null $plugins plugins
      *
      * @return self
      */
     public function setPlugins($plugins)
     {
         if (is_null($plugins)) {
-            throw new InvalidArgumentException('non-nullable plugins cannot be null');
+            throw new \InvalidArgumentException('non-nullable plugins cannot be null');
         }
         $this->container['plugins'] = $plugins;
 
@@ -1101,7 +1099,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setMemoryLimit($memory_limit)
     {
         if (is_null($memory_limit)) {
-            throw new InvalidArgumentException('non-nullable memory_limit cannot be null');
+            throw new \InvalidArgumentException('non-nullable memory_limit cannot be null');
         }
         $this->container['memory_limit'] = $memory_limit;
 
@@ -1128,7 +1126,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSwapLimit($swap_limit)
     {
         if (is_null($swap_limit)) {
-            throw new InvalidArgumentException('non-nullable swap_limit cannot be null');
+            throw new \InvalidArgumentException('non-nullable swap_limit cannot be null');
         }
         $this->container['swap_limit'] = $swap_limit;
 
@@ -1155,7 +1153,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setKernelMemoryTcp($kernel_memory_tcp)
     {
         if (is_null($kernel_memory_tcp)) {
-            throw new InvalidArgumentException('non-nullable kernel_memory_tcp cannot be null');
+            throw new \InvalidArgumentException('non-nullable kernel_memory_tcp cannot be null');
         }
         $this->container['kernel_memory_tcp'] = $kernel_memory_tcp;
 
@@ -1182,7 +1180,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCpuCfsPeriod($cpu_cfs_period)
     {
         if (is_null($cpu_cfs_period)) {
-            throw new InvalidArgumentException('non-nullable cpu_cfs_period cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_cfs_period cannot be null');
         }
         $this->container['cpu_cfs_period'] = $cpu_cfs_period;
 
@@ -1209,7 +1207,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCpuCfsQuota($cpu_cfs_quota)
     {
         if (is_null($cpu_cfs_quota)) {
-            throw new InvalidArgumentException('non-nullable cpu_cfs_quota cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_cfs_quota cannot be null');
         }
         $this->container['cpu_cfs_quota'] = $cpu_cfs_quota;
 
@@ -1236,7 +1234,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCpuShares($cpu_shares)
     {
         if (is_null($cpu_shares)) {
-            throw new InvalidArgumentException('non-nullable cpu_shares cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_shares cannot be null');
         }
         $this->container['cpu_shares'] = $cpu_shares;
 
@@ -1263,7 +1261,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCpuSet($cpu_set)
     {
         if (is_null($cpu_set)) {
-            throw new InvalidArgumentException('non-nullable cpu_set cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_set cannot be null');
         }
         $this->container['cpu_set'] = $cpu_set;
 
@@ -1290,7 +1288,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setPidsLimit($pids_limit)
     {
         if (is_null($pids_limit)) {
-            throw new InvalidArgumentException('non-nullable pids_limit cannot be null');
+            throw new \InvalidArgumentException('non-nullable pids_limit cannot be null');
         }
         $this->container['pids_limit'] = $pids_limit;
 
@@ -1317,7 +1315,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setOomKillDisable($oom_kill_disable)
     {
         if (is_null($oom_kill_disable)) {
-            throw new InvalidArgumentException('non-nullable oom_kill_disable cannot be null');
+            throw new \InvalidArgumentException('non-nullable oom_kill_disable cannot be null');
         }
         $this->container['oom_kill_disable'] = $oom_kill_disable;
 
@@ -1344,7 +1342,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setIpv4Forwarding($ipv4_forwarding)
     {
         if (is_null($ipv4_forwarding)) {
-            throw new InvalidArgumentException('non-nullable ipv4_forwarding cannot be null');
+            throw new \InvalidArgumentException('non-nullable ipv4_forwarding cannot be null');
         }
         $this->container['ipv4_forwarding'] = $ipv4_forwarding;
 
@@ -1371,7 +1369,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setBridgeNfIptables($bridge_nf_iptables)
     {
         if (is_null($bridge_nf_iptables)) {
-            throw new InvalidArgumentException('non-nullable bridge_nf_iptables cannot be null');
+            throw new \InvalidArgumentException('non-nullable bridge_nf_iptables cannot be null');
         }
         $this->container['bridge_nf_iptables'] = $bridge_nf_iptables;
 
@@ -1398,7 +1396,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setBridgeNfIp6tables($bridge_nf_ip6tables)
     {
         if (is_null($bridge_nf_ip6tables)) {
-            throw new InvalidArgumentException('non-nullable bridge_nf_ip6tables cannot be null');
+            throw new \InvalidArgumentException('non-nullable bridge_nf_ip6tables cannot be null');
         }
         $this->container['bridge_nf_ip6tables'] = $bridge_nf_ip6tables;
 
@@ -1425,7 +1423,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDebug($debug)
     {
         if (is_null($debug)) {
-            throw new InvalidArgumentException('non-nullable debug cannot be null');
+            throw new \InvalidArgumentException('non-nullable debug cannot be null');
         }
         $this->container['debug'] = $debug;
 
@@ -1452,7 +1450,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNfd($nfd)
     {
         if (is_null($nfd)) {
-            throw new InvalidArgumentException('non-nullable nfd cannot be null');
+            throw new \InvalidArgumentException('non-nullable nfd cannot be null');
         }
         $this->container['nfd'] = $nfd;
 
@@ -1479,7 +1477,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNGoroutines($n_goroutines)
     {
         if (is_null($n_goroutines)) {
-            throw new InvalidArgumentException('non-nullable n_goroutines cannot be null');
+            throw new \InvalidArgumentException('non-nullable n_goroutines cannot be null');
         }
         $this->container['n_goroutines'] = $n_goroutines;
 
@@ -1506,7 +1504,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSystemTime($system_time)
     {
         if (is_null($system_time)) {
-            throw new InvalidArgumentException('non-nullable system_time cannot be null');
+            throw new \InvalidArgumentException('non-nullable system_time cannot be null');
         }
         $this->container['system_time'] = $system_time;
 
@@ -1533,7 +1531,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setLoggingDriver($logging_driver)
     {
         if (is_null($logging_driver)) {
-            throw new InvalidArgumentException('non-nullable logging_driver cannot be null');
+            throw new \InvalidArgumentException('non-nullable logging_driver cannot be null');
         }
         $this->container['logging_driver'] = $logging_driver;
 
@@ -1560,11 +1558,11 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCgroupDriver($cgroup_driver)
     {
         if (is_null($cgroup_driver)) {
-            throw new InvalidArgumentException('non-nullable cgroup_driver cannot be null');
+            throw new \InvalidArgumentException('non-nullable cgroup_driver cannot be null');
         }
         $allowedValues = $this->getCgroupDriverAllowableValues();
         if (!in_array($cgroup_driver, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'cgroup_driver', must be one of '%s'",
                     $cgroup_driver,
@@ -1597,11 +1595,11 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCgroupVersion($cgroup_version)
     {
         if (is_null($cgroup_version)) {
-            throw new InvalidArgumentException('non-nullable cgroup_version cannot be null');
+            throw new \InvalidArgumentException('non-nullable cgroup_version cannot be null');
         }
         $allowedValues = $this->getCgroupVersionAllowableValues();
         if (!in_array($cgroup_version, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'cgroup_version', must be one of '%s'",
                     $cgroup_version,
@@ -1634,7 +1632,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNEventsListener($n_events_listener)
     {
         if (is_null($n_events_listener)) {
-            throw new InvalidArgumentException('non-nullable n_events_listener cannot be null');
+            throw new \InvalidArgumentException('non-nullable n_events_listener cannot be null');
         }
         $this->container['n_events_listener'] = $n_events_listener;
 
@@ -1661,7 +1659,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setKernelVersion($kernel_version)
     {
         if (is_null($kernel_version)) {
-            throw new InvalidArgumentException('non-nullable kernel_version cannot be null');
+            throw new \InvalidArgumentException('non-nullable kernel_version cannot be null');
         }
         $this->container['kernel_version'] = $kernel_version;
 
@@ -1688,7 +1686,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setOperatingSystem($operating_system)
     {
         if (is_null($operating_system)) {
-            throw new InvalidArgumentException('non-nullable operating_system cannot be null');
+            throw new \InvalidArgumentException('non-nullable operating_system cannot be null');
         }
         $this->container['operating_system'] = $operating_system;
 
@@ -1715,7 +1713,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setOsVersion($os_version)
     {
         if (is_null($os_version)) {
-            throw new InvalidArgumentException('non-nullable os_version cannot be null');
+            throw new \InvalidArgumentException('non-nullable os_version cannot be null');
         }
         $this->container['os_version'] = $os_version;
 
@@ -1742,7 +1740,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setOsType($os_type)
     {
         if (is_null($os_type)) {
-            throw new InvalidArgumentException('non-nullable os_type cannot be null');
+            throw new \InvalidArgumentException('non-nullable os_type cannot be null');
         }
         $this->container['os_type'] = $os_type;
 
@@ -1769,7 +1767,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setArchitecture($architecture)
     {
         if (is_null($architecture)) {
-            throw new InvalidArgumentException('non-nullable architecture cannot be null');
+            throw new \InvalidArgumentException('non-nullable architecture cannot be null');
         }
         $this->container['architecture'] = $architecture;
 
@@ -1796,7 +1794,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNcpu($ncpu)
     {
         if (is_null($ncpu)) {
-            throw new InvalidArgumentException('non-nullable ncpu cannot be null');
+            throw new \InvalidArgumentException('non-nullable ncpu cannot be null');
         }
         $this->container['ncpu'] = $ncpu;
 
@@ -1823,7 +1821,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setMemTotal($mem_total)
     {
         if (is_null($mem_total)) {
-            throw new InvalidArgumentException('non-nullable mem_total cannot be null');
+            throw new \InvalidArgumentException('non-nullable mem_total cannot be null');
         }
         $this->container['mem_total'] = $mem_total;
 
@@ -1850,7 +1848,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setIndexServerAddress($index_server_address)
     {
         if (is_null($index_server_address)) {
-            throw new InvalidArgumentException('non-nullable index_server_address cannot be null');
+            throw new \InvalidArgumentException('non-nullable index_server_address cannot be null');
         }
         $this->container['index_server_address'] = $index_server_address;
 
@@ -1860,7 +1858,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets registry_config
      *
-     * @return RegistryServiceConfig|null
+     * @return \OpenAPI\Client\Model\RegistryServiceConfig|null
      */
     public function getRegistryConfig()
     {
@@ -1870,7 +1868,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets registry_config
      *
-     * @param RegistryServiceConfig|null $registry_config registry_config
+     * @param \OpenAPI\Client\Model\RegistryServiceConfig|null $registry_config registry_config
      *
      * @return self
      */
@@ -1880,8 +1878,8 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'registry_config');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('registry_config', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('registry_config', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1894,7 +1892,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets generic_resources
      *
-     * @return GenericResourcesInner[]|null
+     * @return \OpenAPI\Client\Model\GenericResourcesInner[]|null
      */
     public function getGenericResources()
     {
@@ -1904,14 +1902,14 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets generic_resources
      *
-     * @param GenericResourcesInner[]|null $generic_resources User-defined resources can be either Integer resources (e.g, `SSD=3`) or String resources (e.g, `GPU=UUID1`).
+     * @param \OpenAPI\Client\Model\GenericResourcesInner[]|null $generic_resources User-defined resources can be either Integer resources (e.g, `SSD=3`) or String resources (e.g, `GPU=UUID1`).
      *
      * @return self
      */
     public function setGenericResources($generic_resources)
     {
         if (is_null($generic_resources)) {
-            throw new InvalidArgumentException('non-nullable generic_resources cannot be null');
+            throw new \InvalidArgumentException('non-nullable generic_resources cannot be null');
         }
         $this->container['generic_resources'] = $generic_resources;
 
@@ -1938,7 +1936,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setHttpProxy($http_proxy)
     {
         if (is_null($http_proxy)) {
-            throw new InvalidArgumentException('non-nullable http_proxy cannot be null');
+            throw new \InvalidArgumentException('non-nullable http_proxy cannot be null');
         }
         $this->container['http_proxy'] = $http_proxy;
 
@@ -1965,7 +1963,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setHttpsProxy($https_proxy)
     {
         if (is_null($https_proxy)) {
-            throw new InvalidArgumentException('non-nullable https_proxy cannot be null');
+            throw new \InvalidArgumentException('non-nullable https_proxy cannot be null');
         }
         $this->container['https_proxy'] = $https_proxy;
 
@@ -1992,7 +1990,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setNoProxy($no_proxy)
     {
         if (is_null($no_proxy)) {
-            throw new InvalidArgumentException('non-nullable no_proxy cannot be null');
+            throw new \InvalidArgumentException('non-nullable no_proxy cannot be null');
         }
         $this->container['no_proxy'] = $no_proxy;
 
@@ -2019,7 +2017,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new InvalidArgumentException('non-nullable name cannot be null');
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
 
@@ -2046,7 +2044,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setLabels($labels)
     {
         if (is_null($labels)) {
-            throw new InvalidArgumentException('non-nullable labels cannot be null');
+            throw new \InvalidArgumentException('non-nullable labels cannot be null');
         }
         $this->container['labels'] = $labels;
 
@@ -2073,7 +2071,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setExperimentalBuild($experimental_build)
     {
         if (is_null($experimental_build)) {
-            throw new InvalidArgumentException('non-nullable experimental_build cannot be null');
+            throw new \InvalidArgumentException('non-nullable experimental_build cannot be null');
         }
         $this->container['experimental_build'] = $experimental_build;
 
@@ -2100,7 +2098,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setServerVersion($server_version)
     {
         if (is_null($server_version)) {
-            throw new InvalidArgumentException('non-nullable server_version cannot be null');
+            throw new \InvalidArgumentException('non-nullable server_version cannot be null');
         }
         $this->container['server_version'] = $server_version;
 
@@ -2110,7 +2108,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets runtimes
      *
-     * @return array<string,Runtime>|null
+     * @return array<string,\OpenAPI\Client\Model\Runtime>|null
      */
     public function getRuntimes()
     {
@@ -2120,14 +2118,14 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets runtimes
      *
-     * @param array<string,Runtime>|null $runtimes List of [OCI compliant](https://github.com/opencontainers/runtime-spec) runtimes configured on the daemon. Keys hold the \"name\" used to reference the runtime.  The Docker daemon relies on an OCI compliant runtime (invoked via the `containerd` daemon) as its interface to the Linux kernel namespaces, cgroups, and SELinux.  The default runtime is `runc`, and automatically configured. Additional runtimes can be configured by the user and will be listed here.
+     * @param array<string,\OpenAPI\Client\Model\Runtime>|null $runtimes List of [OCI compliant](https://github.com/opencontainers/runtime-spec) runtimes configured on the daemon. Keys hold the \"name\" used to reference the runtime.  The Docker daemon relies on an OCI compliant runtime (invoked via the `containerd` daemon) as its interface to the Linux kernel namespaces, cgroups, and SELinux.  The default runtime is `runc`, and automatically configured. Additional runtimes can be configured by the user and will be listed here.
      *
      * @return self
      */
     public function setRuntimes($runtimes)
     {
         if (is_null($runtimes)) {
-            throw new InvalidArgumentException('non-nullable runtimes cannot be null');
+            throw new \InvalidArgumentException('non-nullable runtimes cannot be null');
         }
         $this->container['runtimes'] = $runtimes;
 
@@ -2154,7 +2152,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDefaultRuntime($default_runtime)
     {
         if (is_null($default_runtime)) {
-            throw new InvalidArgumentException('non-nullable default_runtime cannot be null');
+            throw new \InvalidArgumentException('non-nullable default_runtime cannot be null');
         }
         $this->container['default_runtime'] = $default_runtime;
 
@@ -2164,7 +2162,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets swarm
      *
-     * @return SwarmInfo|null
+     * @return \OpenAPI\Client\Model\SwarmInfo|null
      */
     public function getSwarm()
     {
@@ -2174,14 +2172,14 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets swarm
      *
-     * @param SwarmInfo|null $swarm swarm
+     * @param \OpenAPI\Client\Model\SwarmInfo|null $swarm swarm
      *
      * @return self
      */
     public function setSwarm($swarm)
     {
         if (is_null($swarm)) {
-            throw new InvalidArgumentException('non-nullable swarm cannot be null');
+            throw new \InvalidArgumentException('non-nullable swarm cannot be null');
         }
         $this->container['swarm'] = $swarm;
 
@@ -2208,7 +2206,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setLiveRestoreEnabled($live_restore_enabled)
     {
         if (is_null($live_restore_enabled)) {
-            throw new InvalidArgumentException('non-nullable live_restore_enabled cannot be null');
+            throw new \InvalidArgumentException('non-nullable live_restore_enabled cannot be null');
         }
         $this->container['live_restore_enabled'] = $live_restore_enabled;
 
@@ -2235,11 +2233,11 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setIsolation($isolation)
     {
         if (is_null($isolation)) {
-            throw new InvalidArgumentException('non-nullable isolation cannot be null');
+            throw new \InvalidArgumentException('non-nullable isolation cannot be null');
         }
         $allowedValues = $this->getIsolationAllowableValues();
         if (!in_array($isolation, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'isolation', must be one of '%s'",
                     $isolation,
@@ -2272,7 +2270,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setInitBinary($init_binary)
     {
         if (is_null($init_binary)) {
-            throw new InvalidArgumentException('non-nullable init_binary cannot be null');
+            throw new \InvalidArgumentException('non-nullable init_binary cannot be null');
         }
         $this->container['init_binary'] = $init_binary;
 
@@ -2282,7 +2280,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets containerd_commit
      *
-     * @return Commit|null
+     * @return \OpenAPI\Client\Model\Commit|null
      */
     public function getContainerdCommit()
     {
@@ -2292,14 +2290,14 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets containerd_commit
      *
-     * @param Commit|null $containerd_commit containerd_commit
+     * @param \OpenAPI\Client\Model\Commit|null $containerd_commit containerd_commit
      *
      * @return self
      */
     public function setContainerdCommit($containerd_commit)
     {
         if (is_null($containerd_commit)) {
-            throw new InvalidArgumentException('non-nullable containerd_commit cannot be null');
+            throw new \InvalidArgumentException('non-nullable containerd_commit cannot be null');
         }
         $this->container['containerd_commit'] = $containerd_commit;
 
@@ -2309,7 +2307,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets runc_commit
      *
-     * @return Commit|null
+     * @return \OpenAPI\Client\Model\Commit|null
      */
     public function getRuncCommit()
     {
@@ -2319,14 +2317,14 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets runc_commit
      *
-     * @param Commit|null $runc_commit runc_commit
+     * @param \OpenAPI\Client\Model\Commit|null $runc_commit runc_commit
      *
      * @return self
      */
     public function setRuncCommit($runc_commit)
     {
         if (is_null($runc_commit)) {
-            throw new InvalidArgumentException('non-nullable runc_commit cannot be null');
+            throw new \InvalidArgumentException('non-nullable runc_commit cannot be null');
         }
         $this->container['runc_commit'] = $runc_commit;
 
@@ -2336,7 +2334,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets init_commit
      *
-     * @return Commit|null
+     * @return \OpenAPI\Client\Model\Commit|null
      */
     public function getInitCommit()
     {
@@ -2346,14 +2344,14 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets init_commit
      *
-     * @param Commit|null $init_commit init_commit
+     * @param \OpenAPI\Client\Model\Commit|null $init_commit init_commit
      *
      * @return self
      */
     public function setInitCommit($init_commit)
     {
         if (is_null($init_commit)) {
-            throw new InvalidArgumentException('non-nullable init_commit cannot be null');
+            throw new \InvalidArgumentException('non-nullable init_commit cannot be null');
         }
         $this->container['init_commit'] = $init_commit;
 
@@ -2380,7 +2378,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setSecurityOptions($security_options)
     {
         if (is_null($security_options)) {
-            throw new InvalidArgumentException('non-nullable security_options cannot be null');
+            throw new \InvalidArgumentException('non-nullable security_options cannot be null');
         }
         $this->container['security_options'] = $security_options;
 
@@ -2407,7 +2405,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setProductLicense($product_license)
     {
         if (is_null($product_license)) {
-            throw new InvalidArgumentException('non-nullable product_license cannot be null');
+            throw new \InvalidArgumentException('non-nullable product_license cannot be null');
         }
         $this->container['product_license'] = $product_license;
 
@@ -2417,7 +2415,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets default_address_pools
      *
-     * @return SystemInfoDefaultAddressPoolsInner[]|null
+     * @return \OpenAPI\Client\Model\SystemInfoDefaultAddressPoolsInner[]|null
      */
     public function getDefaultAddressPools()
     {
@@ -2427,14 +2425,14 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets default_address_pools
      *
-     * @param SystemInfoDefaultAddressPoolsInner[]|null $default_address_pools List of custom default address pools for local networks, which can be specified in the daemon.json file or dockerd option.  Example: a Base \"10.10.0.0/16\" with Size 24 will define the set of 256 10.10.[0-255].0/24 address pools.
+     * @param \OpenAPI\Client\Model\SystemInfoDefaultAddressPoolsInner[]|null $default_address_pools List of custom default address pools for local networks, which can be specified in the daemon.json file or dockerd option.  Example: a Base \"10.10.0.0/16\" with Size 24 will define the set of 256 10.10.[0-255].0/24 address pools.
      *
      * @return self
      */
     public function setDefaultAddressPools($default_address_pools)
     {
         if (is_null($default_address_pools)) {
-            throw new InvalidArgumentException('non-nullable default_address_pools cannot be null');
+            throw new \InvalidArgumentException('non-nullable default_address_pools cannot be null');
         }
         $this->container['default_address_pools'] = $default_address_pools;
 
@@ -2444,7 +2442,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets firewall_backend
      *
-     * @return FirewallInfo|null
+     * @return \OpenAPI\Client\Model\FirewallInfo|null
      */
     public function getFirewallBackend()
     {
@@ -2454,7 +2452,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets firewall_backend
      *
-     * @param FirewallInfo|null $firewall_backend firewall_backend
+     * @param \OpenAPI\Client\Model\FirewallInfo|null $firewall_backend firewall_backend
      *
      * @return self
      */
@@ -2464,8 +2462,8 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'firewall_backend');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('firewall_backend', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('firewall_backend', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -2478,7 +2476,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets discovered_devices
      *
-     * @return DeviceInfo[]|null
+     * @return \OpenAPI\Client\Model\DeviceInfo[]|null
      */
     public function getDiscoveredDevices()
     {
@@ -2488,14 +2486,14 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets discovered_devices
      *
-     * @param DeviceInfo[]|null $discovered_devices List of devices discovered by device drivers.  Each device includes information about its source driver, kind, name, and additional driver-specific attributes.
+     * @param \OpenAPI\Client\Model\DeviceInfo[]|null $discovered_devices List of devices discovered by device drivers.  Each device includes information about its source driver, kind, name, and additional driver-specific attributes.
      *
      * @return self
      */
     public function setDiscoveredDevices($discovered_devices)
     {
         if (is_null($discovered_devices)) {
-            throw new InvalidArgumentException('non-nullable discovered_devices cannot be null');
+            throw new \InvalidArgumentException('non-nullable discovered_devices cannot be null');
         }
         $this->container['discovered_devices'] = $discovered_devices;
 
@@ -2522,7 +2520,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setWarnings($warnings)
     {
         if (is_null($warnings)) {
-            throw new InvalidArgumentException('non-nullable warnings cannot be null');
+            throw new \InvalidArgumentException('non-nullable warnings cannot be null');
         }
         $this->container['warnings'] = $warnings;
 
@@ -2549,7 +2547,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCdiSpecDirs($cdi_spec_dirs)
     {
         if (is_null($cdi_spec_dirs)) {
-            throw new InvalidArgumentException('non-nullable cdi_spec_dirs cannot be null');
+            throw new \InvalidArgumentException('non-nullable cdi_spec_dirs cannot be null');
         }
         $this->container['cdi_spec_dirs'] = $cdi_spec_dirs;
 
@@ -2559,7 +2557,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets containerd
      *
-     * @return ContainerdInfo|null
+     * @return \OpenAPI\Client\Model\ContainerdInfo|null
      */
     public function getContainerd()
     {
@@ -2569,7 +2567,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets containerd
      *
-     * @param ContainerdInfo|null $containerd containerd
+     * @param \OpenAPI\Client\Model\ContainerdInfo|null $containerd containerd
      *
      * @return self
      */
@@ -2579,8 +2577,8 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'containerd');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('containerd', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('containerd', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -2608,7 +2606,7 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -2650,10 +2648,10 @@ class SystemInfo implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

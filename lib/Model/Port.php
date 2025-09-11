@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Port
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * Port Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class Port implements ModelInterface, ArrayAccess, JsonSerializable
+class Port implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -366,7 +364,7 @@ class Port implements ModelInterface, ArrayAccess, JsonSerializable
     public function setIp($ip)
     {
         if (is_null($ip)) {
-            throw new InvalidArgumentException('non-nullable ip cannot be null');
+            throw new \InvalidArgumentException('non-nullable ip cannot be null');
         }
         $this->container['ip'] = $ip;
 
@@ -393,7 +391,7 @@ class Port implements ModelInterface, ArrayAccess, JsonSerializable
     public function setPrivatePort($private_port)
     {
         if (is_null($private_port)) {
-            throw new InvalidArgumentException('non-nullable private_port cannot be null');
+            throw new \InvalidArgumentException('non-nullable private_port cannot be null');
         }
         $this->container['private_port'] = $private_port;
 
@@ -420,7 +418,7 @@ class Port implements ModelInterface, ArrayAccess, JsonSerializable
     public function setPublicPort($public_port)
     {
         if (is_null($public_port)) {
-            throw new InvalidArgumentException('non-nullable public_port cannot be null');
+            throw new \InvalidArgumentException('non-nullable public_port cannot be null');
         }
         $this->container['public_port'] = $public_port;
 
@@ -447,11 +445,11 @@ class Port implements ModelInterface, ArrayAccess, JsonSerializable
     public function setType($type)
     {
         if (is_null($type)) {
-            throw new InvalidArgumentException('non-nullable type cannot be null');
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'type', must be one of '%s'",
                     $type,
@@ -482,7 +480,7 @@ class Port implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -524,10 +522,10 @@ class Port implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

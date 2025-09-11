@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerPruneResponse
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerPruneResponse Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerPruneResponse implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerPruneResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -319,7 +317,7 @@ class ContainerPruneResponse implements ModelInterface, ArrayAccess, JsonSeriali
     public function setContainersDeleted($containers_deleted)
     {
         if (is_null($containers_deleted)) {
-            throw new InvalidArgumentException('non-nullable containers_deleted cannot be null');
+            throw new \InvalidArgumentException('non-nullable containers_deleted cannot be null');
         }
         $this->container['containers_deleted'] = $containers_deleted;
 
@@ -346,7 +344,7 @@ class ContainerPruneResponse implements ModelInterface, ArrayAccess, JsonSeriali
     public function setSpaceReclaimed($space_reclaimed)
     {
         if (is_null($space_reclaimed)) {
-            throw new InvalidArgumentException('non-nullable space_reclaimed cannot be null');
+            throw new \InvalidArgumentException('non-nullable space_reclaimed cannot be null');
         }
         $this->container['space_reclaimed'] = $space_reclaimed;
 
@@ -371,7 +369,7 @@ class ContainerPruneResponse implements ModelInterface, ArrayAccess, JsonSeriali
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -413,7 +411,7 @@ class ContainerPruneResponse implements ModelInterface, ArrayAccess, JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -442,3 +440,5 @@ class ContainerPruneResponse implements ModelInterface, ArrayAccess, JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

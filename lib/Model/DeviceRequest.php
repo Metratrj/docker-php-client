@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DeviceRequest
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * DeviceRequest Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class DeviceRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class DeviceRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -341,7 +339,7 @@ class DeviceRequest implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDriver($driver)
     {
         if (is_null($driver)) {
-            throw new InvalidArgumentException('non-nullable driver cannot be null');
+            throw new \InvalidArgumentException('non-nullable driver cannot be null');
         }
         $this->container['driver'] = $driver;
 
@@ -368,7 +366,7 @@ class DeviceRequest implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCount($count)
     {
         if (is_null($count)) {
-            throw new InvalidArgumentException('non-nullable count cannot be null');
+            throw new \InvalidArgumentException('non-nullable count cannot be null');
         }
         $this->container['count'] = $count;
 
@@ -395,7 +393,7 @@ class DeviceRequest implements ModelInterface, ArrayAccess, JsonSerializable
     public function setDeviceIds($device_ids)
     {
         if (is_null($device_ids)) {
-            throw new InvalidArgumentException('non-nullable device_ids cannot be null');
+            throw new \InvalidArgumentException('non-nullable device_ids cannot be null');
         }
         $this->container['device_ids'] = $device_ids;
 
@@ -422,7 +420,7 @@ class DeviceRequest implements ModelInterface, ArrayAccess, JsonSerializable
     public function setCapabilities($capabilities)
     {
         if (is_null($capabilities)) {
-            throw new InvalidArgumentException('non-nullable capabilities cannot be null');
+            throw new \InvalidArgumentException('non-nullable capabilities cannot be null');
         }
         $this->container['capabilities'] = $capabilities;
 
@@ -449,7 +447,7 @@ class DeviceRequest implements ModelInterface, ArrayAccess, JsonSerializable
     public function setOptions($options)
     {
         if (is_null($options)) {
-            throw new InvalidArgumentException('non-nullable options cannot be null');
+            throw new \InvalidArgumentException('non-nullable options cannot be null');
         }
         $this->container['options'] = $options;
 
@@ -474,7 +472,7 @@ class DeviceRequest implements ModelInterface, ArrayAccess, JsonSerializable
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -516,7 +514,7 @@ class DeviceRequest implements ModelInterface, ArrayAccess, JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -545,3 +543,5 @@ class DeviceRequest implements ModelInterface, ArrayAccess, JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+

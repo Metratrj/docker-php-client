@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SwarmSpecTaskDefaults
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * SwarmSpecTaskDefaults Class Doc Comment
@@ -42,9 +40,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class SwarmSpecTaskDefaults implements ModelInterface, ArrayAccess, JsonSerializable
+class SwarmSpecTaskDefaults implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -296,7 +294,7 @@ class SwarmSpecTaskDefaults implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Gets log_driver
      *
-     * @return SwarmSpecTaskDefaultsLogDriver|null
+     * @return \OpenAPI\Client\Model\SwarmSpecTaskDefaultsLogDriver|null
      */
     public function getLogDriver()
     {
@@ -306,14 +304,14 @@ class SwarmSpecTaskDefaults implements ModelInterface, ArrayAccess, JsonSerializ
     /**
      * Sets log_driver
      *
-     * @param SwarmSpecTaskDefaultsLogDriver|null $log_driver log_driver
+     * @param \OpenAPI\Client\Model\SwarmSpecTaskDefaultsLogDriver|null $log_driver log_driver
      *
      * @return self
      */
     public function setLogDriver($log_driver)
     {
         if (is_null($log_driver)) {
-            throw new InvalidArgumentException('non-nullable log_driver cannot be null');
+            throw new \InvalidArgumentException('non-nullable log_driver cannot be null');
         }
         $this->container['log_driver'] = $log_driver;
 
@@ -338,7 +336,7 @@ class SwarmSpecTaskDefaults implements ModelInterface, ArrayAccess, JsonSerializ
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -380,10 +378,10 @@ class SwarmSpecTaskDefaults implements ModelInterface, ArrayAccess, JsonSerializ
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

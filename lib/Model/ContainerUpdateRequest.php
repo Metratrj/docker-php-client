@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ContainerUpdateRequest
  *
@@ -28,11 +29,8 @@
 
 namespace OpenAPI\Client\Model;
 
-use ArrayAccess;
-use InvalidArgumentException;
-use JsonSerializable;
-use OpenAPI\Client\ObjectSerializer;
-use ReturnTypeWillChange;
+use \ArrayAccess;
+use \OpenAPI\Client\ObjectSerializer;
 
 /**
  * ContainerUpdateRequest Class Doc Comment
@@ -41,9 +39,9 @@ use ReturnTypeWillChange;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
- * @implements ArrayAccess<string, mixed>
+ * @implements \ArrayAccess<string, mixed>
  */
-class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSerializable
+class ContainerUpdateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -545,7 +543,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCpuShares($cpu_shares)
     {
         if (is_null($cpu_shares)) {
-            throw new InvalidArgumentException('non-nullable cpu_shares cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_shares cannot be null');
         }
         $this->container['cpu_shares'] = $cpu_shares;
 
@@ -572,7 +570,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setMemory($memory)
     {
         if (is_null($memory)) {
-            throw new InvalidArgumentException('non-nullable memory cannot be null');
+            throw new \InvalidArgumentException('non-nullable memory cannot be null');
         }
         $this->container['memory'] = $memory;
 
@@ -599,7 +597,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCgroupParent($cgroup_parent)
     {
         if (is_null($cgroup_parent)) {
-            throw new InvalidArgumentException('non-nullable cgroup_parent cannot be null');
+            throw new \InvalidArgumentException('non-nullable cgroup_parent cannot be null');
         }
         $this->container['cgroup_parent'] = $cgroup_parent;
 
@@ -626,14 +624,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setBlkioWeight($blkio_weight)
     {
         if (is_null($blkio_weight)) {
-            throw new InvalidArgumentException('non-nullable blkio_weight cannot be null');
+            throw new \InvalidArgumentException('non-nullable blkio_weight cannot be null');
         }
 
         if (($blkio_weight > 1000)) {
-            throw new InvalidArgumentException('invalid value for $blkio_weight when calling ContainerUpdateRequest., must be smaller than or equal to 1000.');
+            throw new \InvalidArgumentException('invalid value for $blkio_weight when calling ContainerUpdateRequest., must be smaller than or equal to 1000.');
         }
         if (($blkio_weight < 0)) {
-            throw new InvalidArgumentException('invalid value for $blkio_weight when calling ContainerUpdateRequest., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for $blkio_weight when calling ContainerUpdateRequest., must be bigger than or equal to 0.');
         }
 
         $this->container['blkio_weight'] = $blkio_weight;
@@ -644,7 +642,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets blkio_weight_device
      *
-     * @return ResourcesBlkioWeightDeviceInner[]|null
+     * @return \OpenAPI\Client\Model\ResourcesBlkioWeightDeviceInner[]|null
      */
     public function getBlkioWeightDevice()
     {
@@ -654,14 +652,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets blkio_weight_device
      *
-     * @param ResourcesBlkioWeightDeviceInner[]|null $blkio_weight_device Block IO weight (relative device weight) in the form:  ``` [{\"Path\": \"device_path\", \"Weight\": weight}] ```
+     * @param \OpenAPI\Client\Model\ResourcesBlkioWeightDeviceInner[]|null $blkio_weight_device Block IO weight (relative device weight) in the form:  ``` [{\"Path\": \"device_path\", \"Weight\": weight}] ```
      *
      * @return self
      */
     public function setBlkioWeightDevice($blkio_weight_device)
     {
         if (is_null($blkio_weight_device)) {
-            throw new InvalidArgumentException('non-nullable blkio_weight_device cannot be null');
+            throw new \InvalidArgumentException('non-nullable blkio_weight_device cannot be null');
         }
         $this->container['blkio_weight_device'] = $blkio_weight_device;
 
@@ -671,7 +669,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets blkio_device_read_bps
      *
-     * @return ThrottleDevice[]|null
+     * @return \OpenAPI\Client\Model\ThrottleDevice[]|null
      */
     public function getBlkioDeviceReadBps()
     {
@@ -681,14 +679,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets blkio_device_read_bps
      *
-     * @param ThrottleDevice[]|null $blkio_device_read_bps Limit read rate (bytes per second) from a device, in the form:  ``` [{\"Path\": \"device_path\", \"Rate\": rate}] ```
+     * @param \OpenAPI\Client\Model\ThrottleDevice[]|null $blkio_device_read_bps Limit read rate (bytes per second) from a device, in the form:  ``` [{\"Path\": \"device_path\", \"Rate\": rate}] ```
      *
      * @return self
      */
     public function setBlkioDeviceReadBps($blkio_device_read_bps)
     {
         if (is_null($blkio_device_read_bps)) {
-            throw new InvalidArgumentException('non-nullable blkio_device_read_bps cannot be null');
+            throw new \InvalidArgumentException('non-nullable blkio_device_read_bps cannot be null');
         }
         $this->container['blkio_device_read_bps'] = $blkio_device_read_bps;
 
@@ -698,7 +696,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets blkio_device_write_bps
      *
-     * @return ThrottleDevice[]|null
+     * @return \OpenAPI\Client\Model\ThrottleDevice[]|null
      */
     public function getBlkioDeviceWriteBps()
     {
@@ -708,14 +706,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets blkio_device_write_bps
      *
-     * @param ThrottleDevice[]|null $blkio_device_write_bps Limit write rate (bytes per second) to a device, in the form:  ``` [{\"Path\": \"device_path\", \"Rate\": rate}] ```
+     * @param \OpenAPI\Client\Model\ThrottleDevice[]|null $blkio_device_write_bps Limit write rate (bytes per second) to a device, in the form:  ``` [{\"Path\": \"device_path\", \"Rate\": rate}] ```
      *
      * @return self
      */
     public function setBlkioDeviceWriteBps($blkio_device_write_bps)
     {
         if (is_null($blkio_device_write_bps)) {
-            throw new InvalidArgumentException('non-nullable blkio_device_write_bps cannot be null');
+            throw new \InvalidArgumentException('non-nullable blkio_device_write_bps cannot be null');
         }
         $this->container['blkio_device_write_bps'] = $blkio_device_write_bps;
 
@@ -725,7 +723,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets blkio_device_read_i_ops
      *
-     * @return ThrottleDevice[]|null
+     * @return \OpenAPI\Client\Model\ThrottleDevice[]|null
      */
     public function getBlkioDeviceReadIOps()
     {
@@ -735,14 +733,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets blkio_device_read_i_ops
      *
-     * @param ThrottleDevice[]|null $blkio_device_read_i_ops Limit read rate (IO per second) from a device, in the form:  ``` [{\"Path\": \"device_path\", \"Rate\": rate}] ```
+     * @param \OpenAPI\Client\Model\ThrottleDevice[]|null $blkio_device_read_i_ops Limit read rate (IO per second) from a device, in the form:  ``` [{\"Path\": \"device_path\", \"Rate\": rate}] ```
      *
      * @return self
      */
     public function setBlkioDeviceReadIOps($blkio_device_read_i_ops)
     {
         if (is_null($blkio_device_read_i_ops)) {
-            throw new InvalidArgumentException('non-nullable blkio_device_read_i_ops cannot be null');
+            throw new \InvalidArgumentException('non-nullable blkio_device_read_i_ops cannot be null');
         }
         $this->container['blkio_device_read_i_ops'] = $blkio_device_read_i_ops;
 
@@ -752,7 +750,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets blkio_device_write_i_ops
      *
-     * @return ThrottleDevice[]|null
+     * @return \OpenAPI\Client\Model\ThrottleDevice[]|null
      */
     public function getBlkioDeviceWriteIOps()
     {
@@ -762,14 +760,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets blkio_device_write_i_ops
      *
-     * @param ThrottleDevice[]|null $blkio_device_write_i_ops Limit write rate (IO per second) to a device, in the form:  ``` [{\"Path\": \"device_path\", \"Rate\": rate}] ```
+     * @param \OpenAPI\Client\Model\ThrottleDevice[]|null $blkio_device_write_i_ops Limit write rate (IO per second) to a device, in the form:  ``` [{\"Path\": \"device_path\", \"Rate\": rate}] ```
      *
      * @return self
      */
     public function setBlkioDeviceWriteIOps($blkio_device_write_i_ops)
     {
         if (is_null($blkio_device_write_i_ops)) {
-            throw new InvalidArgumentException('non-nullable blkio_device_write_i_ops cannot be null');
+            throw new \InvalidArgumentException('non-nullable blkio_device_write_i_ops cannot be null');
         }
         $this->container['blkio_device_write_i_ops'] = $blkio_device_write_i_ops;
 
@@ -796,7 +794,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCpuPeriod($cpu_period)
     {
         if (is_null($cpu_period)) {
-            throw new InvalidArgumentException('non-nullable cpu_period cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_period cannot be null');
         }
         $this->container['cpu_period'] = $cpu_period;
 
@@ -823,7 +821,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCpuQuota($cpu_quota)
     {
         if (is_null($cpu_quota)) {
-            throw new InvalidArgumentException('non-nullable cpu_quota cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_quota cannot be null');
         }
         $this->container['cpu_quota'] = $cpu_quota;
 
@@ -850,7 +848,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCpuRealtimePeriod($cpu_realtime_period)
     {
         if (is_null($cpu_realtime_period)) {
-            throw new InvalidArgumentException('non-nullable cpu_realtime_period cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_realtime_period cannot be null');
         }
         $this->container['cpu_realtime_period'] = $cpu_realtime_period;
 
@@ -877,7 +875,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCpuRealtimeRuntime($cpu_realtime_runtime)
     {
         if (is_null($cpu_realtime_runtime)) {
-            throw new InvalidArgumentException('non-nullable cpu_realtime_runtime cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_realtime_runtime cannot be null');
         }
         $this->container['cpu_realtime_runtime'] = $cpu_realtime_runtime;
 
@@ -904,7 +902,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCpusetCpus($cpuset_cpus)
     {
         if (is_null($cpuset_cpus)) {
-            throw new InvalidArgumentException('non-nullable cpuset_cpus cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpuset_cpus cannot be null');
         }
         $this->container['cpuset_cpus'] = $cpuset_cpus;
 
@@ -931,7 +929,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCpusetMems($cpuset_mems)
     {
         if (is_null($cpuset_mems)) {
-            throw new InvalidArgumentException('non-nullable cpuset_mems cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpuset_mems cannot be null');
         }
         $this->container['cpuset_mems'] = $cpuset_mems;
 
@@ -941,7 +939,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets devices
      *
-     * @return DeviceMapping[]|null
+     * @return \OpenAPI\Client\Model\DeviceMapping[]|null
      */
     public function getDevices()
     {
@@ -951,14 +949,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets devices
      *
-     * @param DeviceMapping[]|null $devices A list of devices to add to the container.
+     * @param \OpenAPI\Client\Model\DeviceMapping[]|null $devices A list of devices to add to the container.
      *
      * @return self
      */
     public function setDevices($devices)
     {
         if (is_null($devices)) {
-            throw new InvalidArgumentException('non-nullable devices cannot be null');
+            throw new \InvalidArgumentException('non-nullable devices cannot be null');
         }
         $this->container['devices'] = $devices;
 
@@ -985,7 +983,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setDeviceCgroupRules($device_cgroup_rules)
     {
         if (is_null($device_cgroup_rules)) {
-            throw new InvalidArgumentException('non-nullable device_cgroup_rules cannot be null');
+            throw new \InvalidArgumentException('non-nullable device_cgroup_rules cannot be null');
         }
         $this->container['device_cgroup_rules'] = $device_cgroup_rules;
 
@@ -995,7 +993,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets device_requests
      *
-     * @return DeviceRequest[]|null
+     * @return \OpenAPI\Client\Model\DeviceRequest[]|null
      */
     public function getDeviceRequests()
     {
@@ -1005,14 +1003,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets device_requests
      *
-     * @param DeviceRequest[]|null $device_requests A list of requests for devices to be sent to device drivers.
+     * @param \OpenAPI\Client\Model\DeviceRequest[]|null $device_requests A list of requests for devices to be sent to device drivers.
      *
      * @return self
      */
     public function setDeviceRequests($device_requests)
     {
         if (is_null($device_requests)) {
-            throw new InvalidArgumentException('non-nullable device_requests cannot be null');
+            throw new \InvalidArgumentException('non-nullable device_requests cannot be null');
         }
         $this->container['device_requests'] = $device_requests;
 
@@ -1039,7 +1037,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setKernelMemoryTcp($kernel_memory_tcp)
     {
         if (is_null($kernel_memory_tcp)) {
-            throw new InvalidArgumentException('non-nullable kernel_memory_tcp cannot be null');
+            throw new \InvalidArgumentException('non-nullable kernel_memory_tcp cannot be null');
         }
         $this->container['kernel_memory_tcp'] = $kernel_memory_tcp;
 
@@ -1066,7 +1064,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setMemoryReservation($memory_reservation)
     {
         if (is_null($memory_reservation)) {
-            throw new InvalidArgumentException('non-nullable memory_reservation cannot be null');
+            throw new \InvalidArgumentException('non-nullable memory_reservation cannot be null');
         }
         $this->container['memory_reservation'] = $memory_reservation;
 
@@ -1093,7 +1091,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setMemorySwap($memory_swap)
     {
         if (is_null($memory_swap)) {
-            throw new InvalidArgumentException('non-nullable memory_swap cannot be null');
+            throw new \InvalidArgumentException('non-nullable memory_swap cannot be null');
         }
         $this->container['memory_swap'] = $memory_swap;
 
@@ -1120,14 +1118,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setMemorySwappiness($memory_swappiness)
     {
         if (is_null($memory_swappiness)) {
-            throw new InvalidArgumentException('non-nullable memory_swappiness cannot be null');
+            throw new \InvalidArgumentException('non-nullable memory_swappiness cannot be null');
         }
 
         if (($memory_swappiness > 100)) {
-            throw new InvalidArgumentException('invalid value for $memory_swappiness when calling ContainerUpdateRequest., must be smaller than or equal to 100.');
+            throw new \InvalidArgumentException('invalid value for $memory_swappiness when calling ContainerUpdateRequest., must be smaller than or equal to 100.');
         }
         if (($memory_swappiness < 0)) {
-            throw new InvalidArgumentException('invalid value for $memory_swappiness when calling ContainerUpdateRequest., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for $memory_swappiness when calling ContainerUpdateRequest., must be bigger than or equal to 0.');
         }
 
         $this->container['memory_swappiness'] = $memory_swappiness;
@@ -1155,7 +1153,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setNanoCpus($nano_cpus)
     {
         if (is_null($nano_cpus)) {
-            throw new InvalidArgumentException('non-nullable nano_cpus cannot be null');
+            throw new \InvalidArgumentException('non-nullable nano_cpus cannot be null');
         }
         $this->container['nano_cpus'] = $nano_cpus;
 
@@ -1182,7 +1180,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setOomKillDisable($oom_kill_disable)
     {
         if (is_null($oom_kill_disable)) {
-            throw new InvalidArgumentException('non-nullable oom_kill_disable cannot be null');
+            throw new \InvalidArgumentException('non-nullable oom_kill_disable cannot be null');
         }
         $this->container['oom_kill_disable'] = $oom_kill_disable;
 
@@ -1212,7 +1210,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'init');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('init', $nullablesSetToNull);
+            $index = array_search('init', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1246,7 +1244,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'pids_limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('pids_limit', $nullablesSetToNull);
+            $index = array_search('pids_limit', $nullablesSetToNull, true);
             if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
@@ -1260,7 +1258,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets ulimits
      *
-     * @return ResourcesUlimitsInner[]|null
+     * @return \OpenAPI\Client\Model\ResourcesUlimitsInner[]|null
      */
     public function getUlimits()
     {
@@ -1270,14 +1268,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets ulimits
      *
-     * @param ResourcesUlimitsInner[]|null $ulimits A list of resource limits to set in the container. For example:  ``` {\"Name\": \"nofile\", \"Soft\": 1024, \"Hard\": 2048} ```
+     * @param \OpenAPI\Client\Model\ResourcesUlimitsInner[]|null $ulimits A list of resource limits to set in the container. For example:  ``` {\"Name\": \"nofile\", \"Soft\": 1024, \"Hard\": 2048} ```
      *
      * @return self
      */
     public function setUlimits($ulimits)
     {
         if (is_null($ulimits)) {
-            throw new InvalidArgumentException('non-nullable ulimits cannot be null');
+            throw new \InvalidArgumentException('non-nullable ulimits cannot be null');
         }
         $this->container['ulimits'] = $ulimits;
 
@@ -1304,7 +1302,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCpuCount($cpu_count)
     {
         if (is_null($cpu_count)) {
-            throw new InvalidArgumentException('non-nullable cpu_count cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_count cannot be null');
         }
         $this->container['cpu_count'] = $cpu_count;
 
@@ -1331,7 +1329,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setCpuPercent($cpu_percent)
     {
         if (is_null($cpu_percent)) {
-            throw new InvalidArgumentException('non-nullable cpu_percent cannot be null');
+            throw new \InvalidArgumentException('non-nullable cpu_percent cannot be null');
         }
         $this->container['cpu_percent'] = $cpu_percent;
 
@@ -1358,7 +1356,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setIoMaximumIOps($io_maximum_i_ops)
     {
         if (is_null($io_maximum_i_ops)) {
-            throw new InvalidArgumentException('non-nullable io_maximum_i_ops cannot be null');
+            throw new \InvalidArgumentException('non-nullable io_maximum_i_ops cannot be null');
         }
         $this->container['io_maximum_i_ops'] = $io_maximum_i_ops;
 
@@ -1385,7 +1383,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     public function setIoMaximumBandwidth($io_maximum_bandwidth)
     {
         if (is_null($io_maximum_bandwidth)) {
-            throw new InvalidArgumentException('non-nullable io_maximum_bandwidth cannot be null');
+            throw new \InvalidArgumentException('non-nullable io_maximum_bandwidth cannot be null');
         }
         $this->container['io_maximum_bandwidth'] = $io_maximum_bandwidth;
 
@@ -1395,7 +1393,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Gets restart_policy
      *
-     * @return RestartPolicy|null
+     * @return \OpenAPI\Client\Model\RestartPolicy|null
      */
     public function getRestartPolicy()
     {
@@ -1405,14 +1403,14 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
     /**
      * Sets restart_policy
      *
-     * @param RestartPolicy|null $restart_policy restart_policy
+     * @param \OpenAPI\Client\Model\RestartPolicy|null $restart_policy restart_policy
      *
      * @return self
      */
     public function setRestartPolicy($restart_policy)
     {
         if (is_null($restart_policy)) {
-            throw new InvalidArgumentException('non-nullable restart_policy cannot be null');
+            throw new \InvalidArgumentException('non-nullable restart_policy cannot be null');
         }
         $this->container['restart_policy'] = $restart_policy;
 
@@ -1437,7 +1435,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
      *
      * @return mixed|null
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -1479,7 +1477,7 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return ObjectSerializer::sanitizeForSerialization($this);
@@ -1508,3 +1506,5 @@ class ContainerUpdateRequest implements ModelInterface, ArrayAccess, JsonSeriali
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
+
+
